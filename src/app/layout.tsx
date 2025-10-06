@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/project/Header";
 import Hero from "@/components/project/Hero";
+import Countdown from "@/components/project/Countdown";
+import AboutEvent from "@/components/project/About";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,6 +33,8 @@ export default function RootLayout({
       >
         <Header /> 
         <Hero/>
+        <Countdown/>
+        <AboutEvent/>
         <main>{children}</main>
       </body>
     </html>
