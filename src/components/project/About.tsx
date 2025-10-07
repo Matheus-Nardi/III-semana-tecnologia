@@ -53,8 +53,8 @@ export default function AboutEvent() {
             <Image
               src="/ilustracoes/globo.png"
               alt="Ilustração de um globo representando tecnologia e inovação"
-              width={500}
-              height={400}
+              width={600}
+              height={500}
 
             />
           </div>

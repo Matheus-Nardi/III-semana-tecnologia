@@ -35,7 +35,7 @@ export default function RootLayout({
       >
         <Header /> 
         <Hero/>
-        <Countdown/>
+        {/* <Countdown/> */}
         <AboutEvent/>
         <Schedule/>
         <Partners/>
