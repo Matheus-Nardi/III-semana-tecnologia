@@ -7,6 +7,7 @@ import Countdown from "@/components/project/Countdown";
 import AboutEvent from "@/components/project/About";
 import Schedule from "@/components/project/Schedule";
 import Partners from "@/components/project/Partners";
+import Footer from "@/components/project/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default function RootLayout({
         <Schedule/>
         <Partners/>
         <main>{children}</main>
+        <Footer/>
       </body>
     </html>
   );
