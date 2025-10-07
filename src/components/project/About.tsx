@@ -1,16 +1,37 @@
+'use client';
+import { Sparkles } from "lucide-react";
 import Image from "next/image"
+import { TypeAnimation } from 'react-type-animation'
+
 
 export default function AboutEvent() {
   return (
     <section className="w-full py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-          {/* Content Column */}
+          {/* Texto à esquerda */}
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
-                Sobre a semana de tecnologia e inovação
-              </h2>
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
+        III Semana de{' '}
+        <TypeAnimation
+            sequence={[
+                'Ciência',
+                2000, 
+                'Tecnologia',
+                2000, 
+                'Inovação',
+                2000,
+                'Ciência, Tecnologia e Inovação da UNITINS',
+                20000, 
+            ]}
+            wrapper="span"
+            speed={50}
+            repeat={Infinity}
+            cursor={true}
+        />
+    </h2>
+
               <div className="w-16 h-1 bg-primary rounded-full" />
             </div>
 
@@ -28,29 +49,14 @@ export default function AboutEvent() {
             </div>
           </div>
 
-          {/* Illustrations Column */}
-          <div className="relative flex flex-col gap-8 lg:gap-12">
-            <div className="flex justify-start">
-              <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
-                <Image
-                  src="/ilustracoes/2_ilustracao.png"
-                  alt="Ilustração de um pássaro voando"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
+          <div className="flex justify-center lg:justify-end">
+            <Image
+              src="/ilustracoes/globo.png"
+              alt="Ilustração de um globo representando tecnologia e inovação"
+              width={500}
+              height={400}
 
-            <div className="flex justify-end">
-              <div className="relative w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64">
-                <Image
-                  src="/ilustracoes/7_ilustracao.png"
-                  alt="Ilustração de um homem pescando"
-                  fill
-                  className="object-contain"
-                />
-              </div>
-            </div>
+            />
           </div>
         </div>
       </div>
