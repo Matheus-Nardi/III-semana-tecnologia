@@ -22,25 +22,36 @@ const navigationItems = [
 
 export default function Header() {
     return (
-        <header className="flex items-center justify-between px-4 py-2 bg-card text-card-foreground border-b">
-            <div className="flex items-center">
-                <Image src={"/logos/logo-unitins.png"} alt="Logo UNITINS" width={180} height={50} />
+        <header className="flex flex-col sm:flex-row items-center justify-between px-4 sm:px-6 lg:px-8 py-3 sm:py-2 bg-card text-card-foreground border-b">
+            <div className="flex items-center mb-3 sm:mb-0">
+                <Image 
+                    src={"/logos/logo-unitins.png"} 
+                    alt="Logo UNITINS" 
+                    width={140} 
+                    height={40} 
+                    className="sm:w-[160px] sm:h-[45px] lg:w-[180px] lg:h-[50px]"
+                />
             </div>
-            <nav>
-                <NavigationMenu className="flex gap-x-8">
-                    <NavigationMenuList className="flex gap-x-5">
+            <nav className="w-full sm:w-auto">
+                <NavigationMenu className="flex flex-col sm:flex-row gap-4 sm:gap-x-6 lg:gap-x-8">
+                    <NavigationMenuList className="flex flex-wrap justify-center sm:flex-nowrap gap-3 sm:gap-x-4 lg:gap-x-5">
                         {navigationItems.map((item) => (
-                            <NavigationMenuItem key={item.text} >
-                                <Link href={item.href}>
+                            <NavigationMenuItem key={item.text} className="text-sm sm:text-base">
+                                <Link href={item.href} className="font-medium hover:text-primary transition-colors">
                                     {item.text}
                                 </Link>
                             </NavigationMenuItem>
                         ))}
                     </NavigationMenuList>
 
-                    <Button variant="primary" size="lg" className="flex items-center gap-2 font-semibold px-6 py-2 rounded-xl">
-                        <Lightbulb className="w-5 h-5" />
-                        Participar
+                    <Button 
+                        variant="primary" 
+                        size="lg" 
+                        className="flex items-center gap-2 font-semibold px-4 sm:px-6 py-2 text-sm sm:text-base rounded-xl mt-3 sm:mt-0 w-full sm:w-auto justify-center"
+                    >
+                        <Lightbulb className="w-4 h-4 sm:w-5 sm:h-5" />
+                        <span className="hidden sm:inline">Participar</span>
+                        <span className="sm:hidden">Inscrever-se</span>
                     </Button>
                 </NavigationMenu>
             </nav>

@@ -98,11 +98,11 @@ export default function News() {
 
   if (loading) {
     return (
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Loader2 className="animate-spin mx-auto text-blue-600 mb-4" size={48} />
-            <p className="text-gray-600 font-medium">Carregando notícias da Unitins...</p>
+            <p className="text-gray-600 font-medium text-sm sm:text-base">Carregando notícias da Unitins...</p>
           </div>
         </div>
       </section>
@@ -111,14 +111,14 @@ export default function News() {
 
   if (error) {
     return (
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-12 sm:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <AlertCircle className="mx-auto text-red-500 mb-4" size={48} />
-            <p className="text-red-600 mb-4">{error}</p>
+            <p className="text-red-600 mb-4 text-sm sm:text-base">{error}</p>
             <button 
               onClick={fetchNews}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-lg transition-colors text-sm sm:text-base"
             >
               Tentar Novamente
             </button>
@@ -133,33 +133,33 @@ export default function News() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
-      <div className="max-w-7xl mx-auto px-4">
+    <section className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-slate-50 to-blue-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Cabeçalho */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="h-1 w-12 bg-blue-600 rounded"></div>
-            <Newspaper className="text-blue-600" size={36} />
-            <div className="h-1 w-12 bg-blue-600 rounded"></div>
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center gap-2 sm:gap-3 mb-4">
+            <div className="h-1 w-8 sm:w-12 bg-blue-600 rounded"></div>
+            <Newspaper className="text-blue-600" size={28} />
+            <div className="h-1 w-8 sm:w-12 bg-blue-600 rounded"></div>
           </div>
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-3 sm:mb-4 font-montserrat">
             Notícias da Unitins
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg font-poppins">
             Fique por dentro das últimas novidades da Universidade Estadual do Tocantins
           </p>
         </div>
 
         {/* Grid de Notícias */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {news.map((item) => (
             <article 
               key={item.id}
-              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
+              className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 sm:hover:-translate-y-2 group"
             >
               {/* Imagem */}
-              <div className="relative h-48 bg-gradient-to-br from-blue-500 to-blue-500 overflow-hidden">
+              <div className="relative h-40 sm:h-48 bg-gradient-to-br from-blue-500 to-blue-500 overflow-hidden">
                 {item.imageUrl ? (
                   <img 
                     src={item.imageUrl} 
@@ -172,16 +172,14 @@ export default function News() {
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center">
-                    <Newspaper className="text-white/50" size={64} />
+                    <Newspaper className="text-white/50" size={48} />
                   </div>
                 )}
-                
-                
               </div>
 
               {/* Conteúdo */}
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-slate-900 mb-4 line-clamp-3 leading-snug group-hover:text-blue-600 transition-colors">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-3 sm:mb-4 line-clamp-3 leading-snug group-hover:text-blue-600 transition-colors font-montserrat">
                   {item.title}
                 </h3>
 
@@ -189,10 +187,10 @@ export default function News() {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors text-sm group/link"
+                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors text-xs sm:text-sm group/link font-poppins"
                 >
                   <span>Ler notícia completa</span>
-                  <ExternalLink size={16} className="group-hover/link:translate-x-1 transition-transform" />
+                  <ExternalLink size={14} className="group-hover/link:translate-x-1 transition-transform" />
                 </a>
               </div>
             </article>
@@ -205,11 +203,12 @@ export default function News() {
             href="https://www.unitins.br/nPortal/portal/noticias"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-2 sm:gap-3 bg-blue-600 hover:bg-blue-700 text-white px-6 sm:px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base font-montserrat"
           >
-            <Newspaper size={20} />
-            Ver Todas as Notícias da Unitins
-            <ExternalLink size={18} />
+            <Newspaper size={18} />
+            <span className="hidden sm:inline">Ver Todas as Notícias da Unitins</span>
+            <span className="sm:hidden">Ver Todas</span>
+            <ExternalLink size={16} />
           </a>
         </div>
       </div>

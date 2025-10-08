@@ -41,20 +41,28 @@ export default function RootLayout({
       <body
         className={`${montserrat.variable} ${poppins.variable} antialiased`}
       >
-        <Header /> 
-        <Hero/>
-        {/* <Countdown/> */}
-        <AboutEvent/>
-        <Schedule/>
-        <Subscription/>
-        <Partners/>
-        
-        <main>{children}</main>
-        <News/>
-
-        <Faq/>
-        <Location/>
-        <Footer/>
+        <div className="min-h-screen flex flex-col">
+          <Header /> 
+          
+          <main className="flex-1">
+            <Hero/>
+            {/* <Countdown/> */}
+            <AboutEvent/>
+            <Schedule/>
+            <Subscription/>
+            <Partners/>
+            
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+              {children}
+            </div>
+            
+            <News/>
+            <Faq/>
+            <Location/>
+          </main>
+          
+          <Footer/>
+        </div>
       </body>
     </html>
   );
