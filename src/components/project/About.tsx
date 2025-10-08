@@ -22,24 +22,7 @@ export default function AboutEvent() {
           <div className="space-y-8">
             <div ref={titleRef} className="space-y-4"> 
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat">
-                III Semana de{' '}
-                <TypeAnimation
-                    sequence={[
-                        'Ciência',
-                        2000, 
-                        'Tecnologia',
-                        2000, 
-                        'Inovação',
-                        2000,
-                        'Ciência, Tecnologia e Inovação da UNITINS',
-                        20000, 
-                    ]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={Infinity}
-                    cursor={true}
-                    className="font-montserrat font-bold text-3xl md:text-4xl lg:text-5xl tracking-tight text-balance text-primary"
-                />
+                III Semana de <span className="text-primary">Ciência, Tecnologia e Inovação </span> da UNITINS
               </h2>
 
               <motion.div 
