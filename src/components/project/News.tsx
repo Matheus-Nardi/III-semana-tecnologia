@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Newspaper, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
+import { motion, useInView } from "motion/react";
 
 interface NewsItem {
   id: string;
@@ -15,6 +16,9 @@ export default function News() {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  
+  const headerRef = useRef(null);
+  const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
 
   const fetchNews = async () => {
     try {
@@ -137,13 +141,25 @@ export default function News() {
       <div className="max-w-7xl mx-auto px-4">
 
         {/* Cabeçalho */}
-        <div className="text-center mb-12">
-          <div className="inline-flex items-center gap-3 mb-4">
-          </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat text-primary">
+                {/* Cabeçalho */}
+        <div ref={headerRef} className="text-center mb-8 sm:mb-12">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 font-montserrat text-primary">
             Notícias da Unitins
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
+           <div className="flex justify-center mb-4">
+              <motion.div 
+                className="h-1 bg-primary rounded-full"
+                initial={{ width: "4rem" }}
+                animate={{ 
+                  width: isHeaderInView ? "12rem" : "4rem" 
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: "easeInOut" 
+                }}
+              />
+            </div>
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg font-poppins">
             Fique por dentro das últimas novidades da Universidade Estadual do Tocantins
           </p>
         </div>
@@ -206,7 +222,7 @@ export default function News() {
           >
             <Newspaper size={20} />
             Ver Todas as Notícias da Unitins
-            <ExternalLink size={18} />
+            <ExternalLink size={18} />  
           </a>
         </div>
       </div>

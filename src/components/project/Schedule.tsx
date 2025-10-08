@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,6 +10,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { motion, useInView } from "motion/react";
 
 interface Talk {
   id: string;
@@ -32,6 +33,9 @@ interface DaySchedule {
 }
 
 export default function Schedule() {
+  const headerRef = useRef(null);
+  const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
+
   const schedule: DaySchedule[] = [
     {
       date: "20/10",
@@ -730,12 +734,22 @@ export default function Schedule() {
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div ref={headerRef} className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-3 font-montserrat">
             Programação
           </h2>
-          <div className="flex gap-2 justify-center lg:justify-center">
-            <div className="h-1 w-16 bg-primary rounded-full" />
+            <div className="flex justify-center">
+            <motion.div 
+              className="h-1 bg-primary rounded-full"
+              initial={{ width: "4rem" }}
+              animate={{ 
+                width: isHeaderInView ? "12rem" : "4rem" 
+              }}
+              transition={{ 
+                duration: 0.8, 
+                ease: "easeInOut" 
+              }}
+            />
           </div>
           <p className="text-muted-foreground font-poppins text-lg">
             Selecione um dia para ver a programação completa

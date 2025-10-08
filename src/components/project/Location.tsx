@@ -1,20 +1,36 @@
+'use client'
 import { MapPin } from "lucide-react"
+import { motion, useInView } from "motion/react"
+import { useRef } from "react"
 
 export default function Location() {
+  const headerRef = useRef(null);
+  const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
+
   return (
     <section id="localizacao" className="py-20 px-4 relative overflow-hidden bg-secondary/10">
       
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text content */}
-          <div className="text-center lg:text-left space-y-6">
+          <div ref={headerRef} className="text-center lg:text-left space-y-6">
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat text-primary">
               Localização do evento
             </h2>
             
-            <div className="flex gap-2 justify-center lg:justify-start">
-              <div className="h-1 w-16 bg-primary rounded-full" />
+            <div className="flex justify-center lg:justify-start">
+              <motion.div 
+                className="h-1 bg-primary rounded-full"
+                initial={{ width: "4rem" }}
+                animate={{ 
+                  width: isHeaderInView ? "12rem" : "4rem" 
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: "easeInOut" 
+                }}
+              />
             </div>
             
             <p className="text-muted-foreground font-poppins text-lg leading-relaxed">

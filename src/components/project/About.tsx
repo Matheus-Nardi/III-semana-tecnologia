@@ -8,9 +8,11 @@ import { TypeAnimation } from 'react-type-animation'
 
 export default function AboutEvent() {
   const rightRef = useRef(null);
+  const titleRef = useRef(null);
 
   // Hook detecta se o elemento está visível na tela
   const isRightInView = useInView(rightRef, { once: false, margin: "-100px" });
+  const isTitleInView = useInView(titleRef, { once: false, margin: "-100px" });
 
   return (
     <section id="sobre" className="w-full py-20 md:py-32 bg-secondary/10">
@@ -18,7 +20,7 @@ export default function AboutEvent() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Texto à esquerda */}
           <div className="space-y-8">
-            <div className="space-y-4"> 
+            <div ref={titleRef} className="space-y-4"> 
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat">
                 III Semana de{' '}
                 <TypeAnimation
@@ -40,7 +42,17 @@ export default function AboutEvent() {
                 />
               </h2>
 
-              <div className="h-1 w-16 bg-primary rounded-full" />
+              <motion.div 
+                className="h-1 bg-primary rounded-full"
+                initial={{ width: "4rem" }}
+                animate={{ 
+                  width: isTitleInView ? "12rem" : "4rem" 
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: "easeInOut" 
+                }}
+              />
             </div>
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">

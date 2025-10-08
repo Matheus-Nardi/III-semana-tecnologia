@@ -1,5 +1,9 @@
+'use client'
+
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { HelpCircle } from "lucide-react"
+import { motion, useInView } from "motion/react"
+import { useRef } from "react"
 
 interface Faq {
     id: number
@@ -8,6 +12,8 @@ interface Faq {
 }
 
 export default function Faq() {
+    const headerRef = useRef(null);
+    const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
     const faqItens: Faq[] = [
 
         {
@@ -46,12 +52,22 @@ export default function Faq() {
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="max-w-3xl mx-auto space-y-12">
                     {/* Section Header */}
-                    <div className="text-center space-y-4">
+                    <div ref={headerRef} className="text-center space-y-4">
                         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat text-primary">
                             Perguntas frequentes
                         </h2>
-                        <div className="flex gap-2 justify-center lg:justify-center">
-                            <div className="h-1 w-16 bg-primary rounded-full" />
+                        <div className="flex justify-center">
+                            <motion.div 
+                                className="h-1 bg-primary rounded-full"
+                                initial={{ width: "4rem" }}
+                                animate={{ 
+                                    width: isHeaderInView ? "12rem" : "4rem" 
+                                }}
+                                transition={{ 
+                                    duration: 0.8, 
+                                    ease: "easeInOut" 
+                                }}
+                            />
                         </div>
                     </div>
 
