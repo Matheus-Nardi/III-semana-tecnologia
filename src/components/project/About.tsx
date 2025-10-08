@@ -12,7 +12,7 @@ export default function AboutEvent() {
           {/* Texto à esquerda */}
           <div className="space-y-8">
             <div className="space-y-4">
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat">
         III Semana de{' '}
         <TypeAnimation
             sequence={[
@@ -29,6 +29,7 @@ export default function AboutEvent() {
             speed={50}
             repeat={Infinity}
             cursor={true}
+            className="font-montserrat font-bold text-3xl md:text-4xl lg:text-5xl tracking-tight text-balance"
         />
     </h2>
 
@@ -36,12 +37,12 @@ export default function AboutEvent() {
             </div>
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
-              <p className="text-base md:text-lg">
+              <p className="text-base md:text-lg font-poppins">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia nobis ab doloribus veritatis nam
                 reprehenderit quisquam, error distinctio voluptates quae sapiente cum necessitatibus cupiditate tempora
                 qui ipsam omnis dolorem ea.
               </p>
-              <p className="text-base md:text-lg">
+              <p className="text-base md:text-lg font-poppins">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem asperiores est maiores vel temporibus
                 iure voluptatem distinctio ad provident eaque, porro hic voluptate nam dolor obcaecati, quia
                 dignissimos, delectus cumque!

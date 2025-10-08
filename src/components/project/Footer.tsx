@@ -12,10 +12,10 @@ export default function Footer() {
           
           {/* Sobre o Evento */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-purple-500">
+            <h3 className="text-xl font-bold text-purple-500 font-montserrat">
               III Semana de Tecnologia
             </h3>
-            <p className="text-gray-300 text-sm leading-relaxed">
+            <p className="text-gray-300 text-sm leading-relaxed font-poppins">
               Um evento dedicado a explorar as últimas tendências em tecnologia, 
               inovação e desenvolvimento profissional.
             </p>
@@ -40,7 +40,7 @@ export default function Footer() {
 
           {/* Links Rápidos */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white">Links Rápidos</h3>
+            <h3 className="text-lg font-semibold text-white font-montserrat">Links Rápidos</h3>
             <ul className="space-y-2">
               {['Início', 'Sobre', 'Programação', 'Palestrantes', 'Inscrições'].map((link) => (
                 <li key={link}>
@@ -58,7 +58,7 @@ export default function Footer() {
 
           {/* Contato Campus Palmas */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-white flex items-center gap-2 font-montserrat">
               <Building2 size={18} className="text-blue-400" />
               Campus Palmas
             </h3>
@@ -80,7 +80,7 @@ export default function Footer() {
 
           {/* UNITINS - Sede Administrativa */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2">
+            <h3 className="text-lg font-semibold text-white flex items-center gap-2 font-montserrat">
               <Building2 size={18} className="text-purple-400" />
               UNITINS - Sede Administrativa
             </h3>
@@ -116,7 +116,7 @@ export default function Footer() {
       {/* Seção de Copyright */}
       <div className="max-w-7xl mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-gray-400 text-sm text-center md:text-left">
+          <p className="text-gray-400 text-sm text-center md:text-left font-poppins">
             © {currentYear} Universidade Estadual do Tocantins - UNITINS. Todos os direitos reservados.
           </p>
           <div className="flex space-x-6 text-sm text-gray-400">

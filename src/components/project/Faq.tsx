@@ -45,7 +45,7 @@ export default function Faq() {
                 <div className="max-w-3xl mx-auto space-y-12">
                     {/* Section Header */}
                     <div className="text-center space-y-4">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance">
+                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat">
                             Perguntas frequentes
                         </h2>
                         <div className="w-16 h-1 bg-primary rounded-full mx-auto" />

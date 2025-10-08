@@ -730,10 +730,10 @@ export default function Schedule() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-3">
+          <h2 className="text-4xl font-bold text-foreground mb-3 font-montserrat">
             Programação
           </h2>
-          <p className="text-muted-foreground">
+          <p className="text-muted-foreground font-poppins">
             Selecione um dia para ver a programação completa
           </p>
         </div>
@@ -772,7 +772,7 @@ export default function Schedule() {
               <div key={day.date}>
                 {/* Título do Dia */}
                 <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-primary inline-block">
+                  <h3 className="text-2xl font-bold text-primary inline-block font-montserrat">
                     {day.date}
                   </h3>
                   <span className="text-muted-foreground ml-3">
@@ -791,7 +791,7 @@ export default function Schedule() {
                       <Card className="border-l-4 border-l-primary overflow-hidden transition-shadow hover:shadow-md">
                         <AccordionTrigger className="hover:no-underline p-0 [&[data-state=open]_.chevron]:rotate-180 [&>svg]:hidden">
                           <CardHeader className="py-5 px-6 w-full flex flex-row items-center justify-between space-y-0">
-                            <CardTitle className="text-lg font-semibold text-foreground text-left pr-4">
+                            <CardTitle className="text-lg font-semibold text-foreground text-left pr-4 font-montserrat">
                               {event.name}
                             </CardTitle>
                             <div className="flex items-center gap-3 flex-shrink-0">
@@ -819,10 +819,10 @@ export default function Schedule() {
                               >
                                 {/* Conteúdo Principal */}
                                 <div className="flex-1 min-w-0">
-                                  <h5 className="font-semibold text-foreground mb-1 text-base">
+                                  <h5 className="font-semibold text-foreground mb-1 text-base font-montserrat">
                                     {talk.title}
                                   </h5>
-                                  <p className="text-sm text-muted-foreground mb-2">
+                                  <p className="text-sm text-muted-foreground mb-2 font-poppins">
                                     {talk.speaker}
                                   </p>
                                   <div className="flex items-center gap-2 text-sm text-muted-foreground">
@@ -852,10 +852,10 @@ export default function Schedule() {
         ) : (
           /* Mensagem quando nenhum dia está selecionado */
           <div className="text-center mt-12 p-8 border-2 border-dashed border-border rounded-lg">
-            <p className="text-muted-foreground text-lg mb-2">
+            <p className="text-muted-foreground text-lg mb-2 font-poppins">
               Selecione um dia acima
             </p>
-            <p className="text-muted-foreground text-sm">
+            <p className="text-muted-foreground text-sm font-poppins">
               💡 Clique em um dos cards para visualizar a programação
             </p>
           </div>

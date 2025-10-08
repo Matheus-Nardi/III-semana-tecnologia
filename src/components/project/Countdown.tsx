@@ -32,7 +32,7 @@ export default function Countdown(){
   }, []);
 
   return (
-    <div className="text-center text-2xl font-bold mt-6">
+    <div className="text-center text-2xl font-bold mt-6 font-montserrat">
       <p>Faltam</p>
       <div className="flex justify-center gap-4 mt-2">
         <div className="flex flex-col items-center">

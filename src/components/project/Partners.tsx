@@ -29,7 +29,7 @@ export default function Partners() {
         <div className="space-y-12">
           {/* Section Header */}
           <div className="text-center space-y-4">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance">Parceiros</h2>
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat">Parceiros</h2>
             <div className="w-16 h-1 bg-primary rounded-full mx-auto" />
           </div>
 
