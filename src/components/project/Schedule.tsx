@@ -727,17 +727,16 @@ export default function Schedule() {
 
   return (
     <section id="programacao" className="w-full py-20 px-4 relative overflow-hidden bg-secondary/10">
-      
+
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20 mb-4">
-            <Clock className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary">Confira a Programação</span>
-          </div>
           <h2 className="text-4xl md:text-5xl font-bold text-primary mb-3 font-montserrat">
             Programação
           </h2>
+          <div className="flex gap-2 justify-center lg:justify-center">
+            <div className="h-1 w-16 bg-primary rounded-full" />
+          </div>
           <p className="text-muted-foreground font-poppins text-lg">
             Selecione um dia para ver a programação completa
           </p>
@@ -756,8 +755,8 @@ export default function Schedule() {
                 className={`
                   h-auto py-4 px-6 flex flex-col items-center gap-1 
                   transition-all duration-300 rounded-xl
-                  ${isActive 
-                    ? 'shadow-md' 
+                  ${isActive
+                    ? 'shadow-md'
                     : 'hover:border-primary/50 hover:bg-primary/5'
                   }
                 `}
@@ -791,8 +790,8 @@ export default function Schedule() {
                 {/* Cards de Eventos */}
                 <Accordion type="single" collapsible className="space-y-4">
                   {day.events.map((event) => (
-                    <AccordionItem 
-                      key={event.id} 
+                    <AccordionItem
+                      key={event.id}
                       value={event.id}
                       className="border-none"
                     >
@@ -806,10 +805,10 @@ export default function Schedule() {
                               <span className="text-xs text-primary-foreground bg-primary px-3 py-1.5 rounded-full font-medium shadow-sm">
                                 {event.talks.length} {event.talks.length === 1 ? "palestra" : "palestras"}
                               </span>
-                              <svg 
-                                className="chevron w-5 h-5 text-primary transition-transform duration-200 flex-shrink-0" 
-                                fill="none" 
-                                stroke="currentColor" 
+                              <svg
+                                className="chevron w-5 h-5 text-primary transition-transform duration-200 flex-shrink-0"
+                                fill="none"
+                                stroke="currentColor"
                                 viewBox="0 0 24 24"
                               >
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
@@ -838,7 +837,7 @@ export default function Schedule() {
                                     <span>{talk.location}</span>
                                   </div>
                                 </div>
-                                
+
                                 {/* Horário */}
                                 <div className="flex-shrink-0 text-right">
                                   <div className="flex items-center gap-1.5 text-primary font-medium bg-primary/10 px-3 py-2 rounded-lg">

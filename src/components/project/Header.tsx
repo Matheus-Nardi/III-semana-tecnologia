@@ -8,6 +8,7 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
+
 import Image from "next/image";
 import Link from "next/link";
 import { Button } from "../ui/button";
@@ -49,13 +50,14 @@ export default function Header() {
                 <div className="flex items-center justify-between py-3">
                     {/* Logo */}
                     <div className="flex items-center">
-                        <Image 
-                            src="/logos/logo-unitins.png" 
-                            alt="Logo UNITINS" 
-                            width={180} 
-                            height={50} 
-                            className="h-12 w-auto"
-                        />
+                        <Link href="https://www.unitins.br/nPortal/" target="_blank" rel="noopener noreferrer">
+                            <Image 
+                                src="/logos/logo-unitins.png" 
+                                alt="Logo UNITINS" 
+                                width={180} 
+                                height={50} 
+                            />
+                        </Link>
                     </div>
 
                     {/* Desktop Navigation */}

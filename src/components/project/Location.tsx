@@ -8,10 +8,6 @@ export default function Location() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text content */}
           <div className="text-center lg:text-left space-y-6">
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20">
-              <MapPin className="w-4 h-4 text-primary" />
-              <span className="text-sm font-semibold text-primary">Como Chegar</span>
-            </div>
             
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat text-primary">
               Localização do evento
@@ -19,8 +15,6 @@ export default function Location() {
             
             <div className="flex gap-2 justify-center lg:justify-start">
               <div className="h-1 w-16 bg-primary rounded-full" />
-              <div className="h-1 w-8 bg-accent rounded-full" />
-              <div className="h-1 w-4 bg-success rounded-full" />
             </div>
             
             <p className="text-muted-foreground font-poppins text-lg leading-relaxed">

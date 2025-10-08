@@ -18,12 +18,7 @@ export default function AboutEvent() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Texto à esquerda */}
           <div className="space-y-8">
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20 mb-4">
-                <Sparkles className="w-4 h-4 text-primary" />
-                <span className="text-sm font-semibold text-primary">Evento Especial</span>
-              </div>
-              
+            <div className="space-y-4"> 
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat">
                 III Semana de{' '}
                 <TypeAnimation
@@ -49,31 +44,16 @@ export default function AboutEvent() {
             </div>
 
             <div className="space-y-6 text-muted-foreground leading-relaxed">
-              <p className="text-base md:text-lg font-poppins border-l-4 border-primary pl-4 py-2">
+              <p className="text-base md:text-lg font-poppins pl-4 py-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia nobis ab doloribus veritatis nam
                 reprehenderit quisquam, error distinctio voluptates quae sapiente cum necessitatibus cupiditate tempora
                 qui ipsam omnis dolorem ea.
               </p>
-              <p className="text-base md:text-lg font-poppins border-l-4 border-accent pl-4 py-2">
+              <p className="text-base md:text-lg font-poppins pl-4 py-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem asperiores est maiores vel temporibus
                 iure voluptatem distinctio ad provident eaque, porro hic voluptate nam dolor obcaecati, quia
                 dignissimos, delectus cumque!
               </p>
-            </div>
-
-            <div className="flex flex-wrap gap-4 pt-4">
-              <div className="flex items-center gap-3 px-6 py-3 bg-primary/10 rounded-lg border border-primary/20">
-                <div className="text-3xl font-bold text-primary">10+</div>
-                <div className="text-sm text-muted-foreground">Palestras</div>
-              </div>
-              <div className="flex items-center gap-3 px-6 py-3 bg-accent/10 rounded-lg border border-accent/20">
-                <div className="text-3xl font-bold text-accent">5</div>
-                <div className="text-sm text-muted-foreground">Dias</div>
-              </div>
-              <div className="flex items-center gap-3 px-6 py-3 bg-success/10 rounded-lg border border-success/20">
-                <div className="text-3xl font-bold text-success">100+</div>
-                <div className="text-sm text-muted-foreground">Participantes</div>
-              </div>
             </div>
           </div>
 
