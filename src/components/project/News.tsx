@@ -18,7 +18,7 @@ export default function News() {
   const [error, setError] = useState<string | null>(null);
   
   const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
+  const isHeaderInView = useInView(headerRef, { once: false, margin: "-50px" });
 
   const fetchNews = async () => {
     try {
@@ -141,24 +141,23 @@ export default function News() {
       <div className="max-w-7xl mx-auto px-4">
 
         {/* Cabeçalho */}
-                {/* Cabeçalho */}
         <div ref={headerRef} className="text-center mb-8 sm:mb-12">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 font-montserrat text-primary">
             Notícias da Unitins
           </h2>
-           <div className="flex justify-center mb-4">
-              <motion.div 
-                className="h-1 bg-primary rounded-full"
-                initial={{ width: "4rem" }}
-                animate={{ 
-                  width: isHeaderInView ? "12rem" : "4rem" 
-                }}
-                transition={{ 
-                  duration: 0.8, 
-                  ease: "easeInOut" 
-                }}
-              />
-            </div>
+          <div className="flex justify-center mb-4">
+            <motion.div 
+              className="h-1 bg-primary rounded-full"
+              initial={{ width: "4rem" }}
+              animate={{ 
+                width: isHeaderInView ? "12rem" : "4rem" 
+              }}
+              transition={{ 
+                duration: 0.8, 
+                ease: "easeInOut" 
+              }}
+            />
+          </div>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg font-poppins">
             Fique por dentro das últimas novidades da Universidade Estadual do Tocantins
           </p>
