@@ -10,6 +10,7 @@ import Partners from "@/components/project/Partners";
 import Footer from "@/components/project/Footer";
 import Faq from "@/components/project/Faq";
 import Location from "@/components/project/Location";
+import Subscription from "@/components/project/Subscription";
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
@@ -43,6 +44,7 @@ export default function RootLayout({
         {/* <Countdown/> */}
         <AboutEvent/>
         <Schedule/>
+        <Subscription/>
         <Partners/>
         <Faq/>
         <Location/>

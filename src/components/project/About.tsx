@@ -1,10 +1,17 @@
 'use client';
 import { Sparkles } from "lucide-react";
+import { motion, useInView } from "motion/react";
 import Image from "next/image"
+import { useRef } from "react";
 import { TypeAnimation } from 'react-type-animation'
 
 
 export default function AboutEvent() {
+  const rightRef = useRef(null);
+
+  // Hook detecta se o elemento está visível na tela
+  const isRightInView = useInView(rightRef, { once: false, margin: "-100px" });
+
   return (
     <section className="w-full py-20 md:py-32">
       <div className="container mx-auto px-4 md:px-6">
@@ -50,15 +57,19 @@ export default function AboutEvent() {
             </div>
           </div>
 
-          <div className="flex justify-center lg:justify-end">
+          <motion.div
+            ref={rightRef}
+            initial={{ opacity: 0, y: 50 }}
+            animate={isRightInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 1 }} className="flex justify-center lg:justify-end">
             <Image
               src="/ilustracoes/globo.png"
-              alt="Ilustração de um globo representando tecnologia e inovação"
+              alt="Ilustração de um globo representando o tema da semana de inovação"
               width={600}
               height={500}
 
             />
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
