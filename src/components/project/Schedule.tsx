@@ -726,14 +726,19 @@ export default function Schedule() {
     : [];
 
   return (
-    <section className="w-full py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="programacao" className="w-full py-20 px-4 relative overflow-hidden bg-secondary/10">
+      
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-3 font-montserrat">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 rounded-full border border-primary/20 mb-4">
+            <Clock className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary">Confira a Programação</span>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-3 font-montserrat">
             Programação
           </h2>
-          <p className="text-muted-foreground font-poppins">
+          <p className="text-muted-foreground font-poppins text-lg">
             Selecione um dia para ver a programação completa
           </p>
         </div>
@@ -750,8 +755,11 @@ export default function Schedule() {
                 onClick={() => setSelectedDay(isActive ? null : day.date)}
                 className={`
                   h-auto py-4 px-6 flex flex-col items-center gap-1 
-                  transition-all duration-200
-                  ${isActive ? 'shadow-lg scale-105' : 'hover:scale-102'}
+                  transition-all duration-300 rounded-xl
+                  ${isActive 
+                    ? 'shadow-md' 
+                    : 'hover:border-primary/50 hover:bg-primary/5'
+                  }
                 `}
               >
                 <span className={`text-xs font-medium uppercase tracking-wider ${isActive ? 'opacity-90' : 'opacity-70'}`}>
@@ -788,14 +796,14 @@ export default function Schedule() {
                       value={event.id}
                       className="border-none"
                     >
-                      <Card className="border-l-4 border-l-primary overflow-hidden transition-shadow hover:shadow-md">
+                      <Card className="border-l-4 border-l-primary hover:border-l-accent overflow-hidden transition-all hover:shadow-md duration-300 bg-white">
                         <AccordionTrigger className="hover:no-underline p-0 [&[data-state=open]_.chevron]:rotate-180 [&>svg]:hidden">
                           <CardHeader className="py-5 px-6 w-full flex flex-row items-center justify-between space-y-0">
                             <CardTitle className="text-lg font-semibold text-foreground text-left pr-4 font-montserrat">
                               {event.name}
                             </CardTitle>
                             <div className="flex items-center gap-3 flex-shrink-0">
-                              <span className="text-xs text-muted-foreground bg-secondary px-3 py-1.5 rounded-full font-medium">
+                              <span className="text-xs text-primary-foreground bg-primary px-3 py-1.5 rounded-full font-medium shadow-sm">
                                 {event.talks.length} {event.talks.length === 1 ? "palestra" : "palestras"}
                               </span>
                               <svg 
@@ -815,7 +823,7 @@ export default function Schedule() {
                             {event.talks.map((talk) => (
                               <div
                                 key={talk.id}
-                                className="flex items-start justify-between gap-4 p-4 bg-muted/30 rounded-lg border border-border hover:border-primary/50 transition-colors"
+                                className="flex items-start justify-between gap-4 p-4 bg-white rounded-lg border border-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-md"
                               >
                                 {/* Conteúdo Principal */}
                                 <div className="flex-1 min-w-0">
@@ -833,7 +841,7 @@ export default function Schedule() {
                                 
                                 {/* Horário */}
                                 <div className="flex-shrink-0 text-right">
-                                  <div className="flex items-center gap-1.5 text-primary font-medium">
+                                  <div className="flex items-center gap-1.5 text-primary font-medium bg-primary/10 px-3 py-2 rounded-lg">
                                     <Clock className="w-4 h-4" />
                                     <span className="text-sm whitespace-nowrap">{talk.time}</span>
                                   </div>

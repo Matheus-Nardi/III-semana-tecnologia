@@ -45,72 +45,84 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 0.75rem;
   --background: #ffffff;
-  --foreground: #16191b;
+  --foreground: #1a2332;
   --card: #ffffff;
-  --card-foreground: #16191b;
+  --card-foreground: #1a2332;
   --popover: #ffffff;
-  --popover-foreground: #16191b;
-  --primary: #216ff3;
+  --popover-foreground: #1a2332;
+  --primary: #220f8b;
   --primary-foreground: #ffffff;
-  --secondary: #eef6ff;
-  --secondary-foreground: #0a6fb3;
-  --muted: #f8f9fa;
-  --muted-foreground: #5b5b5b;
-  --accent: #38b6ff;
-  --accent-foreground: #16191b;
-  --destructive: #de1679;
-  --border: #e2e8f0;
-  --input: #e2e8f0;
-  --ring: #216ff3;
-  --chart-1: #216ff3;
-  --chart-2: #38b6ff;
-  --chart-3: #0a6fb3;
-  --chart-4: #de1679;
-  --chart-5: #5b5b5b;
-  --sidebar: #f8f9fa;
-  --sidebar-foreground: #16191b;
-  --sidebar-primary: #216ff3;
+  --secondary: #E8E5F7;
+  --secondary-foreground: #220f8b;
+  --muted: #F5F4FA;
+  --muted-foreground: #6B6B8C;
+  --accent: #3d1fd4;
+  --accent-foreground: #ffffff;
+  --destructive: #E91E63;
+  --border: #D1CEE8;
+  --input: #D1CEE8;
+  --ring: #220f8b;
+  --chart-1: #220f8b;
+  --chart-2: #3d1fd4;
+  --chart-3: #66BB6A;
+  --chart-4: #E91E63;
+  --chart-5: #FF9800;
+  --sidebar: #F5F4FA;
+  --sidebar-foreground: #1a2332;
+  --sidebar-primary: #220f8b;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #eef6ff;
-  --sidebar-accent-foreground: #16191b;
-  --sidebar-border: #e2e8f0;
-  --sidebar-ring: #216ff3;
+  --sidebar-accent: #E8E5F7;
+  --sidebar-accent-foreground: #220f8b;
+  --sidebar-border: #D1CEE8;
+  --sidebar-ring: #220f8b;
+  --success: #66BB6A;
+  --success-foreground: #ffffff;
+  --warning: #FF9800;
+  --warning-foreground: #ffffff;
+  --info: #4FC3F7;
+  --info-foreground: #ffffff;
 }
 
 .dark {
-  --background: #16191b;
-  --foreground: #ffffff;
-  --card: #052f47;
-  --card-foreground: #ffffff;
-  --popover: #052f47;
-  --popover-foreground: #ffffff;
-  --primary: #38b6ff;
-  --primary-foreground: #16191b;
-  --secondary: #0a6fb3;
-  --secondary-foreground: #ffffff;
-  --muted: #213a4f;
-  --muted-foreground: #94a3b8;
-  --accent: #216ff3;
+  --background: #0A1929;
+  --foreground: #F8FAFC;
+  --card: #0D2238;
+  --card-foreground: #F8FAFC;
+  --popover: #0D2238;
+  --popover-foreground: #F8FAFC;
+  --primary: #3d1fd4;
+  --primary-foreground: #F8FAFC;
+  --secondary: #1E1A3F;
+  --secondary-foreground: #D1CEE8;
+  --muted: #1A1633;
+  --muted-foreground: #A5A3C0;
+  --accent: #26C6DA;
   --accent-foreground: #ffffff;
-  --destructive: #de1679;
-  --border: #5b5b5b;
-  --input: #5b5b5b;
-  --ring: #38b6ff;
-  --chart-1: #216ff3;
-  --chart-2: #38b6ff;
-  --chart-3: #0a6fb3;
-  --chart-4: #de1679;
-  --chart-5: #94a3b8;
-  --sidebar: #052f47;
-  --sidebar-foreground: #ffffff;
-  --sidebar-primary: #38b6ff;
-  --sidebar-primary-foreground: #16191b;
-  --sidebar-accent: #16191b;
-  --sidebar-accent-foreground: #ffffff;
-  --sidebar-border: #5b5b5b;
-  --sidebar-ring: #38b6ff;
+  --destructive: #F06292;
+  --border: #1E4D6F;
+  --input: #1E4D6F;
+  --ring: #4DD0E1;
+  --chart-1: #26C6DA;
+  --chart-2: #4DD0E1;
+  --chart-3: #66BB6A;
+  --chart-4: #E91E63;
+  --chart-5: #90CAF9;
+  --sidebar: #0D2238;
+  --sidebar-foreground: #F8FAFC;
+  --sidebar-primary: #4DD0E1;
+  --sidebar-primary-foreground: #0A1929;
+  --sidebar-accent: #1A2F45;
+  --sidebar-accent-foreground: #B2EBF2;
+  --sidebar-border: #1E4D6F;
+  --sidebar-ring: #4DD0E1;
+  --success: #81C784;
+  --success-foreground: #0A1929;
+  --warning: #FFA726;
+  --warning-foreground: #0A1929;
+  --info: #81D4FA;
+  --info-foreground: #0A1929;
 }
 
 @layer base {
@@ -130,6 +142,29 @@
   p, span, div {
     font-family: var(--font-poppins);
   }
+  
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #26C6DA;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4DD0E1;
+  }
 }
 
 @layer utilities {
@@ -139,6 +174,20 @@
   
   .font-body {
     font-family: var(--font-poppins);
+  }
+  
+  /* Animation utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
   }
 }
 

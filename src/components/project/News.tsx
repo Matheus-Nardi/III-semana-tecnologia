@@ -133,7 +133,7 @@ export default function News() {
   }
 
   return (
-    <section className="py-16 bg-gradient-to-br from-slate-50 to-blue-50">
+    <section className="py-16 bg-secondary/10">
       <div className="max-w-7xl mx-auto px-4">
         
         {/* Cabeçalho */}
@@ -159,7 +159,7 @@ export default function News() {
               className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
             >
               {/* Imagem */}
-              <div className="relative h-48 bg-gradient-to-br from-blue-500 to-blue-500 overflow-hidden">
+              <div className="relative h-48 bg-primary overflow-hidden">
                 {item.imageUrl ? (
                   <img 
                     src={item.imageUrl} 
@@ -189,7 +189,7 @@ export default function News() {
                   href={item.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold transition-colors text-sm group/link"
+                  className="inline-flex items-center gap-2 text-primary hover:text-accent font-semibold transition-colors text-sm group/link"
                 >
                   <span>Ler notícia completa</span>
                   <ExternalLink size={16} className="group-hover/link:translate-x-1 transition-transform" />
@@ -205,7 +205,7 @@ export default function News() {
             href="https://www.unitins.br/nPortal/portal/noticias"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-md hover:shadow-lg"
           >
             <Newspaper size={20} />
             Ver Todas as Notícias da Unitins

@@ -42,18 +42,19 @@ export default function RootLayout({
         className={`${montserrat.variable} ${poppins.variable} antialiased`}
       >
         <Header /> 
-        <Hero/>
-        {/* <Countdown/> */}
-        <AboutEvent/>
-        <Schedule/>
-        <Subscription/>
-        <Partners/>
-        
-        <main>{children}</main>
-        <News/>
+        <div className="pt-20">
+          <Hero/>
+          {/* <Countdown/> */}
+          <AboutEvent/>
+          <Schedule/>
+          <Partners/>
+          
+          <main>{children}</main>
+          <News/>
 
-        <Faq/>
-        <Location/>
+          <Faq/>
+          <Location/>
+        </div>
         <Footer/>
       </body>
     </html>

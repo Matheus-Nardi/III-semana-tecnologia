@@ -5,14 +5,15 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
+    <footer className="relative overflow-hidden bg-[#0D2238]">
+      
       {/* Seção Principal */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           
           {/* Sobre o Evento */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-purple-500 font-montserrat">
+            <h3 className="text-xl font-bold font-montserrat text-primary">
               III Semana de Tecnologia
             </h3>
             <p className="text-gray-300 text-sm leading-relaxed font-poppins">
@@ -20,35 +21,37 @@ export default function Footer() {
               inovação e desenvolvimento profissional.
             </p>
             <div className="flex space-x-4">
-   
               <a 
                 href="#" 
-                className="hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
+                className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center hover:bg-primary transition-all duration-300 border border-primary/30"
                 aria-label="LinkedIn"
               >
-                <Linkedin size={20} />
+                <Linkedin size={20} className="text-white" />
               </a>
               <a 
                 href="#" 
-                className="hover:text-pink-400 transition-colors duration-300 transform hover:scale-110"
+                className="w-10 h-10 rounded-full bg-destructive/20 flex items-center justify-center hover:bg-destructive transition-all duration-300 border border-destructive/30"
                 aria-label="Instagram"
               >
-                <Instagram size={20} />
+                <Instagram size={20} className="text-white" />
               </a>
             </div>
           </div>
 
           {/* Links Rápidos */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white font-montserrat">Links Rápidos</h3>
+            <h3 className="text-lg font-semibold text-white font-montserrat flex items-center gap-2">
+              <div className="h-1 w-8 bg-primary rounded-full" />
+              Links Rápidos
+            </h3>
             <ul className="space-y-2">
               {['Início', 'Sobre', 'Programação', 'Palestrantes', 'Inscrições'].map((link) => (
                 <li key={link}>
                   <a 
                     href="#" 
-                    className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm flex items-center group"
+                    className="text-gray-300 hover:text-primary transition-all duration-300 text-sm flex items-center group font-poppins"
                   >
-                    <span className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                    <span className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity text-accent">→</span>
                     {link}
                   </a>
                 </li>
@@ -59,17 +62,19 @@ export default function Footer() {
           {/* Contato Campus Palmas */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white flex items-center gap-2 font-montserrat">
-              <Building2 size={18} className="text-blue-400" />
+              <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center">
+                <Building2 size={16} className="text-white" />
+              </div>
               Campus Palmas
             </h3>
             <ul className="space-y-3">
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <MapPin size={18} className="mt-1 flex-shrink-0 text-blue-400" />
-                <span>Quadra 109 Norte, Avenida NS 15, Lote 09<br />Plano Diretor Norte<br />Palmas-TO, CEP: 77001-090</span>
+              <li className="flex items-start space-x-3 text-gray-300 text-sm group">
+                <MapPin size={18} className="mt-1 flex-shrink-0 text-accent group-hover:text-primary transition-colors" />
+                <span className="font-poppins">Quadra 109 Norte, Avenida NS 15, Lote 09<br />Plano Diretor Norte<br />Palmas-TO, CEP: 77001-090</span>
               </li>
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <Phone size={18} className="mt-1 flex-shrink-0 text-blue-400" />
-                <div className="flex flex-col gap-1">
+              <li className="flex items-start space-x-3 text-gray-300 text-sm group">
+                <Phone size={18} className="mt-1 flex-shrink-0 text-accent group-hover:text-primary transition-colors" />
+                <div className="flex flex-col gap-1 font-poppins">
                   <span>(63) 3901-4111</span>
                   <span>(63) 3901-4297</span>
                   <span>(63) 3901-4298</span>
@@ -81,25 +86,27 @@ export default function Footer() {
           {/* UNITINS - Sede Administrativa */}
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white flex items-center gap-2 font-montserrat">
-              <Building2 size={18} className="text-purple-400" />
-              UNITINS - Sede Administrativa
+              <div className="w-8 h-8 rounded-full bg-success flex items-center justify-center">
+                <Building2 size={16} className="text-white" />
+              </div>
+              Sede Administrativa
             </h3>
             <ul className="space-y-3">
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <MapPin size={18} className="mt-1 flex-shrink-0 text-purple-400" />
-                <span>108 Sul Alameda 11 Lote 03<br />Cx. Postal 173<br />CEP: 77020-122, Palmas-TO</span>
+              <li className="flex items-start space-x-3 text-gray-300 text-sm group">
+                <MapPin size={18} className="mt-1 flex-shrink-0 text-success group-hover:text-accent transition-colors" />
+                <span className="font-poppins">108 Sul Alameda 11 Lote 03<br />Cx. Postal 173<br />CEP: 77020-122, Palmas-TO</span>
               </li>
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <Phone size={18} className="mt-1 flex-shrink-0 text-purple-400" />
-                <span>(63) 3901-4000</span>
+              <li className="flex items-start space-x-3 text-gray-300 text-sm group">
+                <Phone size={18} className="mt-1 flex-shrink-0 text-success group-hover:text-accent transition-colors" />
+                <span className="font-poppins">(63) 3901-4000</span>
               </li>
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <ExternalLink size={18} className="mt-1 flex-shrink-0 text-purple-400" />
+              <li className="flex items-start space-x-3 text-gray-300 text-sm group">
+                <ExternalLink size={18} className="mt-1 flex-shrink-0 text-success group-hover:text-accent transition-colors" />
                 <a 
                   href="https://www.unitins.br/concursos/publico" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="hover:text-purple-400 transition-colors underline"
+                  className="hover:text-accent transition-colors underline font-poppins"
                 >
                   Editais e Concursos
                 </a>
@@ -110,11 +117,11 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Linha Divisória com Gradiente */}
-      <div className="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+      {/* Linha Divisória */}
+      <div className="relative z-10 h-px bg-primary/30"></div>
 
       {/* Seção de Copyright */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 py-6">
         <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
           <p className="text-gray-400 text-sm text-center md:text-left font-poppins">
             © {currentYear} Universidade Estadual do Tocantins - UNITINS. Todos os direitos reservados.
@@ -124,7 +131,7 @@ export default function Footer() {
               href="https://www.unitins.br" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="hover:text-blue-400 transition-colors duration-300"
+              className="hover:text-primary transition-colors duration-300 font-poppins"
             >
               www.unitins.br
             </a>
