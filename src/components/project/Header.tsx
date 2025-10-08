@@ -66,10 +66,10 @@ export default function Header() {
                                     <NavigationMenuItem key={item.text}>
                                         <Link 
                                             href={item.href}
-                                            className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group"
+                                            className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-primary transition-colors duration-200 relative group/item"
                                         >
                                             {item.text}
-                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300" />
+                                            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover/item:w-full transition-all duration-300" />
                                         </Link>
                                     </NavigationMenuItem>
                                 ))}

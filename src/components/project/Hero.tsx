@@ -61,9 +61,6 @@ export default function Hero() {
                                                     Ciência, Tecnologia e Inovação
                                                 </span>
                                             </h1>
-                                            <p className="text-lg md:text-xl lg:text-2xl text-white/90 font-medium">
-                                                Transformando ideias em realidade
-                                            </p>
                                             <div className="flex flex-wrap gap-4 justify-center mt-8">
                                                 <button className="px-8 py-4 bg-primary hover:bg-accent text-white font-semibold rounded-lg transition-colors duration-200">
                                                     Inscreva-se Agora
