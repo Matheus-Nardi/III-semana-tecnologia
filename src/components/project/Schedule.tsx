@@ -730,7 +730,7 @@ export default function Schedule() {
     : [];
 
   return (
-    <section id="programacao" className="w-full py-20 px-4 relative overflow-hidden bg-secondary/10">
+    <section id="programacao" className="w-full py-20 px-4 relative overflow-hidden bg-white">
 
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}

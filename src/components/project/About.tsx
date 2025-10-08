@@ -15,7 +15,7 @@ export default function AboutEvent() {
   const isTitleInView = useInView(titleRef, { once: false, margin: "-100px" });
 
   return (
-    <section id="sobre" className="w-full py-20 md:py-32 bg-secondary/10">
+    <section id="sobre" className="w-full py-20 md:py-32 bg-gradient-soft-primary">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Texto à esquerda */}

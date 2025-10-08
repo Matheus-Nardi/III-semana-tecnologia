@@ -31,7 +31,7 @@ export default function Partners() {
   ]
 
   return (
-    <section id="parceiros" className="w-full py-20 md:py-32 relative overflow-hidden bg-secondary/20">
+    <section id="parceiros" className="w-full py-20 md:py-32 relative overflow-hidden bg-gradient-soft-secondary">
 
       <div className="container mx-auto px-4 md:px-6 relative z-10">
         <div className="space-y-12">

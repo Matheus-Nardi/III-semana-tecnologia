@@ -12,7 +12,7 @@ export default function Subscription() {
   const isRightInView = useInView(rightRef, { once: false, margin: "-100px" });
 
   return (
-    <section className="w-full py-20 md:py-32 bg-secondary/20 relative overflow-hidden">
+    <section className="w-full py-20 md:py-32 bg-gradient-5 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-16">
           <motion.div
