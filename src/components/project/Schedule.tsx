@@ -35,7 +35,7 @@ export default function Schedule() {
   const schedule: DaySchedule[] = [
     {
       date: "20/10",
-      dayOfWeek: "Segunda",
+      dayOfWeek: "Segunda-feira",
       events: [
         {
           id: "event-1-1",
@@ -753,15 +753,15 @@ export default function Schedule() {
                 size="lg"
                 onClick={() => setSelectedDay(isActive ? null : day.date)}
                 className={`
-                  h-auto py-4 px-6 flex flex-col items-center gap-1 
+                  w-[140px] h-[90px] py-4 px-6 flex flex-col items-center justify-center gap-1 
                   transition-all duration-300 rounded-xl
-                  ${isActive
-                    ? 'shadow-md'
-                    : 'hover:border-primary/50 hover:bg-primary/5'
+                  ${isActive 
+                    ? 'shadow-md' 
+                    : 'hover:border-primary hover:bg-primary/10 hover:shadow-sm hover:text-primary'
                   }
                 `}
               >
-                <span className={`text-xs font-medium uppercase tracking-wider ${isActive ? 'opacity-90' : 'opacity-70'}`}>
+                <span className={`text-xs font-medium uppercase tracking-wider transition-opacity ${isActive ? 'opacity-90' : 'opacity-70'}`}>
                   {day.dayOfWeek}
                 </span>
                 <span className="text-2xl font-bold">
