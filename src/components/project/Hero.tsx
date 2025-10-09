@@ -82,16 +82,16 @@ export default function Hero() {
                 <div className="container mx-auto px-2 sm:px-4 md:px-6">
                     <div className="max-w-5xl mx-auto">
                         {/* Main Title with elegant animation */}
-                        <div className="text-center space-y-4 sm:space-y-6 mb-8 sm:mb-12">
-                            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-bold leading-tight animate-fade-in-up animation-delay-200">
-                                <span className="block mb-1 sm:mb-2 text-white drop-shadow-2xl">
+                        <div className="text-center space-y-6 mb-12">
+                            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold leading-tight animate-fade-in-up animation-delay-200">
+                                <span className="block mb-2 text-white drop-shadow-2xl" style={{ color: '#e2187f' }}>
                                     III Semana de
                                 </span>
-                                <span className="block text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-light tracking-wide text-[#e2187f] drop-shadow-lg">
-                                    Ciência, Tecnologia
+                                <span className="block text-3xl md:text-5xl lg:text-7xl font-light tracking-wide text-white">
+                                     Ciência, Tecnologia e Inovação
                                 </span>
-                                <span className="block text-2xl sm:text-3xl md:text-5xl lg:text-7xl text-white drop-shadow-2xl">
-                                    e Inovação
+                                <span className="block text-3xl md:text-5xl lg:text-7xl" style={{ color: '#e2187f' }}>
+                                   UNITINS
                                 </span>
                             </h1>
                         </div>
