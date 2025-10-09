@@ -47,83 +47,140 @@
 
 :root {
   --radius: 0.75rem;
+  
+  /* Cores base - tema Planeta Água */
   --background: #ffffff;
-  --foreground: #1a2332;
+  --foreground: #0F3057; /* Cinza-azulado profundo */
+  
+  /* Cards e superfícies */
   --card: #ffffff;
-  --card-foreground: #1a2332;
+  --card-foreground: #0F3057;
   --popover: #ffffff;
-  --popover-foreground: #1a2332;
-  --primary: #220f8b;
+  --popover-foreground: #0F3057;
+  
+  /* Primary - Azul oceano */
+  --primary: #083D77; /* Azul-escuro oceano */
   --primary-foreground: #ffffff;
-  --secondary: #E8E5F7;
-  --secondary-foreground: #220f8b;
-  --muted: #F5F4FA;
-  --muted-foreground: #6B6B8C;
-  --accent: #3d1fd4;
+  
+  /* Secondary - Azul claro aquático */
+  --secondary: #E3F5FF; /* Derivado do azul-celeste */
+  --secondary-foreground: #083D77;
+  
+  /* Muted - Tons suaves de água */
+  --muted: #F0F9FF;
+  --muted-foreground: #0F3057;
+  
+  /* Accent - Azul vibrante do mar */
+  --accent: #38B6FF; /* Azul-claro do mar */
   --accent-foreground: #ffffff;
-  --destructive: #E91E63;
-  --border: #D1CEE8;
-  --input: #D1CEE8;
-  --ring: #220f8b;
-  --chart-1: #220f8b;
-  --chart-2: #3d1fd4;
-  --chart-3: #66BB6A;
-  --chart-4: #E91E63;
-  --chart-5: #FF9800;
-  --sidebar: #F5F4FA;
-  --sidebar-foreground: #1a2332;
-  --sidebar-primary: #220f8b;
+  
+  /* Destructive - Rosa coral */
+  --destructive: #FF4FA2; /* Rosa-vivo dos corais */
+  
+  /* Bordas e inputs - Tom oceânico suave */
+  --border: #B8E5FF; /* Derivado do azul-celeste */
+  --input: #B8E5FF;
+  --ring: #38B6FF; /* Azul-claro do mar */
+  
+  /* Charts - Paleta oceânica */
+  --chart-1: #083D77; /* Azul-escuro oceano */
+  --chart-2: #38B6FF; /* Azul-claro do mar */
+  --chart-3: #4CD964; /* Verde-terra */
+  --chart-4: #FF4FA2; /* Rosa-vivo coral */
+  --chart-5: #FFD43B; /* Amarelo solar */
+  
+  /* Sidebar */
+  --sidebar: #F0F9FF;
+  --sidebar-foreground: #0F3057;
+  --sidebar-primary: #083D77;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #E8E5F7;
-  --sidebar-accent-foreground: #220f8b;
-  --sidebar-border: #D1CEE8;
-  --sidebar-ring: #220f8b;
-  --success: #66BB6A;
+  --sidebar-accent: #E3F5FF;
+  --sidebar-accent-foreground: #083D77;
+  --sidebar-border: #B8E5FF;
+  --sidebar-ring: #38B6FF;
+  
+  /* Status colors - tema oceânico */
+  --success: #4CD964; /* Verde-terra */
   --success-foreground: #ffffff;
-  --warning: #FF9800;
-  --warning-foreground: #ffffff;
-  --info: #4FC3F7;
+  --warning: #FFD43B; /* Amarelo solar */
+  --warning-foreground: #0F3057;
+  --info: #4FD1FF; /* Azul-celeste */
   --info-foreground: #ffffff;
+  
+  /* Cores adicionais do tema */
+  --ocean-deep: #083D77;
+  --ocean-light: #38B6FF;
+  --ocean-sky: #4FD1FF;
+  --earth-green: #4CD964;
+  --forest-green: #2E8B57;
+  --coral-pink: #FF4FA2;
+  --coral-light: #FF70B8;
+  --magenta: #E83E8C;
+  --sun-yellow: #FFD43B;
+  --deep-shadow: #0F3057;
 }
 
 .dark {
-  --background: #0A1929;
+  /* Modo escuro - profundezas oceânicas */
+  --background: #0F3057; /* Cinza-azulado (água profunda) */
   --foreground: #F8FAFC;
-  --card: #0D2238;
+  
+  --card: #083D77; /* Azul-escuro oceano */
   --card-foreground: #F8FAFC;
-  --popover: #0D2238;
+  --popover: #083D77;
   --popover-foreground: #F8FAFC;
-  --primary: #3d1fd4;
-  --primary-foreground: #F8FAFC;
-  --secondary: #1E1A3F;
-  --secondary-foreground: #D1CEE8;
-  --muted: #1A1633;
-  --muted-foreground: #A5A3C0;
-  --accent: #26C6DA;
-  --accent-foreground: #ffffff;
-  --destructive: #F06292;
-  --border: #1E4D6F;
-  --input: #1E4D6F;
-  --ring: #4DD0E1;
-  --chart-1: #26C6DA;
-  --chart-2: #4DD0E1;
-  --chart-3: #66BB6A;
-  --chart-4: #E91E63;
-  --chart-5: #90CAF9;
-  --sidebar: #0D2238;
+  
+  --primary: #38B6FF; /* Azul-claro do mar */
+  --primary-foreground: #0F3057;
+  
+  --secondary: #1A4D6F;
+  --secondary-foreground: #4FD1FF;
+  
+  --muted: #1A3A54;
+  --muted-foreground: #B8E5FF;
+  
+  --accent: #4FD1FF; /* Azul-celeste */
+  --accent-foreground: #0F3057;
+  
+  --destructive: #FF70B8; /* Rosa-claro coral */
+  
+  --border: #1A4D6F;
+  --input: #1A4D6F;
+  --ring: #4FD1FF;
+  
+  --chart-1: #38B6FF;
+  --chart-2: #4FD1FF;
+  --chart-3: #4CD964;
+  --chart-4: #FF4FA2;
+  --chart-5: #FFD43B;
+  
+  --sidebar: #083D77;
   --sidebar-foreground: #F8FAFC;
-  --sidebar-primary: #4DD0E1;
-  --sidebar-primary-foreground: #0A1929;
-  --sidebar-accent: #1A2F45;
-  --sidebar-accent-foreground: #B2EBF2;
-  --sidebar-border: #1E4D6F;
-  --sidebar-ring: #4DD0E1;
-  --success: #81C784;
-  --success-foreground: #0A1929;
-  --warning: #FFA726;
-  --warning-foreground: #0A1929;
-  --info: #81D4FA;
-  --info-foreground: #0A1929;
+  --sidebar-primary: #4FD1FF;
+  --sidebar-primary-foreground: #0F3057;
+  --sidebar-accent: #1A4D6F;
+  --sidebar-accent-foreground: #B8E5FF;
+  --sidebar-border: #1A4D6F;
+  --sidebar-ring: #4FD1FF;
+  
+  --success: #4CD964;
+  --success-foreground: #0F3057;
+  --warning: #FFD43B;
+  --warning-foreground: #0F3057;
+  --info: #4FD1FF;
+  --info-foreground: #0F3057;
+  
+  /* Cores adicionais do tema (dark) */
+  --ocean-deep: #083D77;
+  --ocean-light: #38B6FF;
+  --ocean-sky: #4FD1FF;
+  --earth-green: #4CD964;
+  --forest-green: #2E8B57;
+  --coral-pink: #FF4FA2;
+  --coral-light: #FF70B8;
+  --magenta: #E83E8C;
+  --sun-yellow: #FFD43B;
+  --deep-shadow: #0A1F3D;
 }
 
 @layer base {
@@ -224,33 +281,58 @@
   }
 }
 
-/* Gradient backgrounds para transições suaves */
+/* Gradient backgrounds - tema Planeta Água */
 .bg-gradient-1 {
-  background: linear-gradient(135deg, #ffffff 0%, #F5F4FA 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #F0F9FF 100%);
 }
 
 .bg-gradient-2 {
-  background: linear-gradient(135deg, #F5F4FA 0%, #E8E5F7 100%);
+  background: linear-gradient(135deg, #F0F9FF 0%, #E3F5FF 100%);
 }
 
 .bg-gradient-3 {
-  background: linear-gradient(135deg, #E8E5F7 0%, #ffffff 100%);
+  background: linear-gradient(135deg, #E3F5FF 0%, #ffffff 100%);
 }
 
 .bg-gradient-4 {
-  background: linear-gradient(135deg, #ffffff 0%, rgba(224, 231, 255, 0.3) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(56, 182, 255, 0.1) 100%);
 }
 
 .bg-gradient-5 {
-  background: linear-gradient(135deg, rgba(224, 231, 255, 0.3) 0%, #F5F4FA 100%);
+  background: linear-gradient(135deg, rgba(79, 209, 255, 0.2) 0%, #F0F9FF 100%);
 }
 
 .bg-gradient-soft-primary {
-  background: linear-gradient(135deg, rgba(34, 15, 139, 0.05) 0%, rgba(232, 229, 247, 0.8) 100%);
+  background: linear-gradient(135deg, rgba(8, 61, 119, 0.05) 0%, rgba(227, 245, 255, 0.8) 100%);
 }
 
 .bg-gradient-soft-secondary {
-  background: linear-gradient(135deg, #ffffff 0%, rgba(232, 229, 247, 0.4) 50%, #F5F4FA 100%);
+  background: linear-gradient(135deg, #ffffff 0%, rgba(227, 245, 255, 0.4) 50%, #F0F9FF 100%);
+}
+
+/* Novos gradientes oceânicos */
+.bg-gradient-ocean {
+  background: linear-gradient(135deg, #083D77 0%, #38B6FF 100%);
+}
+
+.bg-gradient-ocean-light {
+  background: linear-gradient(135deg, #38B6FF 0%, #4FD1FF 100%);
+}
+
+.bg-gradient-coral {
+  background: linear-gradient(135deg, #FF4FA2 0%, #FF70B8 100%);
+}
+
+.bg-gradient-earth {
+  background: linear-gradient(135deg, #2E8B57 0%, #4CD964 100%);
+}
+
+.bg-gradient-underwater {
+  background: linear-gradient(180deg, #4FD1FF 0%, #083D77 100%);
+}
+
+.bg-gradient-sunrise {
+  background: linear-gradient(135deg, #FFD43B 0%, #FF4FA2 50%, #38B6FF 100%);
 }
 
 @keyframes fadeInUp {
