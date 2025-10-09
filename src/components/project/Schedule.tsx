@@ -828,15 +828,14 @@ export default function Schedule() {
     : [];
 
   return (
-    <section id="programacao" className="w-full py-20 px-4 relative overflow-hidden bg-white">
-
+    <section id="programacao" className="w-full py-16 sm:py-20 px-4 relative overflow-hidden bg-white">
       <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-primary mb-3 font-montserrat">
+        <div ref={headerRef} className="text-center mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 font-montserrat">
             Programação
           </h2>
-            <div className="flex justify-center">
+          <div className="flex justify-center">
             <motion.div 
               className="h-1 bg-primary rounded-full"
               initial={{ width: "4rem" }}
@@ -847,15 +846,20 @@ export default function Schedule() {
                 duration: 0.8, 
                 ease: "easeInOut" 
               }}
+              aria-hidden="true"
             />
           </div>
-          <p className="text-muted-foreground font-poppins text-lg">
+          <p className="text-muted-foreground font-poppins text-sm sm:text-base md:text-lg mt-3">
             Selecione um dia para ver a programação completa
           </p>
         </div>
 
         {/* Filtro de Dias */}
-        <div className="flex justify-center gap-3 mb-12 flex-wrap">
+        <div 
+          className="flex justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 flex-wrap"
+          role="group"
+          aria-label="Filtrar programação por dia"
+        >
           {schedule.map((day) => {
             const isActive = selectedDay === day.date;
             return (
@@ -865,18 +869,22 @@ export default function Schedule() {
                 size="lg"
                 onClick={() => setSelectedDay(isActive ? null : day.date)}
                 className={`
-                  w-[140px] h-[90px] py-4 px-6 flex flex-col items-center justify-center gap-1 
-                  transition-all duration-300 rounded-xl
+                  w-[120px] sm:w-[140px] h-[80px] sm:h-[90px] py-3 sm:py-4 px-4 sm:px-6 
+                  flex flex-col items-center justify-center gap-1 
+                  transition-all duration-300 rounded-xl text-center
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
                   ${isActive 
                     ? 'shadow-md' 
                     : 'hover:border-primary hover:bg-primary/10 hover:shadow-sm hover:text-primary'
                   }
                 `}
+                aria-pressed={isActive}
+                aria-label={`${isActive ? 'Remover filtro de' : 'Filtrar por'} ${day.dayOfWeek}, ${day.date}`}
               >
-                <span className={`text-xs font-medium uppercase tracking-wider transition-opacity ${isActive ? 'opacity-90' : 'opacity-70'}`}>
+                <span className={`text-[10px] sm:text-xs font-medium uppercase tracking-wider transition-opacity ${isActive ? 'opacity-90' : 'opacity-70'}`}>
                   {day.dayOfWeek}
                 </span>
-                <span className="text-2xl font-bold">
+                <span className="text-xl sm:text-2xl font-bold">
                   {day.date}
                 </span>
               </Button>
@@ -886,21 +894,21 @@ export default function Schedule() {
 
         {/* Lista de Eventos */}
         {filteredSchedule.length > 0 ? (
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {filteredSchedule.map((day) => (
               <div key={day.date}>
                 {/* Título do Dia */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-primary inline-block font-montserrat">
+                <div className="mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-primary inline-block font-montserrat">
                     {day.date}
                   </h3>
-                  <span className="text-muted-foreground ml-3">
+                  <span className="text-muted-foreground ml-2 sm:ml-3 text-sm sm:text-base">
                     {day.dayOfWeek}
                   </span>
                 </div>
 
                 {/* Cards de Eventos */}
-                <Accordion type="single" collapsible className="space-y-4">
+                <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
                   {day.events.map((event) => {
                     const colors = getEventColors(event.name);
                     return (
@@ -910,13 +918,13 @@ export default function Schedule() {
                         className="border-none"
                       >
                         <Card className={`border-l-4 ${colors.accent} hover:shadow-lg overflow-hidden transition-all duration-300 bg-white`}>
-                          <AccordionTrigger className="hover:no-underline p-0 [&[data-state=open]_.chevron]:rotate-180 [&>svg]:hidden">
-                            <CardHeader className={`py-5 px-6 w-full flex flex-row items-center justify-between space-y-0 ${colors.secondary}`}>
-                              <CardTitle className={`text-lg font-semibold ${colors.text} text-left pr-4 font-montserrat`}>
+                          <AccordionTrigger className="hover:no-underline p-0 [&[data-state=open]_.chevron]:rotate-180 [&>svg]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset">
+                            <CardHeader className={`py-4 sm:py-5 px-4 sm:px-6 w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 sm:space-y-0 ${colors.secondary}`}>
+                              <CardTitle className={`text-base sm:text-lg font-semibold ${colors.text} text-left pr-2 sm:pr-4 font-montserrat leading-snug`}>
                                 {event.name}
                               </CardTitle>
-                              <div className="flex items-center gap-3 flex-shrink-0">
-                                <span className={`text-xs text-white ${colors.primary} px-3 py-1.5 rounded-full font-medium shadow-sm min-w-[110px] text-center`}>
+                              <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 w-full sm:w-auto justify-end">
+                                <span className={`text-xs text-white ${colors.primary} px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-medium shadow-sm min-w-[90px] sm:min-w-[110px] text-center`}>
                                   {event.talks.length} {event.talks.length === 1 ? "evento" : "eventos"}
                                 </span>
                                 <svg
@@ -924,6 +932,7 @@ export default function Schedule() {
                                   fill="none"
                                   stroke="currentColor"
                                   viewBox="0 0 24 24"
+                                  aria-hidden="true"
                                 >
                                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                                 </svg>
@@ -932,31 +941,31 @@ export default function Schedule() {
                           </AccordionTrigger>
 
                           <AccordionContent>
-                            <CardContent className="pt-0 pb-6 px-6 space-y-3">
+                            <CardContent className="pt-0 pb-4 sm:pb-6 px-4 sm:px-6 space-y-2 sm:space-y-3">
                               {event.talks.map((talk) => (
                                 <div
                                   key={talk.id}
-                                  className={`flex items-start justify-between gap-4 p-4 bg-white rounded-lg border ${colors.accent} ${colors.secondary} hover:shadow-md transition-all duration-300`}
+                                  className={`flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border ${colors.accent} ${colors.secondary} hover:shadow-md transition-all duration-300`}
                                 >
                                   {/* Conteúdo Principal */}
-                                  <div className="flex-1 min-w-0">
-                                    <h5 className="font-semibold text-foreground mb-1 text-base font-montserrat">
+                                  <div className="flex-1 min-w-0 w-full">
+                                    <h5 className="font-semibold text-foreground mb-1 text-sm sm:text-base font-montserrat leading-tight">
                                       {talk.title}
                                     </h5>
-                                    <p className="text-sm text-muted-foreground mb-2 font-poppins">
+                                    <p className="text-xs sm:text-sm text-muted-foreground mb-2 font-poppins">
                                       {talk.speaker}
                                     </p>
-                                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                      <MapPin className={`w-4 h-4 ${colors.text}`} />
+                                    <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                                      <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${colors.text} flex-shrink-0`} aria-hidden="true" />
                                       <span>{talk.location}</span>
                                     </div>
                                   </div>
 
                                   {/* Horário */}
-                                  <div className="flex-shrink-0 text-right">
-                                    <div className={`flex items-center gap-1.5 ${colors.text} font-medium ${colors.secondary} px-3 py-2 rounded-lg border ${colors.accent}`}>
-                                      <Clock className="w-4 h-4" />
-                                      <span className="text-sm whitespace-nowrap">{talk.time}</span>
+                                  <div className="flex-shrink-0 w-full sm:w-auto">
+                                    <div className={`flex items-center gap-1.5 ${colors.text} font-medium ${colors.secondary} px-3 py-2 rounded-lg border ${colors.accent} justify-center sm:justify-end`}>
+                                      <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
+                                      <span className="text-xs sm:text-sm whitespace-nowrap">{talk.time}</span>
                                     </div>
                                   </div>
                                 </div>
@@ -973,8 +982,12 @@ export default function Schedule() {
           </div>
         ) : (
           /* Mensagem quando nenhum dia está selecionado */
-          <div className="text-center mt-12 p-8 border-2 border-dashed border-border rounded-lg">
-            <p className="text-muted-foreground text-lg mb-2 font-poppins">
+          <div 
+            className="text-center mt-8 sm:mt-12 p-6 sm:p-8 border-2 border-dashed border-border rounded-lg"
+            role="status"
+            aria-live="polite"
+          >
+            <p className="text-muted-foreground text-base sm:text-lg mb-2 font-poppins">
               Selecione um dia acima
             </p>
             <p className="text-muted-foreground text-sm font-poppins">

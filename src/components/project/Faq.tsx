@@ -47,13 +47,12 @@ export default function Faq() {
     ]
 
     return (
-        <section id="faq" className="w-full py-20 md:py-32 relative overflow-hidden bg-gradient-2">
-
+        <section id="faq" className="w-full py-16 sm:py-20 md:py-32 relative overflow-hidden bg-gradient-2">
             <div className="container mx-auto px-4 md:px-6 relative z-10">
-                <div className="max-w-3xl mx-auto space-y-12">
+                <div className="max-w-3xl mx-auto space-y-8 sm:space-y-12">
                     {/* Section Header */}
                     <div ref={headerRef} className="text-center space-y-4">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat text-primary">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat text-primary">
                             Perguntas frequentes
                         </h2>
                         <div className="flex justify-center">
@@ -67,28 +66,34 @@ export default function Faq() {
                                     duration: 0.8, 
                                     ease: "easeInOut" 
                                 }}
+                                aria-hidden="true"
                             />
                         </div>
                     </div>
 
-
-                    <Accordion type="single" collapsible className="space-y-4">
+                    <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
                         {faqItens.map((item) => (
                             <AccordionItem
                                 key={item.id}
                                 value={`item-${item.id}`}
-                                className="bg-white border-2 border-primary/10 hover:border-primary/30 rounded-xl px-6 shadow-sm hover:shadow-md transition-all duration-300"
+                                className="bg-white border-2 border-primary/10 hover:border-primary/30 focus-within:border-primary/30 rounded-xl px-4 sm:px-6 shadow-sm hover:shadow-md focus-within:shadow-md transition-all duration-300"
                             >
-                                <AccordionTrigger className="text-left text-base md:text-lg font-semibold hover:text-primary hover:no-underline py-6 group">
-                                    <span className="flex items-start gap-3">
-                                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center text-white text-sm font-bold">
+                                <AccordionTrigger 
+                                    className="text-left text-sm sm:text-base md:text-lg font-semibold hover:text-primary focus-visible:text-primary hover:no-underline py-4 sm:py-6 group focus-visible:outline-none [&[data-state=open]]:text-primary"
+                                    aria-label={item.question}
+                                >
+                                    <span className="flex items-start gap-2 sm:gap-3 w-full pr-4">
+                                        <span 
+                                            className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs sm:text-sm font-bold mt-0.5"
+                                            aria-hidden="true"
+                                        >
                                             {item.id}
                                         </span>
-                                        <span className="flex-1">{item.question}</span>
+                                        <span className="flex-1 leading-snug">{item.question}</span>
                                     </span>
                                 </AccordionTrigger>
-                                <AccordionContent className="text-muted-foreground leading-relaxed pb-6 pt-2 pl-9">
-                                    <div className="border-l-2 border-primary/20 pl-4 py-2">
+                                <AccordionContent className="text-muted-foreground text-sm sm:text-base leading-relaxed pb-4 sm:pb-6 pt-2 pl-7 sm:pl-9">
+                                    <div className="border-l-2 border-primary/20 pl-3 sm:pl-4 py-2">
                                         {item.awnser}
                                     </div>
                                 </AccordionContent>

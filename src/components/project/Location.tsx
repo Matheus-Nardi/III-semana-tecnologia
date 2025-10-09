@@ -8,14 +8,12 @@ export default function Location() {
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
 
   return (
-    <section id="localizacao" className="py-20 px-4 relative overflow-hidden bg-gradient-4">
-      
+    <section id="localizacao" className="py-16 sm:py-20 px-4 relative overflow-hidden bg-gradient-4">
       <div className="container mx-auto max-w-6xl relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Text content */}
-          <div ref={headerRef} className="text-center lg:text-left space-y-6">
-            
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat text-primary">
+          <div ref={headerRef} className="text-center lg:text-left space-y-4 sm:space-y-6">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-montserrat text-primary leading-tight">
               Localização do evento
             </h2>
             
@@ -30,26 +28,27 @@ export default function Location() {
                   duration: 0.8, 
                   ease: "easeInOut" 
                 }}
+                aria-hidden="true"
               />
             </div>
             
-            <p className="text-muted-foreground font-poppins text-lg leading-relaxed">
+            <p className="text-muted-foreground font-poppins text-sm sm:text-base md:text-lg leading-relaxed">
               Todo o evento acontecerá no campus Graciosa da UNITINS
             </p>
 
             {/* Address card */}
-            <div className="bg-white border-2 border-primary/20 rounded-2xl p-6 shadow-md">
-              <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                  <MapPin className="w-6 h-6 text-white" />
+            <div className="bg-white border-2 border-primary/20 rounded-2xl p-4 sm:p-6 shadow-md">
+              <div className="flex items-start gap-3 sm:gap-4">
+                <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary flex items-center justify-center" aria-hidden="true">
+                  <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
                 <div className="flex-1 space-y-2">
-                  <h3 className="font-semibold text-lg font-montserrat">UNITINS - Campus Graciosa</h3>
-                  <p className="text-muted-foreground text-sm">
+                  <h3 className="font-semibold text-base sm:text-lg font-montserrat">UNITINS - Campus Graciosa</h3>
+                  <address className="text-muted-foreground text-xs sm:text-sm not-italic">
                     Quadra 109 Norte, Avenida NS 15, Lote 09<br />
                     Plano Diretor Norte<br />
                     Palmas-TO, CEP: 77001-090
-                  </p>
+                  </address>
                 </div>
               </div>
             </div>
@@ -64,7 +63,8 @@ export default function Location() {
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Localização do evento - UNITINS Campus Graciosa"
+              title="Mapa de localização: UNITINS Campus Graciosa, Palmas-TO"
+              aria-label="Mapa interativo mostrando a localização da UNITINS Campus Graciosa em Palmas, Tocantins"
             />
           </div>
         </div>

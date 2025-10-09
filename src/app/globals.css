@@ -201,13 +201,56 @@
     font-family: var(--font-poppins);
   }
   
-  /* Smooth scrolling */
-  /* html {
+  /* Smooth scrolling with respect for reduced motion preference */
+  html {
     scroll-behavior: smooth;
   }
   
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  /* Improved focus styles for better accessibility */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+  
+  /* Skip to content link - visually hidden but accessible */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+  
+  .sr-only:focus,
+  .sr-only:active {
+    position: fixed;
+    width: auto;
+    height: auto;
+    padding: 1rem;
+    margin: 0;
+    overflow: visible;
+    clip: auto;
+    white-space: normal;
+  }
+  
+  /* Improved scrollbar styling */
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 12px;
   }
   
   ::-webkit-scrollbar-track {
@@ -215,13 +258,29 @@
   }
   
   ::-webkit-scrollbar-thumb {
-    background: #26C6DA;
-    border-radius: 4px;
+    background: hsl(var(--primary));
+    border-radius: 6px;
+    border: 3px solid hsl(var(--background));
   }
   
   ::-webkit-scrollbar-thumb:hover {
-    background: #4DD0E1;
-  } */
+    background: hsl(var(--primary) / 0.8);
+  }
+  
+  /* Better text selection */
+  ::selection {
+    background-color: hsl(var(--primary) / 0.3);
+    color: hsl(var(--foreground));
+  }
+  
+  /* Ensure minimum touch target size for mobile */
+  button,
+  a,
+  input[type="button"],
+  input[type="submit"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
 } 
 
 @layer utilities {
