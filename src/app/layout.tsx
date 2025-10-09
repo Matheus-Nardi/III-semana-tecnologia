@@ -45,27 +45,30 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pt-br">
-      <body
-        className={`${montserrat.variable} ${poppins.variable} ${dmSans.variable} antialiased`}
-      >
-        <Header /> 
-        <div className="pt-0">
-          <Hero/>
-          {/* <Countdown/> */}
-          <AboutEvent/>
-          <Schedule/>
-          <Partners/>
+      <html lang="pt-br">
+        <head>
+          <meta name="apple-mobile-web-app-title" content="MyWebSite" />
+        </head>
+        <body
+          className={`${montserrat.variable} ${poppins.variable} ${dmSans.variable} antialiased`}
+        >
+          <Header /> 
+          <div className="pt-0">
+            <Hero/>
+            {/* <Countdown/> */}
+            <AboutEvent/>
+            <Schedule/>
+            <Partners/>
           
-          <main>{children}</main>
-          <News/>
+            <main>{children}</main>
+            <News/>
 
-          <Faq/>
-          <Location/>
-          <ScrollToTop/>
-        </div>
-        <Footer/>
-      </body>
-    </html>
+            <Faq/>
+            <Location/>
+            <ScrollToTop/>
+          </div>
+          <Footer/>
+        </body>
+      </html>
   );
 }
