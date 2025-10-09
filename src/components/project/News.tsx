@@ -25,63 +25,20 @@ export default function News() {
       setLoading(true);
       setError(null);
 
-      // Faz GET direto na página da Unitins usando proxy CORS
-      const proxyUrl = 'https://corsproxy.io/?';
-      const targetUrl = encodeURIComponent('https://www.unitins.br/nPortal/');
-
-      const response = await fetch(proxyUrl + targetUrl);
+      // Usa a API route do Next.js (executa no servidor, sem CORS)
+      const response = await fetch('/api/news');
 
       if (!response.ok) {
         throw new Error('Erro ao buscar notícias');
       }
 
-      // O corsproxy.io retorna o HTML diretamente (não em JSON)
-      const htmlContent = await response.text();
+      const data = await response.json();
 
-      // Parse o HTML retornado
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(htmlContent, 'text/html');
-
-      // Filtra apenas a section com id="noticias"
-      const noticiasSection = doc.querySelector('#noticias');
-
-      if (!noticiasSection) {
-        throw new Error('Seção de notícias não encontrada');
+      if (data.news && Array.isArray(data.news)) {
+        setNews(data.news);
+      } else {
+        throw new Error('Formato de resposta inválido');
       }
-
-      // Pega todos os cards dentro da section#noticias
-      const newsCards = noticiasSection.querySelectorAll('.card');
-
-      const noticias: NewsItem[] = [];
-
-      newsCards.forEach((card, index) => {
-        const title = card.querySelector('.card-title')?.textContent?.trim() || '';
-        let imageUrl = card.querySelector('img')?.getAttribute('src') || '';
-        const category = card.querySelector('.badge')?.textContent?.trim() || '';
-        let url = card.querySelector('a.stretched-link')?.getAttribute('href') || '';
-
-        // Corrige URLs relativas para absolutas
-        if (imageUrl && !imageUrl.startsWith('http')) {
-          imageUrl = `https://www.unitins.br${imageUrl}`;
-        }
-
-        if (url && !url.startsWith('http')) {
-          url = `https://www.unitins.br${url}`;
-        }
-
-        if (title) {
-          noticias.push({
-            id: index.toString(),
-            title,
-            imageUrl,
-            category,
-            url
-          });
-        }
-      });
-
-      // Limita a 6 notícias
-      setNews(noticias.slice(0, 6));
 
     } catch (err) {
       console.error('Erro ao buscar notícias:', err);
@@ -93,11 +50,6 @@ export default function News() {
 
   useEffect(() => {
     fetchNews();
-
-    // Atualiza a cada 10 minutos
-    const interval = setInterval(fetchNews, 10 * 60 * 1000);
-
-    return () => clearInterval(interval);
   }, []);
 
   if (loading) {
