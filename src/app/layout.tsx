@@ -12,6 +12,7 @@ import Faq from "@/components/project/Faq";
 import Location from "@/components/project/Location";
 import Subscription from "@/components/project/Subscription";
 import News from "@/components/project/News";
+import { ScrollToTop } from "@/components/ui/scroll-to-top";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -61,6 +62,7 @@ export default function RootLayout({
 
           <Faq/>
           <Location/>
+          <ScrollToTop/>
         </div>
         <Footer/>
       </body>
