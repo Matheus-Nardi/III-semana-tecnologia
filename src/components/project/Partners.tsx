@@ -66,8 +66,8 @@ export default function Partners() {
                 className="group relative w-full h-24 md:h-28 flex items-center justify-center transition-all duration-500 hover:scale-105"
               >
                 {/* Partner logo */}
-                <div className="relative w-full h-full bg-white rounded-xl p-4 border border-primary/10 group-hover:border-primary/30 shadow-sm group-hover:shadow-md transition-all duration-500">
-                  <div className="relative w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500 opacity-70 group-hover:opacity-100">
+                <div className="relative w-full h-full bg-white rounded-xl p-4 border border-primary/10">
+                  <div className="relative w-full h-full">
                     <Image
                       src={partner.src || "/placeholder.svg"}
                       alt={partner.alt}
