@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Clock, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,6 +10,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { motion, useInView } from "motion/react";
+import Image from "next/image";
 
 interface Talk {
   id: string;
@@ -31,11 +33,112 @@ interface DaySchedule {
   events: Event[];
 }
 
+// Cores temáticas para cada evento
+const eventColors: Record<string, { primary: string; secondary: string; accent: string; text: string }> = {
+  "Encontro Estadual das Licenciaturas da Unitins": {
+    primary: "bg-purple-500",
+    secondary: "bg-purple-50",
+    accent: "border-purple-500",
+    text: "text-purple-700"
+  },
+  "XXXII Jornada de Iniciação Científica - Embrapa": {
+    primary: "bg-green-600",
+    secondary: "bg-green-50",
+    accent: "border-green-600",
+    text: "text-green-700"
+  },
+  "Seminário Estadual de Educação em Direitos Humanos": {
+    primary: "bg-blue-600",
+    secondary: "bg-blue-50",
+    accent: "border-blue-600",
+    text: "text-blue-700"
+  },
+  "Abertura da III SCTI": {
+    primary: "bg-red-600",
+    secondary: "bg-red-50",
+    accent: "border-red-600",
+    text: "text-red-700"
+  },
+  "I Semana Acadêmica das Agrárias - IntegraAGRO": {
+    primary: "bg-emerald-600",
+    secondary: "bg-emerald-50",
+    accent: "border-emerald-600",
+    text: "text-emerald-700"
+  },
+  "IX Colóquio Interdisciplinar de Ensino, Pesquisa e Extensão": {
+    primary: "bg-indigo-600",
+    secondary: "bg-indigo-50",
+    accent: "border-indigo-600",
+    text: "text-indigo-700"
+  },
+  "Mudanças Climáticas e seus Desdobramentos": {
+    primary: "bg-teal-600",
+    secondary: "bg-teal-50",
+    accent: "border-teal-600",
+    text: "text-teal-700"
+  },
+  "III Circuito de Inovação": {
+    primary: "bg-orange-600",
+    secondary: "bg-orange-50",
+    accent: "border-orange-600",
+    text: "text-orange-700"
+  },
+  "I Fórum de Gestão dos Grupos de Pesquisa": {
+    primary: "bg-cyan-600",
+    secondary: "bg-cyan-50",
+    accent: "border-cyan-600",
+    text: "text-cyan-700"
+  },
+  "II Colóquio de Extensão – TO Graduado": {
+    primary: "bg-pink-600",
+    secondary: "bg-pink-50",
+    accent: "border-pink-600",
+    text: "text-pink-700"
+  },
+  "Apresentações Culturais": {
+    primary: "bg-violet-600",
+    secondary: "bg-violet-50",
+    accent: "border-violet-600",
+    text: "text-violet-700"
+  },
+  "I Congresso de Direito, Processo e Tecnologia": {
+    primary: "bg-amber-600",
+    secondary: "bg-amber-50",
+    accent: "border-amber-600",
+    text: "text-amber-700"
+  },
+  "Jornada Acadêmica - Sistemas de Informação e TADS": {
+    primary: "bg-sky-600",
+    secondary: "bg-sky-50",
+    accent: "border-sky-600",
+    text: "text-sky-700"
+  },
+  "Encerramento da III SCTI": {
+    primary: "bg-rose-600",
+    secondary: "bg-rose-50",
+    accent: "border-rose-600",
+    text: "text-rose-700"
+  }
+};
+
+// Função auxiliar para obter as cores de um evento
+const getEventColors = (eventName: string) => {
+  return eventColors[eventName] || {
+    primary: "bg-primary",
+    secondary: "bg-primary/5",
+    accent: "border-primary",
+    text: "text-primary"
+  };
+};
+
 export default function Schedule() {
+  const headerRef = useRef(null);
+  const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
+
   const schedule: DaySchedule[] = [
     {
       date: "20/10",
-      dayOfWeek: "Segunda",
+      dayOfWeek: "Segunda-feira",
       events: [
         {
           id: "event-1-1",
@@ -726,20 +829,51 @@ export default function Schedule() {
     : [];
 
   return (
-    <section className="w-full py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold text-foreground mb-3 font-montserrat">
-            Programação
-          </h2>
-          <p className="text-muted-foreground font-poppins">
-            Selecione um dia para ver a programação completa
-          </p>
+    <section id="programacao" className="w-full py-16 sm:py-20 px-4 relative overflow-hidden bg-white">
+      <div className="max-w-6xl mx-auto relative z-10">
+        {/* Header com Elemento Visual */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 sm:mb-16">
+          <div ref={headerRef} className="text-center lg:text-left">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 font-montserrat">
+              Programação
+            </h2>
+            <div className="flex justify-center lg:justify-start">
+              <motion.div 
+                className="h-1 bg-primary rounded-full"
+                initial={{ width: "4rem" }}
+                animate={{ 
+                  width: isHeaderInView ? "12rem" : "4rem" 
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: "easeInOut" 
+                }}
+                aria-hidden="true"
+              />
+            </div>
+            <p className="text-muted-foreground font-poppins text-sm sm:text-base md:text-lg mt-3">
+              Selecione um dia para ver a programação completa
+            </p>
+          </div>
+
+          {/* Elemento Visual */}
+          <div className="hidden lg:flex items-center justify-end relative w-full max-w-xs aspect-square">
+
+              <Image
+                src="/ilustracoes/2_ilustracao.png"
+                alt="Elemento decorativo da identidade visual"
+                fill
+                className="object-contain drop-shadow-2xl animate-float-delayed"
+              />
+          </div>
         </div>
 
         {/* Filtro de Dias */}
-        <div className="flex justify-center gap-3 mb-12 flex-wrap">
+        <div 
+          className="flex justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 flex-wrap"
+          role="group"
+          aria-label="Filtrar programação por dia"
+        >
           {schedule.map((day) => {
             const isActive = selectedDay === day.date;
             return (
@@ -749,15 +883,22 @@ export default function Schedule() {
                 size="lg"
                 onClick={() => setSelectedDay(isActive ? null : day.date)}
                 className={`
-                  h-auto py-4 px-6 flex flex-col items-center gap-1 
-                  transition-all duration-200
-                  ${isActive ? 'shadow-lg scale-105' : 'hover:scale-102'}
+                  w-[120px] sm:w-[140px] h-[80px] sm:h-[90px] py-3 sm:py-4 px-4 sm:px-6 
+                  flex flex-col items-center justify-center gap-1 
+                  transition-all duration-300 rounded-xl text-center
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+                  ${isActive 
+                    ? 'shadow-md' 
+                    : 'hover:border-primary hover:bg-primary/10 hover:shadow-sm hover:text-primary'
+                  }
                 `}
+                aria-pressed={isActive}
+                aria-label={`${isActive ? 'Remover filtro de' : 'Filtrar por'} ${day.dayOfWeek}, ${day.date}`}
               >
-                <span className={`text-xs font-medium uppercase tracking-wider ${isActive ? 'opacity-90' : 'opacity-70'}`}>
+                <span className={`text-[10px] sm:text-xs font-medium uppercase tracking-wider transition-opacity ${isActive ? 'opacity-90' : 'opacity-70'}`}>
                   {day.dayOfWeek}
                 </span>
-                <span className="text-2xl font-bold">
+                <span className="text-xl sm:text-2xl font-bold">
                   {day.date}
                 </span>
               </Button>
@@ -767,96 +908,104 @@ export default function Schedule() {
 
         {/* Lista de Eventos */}
         {filteredSchedule.length > 0 ? (
-          <div className="space-y-8">
+          <div className="space-y-6 sm:space-y-8">
             {filteredSchedule.map((day) => (
               <div key={day.date}>
                 {/* Título do Dia */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-primary inline-block font-montserrat">
+                <div className="mb-4 sm:mb-6">
+                  <h3 className="text-xl sm:text-2xl font-bold text-primary inline-block font-montserrat">
                     {day.date}
                   </h3>
-                  <span className="text-muted-foreground ml-3">
+                  <span className="text-muted-foreground ml-2 sm:ml-3 text-sm sm:text-base">
                     {day.dayOfWeek}
                   </span>
                 </div>
 
                 {/* Cards de Eventos */}
-                <Accordion type="single" collapsible className="space-y-4">
-                  {day.events.map((event) => (
-                    <AccordionItem 
-                      key={event.id} 
-                      value={event.id}
-                      className="border-none"
-                    >
-                      <Card className="border-l-4 border-l-primary overflow-hidden transition-shadow hover:shadow-md">
-                        <AccordionTrigger className="hover:no-underline p-0 [&[data-state=open]_.chevron]:rotate-180 [&>svg]:hidden">
-                          <CardHeader className="py-5 px-6 w-full flex flex-row items-center justify-between space-y-0">
-                            <CardTitle className="text-lg font-semibold text-foreground text-left pr-4 font-montserrat">
-                              {event.name}
-                            </CardTitle>
-                            <div className="flex items-center gap-3 flex-shrink-0">
-                              <span className="text-xs text-muted-foreground bg-secondary px-3 py-1.5 rounded-full font-medium">
-                                {event.talks.length} {event.talks.length === 1 ? "palestra" : "palestras"}
-                              </span>
-                              <svg 
-                                className="chevron w-5 h-5 text-primary transition-transform duration-200 flex-shrink-0" 
-                                fill="none" 
-                                stroke="currentColor" 
-                                viewBox="0 0 24 24"
-                              >
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                              </svg>
-                            </div>
-                          </CardHeader>
-                        </AccordionTrigger>
-
-                        <AccordionContent>
-                          <CardContent className="pt-0 pb-6 px-6 space-y-3">
-                            {event.talks.map((talk) => (
-                              <div
-                                key={talk.id}
-                                className="flex items-start justify-between gap-4 p-4 bg-muted/30 rounded-lg border border-border hover:border-primary/50 transition-colors"
-                              >
-                                {/* Conteúdo Principal */}
-                                <div className="flex-1 min-w-0">
-                                  <h5 className="font-semibold text-foreground mb-1 text-base font-montserrat">
-                                    {talk.title}
-                                  </h5>
-                                  <p className="text-sm text-muted-foreground mb-2 font-poppins">
-                                    {talk.speaker}
-                                  </p>
-                                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                                    <MapPin className="w-4 h-4 text-accent" />
-                                    <span>{talk.location}</span>
-                                  </div>
-                                </div>
-                                
-                                {/* Horário */}
-                                <div className="flex-shrink-0 text-right">
-                                  <div className="flex items-center gap-1.5 text-primary font-medium">
-                                    <Clock className="w-4 h-4" />
-                                    <span className="text-sm whitespace-nowrap">{talk.time}</span>
-                                  </div>
-                                </div>
+                <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
+                  {day.events.map((event) => {
+                    const colors = getEventColors(event.name);
+                    return (
+                      <AccordionItem
+                        key={event.id}
+                        value={event.id}
+                        className={`border-none rounded-xl overflow-hidden ${colors.secondary}`}
+                      >
+                        <Card className={`border-l-4 ${colors.accent} hover:shadow-lg transition-all duration-300 bg-transparent`}>
+                          <AccordionTrigger className="hover:no-underline p-0 [&[data-state=open]_.chevron]:rotate-180 [&>svg]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset">
+                            <CardHeader className={`py-4 sm:py-5 px-4 sm:px-6 w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 sm:space-y-0`}>
+                              <CardTitle className={`text-base sm:text-lg font-semibold ${colors.text} text-left pr-2 sm:pr-4 font-montserrat leading-snug`}>
+                                {event.name}
+                              </CardTitle>
+                              <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 w-full sm:w-auto justify-end">
+                                <span className={`text-xs text-white ${colors.primary} px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-medium shadow-sm min-w-[90px] sm:min-w-[110px] text-center`}>
+                                  {event.talks.length} {event.talks.length === 1 ? "evento" : "eventos"}
+                                </span>
+                                <svg
+                                  className={`chevron w-5 h-5 ${colors.text} transition-transform duration-200 flex-shrink-0`}
+                                  fill="none"
+                                  stroke="currentColor"
+                                  viewBox="0 0 24 24"
+                                  aria-hidden="true"
+                                >
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                                </svg>
                               </div>
-                            ))}
-                          </CardContent>
-                        </AccordionContent>
-                      </Card>
-                    </AccordionItem>
-                  ))}
+                            </CardHeader>
+                          </AccordionTrigger>
+
+                          <AccordionContent>
+                            <CardContent className="pt-0 pb-4 sm:pb-6 px-4 sm:px-6 space-y-2 sm:space-y-3">
+                              {event.talks.map((talk) => (
+                                <div
+                                  key={talk.id}
+                                  className={`flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border ${colors.accent} hover:shadow-md transition-all duration-300`}
+                                >
+                                  {/* Conteúdo Principal */}
+                                  <div className="flex-1 min-w-0 w-full">
+                                    <h5 className="font-semibold text-foreground mb-1 text-sm sm:text-base font-montserrat leading-tight">
+                                      {talk.title}
+                                    </h5>
+                                    <p className="text-xs sm:text-sm text-muted-foreground mb-2 font-poppins">
+                                      {talk.speaker}
+                                    </p>
+                                    <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                                      <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${colors.text} flex-shrink-0`} aria-hidden="true" />
+                                      <span>{talk.location}</span>
+                                    </div>
+                                  </div>
+
+                                  {/* Horário */}
+                                  <div className="flex-shrink-0 w-full sm:w-auto">
+                                    <div className={`flex items-center gap-1.5 ${colors.text} font-medium ${colors.secondary} px-3 py-2 rounded-lg border ${colors.accent} justify-center sm:justify-end`}>
+                                      <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
+                                      <span className="text-xs sm:text-sm whitespace-nowrap">{talk.time}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                              ))}
+                            </CardContent>
+                          </AccordionContent>
+                        </Card>
+                      </AccordionItem>
+                    );
+                  })}
                 </Accordion>
               </div>
             ))}
           </div>
         ) : (
           /* Mensagem quando nenhum dia está selecionado */
-          <div className="text-center mt-12 p-8 border-2 border-dashed border-border rounded-lg">
-            <p className="text-muted-foreground text-lg mb-2 font-poppins">
+          <div 
+            className="text-center mt-8 sm:mt-12 p-6 sm:p-8 border-2 border-dashed border-border rounded-lg"
+            role="status"
+            aria-live="polite"
+          >
+            <p className="text-muted-foreground text-base sm:text-lg mb-2 font-poppins">
               Selecione um dia acima
             </p>
             <p className="text-muted-foreground text-sm font-poppins">
-              💡 Clique em um dos cards para visualizar a programação
+            Clique em um dos cards para visualizar a programação
             </p>
           </div>
         )}

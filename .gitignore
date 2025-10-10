@@ -39,3 +39,25 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# SEGURANÇA
+
+# Certificados SSL/TLS
+nginx/ssl/*.pem
+nginx/ssl/*.key
+nginx/ssl/*.crt
+nginx/ssl/*.pfx
+
+security-reports/*.md
+!security-reports/README.md
+
+# Arquivos
+*.key
+*.cert
+*.p12
+secrets/
+.secrets
+
+# Logs 
+logs/
+*.log

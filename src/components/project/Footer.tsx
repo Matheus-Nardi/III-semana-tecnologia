@@ -1,37 +1,53 @@
 import React from 'react';
-import {  Linkedin, Instagram, Mail, MapPin, Phone, ExternalLink, Building2 } from 'lucide-react';
-
+import { Linkedin, Instagram, Mail, MapPin, Phone, ExternalLink, Building2, Github } from 'lucide-react';
+import Image from 'next/image';
+import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
+import Link from 'next/link';
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
+  const developers = [
+    {
+      name: "Italo Beckman",
+      github: "https://github.com/italobeckman",
+      bio: "Full Stack Developer",
+    },
+    {
+      name: "Matheus Nardi",
+      github: "https://github.com/Matheus-Nardi",
+      bio: "Full Stack Developer",
+    },
+  ]
   return (
     <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
       {/* Seção Principal */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+
           {/* Sobre o Evento */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold text-purple-500 font-montserrat">
+            <h3 className="text-xl font-bold font-montserrat" style={{ color: '#e2187f' }}>
               III Semana de Tecnologia
             </h3>
             <p className="text-gray-300 text-sm leading-relaxed font-poppins">
-              Um evento dedicado a explorar as últimas tendências em tecnologia, 
+              Um evento dedicado a explorar as últimas tendências em tecnologia,
               inovação e desenvolvimento profissional.
             </p>
-            <div className="flex space-x-4">
-   
-              <a 
-                href="#" 
+            <div className="flex justify-center space-x-4">
+              <a
+                href="https://www.linkedin.com/school/unitins/"
                 className="hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
                 aria-label="LinkedIn"
+                target='_blank'
+                rel="noopener noreferrer"
               >
                 <Linkedin size={20} />
               </a>
-              <a 
-                href="#" 
+              <a
+                href="https://www.instagram.com/unitins_oficial/"
                 className="hover:text-pink-400 transition-colors duration-300 transform hover:scale-110"
                 aria-label="Instagram"
+                target='_blank'
+                rel="noopener noreferrer"
               >
                 <Instagram size={20} />
               </a>
@@ -40,64 +56,43 @@ export default function Footer() {
 
           {/* Links Rápidos */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white font-montserrat">Links Rápidos</h3>
+            <h3 className="text-lg font-semibold font-montserrat" style={{ color: '#e2187f' }}>
+              Links Rápidos
+            </h3>
             <ul className="space-y-2">
               {['Início', 'Sobre', 'Programação', 'Palestrantes', 'Inscrições'].map((link) => (
-                <li key={link}>
-                  <a 
-                    href="#" 
-                    className="text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm flex items-center group"
+                <li key={link} className="flex justify-center">
+                  <a
+                    href="#"
+                    className="group inline-flex items-center gap-2 text-gray-300 hover:text-blue-400 transition-colors duration-300 text-sm"
                   >
-                    <span className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
-                    {link}
+                    <span className="inline-block">{link}</span>
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Contato Campus Palmas */}
-          <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2 font-montserrat">
-              <Building2 size={18} className="text-blue-400" />
-              Campus Palmas
-            </h3>
-            <ul className="space-y-3">
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <MapPin size={18} className="mt-1 flex-shrink-0 text-blue-400" />
-                <span>Quadra 109 Norte, Avenida NS 15, Lote 09<br />Plano Diretor Norte<br />Palmas-TO, CEP: 77001-090</span>
-              </li>
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <Phone size={18} className="mt-1 flex-shrink-0 text-blue-400" />
-                <div className="flex flex-col gap-1">
-                  <span>(63) 3901-4111</span>
-                  <span>(63) 3901-4297</span>
-                  <span>(63) 3901-4298</span>
-                </div>
-              </li>
-            </ul>
-          </div>
-
           {/* UNITINS - Sede Administrativa */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold text-white flex items-center gap-2 font-montserrat">
-              <Building2 size={18} className="text-purple-400" />
-              UNITINS - Sede Administrativa
+            <h3 className="text-lg font-semibold  gap-2 font-montserrat" style={{ color: '#e2187f' }}>
+              UNITINS - Sede
             </h3>
             <ul className="space-y-3">
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <MapPin size={18} className="mt-1 flex-shrink-0 text-purple-400" />
-                <span>108 Sul Alameda 11 Lote 03<br />Cx. Postal 173<br />CEP: 77020-122, Palmas-TO</span>
+              <li className="justify-center space-x-3 text-gray-300 text-sm">
+                <span>
+                  Quadra 108 Sul Alameda 11 Lote 03<br />
+                  Plano Diretor Sul<br />
+                  Palmas-TO, CEP: 77020-122
+                </span>
               </li>
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <Phone size={18} className="mt-1 flex-shrink-0 text-purple-400" />
+              <li className="justify-center space-x-3 text-gray-300 text-sm">
                 <span>(63) 3901-4000</span>
               </li>
-              <li className="flex items-start space-x-3 text-gray-300 text-sm">
-                <ExternalLink size={18} className="mt-1 flex-shrink-0 text-purple-400" />
-                <a 
-                  href="https://www.unitins.br/concursos/publico" 
-                  target="_blank" 
+              <li className="justify-center space-x-3 text-gray-300 text-sm">
+                <a
+                  href="https://www.unitins.br/concursos/publico"
+                  target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-purple-400 transition-colors underline"
                 >
@@ -106,32 +101,65 @@ export default function Footer() {
               </li>
             </ul>
           </div>
-
         </div>
       </div>
 
       {/* Linha Divisória com Gradiente */}
       <div className="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
 
-      {/* Seção de Copyright */}
-      <div className="max-w-7xl mx-auto px-4 py-6">
-        <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-          <p className="text-gray-400 text-sm text-center md:text-left font-poppins">
-            © {currentYear} Universidade Estadual do Tocantins - UNITINS. Todos os direitos reservados.
-          </p>
-          <div className="flex space-x-6 text-sm text-gray-400">
-            <a 
-              href="https://www.unitins.br" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-blue-400 transition-colors duration-300"
-            >
-              www.unitins.br
-            </a>
-          </div>
-        </div>
+      {/* Logo SNCT */}
+      <div className="flex justify-center py-6">
+        <Image
+          src="/logos/logo-snct.png"
+          alt="Logo SNCT e SCTI UNITINS"
+          width={500}
+          height={50}
+          className="w-full max-w-4xl h-auto"
+        />
       </div>
 
+      {/* Linha Divisória com Gradiente */}
+      <div className="h-px bg-gradient-to-r from-transparent via-slate-600 to-transparent"></div>
+      {/* Seção de Copyright e Desenvolvedores */}
+      <div className="max-w-7xl mx-auto px-4 py-6">
+        <div className="flex flex-col items-center space-y-6">
+
+          {/* Copyright */}
+          <div className="text-center">
+            <p className="text-gray-400 text-sm font-poppins">
+              © {currentYear} Universidade Estadual do Tocantins - UNITINS. Todos os direitos reservados.
+            </p>
+            <div className="mt-2">
+              <a
+                href="https://www.unitins.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-sm"
+              >
+                www.unitins.br
+              </a>
+            </div>
+          </div>
+
+          {/* Desenvolvedores */}
+          <div className="text-center">
+  <p className="text-base mb-3 font-montserrat" style={{ color: '#e2187f' }}>
+    Desenvolvido por:
+  </p>
+  <div className="flex flex-col sm:flex-row items-center justify-center gap-2">
+    {developers.map((dev, index) => (
+      <div key={index} className="flex items-center justify-center gap-2 sm:px-2">
+        <Link href={dev.github} target="_blank" rel="noopener noreferrer" className="flex justify-center items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors duration-300 transform hover:scale-110" aria-label={`GitHub de ${dev.name}`}>
+          {dev.name}
+          <Github size={14} />
+        </Link>
+
+      </div>
+    ))}
+  </div>
+</div>
+        </div>
+      </div>
     </footer>
   );
 }
