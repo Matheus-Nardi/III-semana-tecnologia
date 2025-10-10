@@ -13,6 +13,7 @@ import Location from "@/components/project/Location";
 import Subscription from "@/components/project/Subscription";
 import News from "@/components/project/News";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import ClientErrorHandler from "./client-error-handler";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -53,6 +54,7 @@ export default function RootLayout({
         <body
           className={`${montserrat.variable} ${poppins.variable} ${dmSans.variable} antialiased`}
         >
+          <ClientErrorHandler />
           <Header /> 
           <div className="pt-0">
             <Hero/>
