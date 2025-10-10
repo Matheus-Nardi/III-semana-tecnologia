@@ -18,11 +18,7 @@ const nextConfig: NextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
           },
-          // Previne clickjacking - permite apenas same origin
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
-          },
+          // X-Frame-Options removido para permitir Google Maps em iframe
           // Previne MIME type sniffing
           {
             key: 'X-Content-Type-Options',
@@ -33,17 +29,16 @@ const nextConfig: NextConfig = {
             key: 'Content-Security-Policy',
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-eval' 'unsafe-inline'", // Next.js precisa de unsafe-inline
-              "style-src 'self' 'unsafe-inline'", // Tailwind precisa de unsafe-inline
-              "img-src 'self' data: https: blob:",
-              "font-src 'self' data:",
-              "connect-src 'self'",
+              "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://maps.googleapis.com https://maps.gstatic.com", 
+              "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+              "img-src 'self' data: https: blob: https://*.googleapis.com https://*.gstatic.com",
+              "font-src 'self' data: https://fonts.gstatic.com",
+              "connect-src 'self' https://maps.googleapis.com",
+              "frame-src 'self' https://www.google.com https://maps.google.com", // Permite iframes do Google Maps
               "media-src 'self'",
               "object-src 'none'",
-              "frame-ancestors 'self'",
               "base-uri 'self'",
-              "form-action 'self'",
-              "upgrade-insecure-requests"
+              "form-action 'self'"
             ].join('; ')
           },
           // Permissions Policy - Controla APIs do navegador
@@ -52,7 +47,7 @@ const nextConfig: NextConfig = {
             value: [
               'camera=()',
               'microphone=()',
-              'geolocation=()',
+              'geolocation=(self)', // Permite geolocation para o próprio site
               'interest-cohort=()',
               'payment=()',
               'usb=()',
@@ -61,10 +56,10 @@ const nextConfig: NextConfig = {
               'accelerometer=()'
             ].join(', ')
           },
-          // Política de referrer segura
+          // Política de referrer mais permissiva para Google Maps
           {
             key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin'
+            value: 'no-referrer-when-downgrade'
           },
           // Força HTTPS (será ativado quando SSL estiver configurado)
           // Descomente após configurar SSL
