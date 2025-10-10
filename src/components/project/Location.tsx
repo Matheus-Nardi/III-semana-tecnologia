@@ -2,6 +2,7 @@
 import { MapPin } from "lucide-react"
 import { motion, useInView } from "motion/react"
 import { useRef } from "react"
+import Image from "next/image"
 
 export default function Location() {
   const headerRef = useRef(null);

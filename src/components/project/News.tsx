@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Newspaper, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
 import { motion, useInView } from "motion/react";
+import Image from "next/image";
 
 interface NewsItem {
   id: string;
@@ -91,28 +92,47 @@ export default function News() {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4">
-
-        {/* Cabeçalho */}
-        <div ref={headerRef} className="text-center mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 font-montserrat text-primary">
-            Notícias da Unitins
-          </h2>
-          <div className="flex justify-center mb-4">
-            <motion.div 
-              className="h-1 bg-primary rounded-full"
-              initial={{ width: "4rem" }}
-              animate={{ 
-                width: isHeaderInView ? "12rem" : "4rem" 
-              }}
-              transition={{ 
-                duration: 0.8, 
-                ease: "easeInOut" 
-              }}
-            />
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-12">
+          {/* Cabeçalho */}
+          <div ref={headerRef} className="text-center lg:text-left">
+            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4 font-montserrat text-primary">
+              Notícias da Unitins
+            </h2>
+            <div className="flex justify-center lg:justify-start mb-4">
+              <motion.div 
+                className="h-1 bg-primary rounded-full"
+                initial={{ width: "4rem" }}
+                animate={{ 
+                  width: isHeaderInView ? "12rem" : "4rem" 
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: "easeInOut" 
+                }}
+              />
+            </div>
+            <p className="text-gray-600 max-w-2xl mx-auto lg:mx-0 text-sm sm:text-base lg:text-lg font-poppins">
+              Fique por dentro das últimas novidades da Universidade Estadual do Tocantins
+            </p>
           </div>
-          <p className="text-gray-600 max-w-2xl mx-auto text-sm sm:text-base lg:text-lg font-poppins">
-            Fique por dentro das últimas novidades da Universidade Estadual do Tocantins
-          </p>
+
+          {/* Elemento Visual */}
+          <div className="hidden lg:flex aling-end justify-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative w-full max-w-xs aspect-square"
+            >
+              <Image
+                src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-6.png"
+                alt="Elemento decorativo da identidade visual"
+                fill
+                className="object-contain drop-shadow-2xl animate-float"
+                priority
+              />
+            </motion.div>
+          </div>
         </div>
 
         {/* Grid de Notícias */}

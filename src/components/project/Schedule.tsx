@@ -11,6 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { motion, useInView } from "motion/react";
+import Image from "next/image";
 
 interface Talk {
   id: string;
@@ -830,28 +831,42 @@ export default function Schedule() {
   return (
     <section id="programacao" className="w-full py-16 sm:py-20 px-4 relative overflow-hidden bg-white">
       <div className="max-w-6xl mx-auto relative z-10">
-        {/* Header */}
-        <div ref={headerRef} className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 font-montserrat">
-            Programação
-          </h2>
-          <div className="flex justify-center">
-            <motion.div 
-              className="h-1 bg-primary rounded-full"
-              initial={{ width: "4rem" }}
-              animate={{ 
-                width: isHeaderInView ? "12rem" : "4rem" 
-              }}
-              transition={{ 
-                duration: 0.8, 
-                ease: "easeInOut" 
-              }}
-              aria-hidden="true"
-            />
+        {/* Header com Elemento Visual */}
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-12 sm:mb-16">
+          <div ref={headerRef} className="text-center lg:text-left">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-primary mb-3 font-montserrat">
+              Programação
+            </h2>
+            <div className="flex justify-center lg:justify-start">
+              <motion.div 
+                className="h-1 bg-primary rounded-full"
+                initial={{ width: "4rem" }}
+                animate={{ 
+                  width: isHeaderInView ? "12rem" : "4rem" 
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  ease: "easeInOut" 
+                }}
+                aria-hidden="true"
+              />
+            </div>
+            <p className="text-muted-foreground font-poppins text-sm sm:text-base md:text-lg mt-3">
+              Selecione um dia para ver a programação completa
+            </p>
           </div>
-          <p className="text-muted-foreground font-poppins text-sm sm:text-base md:text-lg mt-3">
-            Selecione um dia para ver a programação completa
-          </p>
+
+          {/* Elemento Visual */}
+          <div className="hidden lg:flex items-center justify-end relative w-full max-w-xs aspect-square">
+
+              <Image
+                src="/ilustracoes/2_ilustracao.png"
+                alt="Elemento decorativo da identidade visual"
+                fill
+                className="object-contain drop-shadow-2xl animate-float-delayed"
+                priority
+              />
+          </div>
         </div>
 
         {/* Filtro de Dias */}

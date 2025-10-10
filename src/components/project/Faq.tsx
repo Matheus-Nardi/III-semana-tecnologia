@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { HelpCircle } from "lucide-react"
 import { motion, useInView } from "motion/react"
 import { useRef } from "react"
+import Image from "next/image"
 
 interface Faq {
     id: number

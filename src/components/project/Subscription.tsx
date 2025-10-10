@@ -31,10 +31,10 @@ export default function Subscription() {
               </svg>
             </div>
             <Image 
-              src="/ilustracoes/9_ilustracao.png" 
-              alt="Ilustração decorativa de uma baleia" 
+              src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-10.png" 
+              alt="Elemento decorativo da identidade visual" 
               fill 
-              className="object-contain" 
+              className="object-contain drop-shadow-xl" 
               loading="lazy"
             />
           </motion.div>
@@ -86,10 +86,10 @@ export default function Subscription() {
               </svg>
             </div>
             <Image 
-              src="/ilustracoes/3_ilustracao.png" 
-              alt="Ilustração decorativa" 
+              src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-12.png" 
+              alt="Elemento decorativo da identidade visual" 
               fill 
-              className="object-contain" 
+              className="object-contain drop-shadow-xl" 
               loading="lazy"
             />
           </motion.div>
