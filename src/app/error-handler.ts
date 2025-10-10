@@ -13,7 +13,7 @@ export function setupErrorHandler() {
   ];
 
   const originalError = window.console.error;
-  window.console.error = (...args: any[]) => {
+  window.console.error = (...args: unknown[]) => {
     const errorMessage = args.join(' ');
     
     const isExtensionError = EXTENSION_ERRORS.some(pattern => 
