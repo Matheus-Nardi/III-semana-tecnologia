@@ -991,7 +991,7 @@ export default function Schedule() {
               Selecione um dia acima
             </p>
             <p className="text-muted-foreground text-sm font-poppins">
-              💡 Clique em um dos cards para visualizar a programação
+            Clique em um dos cards para visualizar a programação
             </p>
           </div>
         )}

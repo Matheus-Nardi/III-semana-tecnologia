@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -47,48 +49,60 @@
 
 :root {
   --radius: 0.75rem;
-  
+
   /* Cores base - tema Planeta Água */
   --background: #ffffff;
-  --foreground: #0F3057; /* Cinza-azulado profundo */
-  
+  --foreground: #0F3057;
+  /* Cinza-azulado profundo */
+
   /* Cards e superfícies */
   --card: #ffffff;
   --card-foreground: #0F3057;
   --popover: #ffffff;
   --popover-foreground: #0F3057;
-  
+
   /* Primary - Azul oceano */
-  --primary: #083D77; /* Azul-escuro oceano */
+  --primary: #083D77;
+  /* Azul-escuro oceano */
   --primary-foreground: #ffffff;
-  
+
   /* Secondary - Azul claro aquático */
-  --secondary: #E3F5FF; /* Derivado do azul-celeste */
+  --secondary: #E3F5FF;
+  /* Derivado do azul-celeste */
   --secondary-foreground: #083D77;
-  
+
   /* Muted - Tons suaves de água */
   --muted: #F0F9FF;
   --muted-foreground: #0F3057;
-  
+
   /* Accent - Azul vibrante do mar */
-  --accent: #38B6FF; /* Azul-claro do mar */
+  --accent: #38B6FF;
+  /* Azul-claro do mar */
   --accent-foreground: #ffffff;
-  
+
   /* Destructive - Rosa coral */
-  --destructive: #FF4FA2; /* Rosa-vivo dos corais */
-  
+  --destructive: #FF4FA2;
+  /* Rosa-vivo dos corais */
+
   /* Bordas e inputs - Tom oceânico suave */
-  --border: #B8E5FF; /* Derivado do azul-celeste */
+  --border: #B8E5FF;
+  /* Derivado do azul-celeste */
   --input: #B8E5FF;
-  --ring: #38B6FF; /* Azul-claro do mar */
-  
+  --ring: #38B6FF;
+  /* Azul-claro do mar */
+
   /* Charts - Paleta oceânica */
-  --chart-1: #083D77; /* Azul-escuro oceano */
-  --chart-2: #38B6FF; /* Azul-claro do mar */
-  --chart-3: #4CD964; /* Verde-terra */
-  --chart-4: #FF4FA2; /* Rosa-vivo coral */
-  --chart-5: #FFD43B; /* Amarelo solar */
-  
+  --chart-1: #083D77;
+  /* Azul-escuro oceano */
+  --chart-2: #38B6FF;
+  /* Azul-claro do mar */
+  --chart-3: #4CD964;
+  /* Verde-terra */
+  --chart-4: #FF4FA2;
+  /* Rosa-vivo coral */
+  --chart-5: #FFD43B;
+  /* Amarelo solar */
+
   /* Sidebar */
   --sidebar: #F0F9FF;
   --sidebar-foreground: #0F3057;
@@ -98,15 +112,18 @@
   --sidebar-accent-foreground: #083D77;
   --sidebar-border: #B8E5FF;
   --sidebar-ring: #38B6FF;
-  
+
   /* Status colors - tema oceânico */
-  --success: #4CD964; /* Verde-terra */
+  --success: #4CD964;
+  /* Verde-terra */
   --success-foreground: #ffffff;
-  --warning: #FFD43B; /* Amarelo solar */
+  --warning: #FFD43B;
+  /* Amarelo solar */
   --warning-foreground: #0F3057;
-  --info: #4FD1FF; /* Azul-celeste */
+  --info: #4FD1FF;
+  /* Azul-celeste */
   --info-foreground: #ffffff;
-  
+
   /* Cores adicionais do tema */
   --ocean-deep: #083D77;
   --ocean-light: #38B6FF;
@@ -122,38 +139,43 @@
 
 .dark {
   /* Modo escuro - profundezas oceânicas */
-  --background: #0F3057; /* Cinza-azulado (água profunda) */
+  --background: #0F3057;
+  /* Cinza-azulado (água profunda) */
   --foreground: #F8FAFC;
-  
-  --card: #083D77; /* Azul-escuro oceano */
+
+  --card: #083D77;
+  /* Azul-escuro oceano */
   --card-foreground: #F8FAFC;
   --popover: #083D77;
   --popover-foreground: #F8FAFC;
-  
-  --primary: #38B6FF; /* Azul-claro do mar */
+
+  --primary: #38B6FF;
+  /* Azul-claro do mar */
   --primary-foreground: #0F3057;
-  
+
   --secondary: #1A4D6F;
   --secondary-foreground: #4FD1FF;
-  
+
   --muted: #1A3A54;
   --muted-foreground: #B8E5FF;
-  
-  --accent: #4FD1FF; /* Azul-celeste */
+
+  --accent: #4FD1FF;
+  /* Azul-celeste */
   --accent-foreground: #0F3057;
-  
-  --destructive: #FF70B8; /* Rosa-claro coral */
-  
+
+  --destructive: #FF70B8;
+  /* Rosa-claro coral */
+
   --border: #1A4D6F;
   --input: #1A4D6F;
   --ring: #4FD1FF;
-  
+
   --chart-1: #38B6FF;
   --chart-2: #4FD1FF;
   --chart-3: #4CD964;
   --chart-4: #FF4FA2;
   --chart-5: #FFD43B;
-  
+
   --sidebar: #083D77;
   --sidebar-foreground: #F8FAFC;
   --sidebar-primary: #4FD1FF;
@@ -162,14 +184,14 @@
   --sidebar-accent-foreground: #B8E5FF;
   --sidebar-border: #1A4D6F;
   --sidebar-ring: #4FD1FF;
-  
+
   --success: #4CD964;
   --success-foreground: #0F3057;
   --warning: #FFD43B;
   --warning-foreground: #0F3057;
   --info: #4FD1FF;
   --info-foreground: #0F3057;
-  
+
   /* Cores adicionais do tema (dark) */
   --ocean-deep: #083D77;
   --ocean-light: #38B6FF;
@@ -187,26 +209,35 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-poppins);
   }
-  
+
   /* Fontes personalizadas */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-montserrat);
   }
-  
-  p, span, div {
+
+  p,
+  span,
+  div {
     font-family: var(--font-poppins);
   }
-  
+
   /* Smooth scrolling with respect for reduced motion preference */
   html {
     scroll-behavior: smooth;
   }
-  
+
   @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -216,13 +247,13 @@
       scroll-behavior: auto !important;
     }
   }
-  
+
   /* Improved focus styles for better accessibility */
   *:focus-visible {
     outline: 2px solid hsl(var(--primary));
     outline-offset: 2px;
   }
-  
+
   /* Skip to content link - visually hidden but accessible */
   .sr-only {
     position: absolute;
@@ -235,7 +266,7 @@
     white-space: nowrap;
     border-width: 0;
   }
-  
+
   .sr-only:focus,
   .sr-only:active {
     position: fixed;
@@ -247,32 +278,32 @@
     clip: auto;
     white-space: normal;
   }
-  
+
   /* Improved scrollbar styling */
   ::-webkit-scrollbar {
     width: 12px;
   }
-  
+
   ::-webkit-scrollbar-track {
     background: hsl(var(--background));
   }
-  
+
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--primary));
     border-radius: 6px;
     border: 3px solid hsl(var(--background));
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
     background: hsl(var(--primary) / 0.8);
   }
-  
+
   /* Better text selection */
   ::selection {
     background-color: hsl(var(--primary) / 0.3);
     color: hsl(var(--foreground));
   }
-  
+
   /* Ensure minimum touch target size for mobile */
   button,
   a,
@@ -281,60 +312,63 @@
     min-height: 44px;
     min-width: 44px;
   }
-} 
+}
 
 @layer utilities {
   .font-heading {
     font-family: var(--font-montserrat);
   }
-  
+
   .font-body {
     font-family: var(--font-poppins);
   }
-  
+
   .font-dm-sans {
     font-family: var(--font-dm-sans);
   }
-  
+
   /* Animation utilities */
   .animate-float {
     animation: float 6s ease-in-out infinite;
   }
-  
+
   .animate-fade-in-up {
     animation: fadeInUp 1s ease-out forwards;
     opacity: 0;
   }
-  
+
   .animation-delay-200 {
     animation-delay: 0.2s;
   }
-  
+
   .animation-delay-400 {
     animation-delay: 0.4s;
   }
-  
+
   .animation-delay-600 {
     animation-delay: 0.6s;
   }
-  
+
   .animation-delay-800 {
     animation-delay: 0.8s;
   }
-  
+
   .animate-scroll {
     animation: scroll 2s ease-in-out infinite;
   }
-  
+
   .delay-1000 {
     animation-delay: 1s;
   }
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -399,6 +433,7 @@
     opacity: 0;
     transform: translateY(30px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -406,20 +441,72 @@
 }
 
 @keyframes scroll {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(8px);
   }
 }
 
 @keyframes ken-burns {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: scale(1.05);
   }
+
   50% {
     transform: scale(1.15);
   }
 }
 
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@layer components {
+
+  /* Suas classes de acessibilidade */
+  .focus-ring:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 outline-none;
+  }
+
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+
+  /* Padding para áreas seguras em celulares (notch, etc.) */
+  .pb-safe {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+
+  /* Animação de entrada para os itens do menu */
+  .animate-slide-in-right {
+    animation: slide-in-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  }
+
+  /* Definição da animação (Keyframes) */
+  @keyframes slide-in-right {
+    0% {
+      transform: translateX(100px);
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(0);
+      opacity: 1;
+    }
+  }
+}

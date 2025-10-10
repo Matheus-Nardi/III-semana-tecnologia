@@ -66,13 +66,13 @@ export default function Hero() {
                     ))}
                 </CarouselContent>
 
-                {/* Elegant minimal navigation */}
+                {/* Elegant minimal navigation - Hidden on mobile, visible on desktop */}
                 <CarouselPrevious
-                    className="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 focus-visible:bg-white/30 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent text-white border-white/20 backdrop-blur-md h-12 w-12 sm:h-14 sm:w-14 transition-all duration-300 hover:scale-110 z-20 group"
+                    className="hidden md:flex absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 focus-visible:bg-white/30 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent text-white border-white/20 backdrop-blur-md h-12 w-12 sm:h-14 sm:w-14 transition-all duration-300 hover:scale-110 z-20 group"
                     aria-label="Slide anterior"
                 />
                 <CarouselNext
-                    className="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 focus-visible:bg-white/30 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent text-white border-white/20 backdrop-blur-md h-12 w-12 sm:h-14 sm:w-14 transition-all duration-300 hover:scale-110 z-20 group"
+                    className="hidden md:flex absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 focus-visible:bg-white/30 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent text-white border-white/20 backdrop-blur-md h-12 w-12 sm:h-14 sm:w-14 transition-all duration-300 hover:scale-110 z-20 group"
                     aria-label="Próximo slide"
                 />
             </Carousel>
