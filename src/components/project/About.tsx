@@ -40,12 +40,12 @@ export default function AboutEvent() {
             </div>
 
             <div className="space-y-4 sm:space-y-6 text-muted-foreground leading-relaxed">
-              <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2 border-l-4 border-primary/30">
+              <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia nobis ab doloribus veritatis nam
                 reprehenderit quisquam, error distinctio voluptates quae sapiente cum necessitatibus cupiditate tempora
                 qui ipsam omnis dolorem ea.
               </p>
-              <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2 border-l-4 border-primary/30">
+              <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem asperiores est maiores vel temporibus
                 iure voluptatem distinctio ad provident eaque, porro hic voluptate nam dolor obcaecati, quia
                 dignissimos, delectus cumque!
