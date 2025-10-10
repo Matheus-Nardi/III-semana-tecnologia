@@ -8,7 +8,7 @@ export default function Location() {
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
 
   return (
-    <section id="localizacao" className="py-16 sm:py-20 px-4 relative overflow-hidden bg-gradient-4">
+    <section id="localizacao" className="py-16 sm:py-20 px-4 relative overflow-hidden bg-white">
       <div className="container mx-auto max-w-6xl relative z-10">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Text content */}

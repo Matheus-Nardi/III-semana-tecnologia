@@ -47,7 +47,7 @@ export default function Faq() {
     ]
 
     return (
-        <section id="faq" className="w-full py-16 sm:py-20 md:py-32 relative overflow-hidden bg-gradient-2">
+        <section id="faq" className="w-full py-16 sm:py-20 md:py-32 relative overflow-hidden bg-gradient-soft-primary">
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="max-w-3xl mx-auto space-y-8 sm:space-y-12">
                     {/* Section Header */}
