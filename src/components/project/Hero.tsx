@@ -108,8 +108,7 @@ export default function Hero() {
                             </Button>
 
                             <Button
-                                size="lg"
-                                variant="outline"
+                                size="xs"
                                 asChild
                                 className="!h-12 !px-8 !text-base !min-w-[200px]"
                             >
