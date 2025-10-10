@@ -98,7 +98,6 @@ export default function Partners() {
                 alt="Elemento decorativo da identidade visual"
                 fill
                 className="object-contain drop-shadow-2xl animate-float"
-                priority
               />
             </motion.div>
           </div>
