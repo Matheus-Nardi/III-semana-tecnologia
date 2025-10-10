@@ -864,7 +864,6 @@ export default function Schedule() {
                 alt="Elemento decorativo da identidade visual"
                 fill
                 className="object-contain drop-shadow-2xl animate-float-delayed"
-                priority
               />
           </div>
         </div>

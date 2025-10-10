@@ -111,7 +111,6 @@ export default function Footer() {
           width={500}
           height={50}
           className="w-full max-w-4xl h-auto"
-          priority
         />
       </div>
 
