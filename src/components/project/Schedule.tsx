@@ -929,11 +929,11 @@ export default function Schedule() {
                       <AccordionItem
                         key={event.id}
                         value={event.id}
-                        className="border-none"
+                        className={`border-none rounded-xl overflow-hidden ${colors.secondary}`}
                       >
-                        <Card className={`border-l-4 ${colors.accent} hover:shadow-lg overflow-hidden transition-all duration-300 bg-white`}>
+                        <Card className={`border-l-4 ${colors.accent} hover:shadow-lg transition-all duration-300 bg-transparent`}>
                           <AccordionTrigger className="hover:no-underline p-0 [&[data-state=open]_.chevron]:rotate-180 [&>svg]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset">
-                            <CardHeader className={`py-4 sm:py-5 px-4 sm:px-6 w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 sm:space-y-0 ${colors.secondary}`}>
+                            <CardHeader className={`py-4 sm:py-5 px-4 sm:px-6 w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 sm:space-y-0`}>
                               <CardTitle className={`text-base sm:text-lg font-semibold ${colors.text} text-left pr-2 sm:pr-4 font-montserrat leading-snug`}>
                                 {event.name}
                               </CardTitle>
@@ -959,7 +959,7 @@ export default function Schedule() {
                               {event.talks.map((talk) => (
                                 <div
                                   key={talk.id}
-                                  className={`flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border ${colors.accent} ${colors.secondary} hover:shadow-md transition-all duration-300`}
+                                  className={`flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border ${colors.accent} hover:shadow-md transition-all duration-300`}
                                 >
                                   {/* Conteúdo Principal */}
                                   <div className="flex-1 min-w-0 w-full">
