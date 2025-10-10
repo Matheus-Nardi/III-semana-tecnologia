@@ -34,16 +34,20 @@ export default function Footer() {
             </p>
             <div className="flex justify-center space-x-4">
               <a
-                href="#"
+                href="https://www.linkedin.com/school/unitins/"
                 className="hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
                 aria-label="LinkedIn"
+                target='_blank'
+                rel="noopener noreferrer"
               >
                 <Linkedin size={20} />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/unitins_oficial/"
                 className="hover:text-pink-400 transition-colors duration-300 transform hover:scale-110"
                 aria-label="Instagram"
+                target='_blank'
+                rel="noopener noreferrer"
               >
                 <Instagram size={20} />
               </a>
