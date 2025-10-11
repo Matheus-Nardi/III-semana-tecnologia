@@ -38,9 +38,14 @@ const dmSans = DM_Sans({
 
 export const metadata: Metadata = {
   title: "III Semana de Ciência,Tecnologia e Inovação - UNITINS",
-  description: "Evento acadêmico promovido pela Universidade Estadual do Tocantins (UNITINS) que reúne estudantes, pesquisadores e profissionais para discutir avanços em ciência, tecnologia e inovação.",
-};
-
+  description: "Evento acadêmico promovido pela Universidade Estadual do Tocantins (UNITINS) que reúne estudantes, pesquisadores e profissionais para discutir ciência, tecnologia e inovação.",
+  openGraph: {
+    title: "III Semana de Ciência,Tecnologia e Inovação - UNITINS",
+    description: "Evento acadêmico promovido pela Universidade Estadual do Tocantins (UNITINS)...",
+    type: "website",
+    images: ["/logos/logo-snct.png"], 
+  },
+};  
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="pt-br">
