@@ -166,20 +166,66 @@ export default function Schedule() {
   const schedule: DaySchedule[] = useMemo(() => {
     const transformedSchedule: DaySchedule[] = [];
     
+    // Primeiro, extraímos os eventos que acontecem "Todos os dias"
+    const allDaysEvents: Record<string, ScheduleActivity[]> = {};
+    if (scheduleData["Todos os dias"]) {
+      Object.entries(scheduleData["Todos os dias"]).forEach(([eventName, activities]) => {
+        allDaysEvents[eventName] = activities as ScheduleActivity[];
+      });
+    }
+    
+    // Agora processamos cada dia específico
     Object.entries(scheduleData).forEach(([dateKey, dayData]) => {
       if (dateKey === "Todos os dias") return;
       
       const dateInfo = dateMapping[dateKey];
       if (!dateInfo) return;
       
+      // Mapa para agrupar atividades por eixo temático
+      const eventsByName: Record<string, ScheduleActivity[]> = {};
+      
+      // Adiciona os eventos específicos do dia
+      Object.entries(dayData).forEach(([eventName, activities]) => {
+        if (!eventsByName[eventName]) {
+          eventsByName[eventName] = [];
+        }
+        eventsByName[eventName].push(...(activities as ScheduleActivity[]));
+      });
+      
+      // Adiciona os eventos de "Todos os dias" aos respectivos eixos
+      Object.entries(allDaysEvents).forEach(([eventName, activities]) => {
+        if (!eventsByName[eventName]) {
+          eventsByName[eventName] = [];
+        }
+        eventsByName[eventName].push(...activities);
+      });
+      
+      // Converte para o formato Event[] e ordena para que Circuito de Inovação fique em primeiro
       const events: Event[] = [];
       let eventIdCounter = 1;
       
-      Object.entries(dayData).forEach(([eventName, activities]) => {
+      // Função para definir a ordem de prioridade dos eixos
+      const getPriority = (eventName: string): number => {
+        if (eventName === "III Circuito de Inovação") return 0; // Sempre primeiro
+        return 1; // Outros eventos
+      };
+      
+      // Ordena os eventos: Circuito de Inovação primeiro, depois os demais em ordem alfabética
+      const sortedEntries = Object.entries(eventsByName).sort(([nameA], [nameB]) => {
+        const priorityA = getPriority(nameA);
+        const priorityB = getPriority(nameB);
+        
+        if (priorityA !== priorityB) {
+          return priorityA - priorityB;
+        }
+        return nameA.localeCompare(nameB);
+      });
+      
+      sortedEntries.forEach(([eventName, activities]) => {
         events.push({
           id: `event-${dateInfo.date}-${eventIdCounter++}`,
           name: eventName,
-          talks: activities as ScheduleActivity[],
+          talks: activities,
         });
       });
       
