@@ -54,7 +54,7 @@
         "horario": "19h em diante",
         "local": "Auditório/central",
         "palestrante": "Coral Unicanto",
-        "vagas": "Não especificado"
+        "vagas": ""
       }
     ],
     "Eventos Gerais": [
@@ -278,7 +278,7 @@
         "titulo": "Apresentações de trabalhos",
         "horario": "21h em diante",
         "local": "Hall - Bloco A",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "30"
       }
     ],
@@ -287,8 +287,8 @@
         "titulo": "Apresentação cultural - Roda de Sussia Monte do Carmo e Curso Básico de LIBRAS em Monte do Carmo",
         "horario": "19h em diante",
         "local": "Auditório/central",
-        "palestrante": "Não especificado",
-        "vagas": "Não especificado"
+        "palestrante": "",
+        "vagas": ""
       }
     ]
   },
@@ -476,7 +476,7 @@
         "horario": "19h em diante",
         "local": "Auditório/central",
         "palestrante": "Banda da Polícia Militar",
-        "vagas": "Não especificado"
+        "vagas": ""
       }
     ],
     "Projeto Integrador": [
@@ -582,7 +582,7 @@
         "horario": "19h em diante",
         "local": "Auditório/central",
         "palestrante": "Orquestra Jovem da Guarda Metropolitana de Palmas",
-        "vagas": "Não especificado"
+        "vagas": ""
       }
     ],
     "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO": [
@@ -682,7 +682,7 @@
         "horario": "19h - 19h30",
         "local": "Auditório/central",
         "palestrante": "Grupo Toca Choro",
-        "vagas": "Não especificado"
+        "vagas": ""
       }
     ]
   },
