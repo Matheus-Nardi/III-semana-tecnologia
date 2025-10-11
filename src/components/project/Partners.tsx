@@ -28,6 +28,11 @@ export default function Partners() {
       alt: "SNCT - Semana Nacional de Ciência e Tecnologia",
       href: "https://semanact.mcti.gov.br/",
     },
+    {
+      src: "/logos/logo-fapt.png",
+      alt: "FAPT - Fundação de Amparo à Pesquisa do Tocantins",
+      href: "https://www.to.gov.br/fapt",
+    }
   ]
 
   return (
