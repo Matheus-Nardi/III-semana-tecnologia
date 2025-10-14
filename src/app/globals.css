@@ -234,6 +234,7 @@
   /* Smooth scrolling with respect for reduced motion preference */
   html {
     scroll-behavior: smooth;
+    font-size: 90%;
   }
 
   @media (prefers-reduced-motion: reduce) {
