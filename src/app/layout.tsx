@@ -14,8 +14,6 @@ import Subscription from "@/components/project/Subscription";
 import News from "@/components/project/News";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import ClientErrorHandler from "./client-error-handler";
-import { SpeedInsights } from "@vercel/speed-insights/next"
-import { Analytics } from "@vercel/analytics/next"
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
@@ -86,8 +84,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </main>
         <ScrollToTop />
         <Footer />
-        <SpeedInsights />
-        <Analytics />
       </body>
     </html>
   );
