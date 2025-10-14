@@ -1,9 +1,17 @@
 import React from 'react';
 import { Linkedin, Instagram, Mail, MapPin, Phone, ExternalLink, Building2, Github } from 'lucide-react';
 import Image from 'next/image';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from '../ui/hover-card';
 import Link from 'next/link';
 export default function Footer() {
+
+  const navLinks = [
+    { text: 'Início', href: '#' },
+    { text: 'Sobre', href: '#sobre' },
+    { text: 'Programação', href: '#programacao' },
+    // { text: 'Palestrantes', href: '#palestrantes' },
+    { text: 'Inscrições', href: 'https://www.unitins.br/Eventos/E007Evento/Abertos' }
+  ];
+
   const currentYear = new Date().getFullYear();
   const developers = [
     {
@@ -60,13 +68,15 @@ export default function Footer() {
               Links Rápidos
             </h3>
             <ul className="space-y-2">
-              {['Início', 'Sobre', 'Programação', 'Palestrantes', 'Inscrições'].map((link) => (
-                <li key={link} className="flex justify-center">
+              {navLinks.map((link) => (
+                <li key={link.text} className="flex justify-center">
                   <a
-                    href="#"
+                    href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : '_self'}
+                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : ''}
                     className="group inline-flex items-center gap-2 text-primary hover:text-[#e2187f] transition-colors duration-300 text-sm"
                   >
-                    <span className="inline-block">{link}</span>
+                    <span className="inline-block">{link.text}</span>
                   </a>
                 </li>
               ))}
@@ -146,10 +156,10 @@ export default function Footer() {
               Desenvolvido por{' '}
               {developers.map((dev, index) => (
                 <span key={index}>
-                  <Link 
-                    href={dev.github} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
+                  <Link
+                    href={dev.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center gap-1 text-primary/70 hover:text-[#e2187f] transition-colors duration-300"
                     aria-label={`GitHub de ${dev.name}`}
                   >

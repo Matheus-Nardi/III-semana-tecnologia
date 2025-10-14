@@ -10,6 +10,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
 import { Calendar, MapPin, Users, Sparkles, ChevronRight } from "lucide-react";
+import Link from "next/link";
 import { Button } from "../ui/button";
 
 export default function Hero() {
@@ -88,10 +89,10 @@ export default function Hero() {
                                     III Semana de
                                 </span>
                                 <span className="block text-3xl md:text-5xl lg:text-7xl font-light tracking-wide text-white">
-                                     Ciência, Tecnologia e Inovação
+                                    Ciência, Tecnologia e Inovação
                                 </span>
                                 <span className="block text-3xl md:text-5xl lg:text-7xl" style={{ color: '#e2187f' }}>
-                                   UNITINS
+                                    UNITINS
                                 </span>
                             </h1>
                         </div>
@@ -100,11 +101,14 @@ export default function Hero() {
                         <div className="flex flex-col sm:flex-row gap-3 justify-center pointer-events-auto">
                             <Button
                                 size="xs"
-                                className="!h-12 !px-8 !text-base !min-w-[100px]"
+                                asChild
+                                className="!h-12 !px-8 !text-base !min-w-[200px]"
                                 aria-label="Inscrever-se no evento"
                             >
-                                Inscreva-se Agora
-                                <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                                <Link href={"https://www.unitins.br/Eventos/E007Evento/Abertos"} target='_blank' rel='noopener noreferrer'>
+                                    Inscreva-se Agora
+                                    <ChevronRight className="w-4 h-4" aria-hidden="true" />
+                                </Link>
                             </Button>
 
                             <Button

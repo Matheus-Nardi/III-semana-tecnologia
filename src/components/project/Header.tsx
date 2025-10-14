@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation';
 const navigationItems = [
     { href: "#sobre", text: "Sobre", icon: Info },
     { href: "#programacao", text: "Programação", icon: Calendar },
-    { href: "#palestrantes", text: "Palestrantes", icon: Users },
+    // { href: "#palestrantes", text: "Palestrantes", icon: Users },
     { href: "#parceiros", text: "Parceiros", icon: Handshake },
     { href: "#localizacao", text: "Localização", icon: MapPin },
     { href: "#faq", text: "FAQ", icon: HelpCircle },
@@ -109,9 +109,15 @@ function MobileMenuPanel({ isOpen, onClose }: { isOpen: boolean, onClose: () => 
                     })}
                 </nav>
                 <div className="pt-4 pb-safe">
-                    <button onClick={() => { onClose(); window.location.href = '#inscricao'; }} className="w-full px-6 py-5 bg-[#083D77] hover:bg-[#38B6FF] text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-lg hover:shadow-[#38B6FF]/20">
+                    <Link 
+                        href="https://www.unitins.br/Eventos/E007Evento/Abertos" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        onClick={onClose}
+                        className="block w-full px-6 py-5 bg-[#083D77] hover:bg-[#38B6FF] text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-lg hover:shadow-[#38B6FF]/20 text-center"
+                    >
                         Inscreva-se Agora
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>,
@@ -151,9 +157,14 @@ export default function Header() {
                                     <span className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${isSolid ? 'bg-[#38B6FF]' : 'bg-white'}`} aria-hidden="true" />
                                 </Link>
                             ))}
-                            <button onClick={() => window.location.href = '#inscricao'} className={`group relative px-6 py-3 font-bold rounded-xl transition-all duration-300 overflow-hidden ${isSolid ? 'bg-[#083D77] text-white hover:bg-[#38B6FF]' : 'bg-white text-[#083D77] hover:bg-[#4FD1FF]'}`}>
+                            <Link 
+                                href="https://www.unitins.br/Eventos/E007Evento/Abertos" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className={`group relative px-6 py-3 font-bold rounded-xl transition-all duration-300 overflow-hidden inline-block ${isSolid ? 'bg-[#083D77] text-white hover:bg-[#38B6FF]' : 'bg-white text-[#083D77] hover:bg-[#4FD1FF]'}`}
+                            >
                                 <span className="relative z-10">Participar</span>
-                            </button>
+                            </Link>
                         </nav>
 
                         <button onClick={toggleMobileMenu} className={`lg:hidden p-2 rounded-lg relative z-50 ${isSolid ? 'text-slate-800' : 'text-white'}`} aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMobileMenuOpen}>
