@@ -90,7 +90,7 @@ const eventColors: Record<string, { primary: string; secondary: string; accent: 
     accent: "border-purple-500",
     text: "text-purple-700"
   },
-  "FAPT": {
+  "UNITINS/FAPT": {
     primary: "bg-lime-600",         // Lima
     secondary: "bg-lime-50",
     accent: "border-lime-500",
