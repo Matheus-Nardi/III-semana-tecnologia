@@ -51,10 +51,15 @@ fi
 
 echo "🚀 Subindo containers (com build)..."
 if [ "$NO_CACHE" = true ]; then
-  docker-compose -f "$COMPOSE_FILE" up -d --build --no-cache
+  echo "🏗️  Construindo imagens sem cache..."
+  docker-compose -f "$COMPOSE_FILE" build --no-cache
 else
-  docker-compose -f "$COMPOSE_FILE" up -d --build
+  echo "🏗️  Construindo imagens..."
+  docker-compose -f "$COMPOSE_FILE" build
 fi
+
+echo "🚀 Subindo containers..."
+docker-compose -f "$COMPOSE_FILE" up -d
 
 echo "⏳ Aguardando inicialização..."
 sleep 20
