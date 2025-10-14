@@ -1,3 +1,7 @@
+# Pastas de configuração que não fazem parte da aplicação
+certbot/
+nginx/
+
 # Dependências
 node_modules
 npm-debug.log*
