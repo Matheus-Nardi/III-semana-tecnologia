@@ -5,6 +5,7 @@ import { createPortal } from 'react-dom';
 import Image from "next/image";
 import Link from "next/link";
 import { Sparkles, Menu, X, Info, Calendar, Users, Handshake, MapPin, HelpCircle, ArrowRight } from "lucide-react";
+import { usePathname } from 'next/navigation';
 
 const navigationItems = [
     { href: "#sobre", text: "Sobre", icon: Info },
@@ -121,6 +122,8 @@ function MobileMenuPanel({ isOpen, onClose }: { isOpen: boolean, onClose: () => 
 export default function Header() {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const pathname = usePathname();
+    const isSolid = isScrolled || pathname !== '/';
 
     useEffect(() => {
         const handleScroll = () => { setIsScrolled(window.scrollY > 20); };
@@ -134,26 +137,26 @@ export default function Header() {
 
     return (
         <>
-            <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out ${isScrolled ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`} role="banner">
+            <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ease-in-out ${isSolid ? 'bg-white/95 backdrop-blur-md shadow-lg' : 'bg-transparent'}`} role="banner">
                 <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16 lg:h-20">
                         <Link href="https://www.unitins.br/nPortal/" aria-label="Ir para o portal da UNITINS">
-                            <Image src="/logos/logo-unitins.png" alt="Logo UNITINS" width={160} height={45} priority className={`w-auto h-8 sm:h-10 transition-all duration-500 ${isScrolled ? 'brightness-100' : 'brightness-0 invert'}`} />
+                            <Image src="/logos/logo-unitins.png" alt="Logo UNITINS" width={160} height={45} priority className={`w-auto h-8 sm:h-10 transition-all duration-500 ${isSolid ? 'brightness-100' : 'brightness-0 invert'}`} />
                         </Link>
 
                         <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Navegação principal">
                             {navigationItems.map((item) => (
-                                <Link key={item.text} href={item.href} className={`text-sm xl:text-base font-medium transition-colors duration-300 relative group py-2 ${isScrolled ? 'text-[#0F3057] hover:text-[#38B6FF]' : 'text-white/90 hover:text-white'}`}>
+                                <Link key={item.text} href={item.href} className={`text-sm xl:text-base font-medium transition-colors duration-300 relative group py-2 ${isSolid ? 'text-[#0F3057] hover:text-[#38B6FF]' : 'text-white/90 hover:text-white'}`}>
                                     {item.text}
-                                    <span className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${isScrolled ? 'bg-[#38B6FF]' : 'bg-white'}`} aria-hidden="true" />
+                                    <span className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${isSolid ? 'bg-[#38B6FF]' : 'bg-white'}`} aria-hidden="true" />
                                 </Link>
                             ))}
-                            <button onClick={() => window.location.href = '#inscricao'} className={`group relative px-6 py-3 font-bold rounded-xl transition-all duration-300 overflow-hidden ${isScrolled ? 'bg-[#083D77] text-white hover:bg-[#38B6FF]' : 'bg-white text-[#083D77] hover:bg-[#4FD1FF]'}`}>
+                            <button onClick={() => window.location.href = '#inscricao'} className={`group relative px-6 py-3 font-bold rounded-xl transition-all duration-300 overflow-hidden ${isSolid ? 'bg-[#083D77] text-white hover:bg-[#38B6FF]' : 'bg-white text-[#083D77] hover:bg-[#4FD1FF]'}`}>
                                 <span className="relative z-10">Participar</span>
                             </button>
                         </nav>
 
-                        <button onClick={toggleMobileMenu} className={`lg:hidden p-2 rounded-lg relative z-50 ${isScrolled ? 'text-slate-800' : 'text-white'}`} aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMobileMenuOpen}>
+                        <button onClick={toggleMobileMenu} className={`lg:hidden p-2 rounded-lg relative z-50 ${isSolid ? 'text-slate-800' : 'text-white'}`} aria-label={isMobileMenuOpen ? "Fechar menu" : "Abrir menu"} aria-expanded={isMobileMenuOpen}>
                             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
                     </div>

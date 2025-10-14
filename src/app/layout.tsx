@@ -50,10 +50,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="pt-br">
       <body
-        className={`${montserrat.variable} ${poppins.variable} ${dmSans.variable} antialiased`}
+        className={`${montserrat.variable} ${poppins.variable} ${dmSans.variable} antialiased min-h-screen flex flex-col`}
       >
         <Header />
-        <main id="main-content">
+        <main id="main-content" className="flex-1">
           {children}
         </main>
         <ScrollToTop />
