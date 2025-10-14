@@ -19,11 +19,11 @@ export default function Hero() {
     );
 
     const carouselItens = [
-        { src: "/temp/image1.png", alt: "Ciência e Tecnologia" },
-        { src: "/temp/image2.jpeg", alt: "Ciência e Tecnologia" },
+        // { src: "/temp/image1.png", alt: "Ciência e Tecnologia" },
+        // { src: "/temp/image2.jpeg", alt: "Ciência e Tecnologia" },
 
-        // { src: "https://images.pexels.com/photos/1533720/pexels-photo-1533720.jpeg", alt: "Imagem sobre o evento" },
-        // { src: "https://images.pexels.com/photos/577585/pexels-photo-577585.jpeg", alt: "Programação" },
+        { src: "https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg", alt: "Imagem sobre o evento" },
+        { src: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg", alt: "Programação" },
         // { src: "https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg", alt: "Palestrantes" },
     ];
 
