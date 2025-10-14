@@ -84,8 +84,9 @@ export default function Hero() {
                     <div className="max-w-5xl mx-auto">
                         {/* Main Title with elegant animation */}
                         <div className="text-center space-y-6 mb-12">
-                            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold leading-tight animate-fade-in-up animation-delay-200">
-                                <span className="block mb-2 text-white drop-shadow-2xl" style={{ color: '#e2187f' }}>
+                            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold leading-tight animate-fade-in-up animation-delay-200 
+                   flex flex-col gap-y-2">
+                                <span className="block text-white drop-shadow-2xl" style={{ color: '#e2187f' }}>
                                     III Semana de
                                 </span>
                                 <span className="block text-3xl md:text-5xl lg:text-7xl font-light tracking-wide text-white">
@@ -96,7 +97,6 @@ export default function Hero() {
                                 </span>
                             </h1>
                         </div>
-
                         {/* CTA Buttons - sophisticated design */}
                         <div className="flex flex-col sm:flex-row gap-3 justify-center pointer-events-auto">
                             <Button
