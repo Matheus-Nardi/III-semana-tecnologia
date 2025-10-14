@@ -41,10 +41,22 @@ export const metadata: Metadata = {
   description: "Evento acadêmico promovido pela Universidade Estadual do Tocantins (UNITINS) que reúne estudantes, pesquisadores e profissionais para discutir ciência, tecnologia e inovação.",
   metadataBase: new URL("https://unitinscti.com.br"),
   alternates: { canonical: "/" },
+  keywords: [
+    "Semana de Ciência e Tecnologia",
+    "UNITINS",
+    "Inovação",
+    "Evento",
+    "Tecnologia",
+    "Palmas",
+    "Tocantins",
+  ],
   openGraph: {
     title: "III Semana de Ciência,Tecnologia e Inovação - UNITINS",
     description: "Evento acadêmico promovido pela Universidade Estadual do Tocantins (UNITINS)...",
     type: "website",
+    url: "https://unitinscti.com.br/",
+    siteName: "III Semana de Ciência, Tecnologia e Inovação - UNITINS",
+    locale: "pt_BR",
     images: ["/logos/logo-snct.png"], 
   },
   robots: {
@@ -54,6 +66,12 @@ export const metadata: Metadata = {
       index: true,
       follow: true,
     },
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "III Semana de Ciência, Tecnologia e Inovação - UNITINS",
+    description: "Evento acadêmico — palestras, oficinas, exposições e ciência aplicada.",
+    images: ["/logos/logo-snct.png"],
   },
 };  
 export default function RootLayout({ children }: { children: React.ReactNode }) {
