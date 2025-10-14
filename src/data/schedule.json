@@ -18,18 +18,11 @@
     ],
     "XXXII Jornada de Iniciação": [
       {
-        "titulo": "Apresentações de trabalhos-Agro",
+        "titulo": "Apresentações de trabalhos",
         "horario": "14h - 18h",
         "local": "Salas 1 a 4 - Bloco A",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
-      },
-      {
-        "titulo": "Apresentações de trabalhos (Embrapa)",
-        "horario": "14h em diante",
-        "local": "Sala 6 - Bloco A",
-        "palestrante": "Não especificado",
-        "vagas": "20"
       }
     ],
     "Seminário Estadual de Educação em Direitos Humanos: Prevenir para Proteger": [
@@ -62,8 +55,8 @@
         "titulo": "Abertura da III SCTI - Palestra magna (Com transmissão para TO Graduado)",
         "horario": "19h30 - 20h30",
         "local": "Auditório/central",
-        "palestrante": "Não especificado",
-        "vagas": "Não especificado"
+        "palestrante": "",
+        "vagas": ""
       }
     ]
   },
@@ -196,14 +189,14 @@
         "titulo": "Palestra Magna: Mudanças Climáticas no Tocantins: O Compromisso da Universidade com a Sustentabilidade e a Sociedade",
         "horario": "8h - 9h45",
         "local": "Auditório/câmpus",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "70"
       },
       {
         "titulo": "Sessão de banners e Oficinas temáticas",
         "horario": "19h - 22h",
         "local": "Sala 5 - Bloco A",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "70"
       }
     ],
@@ -219,20 +212,20 @@
         "titulo": "Apresentações de trabalhos: PIBID UNITINS",
         "horario": "14h - 17h",
         "local": "Salas 8 e 9 - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "40"
       }
     ],
     "III Circuito de Inovação": [
       {
-        "titulo": "Hackathon InovaUni – HackÁgua",
+        "titulo": "Hackathon InovaUni – HackÁgua e FAPTgulhas",
         "horario": "10h - 18h",
         "local": "Arena Hackathon",
         "palestrante": "",
         "vagas": "50"
       },
       {
-        "titulo": "Oficina: 'Introdução à Propriedade Intelectual: Protegendo Inovações Sustentáveis'",
+        "titulo": "Oficina: Introdução à Propriedade Intelectual: Protegendo Inovações Sustentáveis",
         "horario": "14h - 17h",
         "local": "Sala 7 - Bloco B",
         "palestrante": "Prof. Caio William Barcelos Santos (Unitins)",
@@ -244,7 +237,7 @@
         "titulo": "Apresentações de trabalhos",
         "horario": "14h - 18h",
         "local": "Salas 1 a 3 - Bloco A e Sala 4 - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       }
     ],
@@ -253,8 +246,8 @@
         "titulo": "Apresentações de trabalhos",
         "horario": "14h - 18h",
         "local": "Sala 5 - Bloco B",
-        "palestrante": "Aguardando confirmação",
-        "vagas": "Não especificado"
+        "palestrante": "",
+        "vagas": ""
       }
     ],
     "Seminário Estadual de Educação em Direitos Humanos: Prevenir para Proteger": [
@@ -314,15 +307,15 @@
         "titulo": "Cursos, oficinas e Apresentação de trabalhos",
         "horario": "8h - 22h",
         "local": "Sala 5 - Bloco A",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "70"
       },
       {
         "titulo": "Cursos, oficinas e Apresentação de trabalhos",
         "horario": "8h - 22h",
         "local": "Sala 6 - Bloco A",
-        "palestrante": "Não especificado",
-        "vagas": "Não especificado"
+        "palestrante": "",
+        "vagas": ""
       }
     ],
     "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO": [
@@ -381,7 +374,7 @@
         "titulo": "III Feira de Extensão",
         "horario": "14h - 17h",
         "local": "Sala 8 e 9 - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       },
       {
@@ -441,7 +434,7 @@
         "titulo": "Apresentações de trabalhos: Estágio Supervisionado",
         "horario": "9h30 - 11h",
         "local": "Salas 5, 7 e 8 - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "40"
       },
       {
@@ -457,7 +450,7 @@
         "titulo": "Apresentações de trabalhos",
         "horario": "14h - 18h",
         "local": "Salas 1 a 4 - Bloco A",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       }
     ],
@@ -466,7 +459,7 @@
         "titulo": "Apresentações de trabalhos",
         "horario": "19h - 20h",
         "local": "Google meet",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "54"
       }
     ],
@@ -495,7 +488,7 @@
         "titulo": "Mesa redonda: Problema Interdisciplinar (Engenharia Agronômica, Pedagogia e Sistemas de Informação)",
         "horario": "8h - 12h",
         "local": "Auditório/câmpus",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "100"
       }
     ],
@@ -504,7 +497,7 @@
         "titulo": "Palestra",
         "horario": "8h - 12h",
         "local": "Auditório/central",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "100"
       }
     ],
@@ -529,7 +522,7 @@
         "titulo": "III Feira de Extensão",
         "horario": "14h - 17h",
         "local": "Sala 8 e 9 - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       },
       {
@@ -545,7 +538,7 @@
         "titulo": "Apresentações de trabalhos",
         "horario": "14h - 18h",
         "local": "Salas 1 a 4 - Bloco A",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       }
     ],
@@ -554,8 +547,8 @@
         "titulo": "Apresentações de trabalhos",
         "horario": "8h - 18h",
         "local": "Sala 10 - Bloco A",
-        "palestrante": "Não especificado",
-        "vagas": "Não especificado"
+        "palestrante": "",
+        "vagas": ""
       }
     ],
     "ODS": [
@@ -563,7 +556,7 @@
         "titulo": "Oficina: Conhecendo o Selo ODS Educação - Do Cadastro da Iniciativa ao Prêmio",
         "horario": "14h - 18h",
         "local": "Sala 5 - Bloco A",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "35"
       }
     ],
@@ -645,7 +638,7 @@
         "titulo": "Mesa redonda: Problema Interdisciplinar (Direito, Serviço Social, Tecnólogos EAD e MBA em Mudanças Climáticas e Sistemas da Terra)",
         "horario": "8h - 12h",
         "local": "Auditório/câmpus",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "100"
       }
     ],
@@ -654,7 +647,7 @@
         "titulo": "III Feira de Extensão",
         "horario": "14h - 17h",
         "local": "Sala 8 e 9 - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       }
     ],
@@ -664,7 +657,7 @@
         "horario": "18h - 19h",
         "local": "Auditório/central",
         "palestrante": "Equipe de cada evento",
-        "vagas": "Não especificado"
+        "vagas": ""
       }
     ],
     "I Congresso de Direito, Processo e Tecnologia da Unitins": [
@@ -672,7 +665,7 @@
         "titulo": "Palestra",
         "horario": "19h - 22h",
         "local": "Auditório/câmpus",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "100"
       }
     ],
@@ -692,7 +685,7 @@
         "titulo": "Exposição: Meninas e Mulheres Inovadoras (Realidade Virtual)",
         "horario": "8h - 22h",
         "local": "Sala 10 - Bloco B",
-        "palestrante": "Empresa não especificada",
+        "palestrante": "",
         "vagas": "Ilimitado"
       },
       {
@@ -706,7 +699,7 @@
         "titulo": "Quiz TecnoSocial - Tecnologias Sociais para o Desenvolvimento Sustentável",
         "horario": "8h - 22h",
         "local": "Sala 12 - Bloco B",
-        "palestrante": "Empresa não especificada",
+        "palestrante": "",
         "vagas": "Ilimitado"
       }
     ],
@@ -715,28 +708,28 @@
         "titulo": "Exposição: Memória Institucional",
         "horario": "8h - 22h",
         "local": "Hall - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       },
       {
         "titulo": "Exposição: Núcleo de Arqueologia Tocantinense (Nuta)",
         "horario": "8h - 22h",
         "local": "Hall - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       },
       {
         "titulo": "Exposição: Museu José Hidashi",
         "horario": "8h - 22h",
         "local": "Hall - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       },
       {
         "titulo": "Exposição: Unitins Recicla",
         "horario": "8h - 22h",
         "local": "Hall - Bloco B",
-        "palestrante": "Não especificado",
+        "palestrante": "",
         "vagas": "Ilimitado"
       }
     ]
