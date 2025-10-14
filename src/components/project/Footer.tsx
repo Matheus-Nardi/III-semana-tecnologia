@@ -29,7 +29,7 @@ export default function Footer() {
     <footer className="bg-gradient-soft-primary text-primary">
       {/* Seção Principal */}
       <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
 
           {/* Sobre o Evento */}
           <div className="space-y-4">
