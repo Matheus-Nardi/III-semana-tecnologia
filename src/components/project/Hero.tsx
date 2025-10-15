@@ -119,7 +119,7 @@ export default function Hero() {
                                     ) : (
                                         <VideoBackground
                                             src={item.src}
-                                            poster={(item as any).poster}
+                                            poster={item.type === 'video' ? item.poster : undefined}
                                             alt={item.alt}
                                             onPlay={() => plugin.current.stop()}
                                             onEnded={() => { emblaApi?.scrollNext(); plugin.current.reset(); }}
