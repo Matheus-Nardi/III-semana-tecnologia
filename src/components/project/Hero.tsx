@@ -6,33 +6,88 @@ import {
     CarouselItem,
     CarouselNext,
     CarouselPrevious,
+    type CarouselApi,
 } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
-import { useRef } from "react";
-import { Calendar, MapPin, Users, Sparkles, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import Image from "next/image";
+
+type Slide =
+  | { type: "image"; src: string; alt: string }
+  | { type: "video"; src: string; alt: string; poster?: string };
+
+function VideoBackground({
+    src,
+    poster,
+    alt,
+    onPlay,
+    onEnded,
+}: {
+    src: string;
+    poster?: string;
+    alt: string;
+    onPlay?: () => void;
+    onEnded?: () => void;
+}) {
+    return (
+        <video
+            className="w-full h-full object-cover"
+            aria-label={alt}
+            autoPlay
+            muted
+            playsInline
+            preload="metadata"
+            // não fazer loop para o vídeo permanecer até o fim
+            loop={false}
+            onPlay={onPlay}
+            onEnded={onEnded}
+            poster={poster}
+            src={src}
+        />
+    );
+}
 
 export default function Hero() {
     const plugin = useRef(
         Autoplay({ delay: 5000, stopOnInteraction: true })
     );
+    const [emblaApi, setEmblaApi] = useState<CarouselApi | null>(null);
+    const [isMobile, setIsMobile] = useState(false);
+    useEffect(() => {
+        const update = () => setIsMobile(window.innerWidth < 768);
+        update();
+        window.addEventListener('resize', update, { passive: true });
+        return () => window.removeEventListener('resize', update);
+    }, []);
 
-    const carouselItens = [
-        // { src: "/temp/image1.png", alt: "Ciência e Tecnologia" },
-        // { src: "/temp/image2.jpeg", alt: "Ciência e Tecnologia" },
-
-        { src: "https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg", alt: "Imagem sobre o evento" },
-        { src: "https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg", alt: "Programação" },
-        // { src: "https://images.pexels.com/photos/1181359/pexels-photo-1181359.jpeg", alt: "Palestrantes" },
+    const mobileSlides: Slide[] = [
+        // Vídeo apenas para mobile 
+        { type: 'video', src: 'https://www.pexels.com/pt-br/download/video/17953524/', alt: 'Vídeo drone (mobile)', poster: 'https://images.pexels.com/photos/997134/pexels-photo-997134.jpeg' },
+        { type: 'image', src: 'https://images.pexels.com/photos/997134/pexels-photo-997134.jpeg', alt: 'Drone (mobile)' },
+        { type: 'image', src: 'https://images.unsplash.com/photo-1560260240-c6ef90a163a4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1331', alt: 'Oceano' },
+        { type: 'image', src: 'https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg', alt: 'Imagem sobre o evento' },
     ];
+
+    const desktopSlides: Slide[] = [
+        // Vídeo drone plantação para desktop
+        { type: 'video', src: 'https://www.pexels.com/pt-br/download/video/5608087/', alt: 'Vídeo drone plantação', poster: '' },
+        { type: 'image', src: 'https://plus.unsplash.com/premium_photo-1664475382326-3dc5510e4ff9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1169', alt: 'Drone sobre plantação' },
+        { type: 'image', src: 'https://images.unsplash.com/photo-1560260240-c6ef90a163a4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1331', alt: 'Oceano' },
+        { type: 'image', src: 'https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg', alt: 'Imagem sobre o evento' },
+        { type: 'image', src: 'https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg', alt: 'Programação' },
+    ];
+
+    const slides = isMobile ? mobileSlides : desktopSlides;
 
     return (
         <section
             className="w-full relative overflow-hidden -mt-20 pt-20"
             aria-label="Seção principal do evento"
         >
-            {/* Carousel with images - with parallax effect */}
+            {/* Carousel com imagens/vídeo */}
             <Carousel
                 opts={{
                     align: "start",
@@ -42,24 +97,35 @@ export default function Hero() {
                 className="w-full"
                 onMouseEnter={plugin.current.stop}
                 onMouseLeave={plugin.current.reset}
+                setApi={setEmblaApi}
                 aria-roledescription="carrossel"
                 aria-label="Imagens do evento"
             >
-                <CarouselContent>
-                    {carouselItens.map((item, index) => (
-                        <CarouselItem key={index} aria-roledescription="slide" aria-label={`Slide ${index + 1} de ${carouselItens.length}`}>
+                <CarouselContent className="ml-0">
+                    {slides.map((item, index) => (
+                        <CarouselItem className="pl-0" key={`${item.type}-${item.src}-${index}`} aria-roledescription="slide" aria-label={`Slide ${index + 1} de ${slides.length}`}>
                             <div className="relative w-full h-screen min-h-[600px] sm:min-h-[700px]">
-                                {/* Image with elegant overlay gradient */}
                                 <div className="absolute inset-0">
-                                    <img
-                                        src={item.src}
-                                        alt={item.alt}
-                                        className="w-full h-full object-cover"
-                                        loading={index === 0 ? "eager" : "lazy"}
-                                    />
-                                    {/* Dark overlay */}
+                                    {item.type === 'image' ? (
+                                        <Image
+                                            src={item.src}
+                                            alt={item.alt}
+                                            fill
+                                            sizes="100vw"
+                                            className="object-cover"
+                                            priority={index === 0}
+                                            loading={index === 0 ? 'eager' : 'lazy'}
+                                        />
+                                    ) : (
+                                        <VideoBackground
+                                            src={item.src}
+                                            poster={(item as any).poster}
+                                            alt={item.alt}
+                                            onPlay={() => plugin.current.stop()}
+                                            onEnded={() => { emblaApi?.scrollNext(); plugin.current.reset(); }}
+                                        />
+                                    )}
                                     <div className="absolute inset-0 bg-black/80" aria-hidden="true" />
-                                    {/* Subtle noise texture overlay for depth */}
                                     <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iLjA1Ii8+PC9zdmc+')] opacity-40" aria-hidden="true" />
                                 </div>
                             </div>

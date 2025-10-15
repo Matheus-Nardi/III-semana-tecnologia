@@ -65,6 +65,11 @@ export default function Head() {
 
   return (
     <>
+      {/* Preconnect para domínios de imagens externas (melhora tempo de carregamento) */}
+      <link rel="preconnect" href="https://images.unsplash.com" crossOrigin="" />
+      <link rel="preconnect" href="https://plus.unsplash.com" crossOrigin="" />
+      <link rel="preconnect" href="https://images.pexels.com" crossOrigin="" />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
