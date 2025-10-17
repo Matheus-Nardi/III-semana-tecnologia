@@ -8,8 +8,9 @@ export default function Footer() {
     { text: 'Início', href: '#' },
     { text: 'Sobre', href: '#sobre' },
     { text: 'Programação', href: '#programacao' },
-    // { text: 'Palestrantes', href: '#palestrantes' },
-    { text: 'Inscrições', href: 'https://www.unitins.br/Eventos/E007Evento/Abertos' }
+    { text: 'Parceiros', href: '#parceiros' },
+    { text: 'Notícias', href:'#noticias'},
+    { text: 'Inscrições', href: 'https://www.unitins.br/Eventos/E007Evento/Abertos' },
   ];
 
   const currentYear = new Date().getFullYear();
@@ -63,18 +64,18 @@ export default function Footer() {
           </div>
 
           {/* Links Rápidos */}
-          <div className="space-y-4">
+          <div className="space-y-4 ">
             <h3 className="text-lg font-semibold font-montserrat" style={{ color: '#e2187f' }}>
               Links Rápidos
             </h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 grid grid-cols-2 gap-0">
               {navLinks.map((link) => (
                 <li key={link.text} className="flex justify-center">
                   <a
                     href={link.href}
                     target={link.href.startsWith('http') ? '_blank' : '_self'}
                     rel={link.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                    className="group inline-flex items-center gap-2 text-primary hover:text-[#e2187f] transition-colors duration-300 text-sm"
+                    className="group inline-flex items-start gap-2 text-primary hover:text-[#e2187f] transition-colors duration-300 text-sm"
                   >
                     <span className="inline-block">{link.text}</span>
                   </a>
