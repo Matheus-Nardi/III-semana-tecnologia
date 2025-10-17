@@ -42,13 +42,19 @@ const eventColors: Record<string, { primary: string; secondary: string; accent: 
     accent: "border-blue-500",
     text: "text-blue-700"
   },
-  "XXXII Jornada de Iniciação": {
+  "XXXII Jornada de iniciação científica": {
     primary: "bg-emerald-600",      // Verde esmeralda
     secondary: "bg-emerald-50",
     accent: "border-emerald-500",
     text: "text-emerald-700"
   },
-  "Seminário Estadual de Educação em Direitos Humanos: Prevenir para Proteger": {
+  "Embrapa": {
+    primary: "bg-green-700",        // Verde escuro
+    secondary: "bg-green-50",
+    accent: "border-green-600",
+    text: "text-green-800"
+  },
+  "Seminário Estadual de Educação em Direitos Humanos: Prevenir para Proteger: A Universidade como Território de Direitos": {
     primary: "bg-indigo-600",       // Índigo (azul escuro)
     secondary: "bg-indigo-50",
     accent: "border-indigo-500",
@@ -60,17 +66,17 @@ const eventColors: Record<string, { primary: string; secondary: string; accent: 
     accent: "border-rose-500",
     text: "text-rose-700"
   },
-  "Eventos Gerais": {
+  "III SCTI": {
     primary: "bg-red-600",          // Vermelho
     secondary: "bg-red-50",
     accent: "border-red-500",
     text: "text-red-700"
   },
-  "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO": {
-    primary: "bg-green-700",        // Verde escuro
-    secondary: "bg-green-50",
-    accent: "border-green-600",
-    text: "text-green-800"
+  "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO: Cultivando Conhecimento Para o Campo": {
+    primary: "bg-lime-600",         // Lima
+    secondary: "bg-lime-50",
+    accent: "border-lime-500",
+    text: "text-lime-700"
   },
   "IX Colóquio Interdisciplinar de Ensino, Pesquisa e Extensão": {
     primary: "bg-sky-600",          // Azul céu
@@ -78,25 +84,19 @@ const eventColors: Record<string, { primary: string; secondary: string; accent: 
     accent: "border-sky-500",
     text: "text-sky-700"
   },
-  "Mudanças Climáticas e seus Desdobramentos": {
-    primary: "bg-teal-600",         // Verde-azulado
-    secondary: "bg-teal-50",
-    accent: "border-teal-500",
-    text: "text-teal-700"
-  },
   "III Circuito de Inovação": {
-    primary: "bg-purple-600",       // ROXO - Mantido conforme solicitado
+    primary: "bg-purple-600",       // Roxo
     secondary: "bg-purple-50",
     accent: "border-purple-500",
     text: "text-purple-700"
   },
-  "UNITINS/FAPT": {
-    primary: "bg-lime-600",         // Lima
-    secondary: "bg-lime-50",
-    accent: "border-lime-500",
-    text: "text-lime-700"
+  "FAPT": {
+    primary: "bg-amber-700",        // Âmbar escuro
+    secondary: "bg-amber-50",
+    accent: "border-amber-600",
+    text: "text-amber-800"
   },
-  "Projeto Integrador": {
+  "Projeto Integrador curso de Gestão Pública - TO Graduado": {
     primary: "bg-fuchsia-600",      // Fúcsia
     secondary: "bg-fuchsia-50",
     accent: "border-fuchsia-500",
@@ -114,19 +114,19 @@ const eventColors: Record<string, { primary: string; secondary: string; accent: 
     accent: "border-orange-500",
     text: "text-orange-700"
   },
-  "I Congresso de Direito, Processo e Tecnologia da Unitins": {
-    primary: "bg-amber-700",        // Âmbar escuro
-    secondary: "bg-amber-50",
-    accent: "border-amber-600",
-    text: "text-amber-800"
+  "Mudanças Climáticas e seus Desdobramentos: Educação Climática, Sustentabilidade, Tecnologia e Saberes Interdisciplinares": {
+    primary: "bg-teal-600",         // Verde-azulado
+    secondary: "bg-teal-50",
+    accent: "border-teal-500",
+    text: "text-teal-700"
   },
-  "Jornada Acadêmica dos Cursos de Sistemas de Informação e Tecnologia em Análise e Desenvolvimento de Sistemas": {
+  "I Congresso de Direito, Processo e Tecnologia da Unitins": {
     primary: "bg-slate-600",        // Ardósia (cinza azulado)
     secondary: "bg-slate-50",
     accent: "border-slate-500",
     text: "text-slate-700"
   },
-  "ODS": {
+  "Jornada Acadêmica dos Cursos de Sistemas de Informação e Tecnologia em Análise e Desenvolvimento de Sistemas e Encontro de Egressos do Curso de Sistemas de Informação": {
     primary: "bg-pink-600",         // Rosa vibrante
     secondary: "bg-pink-50",
     accent: "border-pink-500",
