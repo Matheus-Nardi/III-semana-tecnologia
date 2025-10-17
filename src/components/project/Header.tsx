@@ -6,13 +6,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { Sparkles, Menu, X, Info, Calendar, Users, Handshake, MapPin, HelpCircle, ArrowRight, Newspaper } from "lucide-react";
 import { usePathname } from 'next/navigation';
+import { Button } from '../ui/button';
 
 const navigationItems = [
     { href: "#sobre", text: "Sobre", icon: Info },
     { href: "#programacao", text: "Programação", icon: Calendar },
     // { href: "#palestrantes", text: "Palestrantes", icon: Users },
     { href: "#parceiros", text: "Parceiros", icon: Handshake },
-    {href: "#noticias", text: "Notícias", icon: Newspaper },
+    { href: "#noticias", text: "Notícias", icon: Newspaper },
     { href: "#faq", text: "FAQ", icon: HelpCircle },
     { href: "#localizacao", text: "Localização", icon: MapPin },
 ];
@@ -77,11 +78,11 @@ function MobileMenuPanel({ isOpen, onClose }: { isOpen: boolean, onClose: () => 
             >
                 {/* Logo UNITINS */}
                 <Link href="https://www.unitins.br/nPortal/" className="absolute top-4 left-4 h-10 flex items-center z-10" aria-label="Ir para o portal da UNITINS">
-                    <Image 
-                        src="/logos/logo-unitins.png" 
-                        alt="Logo UNITINS" 
-                        width={120} 
-                        height={34} 
+                    <Image
+                        src="/logos/logo-unitins.png"
+                        alt="Logo UNITINS"
+                        width={120}
+                        height={34}
                         className="w-auto h-8 brightness-0 invert"
                     />
                 </Link>
@@ -110,9 +111,9 @@ function MobileMenuPanel({ isOpen, onClose }: { isOpen: boolean, onClose: () => 
                     })}
                 </nav>
                 <div className="pt-4 pb-safe">
-                    <Link 
-                        href="https://www.unitins.br/Eventos/E007Evento/Abertos" 
-                        target="_blank" 
+                    <Link
+                        href="https://www.unitins.br/Eventos/E007Evento/Abertos"
+                        target="_blank"
                         rel="noopener noreferrer"
                         onClick={onClose}
                         className="block w-full px-6 py-5 bg-[#083D77] hover:bg-[#38B6FF] text-white font-bold text-lg rounded-2xl transition-all duration-300 shadow-lg hover:shadow-[#38B6FF]/20 text-center"
@@ -155,16 +156,18 @@ export default function Header() {
                             {navigationItems.map((item) => (
                                 <Link key={item.text} href={item.href} className={`text-sm xl:text-base font-medium transition-colors duration-300 relative group py-2 px-0 ${isSolid ? 'text-[#0F3057] hover:text-[#38B6FF]' : 'text-white/90 hover:text-white'}`}>
                                     {item.text}
-                                    <span className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${isSolid ? 'bg-[#38B6FF]' : 'bg-white'}`} aria-hidden="true" />
+                                    <span className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${isSolid ? 'bg-[#38B6FF]' : 'bg-white'}`} aria-hidden="true" />
                                 </Link>
                             ))}
-                            <Link 
-                                href="https://www.unitins.br/Eventos/E007Evento/Abertos" 
-                                target="_blank" 
-                                rel="noopener noreferrer" 
-                                className={`group relative px-6 py-3 font-bold rounded-xl transition-all duration-300 overflow-hidden inline-block ${isSolid ? 'bg-[#083D77] text-white hover:bg-[#38B6FF]' : 'bg-white text-[#083D77] hover:bg-[#4FD1FF]'}`}
+                            <Link
+                                href="https://www.unitins.br/Eventos/E007Evento/Abertos"
+                                target="_blank"
+                                rel="noopener noreferrer"
                             >
-                                <span className="relative z-10">Participar</span>
+                                {/* <span className="relative z-10">Participar</span> */}
+                                <Button className={`group relative z-10 top-[-4px] font-bold rounded-xl transition-all duration-300 overflow-hidden inline-block ${isSolid ? 'bg-[#083D77] text-white hover:bg-[#38B6FF]' : 'bg-white text-[#083D77] hover:bg-[#4FD1FF]'}`}>
+                                    Participar
+                                </Button>
                             </Link>
                         </nav>
 
@@ -174,7 +177,7 @@ export default function Header() {
                     </div>
                 </div>
             </header>
-            
+
             <MobileMenuPanel isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
         </>
     );
