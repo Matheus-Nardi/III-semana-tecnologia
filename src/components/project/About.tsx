@@ -42,8 +42,8 @@ export default function AboutEvent() {
             <div className="space-y-4 sm:space-y-6 text-muted-foreground leading-relaxed">
               <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2">
                 A Universidade Estadual do Tocantins (Unitins) realizará, de 20 a 24 de outubro de 2025,
-                a III Semana de Ciência, Tecnologia e Inovação - SCTI, com o tema “Planeta Água: a cultura
-                oceânica para enfrentar as mudanças climáticas no meu território”. Integrando a Semana Nacional
+                a III Semana de Ciência, Tecnologia e Inovação - SCTI, com o tema <strong className="text-primary">“Planeta Água: a cultura
+                oceânica para enfrentar as mudanças climáticas no meu território”</strong>. Integrando a Semana Nacional
                 de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em
                 torno de palestras, oficinas, exposições e apresentações científicas, promovendo o diálogo entre ensino,
                 pesquisa e extensão.
