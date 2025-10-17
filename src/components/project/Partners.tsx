@@ -10,8 +10,6 @@ export default function Partners() {
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
 
   const partnersItems = [
-    { src: "/logos/logo-cnpq.png", alt: "CNPq - Conselho Nacional de Desenvolvimento Científico e Tecnológico", href: "https://www.gov.br/cnpq/pt-br" },
-    { src: "/logos/logo-embrapa.png", alt: "Embrapa - Empresa Brasileira de Pesquisa Agropecuária", href: "https://www.embrapa.br/" },
     { src: "/logos/logo-gov-to.png", alt: "Governo do Estado do Tocantins", href: "https://www.to.gov.br/" },
     {
       src: "/logos/logo-mcti.png",
@@ -19,20 +17,37 @@ export default function Partners() {
       href: "https://www.gov.br/mcti/pt-br",
     },
     {
-      src: "/logos/logo-sebrae.png",
-      alt: "Sebrae Tocantins - Serviço Brasileiro de Apoio às Micro e Pequenas Empresas",
-      href: "https://sebrae.com.br/sites/PortalSebrae/ufs/to?codUf=24",
-    },
-    {
       src: "/logos/logo-snct.png",
       alt: "SNCT - Semana Nacional de Ciência e Tecnologia",
       href: "https://semanact.mcti.gov.br/",
     },
     {
+      src: "/logos/logo-fndct.png",
+      alt: "FNDCT - Fundo Nacional de Desenvolvimento Científico e Tecnológico",
+      href: "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/fndct",
+    },
+    {
+      src: "/logos/logo-capes.png",
+      alt: "CAPES - Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
+      href: "https://www.gov.br/capes/pt-br"
+    },
+    { src: "/logos/logo-cnpq.png", alt: "CNPq - Conselho Nacional de Desenvolvimento Científico e Tecnológico", href: "https://www.gov.br/cnpq/pt-br" },
+    {
       src: "/logos/logo-fapt.png",
       alt: "FAPT - Fundação de Amparo à Pesquisa do Tocantins",
       href: "https://www.to.gov.br/fapt",
-    }
+    },
+    {
+      src: "/logos/logo-pop.png",
+      alt: "POP Ciência - Popularização da Ciência",
+      href: "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/popciencia"
+    },
+    { src: "/logos/logo-embrapa.png", alt: "Embrapa - Empresa Brasileira de Pesquisa Agropecuária", href: "https://www.embrapa.br/" },
+    {
+      src: "/logos/logo-sebrae.png",
+      alt: "Sebrae Tocantins - Serviço Brasileiro de Apoio às Micro e Pequenas Empresas",
+      href: "https://sebrae.com.br/sites/PortalSebrae/ufs/to?codUf=24",
+    },
   ]
 
   return (
