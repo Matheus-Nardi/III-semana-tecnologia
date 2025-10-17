@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import Image from "next/image";
 import Link from "next/link";
-import { Sparkles, Menu, X, Info, Calendar, Users, Handshake, MapPin, HelpCircle, ArrowRight } from "lucide-react";
+import { Sparkles, Menu, X, Info, Calendar, Users, Handshake, MapPin, HelpCircle, ArrowRight, Newspaper } from "lucide-react";
 import { usePathname } from 'next/navigation';
 
 const navigationItems = [
@@ -12,8 +12,9 @@ const navigationItems = [
     { href: "#programacao", text: "Programação", icon: Calendar },
     // { href: "#palestrantes", text: "Palestrantes", icon: Users },
     { href: "#parceiros", text: "Parceiros", icon: Handshake },
-    { href: "#localizacao", text: "Localização", icon: MapPin },
+    {href: "#noticias", text: "Notícias", icon: Newspaper },
     { href: "#faq", text: "FAQ", icon: HelpCircle },
+    { href: "#localizacao", text: "Localização", icon: MapPin },
 ];
 
 function MobileMenuPanel({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
@@ -152,7 +153,7 @@ export default function Header() {
 
                         <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Navegação principal">
                             {navigationItems.map((item) => (
-                                <Link key={item.text} href={item.href} className={`text-sm xl:text-base font-medium transition-colors duration-300 relative group py-2 ${isSolid ? 'text-[#0F3057] hover:text-[#38B6FF]' : 'text-white/90 hover:text-white'}`}>
+                                <Link key={item.text} href={item.href} className={`text-sm xl:text-base font-medium transition-colors duration-300 relative group py-2 px-0 ${isSolid ? 'text-[#0F3057] hover:text-[#38B6FF]' : 'text-white/90 hover:text-white'}`}>
                                     {item.text}
                                     <span className={`absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${isSolid ? 'bg-[#38B6FF]' : 'bg-white'}`} aria-hidden="true" />
                                 </Link>

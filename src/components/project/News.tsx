@@ -90,7 +90,7 @@ export default function News() {
   }
 
   return (
-    <section className="py-16 bg-white">
+    <section id='noticias' className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-12">
           {/* Cabeçalho */}
