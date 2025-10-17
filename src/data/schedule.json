@@ -1,6 +1,6 @@
 
 {
-  "lastUpdate": "2025-10-17T12:00:00",
+  "lastUpdate": "2025-10-17T12:23:00",
   "2025-10-20": {
     "Encontro Estadual das Licenciaturas da Unitins": [
       {
@@ -24,7 +24,7 @@
         "horario": "14h - 18h30",
         "local": "Salas 1 a 4 - Bloco A",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "Embrapa": [
@@ -245,7 +245,7 @@
         "horario": "8h - 11h",
         "local": "Sala 5 - Bloco B",
         "palestrante": "",
-        "vagas": "400"
+        "vagas": "40"
       },
       {
         "titulo": "Hackathon InovaUni – HackÁgua",
@@ -268,14 +268,14 @@
         "horario": "14h - 18h30",
         "local": "Salas 1 a 3 - Bloco A e Sala 8 e 9 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       },
       {
         "titulo": "Apresentações de trabalhos - Mostra de projetos de pesquisa",
         "horario": "8h - 18h",
         "local": "Pitch",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "FAPT": [
@@ -284,7 +284,7 @@
         "horario": "14h - 18h",
         "local": "Sala 5 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "Projeto Integrador curso de Gestão Pública - TO Graduado": [
@@ -331,21 +331,21 @@
         "horario": "9h - 11h",
         "local": "Auditório Planeta Água",
         "palestrante": "Prof. Dr. Leonardo Miranda Frossard (Universidade Federal de Juiz de Fora)",
-        "vagas": "Ilimitada"
+        "vagas": ""
       },
       {
         "titulo": "Planetário",
         "horario": "8h - 18h",
         "local": "Sala 7 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       },
       {
         "titulo": "Palestra magna: Inovação Sustentável no Setor Industrial – Quick Wins com IA e IoT",
         "horario": "19h30 - 21h30",
         "local": "Auditório Planeta Água",
         "palestrante": "Junto com JAC-Sistemas de Informação e TADS Lucas Mattos (FIT - Instituto de Tecnologia )",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO: Cultivando Conhecimento Para o Campo": [
@@ -382,14 +382,14 @@
         "horario": "19h - 20h30",
         "local": "Google meet",
         "palestrante": " Oscar Arnaldo Batista Neto e Silva: Corteva Agriscience (SP), Eduardo Moreira Barros. Mediadora: Juliana Maria de Paula",
-        "vagas": "Ilimitada"
+        "vagas": ""
       },
       {
         "titulo": "Oficina ao vivo: A transformação Digital no Agronegócio com Impressão 3D",
         "horario": "20h30 - 22h",
         "local": "Google meet",
         "palestrante": "Ministrante: Phelipe Luiz Damasceno Araújo. Mediadora: Daisy Parente Dourado",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "IX Colóquio Interdisciplinar de Ensino, Pesquisa e Extensão": [
@@ -405,7 +405,7 @@
         "horario": "14h - 17h",
         "local": "Sala 8 e 9 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       },
       {
         "titulo": "Palestra magna: Direito à água e saneamento no Brasil",
@@ -467,7 +467,7 @@
         "horario": "14h - 18h30",
         "local": "Salas 1 a 5 - Bloco A",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "II Colóquio de Extensão – TO Graduado": [
@@ -549,7 +549,7 @@
         "horario": "16h - 18h",
         "local": "Google meet",
         "palestrante": "Rennan Thamay (Advogado e Professor)",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "Jornada Acadêmica dos Cursos de Sistemas de Informação e Tecnologia em Análise e Desenvolvimento de Sistemas e Encontro de Egressos do Curso de Sistemas de Informação": [
@@ -574,7 +574,7 @@
         "horario": "14h - 17h",
         "local": "Sala 8 e 9 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       },
       {
         "titulo": "Palestra: Da nascente ao oceano: Como a degradação ambiental ameaça nossa saúde",
@@ -590,7 +590,7 @@
         "horario": "8h - 18h",
         "local": "Pitch",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "FAPT": [
@@ -599,7 +599,7 @@
         "horario": "8h - 18h",
         "local": "Sala 10 - Bloco A",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "III Circuito de Inovação": [
@@ -608,7 +608,7 @@
         "horario": "8h - 18h",
         "local": "Sala 7 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       },
       {
         "titulo": "Roda de conversa: Inteligência Coletiva no Tocantins: Estratégias de Colaboração em Rede para o Ecossistema de Inovação",
@@ -651,7 +651,7 @@
         "horario": "8h - 18h",
         "local": "Sala 7 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "Jornada Acadêmica dos Cursos de Sistemas de Informação e Tecnologia em Análise e Desenvolvimento de Sistemas e Encontro de Egressos do Curso de Sistemas de Informação": [
@@ -681,14 +681,14 @@
         "horario": "19h30 - 21h30",
         "local": "Google meet",
         "palestrante": " Cristovam Ferreira Liberato Junior. Mediador: Yzaac Gonçalves da Silva.",
-        "vagas": "Ilimitada"
+        "vagas": ""
       },
       {
         "titulo": "Oficina: Construindo meu primeiro serviço",
         "horario": "19h30 - 21h30",
         "local": "Google meet",
         "palestrante": " Michael Schuenck dos Santos . Mediadores: Alysson Martins Bruno e Carlos Soares Noleto Júnior",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "Mudanças Climáticas e seus Desdobramentos: Educação Climática, Sustentabilidade, Tecnologia e Saberes Interdisciplinares": [
@@ -729,7 +729,7 @@
         "horario": "14h - 17h",
         "local": "Sala 8 e 9 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitada"
+        "vagas": ""
       }
     ],
     "Lançamento da revista e premiações da JIC, NIT, Colóquio e TO Graduado": [
@@ -767,21 +767,21 @@
         "horario": "8h - 22h",
         "local": "Sala 10 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitado"
+        "vagas": ""
       },
       {
         "titulo": "Exposição: Natureza em Foco - Uma Jornada Imersiva pela Biodiversidade Brasileira (Realidade Virtual)",
         "horario": "8h - 22h",
         "local": "Sala 11 - Bloco B",
         "palestrante": "NIT e Sebrae - TO",
-        "vagas": "Ilimitado"
+        "vagas": ""
       },
       {
         "titulo": "Quiz TecnoSocial - Tecnologias Sociais para o Desenvolvimento Sustentável",
         "horario": "8h - 22h",
         "local": "Sala 12 - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitado"
+        "vagas": ""
       }
     ],
     "IX Colóquio Interdisciplinar de Ensino, Pesquisa e Extensão": [
@@ -790,28 +790,28 @@
         "horario": "8h - 22h",
         "local": "Hall - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitado"
+        "vagas": ""
       },
       {
         "titulo": "Exposição: Núcleo de Arqueologia Tocantinense (Nuta)",
         "horario": "8h - 22h",
         "local": "Sala 13 - Bloco A",
         "palestrante": "",
-        "vagas": "Ilimitado"
+        "vagas": ""
       },
       {
         "titulo": "Exposição: Museu José Hidashi",
         "horario": "8h - 22h",
         "local": "Sala 13 - Bloco A",
         "palestrante": "",
-        "vagas": "Ilimitado"
+        "vagas": ""
       },
       {
         "titulo": "Exposição: Unitins Recicla",
         "horario": "8h - 22h",
         "local": "Hall - Bloco B",
         "palestrante": "",
-        "vagas": "Ilimitado"
+        "vagas": ""
       }
     ]
   }
