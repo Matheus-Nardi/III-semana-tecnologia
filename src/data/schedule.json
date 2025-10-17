@@ -3,10 +3,10 @@
     "Encontro Estadual das Licenciaturas da Unitins": [
       {
         "titulo": "Cerimônia de Abertura e Conferência de Abertura: O modelo mercadológico de formação humana: impactos na escola, na didática e na formação de professores.",
-        "horario": "9h30 - 11h",
+        "horario": "8h30 - 11h",
         "local": "Auditório Planeta Água",
         "palestrante": "Prof.ª Dr.ª Raquel Aparecida Marra da Madeira Freitas (PUC GO). Mediador: Prof. Dr. Jackson Carlos da Silva",
-        "vagas": "200"
+        "vagas": "150"
       },
       {
         "titulo": "Conferência Temática: 'A formação do professor e a educação para o desenvolvimento dos alunos na perspectiva histórico-cultural'",
@@ -18,8 +18,8 @@
     ],
     "XXXII Jornada de Iniciação": [
       {
-        "titulo": "Apresentações de trabalhos",
-        "horario": "14h - 18h",
+        "titulo": "Apresentações de trabalhos - Ciências Agrárias, Biológicas e Exatas e da Terra",
+        "horario": "14h - 18h30",
         "local": "Salas 1 a 4 - Bloco A",
         "palestrante": "",
         "vagas": "Ilimitado"
@@ -27,17 +27,10 @@
     ],
     "Seminário Estadual de Educação em Direitos Humanos: Prevenir para Proteger": [
       {
-        "titulo": "Mesa redonda: Inclusão e Justiça Social: Garantindo o Direito à Educação Superior",
-        "horario": "16h - 18h",
-        "local": "Auditório Planeta Água",
-        "palestrante": "Prof. Dr. Diego Grossi e Prof. Dr. Raimundo Carvalho. Mediadora: Prof. Neide",
-        "vagas": "100"
-      },
-      {
-        "titulo": "Conferência de Abertura 'A Universidade como Espaço de Construção e Defesa dos Direitos Humanos'",
+        "titulo": "Conferência de Abertura: A Universidade como Espaço de Construção e Defesa dos Direitos Humanos  (Discursão sobre igualdade racial)",
         "horario": "19h em diante",
         "local": "Auditório Planeta Água",
-        "palestrante": "Pabla (Ministério dos Direitos Humanos e Cidadania) - A confirmar. Mediador: Romeu (Comitê)",
+        "palestrante": "Gustavo Fagundes (Professor Serviço Social UNITINS) e Pabla Cassiângela Silva Milhomem (Conselho Nacional de Direitos Humanos) Mediador: Romeu Feix (Comitê)",
         "vagas": "100"
       }
     ],
@@ -52,127 +45,155 @@
     ],
     "Eventos Gerais": [
       {
-        "titulo": "Abertura da III SCTI - Palestra magna (Com transmissão para TO Graduado)",
+        "titulo": "Palestra magna de abertura: O Profissional do Futuro: Reflexão sobre as mudanças no mercado de trabalho e as novas competências necessárias para se manter relevante e valorizado",
         "horario": "19h30 - 20h30",
         "local": "Auditório Planeta Água",
-        "palestrante": "",
+        "palestrante": "Arthur Igreja",
         "vagas": ""
       }
     ]
   },
   "2025-10-21": {
-    "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO": [
+    "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO: Cultivando Conhecimento Para o Campo": [
       {
-        "titulo": "Palestra Magna de abertura: Cenários e Futuro do Agronegócio e da Agricultura Tocantinense",
+        "titulo": "Palestra Magna de abertura: O Futuro do Agronegócio e da Agricultura Tocantinense",
         "horario": "8h - 12h",
         "local": "Auditório Planeta Água",
-        "palestrante": "Jaime Café",
+        "palestrante": "Cesár Hanna Halum. Mediador: Thiago de Lázari",
         "vagas": "120"
       },
       {
-        "titulo": "Mini curso: Técnicas para Interpretação da Análise de Solo",
-        "horario": "13h - 14h30",
+        "titulo": "Mini curso: Análise e Interpretação de Solo (atividade prática com tabelas)",
+        "horario": "14h - 16h",
         "local": "Sala 5 - Bloco A",
         "palestrante": "Gustavo Marquardt",
         "vagas": "40"
       },
       {
         "titulo": "Oficina: Produção de silagem",
-        "horario": "13h - 15h",
-        "local": "Sala 6 - Bloco A",
+        "horario": "14h - 18h",
+        "local": "Hall - Bloco A",
         "palestrante": "Mirian das Mercês",
         "vagas": "40"
       },
       {
-        "titulo": "Mini curso: Operação de Máquinas e Implementos Agrícolas - Demonstração prática",
-        "horario": "13h - 17h",
+        "titulo": "Mini curso: Mecanização Agrícolas e Demonstração prática com maquinário - JACTO",
+        "horario": "14h - 18h",
         "local": "Sala 7 - Bloco A",
         "palestrante": "Giovani Menegucci Martin",
         "vagas": "40"
       },
       {
-        "titulo": "Mini curso: Agricultura de Precisão como ferramenta para a Agricultura Contemporânea",
-        "horario": "13h - 17h",
+        "titulo": "Mini curso: Agricultura de Precisão - JACTO",
+        "horario": "14h - 18h",
         "local": "Sala 8 - Bloco A",
         "palestrante": "Gilberto Fernandes de Melo Junior",
         "vagas": "40"
       },
       {
-        "titulo": "Mini curso: Sanidade Animal e Vacinação em Bovinos - ADAPEC",
-        "horario": "14h - 15h30",
+        "titulo": "Palestra: Importância do calendário sanitário para bovinos/Principais vacinas e cuidados preventivos - ADAPEC",
+        "horario": "14h - 15h",
         "local": "Sala 09 - Bloco A",
-        "palestrante": "ADAPEC",
+        "palestrante": "Sérgio Armando Castro Souza Liocádio",
         "vagas": "40"
       },
       {
-        "titulo": "Mini curso: Integração Lavoura-Pecuária-Floresta (ILPF) no Contexto do Matopiba e Debate Atual - EMBRAPA",
-        "horario": "14h - 15h30",
+        "titulo": "Palestra: Integração Lavoura-Pecuária como ferramenta para o aumento da rentabilidade e produtividade na atividade pecuária - EMBRAPA",
+        "horario": "14h - 16h",
         "local": "Sala 10 - Bloco A",
-        "palestrante": "EMBRAPA",
+        "palestrante": "Pedro Henrique Rezende",
         "vagas": "40"
       },
       {
-        "titulo": "Mini curso: Fitopatologia - EMBRAPA",
-        "horario": "14h - 15h30",
+        "titulo": "Palestra: Novas tecnologias para o manejo de doenças de plantas - EMBRAPA",
+        "horario": "14h - 15h",
         "local": "Sala 11 - Bloco A",
-        "palestrante": "EMBRAPA",
+        "palestrante": "Rodrigo Veras",
         "vagas": "40"
       },
       {
-        "titulo": "Mini curso: Recomendação de Calagem e Gessagem para as Culturas do Milho e Soja",
-        "horario": "15h - 16h30",
+        "titulo": "Mini curso: Recomendação de Calagem e Gessagem para Milho e Soja",
+        "horario": "16h - 18h",
         "local": "Sala 5 - Bloco A",
         "palestrante": "Gustavo Marquardt",
         "vagas": "40"
       },
       {
-        "titulo": "Mini curso: Uso de Drones na Agricultura",
-        "horario": "15h - 17h",
-        "local": "Sala 6 - Bloco A",
-        "palestrante": "Gilmar Mendes",
+        "titulo": "Mini curso: Uso de Drones no Campo",
+        "horario": "14h - 18h",
+        "local": "Auditório Planeta Água",
+        "palestrante": "Mayke Rocha",
         "vagas": "40"
       },
       {
-        "titulo": "Oficina: Fruticultura e Técnicas de Propagação Vegetativa de Frutos",
-        "horario": "15h - 17h",
-        "local": "Sala 12 - Bloco A",
+        "titulo": "Oficina: Fruticultura",
+        "horario": "14h - 18h",
+        "local": "Hall - Bloco A",
         "palestrante": "Cibelle Christine",
         "vagas": "40"
       },
       {
         "titulo": "Oficina: Determinação da Resistência do Solo à Penetração",
-        "horario": "15h30 - 17h",
-        "local": "Sala 09- Bloco A",
+        "horario": "15h - 17h",
+        "local": "Sala 09 - Bloco A",
         "palestrante": "Diony Alves Reis",
         "vagas": "40"
       },
       {
-        "titulo": "Mini Curso: Boas Práticas de Manejo na Pecuária de Corte e Leite - ADAPEC",
-        "horario": "16h - 17h30",
-        "local": "Sala 10 - Bloco A",
-        "palestrante": "ADAPEC",
-        "vagas": "40"
-      },
-      {
-        "titulo": "Mini Curso: Plataforma AgroTag ILPF - EMBRAPA",
-        "horario": "16h - 17h30",
-        "local": "Sala 11 - Bloco A",
-        "palestrante": "EMBRAPA",
-        "vagas": "40"
-      },
-      {
-        "titulo": "Mini Curso: Perícia Agropecuária",
-        "horario": "16h - 17h30",
+        "titulo": "Palestra: Gestão e Aplicação de Defensivos Agrícolas: Papel do Agrônomo e Boas Práticas no Campo - ADAPEC",
+        "horario": "14h - 15h30",
         "local": "Sala 4 - Bloco A",
-        "palestrante": "Adriano Sérgio Bernardo Queiroz",
+        "palestrante": "Luiz Henrique Froes Michelin",
         "vagas": "40"
       },
       {
-        "titulo": "Roda de conversa 'Perspectivas de mercado e a atuação do(a) Engenheiro(a) Agrônomo(a) e do Tecnólogo em Agronegócio'",
+        "titulo": "Mini Curso: Sistema de Produção de Arroz Irrigado no Tocantins - EMBRAPA",
+        "horario": "14h - 16h",
+        "local": "Sala 12 - Bloco A",
+        "palestrante": "Inocencio Oliveira",
+        "vagas": "40"
+      },
+      {
+        "titulo": "Palestra: Papel do Engenheiro Agrônomo na orientação técnica aos produtores e equipe - ADAPEC",
+        "horario": "15h30 - 16h30",
+        "local": "Sala 11 - Bloco A",
+        "palestrante": "Cleovan Barbosa",
+        "vagas": "40"
+      },
+      {
+        "titulo": "Palestra: Desafios da Defesa Agropecuária no enfrentamento do HLB (Huanglongbing) - ADAPEC",
+        "horario": "16h30 - 17h30",
+        "local": "Sala 10 - Bloco A",
+        "palestrante": "Helcids de Sá Reis",
+        "vagas": "40"
+      },
+      {
+        "titulo": "Palestra: Noções básicas de nutrição animal - ADAPEC",
+        "horario": "15h - 16h",
+        "local": "Sala 6 - Bloco A",
+        "palestrante": "Frederico Borba Diniz",
+        "vagas": "40"
+      },
+      {
+        "titulo": "Palestra: Devolução de embalagens vazias de agrotóxicos - ADAPEC",
+        "horario": "16h - 17h",
+        "local": "Sala 4 - Bloco A",
+        "palestrante": "Carlos César",
+        "vagas": "40"
+      },
+      {
+        "titulo": "Palestra: Manejo eficiente de pastagens e rotatividade de piquetes - ADAPEC",
+        "horario": "17h - 18h",
+        "local": "Sala 6 - Bloco A",
+        "palestrante": "Denilsom Bezerra Costa",
+        "vagas": "40"
+      },
+      {
+        "titulo": "Roda de conversa: Perfil profissional almejado pelos mercados contemporâneos e oportunidades para Engenheiros(as) Agrônomos(as) e do Tecnólogo em Agronegócio",
         "horario": "19h - 22h",
         "local": "Auditório Planeta Água",
-        "palestrante": "Fernando Henrique Faria Coelho; Loyane Pereira; Osvanio Junior; Luciano Garcia; Luiz Villa ; Silvia Barroso Gomes Souto. Mediador: Thiago Magalhães de Lázari",
-        "vagas": "500"
+        "palestrante": "Fernando Henrique Faria Coelho; Loyane Pereira; Osvanio Junior; Luciano Garcia; Luiz Villa; Silvia Barroso Gomes Souto. Mediador: Thiago Magalhães de Lázari",
+        "vagas": "80"
       }
     ],
     "IX Colóquio Interdisciplinar de Ensino, Pesquisa e Extensão": [
@@ -236,7 +257,7 @@
       {
         "titulo": "Apresentações de trabalhos",
         "horario": "14h - 18h",
-        "local": "Salas 1 a 3 - Bloco A e Sala 4 - Bloco B",
+        "local": "Salas 1 a 3 - Bloco A e Salas 8 e 9 - Bloco B",
         "palestrante": "",
         "vagas": "Ilimitado"
       }
@@ -283,6 +304,15 @@
         "palestrante": "",
         "vagas": ""
       }
+    ],
+    "Eventos Gerais": [
+      {
+        "titulo": "Palestra: Gestão Estratégica e Inovação como pilares para o desenvolvimento institucional e regional",
+        "horario": "20h30 - 22h",
+        "local": "Auditório Planeta Água",
+        "palestrante": "Sandro Magaldi",
+        "vagas": ""
+      }
     ]
   },
   "2025-10-22": {
@@ -318,7 +348,7 @@
         "vagas": ""
       }
     ],
-    "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO": [
+    "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO: Cultivando Conhecimento Para o Campo": [
       {
         "titulo": "Oficina: Brotos Comestíveis",
         "horario": "8h - 9h30",
@@ -341,25 +371,25 @@
         "vagas": "40"
       },
       {
-        "titulo": "Encontro de Egressos dos Cursos de Engenharia Agronômica e Tecnologia em Gestão do Agronegócio.",
+        "titulo": "Encontro de Egressos dos Cursos de Engenharia Agronômica e Tecnologia em Gestão do Agronegócio",
         "horario": "14h - 18h",
         "local": "Sala 7 - Bloco A",
-        "palestrante": "Egressos Tecnologia em Gestão do Agronegócio (Paraíso), Egressos Engenharia Agronômica. Mediador: Thiago Magalhães de Lázari",
-        "vagas": "50"
+        "palestrante": "Egressos Tecnologia em Gestão do Agronegócio (Paraíso) e Egressos Engenharia Agronômica. Mediador: Thiago Magalhães de Lázari",
+        "vagas": "40"
       },
       {
-        "titulo": "Roda de conversa ao vivo: Tecnólogo em Ação: Desafios e Conquistas no Mercado de Trabalho",
-        "horario": "19h30 - 20h30",
-        "local": "Google meet",
-        "palestrante": "Oscar Arnaldo Batista Neto e Silva (Corteva Agriscience - SP), Eduardo Moreira Barros. Mediadora: Juliana Maria de Paula",
-        "vagas": "500"
+        "titulo": "Roda de conversa ao vivo: Tecnólogo em Ação - Desafios e Conquistas no Mercado de Trabalho",
+        "horario": "19h - 20h30",
+        "local": "Google Meet",
+        "palestrante": "Oscar Arnaldo Batista Neto e Silva (Corteva Agriscience - SP) e Eduardo Moreira Barros. Mediadora: Juliana Maria de Paula",
+        "vagas": "Ilimitada"
       },
       {
-        "titulo": "Oficina ao vivo: A transformação Digital no Agronegócio com Impressão 3D",
+        "titulo": "Oficina ao vivo: A Transformação Digital no Agronegócio com Impressão 3D",
         "horario": "20h30 - 22h",
-        "local": "Google meet",
+        "local": "Google Meet",
         "palestrante": "Phelipe Luiz Damasceno Araújo. Mediadora: Daisy Parente Dourado",
-        "vagas": "300"
+        "vagas": "Ilimitada"
       }
     ],
     "IX Colóquio Interdisciplinar de Ensino, Pesquisa e Extensão": [
@@ -386,13 +416,13 @@
       }
     ],
     "I Fórum de Gestão dos Grupos de Pesquisa": [
-        {
+      {
         "titulo": "Solenidade de abertura: Composição da mesa com fala do Reitor e Pró-Reitora de Pesquisa e Pós-Graduação",
         "horario": "9h00 - 9h30",
         "local": "Auditório Planeta Água",
         "palestrante": "",
         "vagas": ""
-        },
+      },
       {
         "titulo": "Palestra: Estratégias para Consolidação dos Grupos de Pesquisa",
         "horario": "9h30 - 10h30",
@@ -578,20 +608,20 @@
         "vagas": ""
       }
     ],
-    "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO": [
+    "I Semana Acadêmica das Agrárias - UNITINS/Tema IntegraAGRO: Cultivando Conhecimento Para o Campo": [
       {
         "titulo": "Palestra: Competências e Carreiras no Agro: Inspirando Novas Gerações",
-        "horario": "19h30 - 21h",
+        "horario": "19h - 21h",
         "local": "Auditório Planeta Água",
-        "palestrante": "Oscar Arnaldo Batista Neto e Silva (Corteva Agriscience - SP). Mediadora: Daisy Parente Dourado",
-        "vagas": "500"
+        "palestrante": "Oscar Arnaldo Batista Neto e Silva. Mediadora: Daisy Parente Dourado",
+        "vagas": "150"
       },
       {
         "titulo": "Festival Culinário Sabores do Campo",
-        "horario": "20h - 21h",
-        "local": "Hall - Bloco A",
-        "palestrante": "Phelipe Luiz Damasceno Araújo, Layane Araújo Dias Vitor e Daisy Parente Dourado",
-        "vagas": "500"
+        "horario": "20h30 - 22h",
+        "local": "Hall - Bloco B",
+        "palestrante": "Phelipe Luiz Damasceno Araújo, Layane Araújo Dias Vitor, Pollyana Alves de Araújo. Mediadora: Daisy Parente Dourado",
+        "vagas": "150"
       }
     ]
   },
@@ -714,14 +744,14 @@
       {
         "titulo": "Exposição: Núcleo de Arqueologia Tocantinense (Nuta)",
         "horario": "8h - 22h",
-        "local": "Hall - Bloco B",
+        "local": "Sala 13 - Bloco A",
         "palestrante": "",
         "vagas": "Ilimitado"
       },
       {
         "titulo": "Exposição: Museu José Hidashi",
         "horario": "8h - 22h",
-        "local": "Hall - Bloco B",
+        "local": "Sala 13 - Bloco A",
         "palestrante": "",
         "vagas": "Ilimitado"
       },
