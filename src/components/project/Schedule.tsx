@@ -162,10 +162,21 @@ const dateMapping: Record<string, { date: string; dayOfWeek: string }> = {
 export default function Schedule() {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
+  const formatLastUpdate = (dateString: string) => {
+    const date = new Date(dateString);
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+
+    return `${day}/${month}/${year} às ${hours}:${minutes}`;
+  };
 
   const schedule: DaySchedule[] = useMemo(() => {
     const transformedSchedule: DaySchedule[] = [];
-    
+
+
     // Primeiro, extraímos os eventos que acontecem "Todos os dias"
     const allDaysEvents: Record<string, ScheduleActivity[]> = {};
     if (scheduleData["Todos os dias"]) {
@@ -173,17 +184,17 @@ export default function Schedule() {
         allDaysEvents[eventName] = activities as ScheduleActivity[];
       });
     }
-    
+
     // Agora processamos cada dia específico
     Object.entries(scheduleData).forEach(([dateKey, dayData]) => {
       if (dateKey === "Todos os dias") return;
-      
+
       const dateInfo = dateMapping[dateKey];
       if (!dateInfo) return;
-      
+
       // Mapa para agrupar atividades por eixo temático
       const eventsByName: Record<string, ScheduleActivity[]> = {};
-      
+
       // Adiciona os eventos específicos do dia
       Object.entries(dayData).forEach(([eventName, activities]) => {
         if (!eventsByName[eventName]) {
@@ -191,7 +202,7 @@ export default function Schedule() {
         }
         eventsByName[eventName].push(...(activities as ScheduleActivity[]));
       });
-      
+
       // Adiciona os eventos de "Todos os dias" aos respectivos eixos
       Object.entries(allDaysEvents).forEach(([eventName, activities]) => {
         if (!eventsByName[eventName]) {
@@ -199,28 +210,28 @@ export default function Schedule() {
         }
         eventsByName[eventName].push(...activities);
       });
-      
+
       // Converte para o formato Event[] e ordena para que Circuito de Inovação fique em primeiro
       const events: Event[] = [];
       let eventIdCounter = 1;
-      
+
       // Função para definir a ordem de prioridade dos eixos
       const getPriority = (eventName: string): number => {
         if (eventName === "III Circuito de Inovação") return 0; // Sempre primeiro
         return 1; // Outros eventos
       };
-      
+
       // Ordena os eventos: Circuito de Inovação primeiro, depois os demais em ordem alfabética
       const sortedEntries = Object.entries(eventsByName).sort(([nameA], [nameB]) => {
         const priorityA = getPriority(nameA);
         const priorityB = getPriority(nameB);
-        
+
         if (priorityA !== priorityB) {
           return priorityA - priorityB;
         }
         return nameA.localeCompare(nameB);
       });
-      
+
       sortedEntries.forEach(([eventName, activities]) => {
         events.push({
           id: `event-${dateInfo.date}-${eventIdCounter++}`,
@@ -228,14 +239,14 @@ export default function Schedule() {
           talks: activities,
         });
       });
-      
+
       transformedSchedule.push({
         date: dateInfo.date,
         dayOfWeek: dateInfo.dayOfWeek,
         events,
       });
     });
-    
+
     return transformedSchedule;
   }, []);
 
@@ -257,21 +268,25 @@ export default function Schedule() {
               Programação
             </h2>
             <div className="flex justify-center lg:justify-start">
-              <motion.div 
+              <motion.div
                 className="h-1 bg-primary rounded-full"
                 initial={{ width: "4rem" }}
-                animate={{ 
-                  width: isHeaderInView ? "12rem" : "4rem" 
+                animate={{
+                  width: isHeaderInView ? "12rem" : "4rem"
                 }}
-                transition={{ 
-                  duration: 0.8, 
-                  ease: "easeInOut" 
+                transition={{
+                  duration: 0.8,
+                  ease: "easeInOut"
                 }}
                 aria-hidden="true"
               />
             </div>
             <p className="text-muted-foreground font-poppins text-sm sm:text-base md:text-lg mt-3">
               Selecione um dia para ver a programação completa
+            </p>
+            <p className="text-muted-foreground/70 font-poppins text-xs sm:text-sm mt-2 italic flex items-center justify-center lg:justify-start gap-1.5">
+              <Clock className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
+              <span>Atualizado em: {formatLastUpdate(scheduleData.lastUpdate)}</span>
             </p>
           </div>
 
@@ -287,7 +302,7 @@ export default function Schedule() {
         </div>
 
         {/* Filtro de Dias */}
-        <div 
+        <div
           className="flex justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 flex-wrap"
           role="group"
           aria-label="Filtrar programação por dia"
@@ -305,8 +320,8 @@ export default function Schedule() {
                   flex flex-col items-center justify-center gap-1 
                   transition-all duration-300 rounded-xl text-center
                   focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
-                  ${isActive 
-                    ? 'shadow-md' 
+                  ${isActive
+                    ? 'shadow-md'
                     : 'hover:border-primary hover:bg-primary/10 hover:shadow-sm hover:text-primary'
                   }
                 `}
@@ -424,7 +439,7 @@ export default function Schedule() {
           </div>
         ) : (
           /* Mensagem quando nenhum dia está selecionado */
-          <div 
+          <div
             className="text-center mt-8 sm:mt-12 p-6 sm:p-8 border-2 border-dashed border-border rounded-lg"
             role="status"
             aria-live="polite"
