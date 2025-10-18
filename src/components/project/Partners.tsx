@@ -42,6 +42,11 @@ export default function Partners() {
       alt: "POP Ciência - Popularização da Ciência",
       href: "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/popciencia"
     },
+    {
+      src: "/logos/logo-uab.png",
+      alt: "UAB - Universidade Aberta do Brasil",
+      href: "https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/educacao-a-distancia/universidade-aberta-do-brasil"
+    },
     { src: "/logos/logo-embrapa.png", alt: "Embrapa - Empresa Brasileira de Pesquisa Agropecuária", href: "https://www.embrapa.br/" },
     {
       src: "/logos/logo-sebrae.png",
