@@ -301,13 +301,13 @@ export default function Schedule() {
                 onClick={() => setViewMode("grouped")}
                 aria-pressed={viewMode === "grouped"}
                 className={`
-    transition-all duration-500 transform
-    ${viewMode === "grouped"
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "bg-transparent text-primary border border-primary hover:bg-primary hover:text-primary-foreground"
+      transition-all duration-300 rounded-xl
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+      ${viewMode === "grouped"
+                    ? 'shadow-md'
+                    : 'text-primary border-primary hover:border-primary hover:bg-primary/10 hover:shadow-sm hover:text-primary'
                   }
-    hover:scale-105
-  `}
+    `}
               >
                 Por eixo
               </Button>
@@ -318,15 +318,16 @@ export default function Schedule() {
                 onClick={() => setViewMode("daily")}
                 aria-pressed={viewMode === "daily"}
                 className={`
-    transition-all duration-500 transform
-    ${viewMode === "daily"
-                    ? "bg-primary text-primary-foreground hover:bg-primary/90"
-                    : "bg-transparent text-primary border border-primary hover:bg-primary hover:text-primary-foreground"
+      transition-all duration-300 rounded-xl
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+      ${viewMode === "daily"
+                    ? 'shadow-md'
+
+                    : 'text-primary border-primary hover:border-primary hover:bg-primary/10 hover:shadow-sm hover:text-primary'
                   }
-    hover:scale-105
-  `}
+    `}
               >
-                Por dia
+                Por horário
               </Button>
             </div>
           </div>
