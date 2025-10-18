@@ -1,6 +1,6 @@
 
 {
-  "lastUpdate": "2025-10-17T12:23:00",
+  "lastUpdate": "2025-10-18T02:17:00",
   "2025-10-20": {
     "Encontro Estadual das Licenciaturas da Unitins": [
       {
@@ -8,7 +8,7 @@
         "horario": "8h30 - 11h",
         "local": "Auditório Planeta Água",
         "palestrante": "Palestrante Prof.ª Dr.ª Raquel Aparecida Marra da Madeira Freitas (PUC GO). Mediador: Prof. Dr. Jackson Carlos da Silva",
-        "vagas": "150"
+        "vagas": "120"
       },
       {
         "titulo": "Conferência Temática: A formação do professor e a educação para o desenvolvimento dos alunos na perspectiva histórico-cultural",
@@ -40,7 +40,7 @@
       {
         "titulo": "Conferência de Abertura: A Universidade como Espaço de Construção e Defesa dos Direitos Humanos (Discursão sobre igualdade racial)",
         "horario": "16h - 18h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Gustavo Fagundes (Professor Serviço Social UNITINS) e Pabla Cassiângela Silva Milhomem (Conselho Nacional de Direitos Humanos) Mediador: Romeu Feix (Comitê)",
         "vagas": "100"
       }
@@ -132,7 +132,7 @@
       {
         "titulo": "Mini curso: Uso de Drones no Campo",
         "horario": "14h - 18h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Ministrante: Mayke Rocha",
         "vagas": "40"
       },
@@ -202,7 +202,7 @@
       {
         "titulo": "Roda de conversa: Perfil profissional almejado pelos mercados contemporâneos e oportunidades para Engenheiros (as) Agrônomos (as) e do Tecnólogo em Agronegócio",
         "horario": "19h - 22h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Convidados: Fernando Henrique Faria Coelho; Loyane Pereira; Osvanio Junior; Luciano Garcia; Luiz Villa ; Silvia Barroso Gomes Souto. Mediador: Thiago Magalhães de Lázari",
         "vagas": "80"
       }
@@ -220,7 +220,7 @@
       {
         "titulo": "Mesa Redonda: A Relação entre a Universidade e a Escola de Educação Básica: diálogos necessários",
         "horario": "9h - 11h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Convidados: Prof. Ms. Augusto de Rezende Campos (Unitins); Prof. Esp. Eurípedes Fernandes Cunha (Secretário executivo da educ. estadual do TO), Prof.ª Esp. Anice de Souza Moura (Secretária municipal de educ. de Palmas), Prof.ª Dr.ª Maria Santana Ferreira dos Santos Milhomem (UFT). Mediador: Prof.ª Dr.ª Mariany Montino (Unitins)",
         "vagas": "80"
       },
@@ -248,7 +248,7 @@
         "vagas": "40"
       },
       {
-        "titulo": "Hackathon InovaUni – HackÁgua",
+        "titulo": "Hackathon InovaUni – HackÁgua e FAPTgulhas",
         "horario": "10h - 18h",
         "local": "Arena Hackathon",
         "palestrante": "Funcionamento: 21 a 23/10",
@@ -310,8 +310,8 @@
         "titulo": "Conferência de Encerramento: O Futuro da Educação em Direitos Humanos: Desafios e Perspectivas e Assinatura do Pacto pela Educação em Direitos Humanos no Ensino Superior",
         "horario": "19h30 - 20h30",
         "local": "Auditório Planeta Água",
-        "palestrante": "Trasmissão-TO Graduado (II Colóquio) Erasto Fortes Mendonça (coordenador do MEC) e Rodrigo Mondego (Comissão de Direitos Humanos, Minorias e Igualdade Racial da Câmara dos Deputados). Mediadores: Kátia Farias e Marcela Barretos (Unitins).",
-        "vagas": "150"
+        "palestrante": "Erasto Fortes Mendonça (coordenador do MEC) e Rodrigo Mondego (Comissão de Direitos Humanos, Minorias e Igualdade Racial da Câmara dos Deputados). Mediadores: Kátia Farias e Marcela Barretos (Unitins).",
+        "vagas": "120"
       }
     ],
     "III SCTI": [
@@ -327,7 +327,7 @@
   "2025-10-22": {
     "III Circuito de Inovação": [
       {
-        "titulo": "Palestra: Transferência de Tecnologia Na UFJF: Transformando Conhecimento em Inovação",
+        "titulo": "Transferência de Tecnologia Na UFJF: Transformando Conhecimento em Inovação",
         "horario": "9h - 11h",
         "local": "Auditório Planeta Água",
         "palestrante": "Prof. Dr. Leonardo Miranda Frossard (Universidade Federal de Juiz de Fora)",
@@ -410,7 +410,7 @@
       {
         "titulo": "Palestra magna: Direito à água e saneamento no Brasil",
         "horario": "19h - 22h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": " Sandra Negri (Universidade Federal do Mato Grosso). Mediador: Fredson Vieira Costa",
         "vagas": "80"
       }
@@ -419,28 +419,28 @@
       {
         "titulo": "Solenidade de abertura e Palestra: Estratégias para Consolidação dos Grupos de Pesquisa",
         "horario": "9h - 10h30",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": " Prof. Dr. Jofre Jacob da Silva Freitas (Universidade Estadual do Pará)",
         "vagas": "80"
       },
       {
         "titulo": "Palestra: Fomento à Pesquisa – Oportunidades",
         "horario": "11h10 - 12h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "FAPT - Momento NIT: Apresentação do OportuNIT Unitins",
         "vagas": "80"
       },
       {
         "titulo": "Mesa redonda: Ciências Sociais Aplicadas e Humanas: Integração e potencialidades institucionais",
         "horario": "14h10 - 16h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Participantes: Prof. Dr. Alexandre Dias Carreiro Santos Serra (Universidade de Coimbra -Portugal); Dr.ª Jaqueline de Kássia (Reitora da UnirG); Líderes de GP da Unitins e UnirG; Dr.ª Leda Veronica Benevides Dantas Silva (Diretora de Pós-Graduação)",
         "vagas": "80"
       },
       {
         "titulo": "Palestra e Mesa-redonda: Ciências da Saúde e Biológicas: Bioprospecção Farmacológica na Amazônia e Inovação em Saúde",
         "horario": "16h30 - 18h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Participantes: Dr. Jofre Freitas (UEPA); Dr. Walmirton Bezerra D'Alessandro (Pró-Reitor de Pesquisa da UnirG); Líderes de GP da Unitins e UnirG; Dr.ª Leda Veronica Benevides Dantas Silva (Diretora de Pós-Graduação)",
         "vagas": "80"
       }
@@ -503,14 +503,14 @@
       {
         "titulo": "Abertura e palestra: Mecanismos de Redução de Emissões por Desmatamento e Degradação Florestal (REDD+), relacionando-os às metas globais de mitigação e às políticas ambientais do Estado",
         "horario": "8h - 10h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Marli Santos - Semarh-TO",
         "vagas": "80"
       },
       {
         "titulo": "Palestra: Geoportais e dashboards interativos como instrumentos de inovação e suporte à governança ambiental - uma apresentação do CIGMA: Centro de Inteligência Geográfica em Gestão do Meio Ambiente",
         "horario": "10h30 - 12h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Marco Giongo - Semarh-TO",
         "vagas": "80"
       },
@@ -535,14 +535,14 @@
         "horario": "8h30 - 10h",
         "local": "Auditório Planeta Água",
         "palestrante": "Felipe Michetti (Analista do STJ-TO)",
-        "vagas": "150"
+        "vagas": "120"
       },
       {
         "titulo": "Palestra: A Inteligência Artificial no Tribunal de Justiça do Estado do Tocantins",
         "horario": "10h - 12h",
         "local": "Auditório Planeta Água",
         "palestrante": "Harly Carreiro (Analista do TJTO)",
-        "vagas": "150"
+        "vagas": "120"
       },
       {
         "titulo": "Palestra: Excelência na Advocacia",
@@ -579,7 +579,7 @@
       {
         "titulo": "Palestra: Da nascente ao oceano: Como a degradação ambiental ameaça nossa saúde",
         "horario": "19h - 22h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Bruno do Amaral Crispim (Unitins), Mediadora: Elza Golveia Leite (Unitins)",
         "vagas": "80"
       }
@@ -633,14 +633,14 @@
         "horario": "19h - 21h",
         "local": "Auditório Planeta Água",
         "palestrante": "Oscar Arnaldo Batista Neto e Silva. Mediadora: Daisy Parente Dourado",
-        "vagas": "150"
+        "vagas": "120"
       },
       {
         "titulo": "Festival Culinário Sabores do Campo",
         "horario": "20h30 - 22h",
         "local": "Hall - Bloco B",
         "palestrante": "Organizadores: Phelipe Luiz Damasceno Araújo, Layane Araújo Dias Vitor, Pollyana Alves de Araújo. Mediadora: Daisy Parente Dourado",
-        "vagas": "150"
+        "vagas": "120"
       }
     ]
   },
@@ -660,21 +660,21 @@
         "horario": "8h30 - 9h55",
         "local": "Auditório Planeta Água",
         "palestrante": "Alex Coelho (Unitins). Mediadora: Marcia Maria Savoine (Unitins).",
-        "vagas": "150"
+        "vagas": "120"
       },
       {
         "titulo": "Palestra: Certificação Profissional e Carreira Acadêmica: Caminhos para o Sucesso",
         "horario": "10h - 11h30",
         "local": "Auditório Planeta Água",
         "palestrante": "Heder Dorneles Soares (Instituto Nacional de Pesquisas Espaciais). Mediador: Douglas Chagas da Silva (Unitins)",
-        "vagas": "150"
+        "vagas": "120"
       },
       {
         "titulo": "Encontro dos Egressos de Sistemas de Informação: Conexões que Transformam",
         "horario": "19h30 - 21h30",
         "local": "Auditório Planeta Água",
         "palestrante": " Marco Antonio Firmino de Sousa (Unitins) e Douglas Chagas da Silva (Unitins). Mediadora: Leandra Cristina Cavina Piovesan Soares.",
-        "vagas": "150"
+        "vagas": "120"
       },
       {
         "titulo": "Oficina: Programando com Flutter",
@@ -695,14 +695,14 @@
       {
         "titulo": "Palestra: Políticas ambientais e desafios da governança climática, enfocando a articulação entre ciência, poder público e sociedade civil",
         "horario": "8h - 10h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Prof. Dr. Alexandre Dias Carreiro Santos Serra (Universidade de Coimbra -Portugal)",
         "vagas": "80"
       },
       {
         "titulo": "Oficina: Caminhos de Sustentabilidade – Construindo Diretrizes Climáticas para o Tocantins rumo à COP-30",
         "horario": "10h30 - 12h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "",
         "vagas": "80"
       }
@@ -745,7 +745,7 @@
       {
         "titulo": "Palestra: Direito Ambiental na União Europeia",
         "horario": "19h30 - 22h",
-        "local": "Auditório Planeta Água",
+        "local": "Auditório Inovação",
         "palestrante": "Prof. Dr. Alexandre Dias Carreiro Santos Serra (Universidade de Coimbra -Portugal)",
         "vagas": "80"
       }
