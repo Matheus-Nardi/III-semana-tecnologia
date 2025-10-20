@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2025-10-20T10:30:00",
+  "lastUpdate": "2025-10-20T11:17:00",
   "2025-10-20": {
     "Encontro Estadual das Licenciaturas da Unitins": [
       {
@@ -240,11 +240,11 @@
     ],
     "III Circuito de Inovação": [
       {
-        "titulo": "Oficina: Roboótica na rede:Programando desafios",
+        "titulo": "Oficina: Robótica na rede:Programando desafios",
         "horario": "8h - 11h",
         "local": "Sala 5 - Bloco B",
-        "palestrante": "",
-        "vagas": "40"
+        "palestrante": "Luiz Eduardo Maia (SENAI), Edson Mário Pereira (SENAI)",
+        "vagas": "60"
       },
       {
         "titulo": "Hackathon InovaUni – HackÁgua e FAPTgulhas",
@@ -343,7 +343,7 @@
         "titulo": "Palestra magna: Inovação Sustentável no Setor Industrial – Quick Wins com IA e IoT",
         "horario": "19h30 - 21h30",
         "local": "Auditório Planeta Água",
-        "palestrante": "Junto com JAC-Sistemas de Informação e TADS Lucas Mattos (FIT - Instituto de Tecnologia )",
+        "palestrante": "Lucas Mattos (FIT - Instituto de Tecnologia)",
         "vagas": ""
       }
     ],
@@ -764,7 +764,7 @@
   "Todos os dias": {
     "III Circuito de Inovação": [
       {
-        "titulo": "Exposição: Meninas e Mulheres Inovadoras (Realidade Virtual)",
+        "titulo": "Exposição: Meninas e Mulheres Inovadoras (Realidade Virtual) + Quiz TecnoSocial - Tecnologias Sociais para o Desenvolvimento Sustentável ",
         "horario": "8h - 22h",
         "local": "Sala 10 - Bloco B",
         "palestrante": "",
@@ -775,13 +775,6 @@
         "horario": "8h - 22h",
         "local": "Sala 11 - Bloco B",
         "palestrante": "NIT e Sebrae - TO",
-        "vagas": ""
-      },
-      {
-        "titulo": "Quiz TecnoSocial - Tecnologias Sociais para o Desenvolvimento Sustentável",
-        "horario": "8h - 22h",
-        "local": "Sala 12 - Bloco B",
-        "palestrante": "",
         "vagas": ""
       }
     ],
