@@ -1,4 +1,3 @@
-
 {
   "lastUpdate": "2025-10-18T02:17:00",
   "2025-10-20": {
@@ -666,28 +665,30 @@
         "titulo": "Palestra: Certificação Profissional e Carreira Acadêmica: Caminhos para o Sucesso",
         "horario": "10h - 11h30",
         "local": "Auditório Planeta Água",
-        "palestrante": "Heder Dorneles Soares (Instituto Nacional de Pesquisas Espaciais). Mediador: Douglas Chagas da Silva (Unitins)",
+        "palestrante": "Heder Soares (INPE). Mediador: Douglas da Silva (Unitins)",
         "vagas": "120"
       },
       {
         "titulo": "Encontro dos Egressos de Sistemas de Informação: Conexões que Transformam",
         "horario": "19h30 - 21h30",
         "local": "Auditório Planeta Água",
-        "palestrante": " Marco Antonio Firmino de Sousa (Unitins) e Douglas Chagas da Silva (Unitins). Mediadora: Leandra Cristina Cavina Piovesan Soares.",
+        "palestrante": "Marco Antonio Firmino de Sousa (Unitins) e Douglas Chagas da Silva (Unitins). Mediadora: Leandra Cristina Cavina Piovesan Soares. (UNITINS)",
         "vagas": "120"
       },
       {
         "titulo": "Oficina: Programando com Flutter",
         "horario": "19h30 - 21h30",
         "local": "Google meet",
-        "palestrante": " Cristovam Ferreira Liberato Junior. Mediador: Yzaac Gonçalves da Silva.",
+        "meetLink": "https://meet.google.com/hxr-ipvh-vqq",
+        "palestrante": "Cristovam Liberato (Player Contabilidade). Mediador: Yzaac da Silva. (UNITINS)",
         "vagas": ""
       },
       {
         "titulo": "Oficina: Construindo meu primeiro serviço",
         "horario": "19h30 - 21h30",
         "local": "Google meet",
-        "palestrante": " Michael Schuenck dos Santos . Mediadores: Alysson Martins Bruno e Carlos Soares Noleto Júnior",
+        "meetLink": "https://meet.google.com/jbn=mrzt-tfv",
+        "palestrante": "Michael dos Santos(TRE-TO). Mediadores: Alysson Martins Bruno (UNITINS) e Carlos Noleto (UNITINS)",
         "vagas": ""
       }
     ],

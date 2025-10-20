@@ -34,6 +34,7 @@ export default function Subscription() {
               src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-10.png" 
               alt="Elemento decorativo da identidade visual" 
               fill 
+              sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
               className="object-contain drop-shadow-xl" 
               loading="lazy"
             />
@@ -89,6 +90,7 @@ export default function Subscription() {
               src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-12.png" 
               alt="Elemento decorativo da identidade visual" 
               fill 
+              sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
               className="object-contain drop-shadow-xl" 
               loading="lazy"
             />

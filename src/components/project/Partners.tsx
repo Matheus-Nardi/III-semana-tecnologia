@@ -100,6 +100,7 @@ export default function Partners() {
                         src={partner.src || "/placeholder.svg"}
                         alt={partner.alt}
                         fill
+                        sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                         className="object-contain"
                         loading="lazy"
                       />
@@ -122,6 +123,7 @@ export default function Partners() {
                 src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-4.png"
                 alt="Elemento decorativo da identidade visual"
                 fill
+                sizes="(max-width: 1024px) 0px, 384px"
                 className="object-contain drop-shadow-2xl animate-float"
               />
             </motion.div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useMemo } from "react";
-import { Clock, MapPin, Users } from "lucide-react";
+import { Clock, MapPin, Users, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/accordion";
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
-import scheduleData from "@/data/schedule.json";
+import scheduleData from "@/data/schedule.json" assert { type: "json" };
 
 interface ScheduleActivity {
   titulo: string;
@@ -20,6 +20,7 @@ interface ScheduleActivity {
   local: string;
   palestrante: string;
   vagas: string;
+  meetLink?: string;
 }
 
 interface Event {
@@ -338,6 +339,7 @@ export default function Schedule() {
               src="/ilustracoes/2_ilustracao.png"
               alt="Elemento decorativo da identidade visual"
               fill
+              sizes="(max-width: 1024px) 0px, 320px"
               className="object-contain drop-shadow-2xl animate-float-delayed"
             />
           </div>
@@ -447,10 +449,21 @@ export default function Schedule() {
                                           <strong>Palestrante:</strong> {talk.palestrante}
                                         </p>
                                       )}
-                                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                                      <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-xs sm:text-sm text-muted-foreground flex-wrap">
                                         <div className="flex items-center gap-2">
                                           <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${colors.text} flex-shrink-0`} aria-hidden="true" />
                                           <span>{talk.local}</span>
+                                          {talk.meetLink && (
+                                            <a
+                                              href={talk.meetLink}
+                                              target="_blank"
+                                              rel="noopener noreferrer"
+                                              className="text-primary hover:underline inline-flex items-center gap-1 text-xs sm:text-sm font-medium"
+                                            >
+                                              <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
+                                              Acessar Meet
+                                            </a>
+                                          )}
                                         </div>
                                         {talk.vagas !== "Ilimitado" && talk.vagas !== "Não especificado" && talk.vagas !== "" && (
                                           <div className="flex items-center gap-2">
@@ -508,10 +521,21 @@ export default function Schedule() {
                                   <strong>Palestrante:</strong> {item.talk.palestrante}
                                 </p>
                               )}
-                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                              <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-xs sm:text-sm text-muted-foreground flex-wrap">
                                 <div className="flex items-center gap-2">
                                   <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${colors.text} flex-shrink-0`} aria-hidden="true" />
                                   <span>{item.talk.local}</span>
+                                  {item.talk.meetLink && (
+                                    <a
+                                      href={item.talk.meetLink}
+                                      target="_blank"
+                                      rel="noopener noreferrer"
+                                      className="text-primary hover:underline inline-flex items-center gap-1 text-xs sm:text-sm font-medium"
+                                    >
+                                      <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
+                                      Acessar Meet
+                                    </a>
+                                  )}
                                 </div>
                                 {item.talk.vagas !== "Ilimitado" && item.talk.vagas !== "Não especificado" && item.talk.vagas !== "" && (
                                   <div className="flex items-center gap-2">
