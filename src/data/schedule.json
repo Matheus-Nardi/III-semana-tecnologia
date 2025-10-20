@@ -12,7 +12,7 @@
       {
         "titulo": "Conferência Temática: A formação do professor e a educação para o desenvolvimento dos alunos na perspectiva histórico-cultural",
         "horario": "14h - 17h",
-        "local": "Sala 5 - Bloco A",
+        "local": "Sala 4 - Bloco b",
         "palestrante": " Prof.ª Dr.ª Raquel Aparecida Marra da Madeira Freitas PUC GO. Mediador: Prof. Ms. Achilles Alves de Oliveira",
         "vagas": "60"
       }
@@ -217,8 +217,16 @@
     ],
     "Encontro Estadual das Licenciaturas da Unitins": [
       {
+        "titulo": "Abertura do I Encontro Estadual das licenciaturas do Unitins",
+        "horario": "8h",
+        "local": "Auditório Inovação",
+        "palestrante": "Prof.ª Dra. Raquel Aparecida Marra",
+        "vagas": ""
+      
+      },
+      {
         "titulo": "Mesa Redonda: A Relação entre a Universidade e a Escola de Educação Básica: diálogos necessários",
-        "horario": "9h - 11h",
+        "horario": "9h30 - 11h30",
         "local": "Auditório Inovação",
         "palestrante": "Convidados: Prof. Ms. Augusto de Rezende Campos (Unitins); Prof. Esp. Eurípedes Fernandes Cunha (Secretário executivo da educ. estadual do TO), Prof.ª Esp. Anice de Souza Moura (Secretária municipal de educ. de Palmas), Prof.ª Dr.ª Maria Santana Ferreira dos Santos Milhomem (UFT). Mediador: Prof.ª Dr.ª Mariany Montino (Unitins)",
         "vagas": "80"
