@@ -1,5 +1,5 @@
 {
-  "lastUpdate": "2025-10-20T16:29:00",
+  "lastUpdate": "2025-10-22T10:57:00",
   "2025-10-20": {
     "Encontro Estadual das Licenciaturas da Unitins": [
       {
@@ -286,13 +286,6 @@
       }
     ],
     "FAPT": [
-      {
-        "titulo": "Apresentações de trabalhos - Edital FAPT Nº 01/2024 – Rosas da Ciência",
-        "horario": "14h - 18h",
-        "local": "Sala 5 - Bloco B",
-        "palestrante": "",
-        "vagas": ""
-      }
     ],
     "Projeto Integrador curso de Gestão Pública - TO Graduado": [
       {
@@ -594,16 +587,23 @@
     "XXXII Jornada de iniciação científica": [
       {
         "titulo": "Apresentações de trabalhos - Mostra de projetos de pesquisa",
-        "horario": "8h - 18h",
-        "local": "Pitch",
+        "horario": "8h - 12h",
+        "local": "Sala 10 - Bloco A",
         "palestrante": "",
         "vagas": ""
       }
     ],
     "FAPT": [
       {
+        "titulo": "Apresentações de trabalhos - Edital FAPT Nº 01/2024 – Rosas da Ciência",
+        "horario": "9h - 12h",
+        "local": "Pitch - Espaço Pesquisa",
+        "palestrante": "",
+        "vagas": ""
+      },
+      {
         "titulo": "Apresentações de trabalhos - Edital saúde FAPT/SES-TO Nº 01/2023 – Fomento à Produção Científica na Saúde no Estado do Tocantins",
-        "horario": "8h - 18h",
+        "horario": "14h - 18h",
         "local": "Sala 10 - Bloco A",
         "palestrante": "",
         "vagas": ""
