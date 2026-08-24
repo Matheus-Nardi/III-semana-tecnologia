@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { withPayload } from "@payloadcms/next/withPayload";
 
 const nextConfig: NextConfig = {
   /* config options here */
@@ -7,7 +8,7 @@ const nextConfig: NextConfig = {
   // Configurações adicionais para produção
   compress: true,
 
-  // otimização de imagens remotas usadas no Hero
+  // otimização de imagens remotas usadas no Hero e CMS
   images: {
     remotePatterns: [
       {
@@ -25,6 +26,12 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'images.pexels.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: '**.backblazeb2.com',
         port: '',
         pathname: '/**',
       },
@@ -57,9 +64,9 @@ const nextConfig: NextConfig = {
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "img-src 'self' data: https: blob: https://*.googleapis.com https://*.gstatic.com",
               "font-src 'self' data: https://fonts.gstatic.com",
-              "connect-src 'self' https://maps.googleapis.com",
-              "frame-src 'self' https://www.google.com https://maps.google.com", // Permite iframes do Google Maps
-              // Permite vídeos remotos (ex.: Pexels/Vimeo/CDNs)
+              "connect-src 'self' https://maps.googleapis.com data: blob: https:",
+              "worker-src 'self' blob:",
+              "frame-src 'self' https://www.google.com https://maps.google.com",
               "media-src 'self' https:",
               "object-src 'none'",
               "base-uri 'self'",
@@ -86,16 +93,10 @@ const nextConfig: NextConfig = {
             key: 'Referrer-Policy',
             value: 'no-referrer-when-downgrade'
           },
-          // Força HTTPS (será ativado quando SSL estiver configurado)
-          // Descomente após configurar SSL
-          // {
-          //   key: 'Strict-Transport-Security',
-          //   value: 'max-age=31536000; includeSubDomains; preload'
-          // },
         ],
       },
     ];
   },
 };
 
-export default nextConfig;
+export default withPayload(nextConfig);

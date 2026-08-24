@@ -1,48 +1,63 @@
 services:
-  # Aplicação Next.js
-  nextjs:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: semana-tecnologia-app
+  # Banco de Dados Postgres (Desenvolvimento)
+  db:
+    image: postgres:16-alpine
+    container_name: semana-tecnologia-db
     restart: unless-stopped
     environment:
-      - NODE_ENV=production
-      - PORT=3000
-    networks:
-      - app-network
-    volumes:
-      - ./public:/app/public:ro
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
-      start_period: 40s
-
-  # Nginx como reverse proxy
-  nginx:
-    image: nginx:alpine
-    container_name: semana-tecnologia-nginx
-    restart: unless-stopped
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-semana_tecnologia}
     ports:
-      - "80:80"
-      - "443:443"
+      - "5432:5432"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./nginx/ssl:/etc/nginx/ssl:ro
-      - ./certbot/conf:/etc/letsencrypt:ro
-      - ./certbot/www:/var/www/certbot:ro
-    depends_on:
-      - nextjs
+      - db-data-dev:/var/lib/postgresql/data
     networks:
       - app-network
     healthcheck:
-      test: ["CMD", "nginx", "-t"]
-      interval: 30s
-      timeout: 10s
-      retries: 3
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-app} -d ${POSTGRES_DB:-semana_tecnologia}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # Aplicação Next.js 15 + Payload CMS (Modo DEV com Hot Reloading)
+  nextjs:
+    image: semana-tecnologia-dev:latest
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: semana-tecnologia-app
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - NEXT_PUBLIC_SERVER_URL=http://localhost:3000
+      - DATABASE_URI=postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-password}@db:5432/${POSTGRES_DB:-semana_tecnologia}
+      - PAYLOAD_SECRET=${PAYLOAD_SECRET:-unitins-semana-tecnologia-payload-secret-key-2025-2026}
+      - ADMIN_INITIAL_EMAIL=${ADMIN_INITIAL_EMAIL:-admin@unitins.br}
+      - ADMIN_INITIAL_PASSWORD=${ADMIN_INITIAL_PASSWORD:-Unitins@2025}
+      - S3_ENABLED=${S3_ENABLED:-false}
+      - S3_BUCKET=${S3_BUCKET:-}
+      - S3_ENDPOINT=${S3_ENDPOINT:-}
+      - S3_ACCESS_KEY_ID=${S3_ACCESS_KEY_ID:-}
+      - S3_SECRET_ACCESS_KEY=${S3_SECRET_ACCESS_KEY:-}
+      - S3_REGION=${S3_REGION:-us-east-005}
+    volumes:
+      - .:/app
+      - node-modules-dev:/app/node_modules
+      - next-cache-dev:/app/.next
+    networks:
+      - app-network
+
+volumes:
+  db-data-dev: {}
+  node-modules-dev: {}
+  next-cache-dev: {}
 
 networks:
   app-network:

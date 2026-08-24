@@ -1,0 +1,21 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Instala utilitários e bibliotecas de compatibilidade para compilação nativa
+RUN apk add --no-cache libc6-compat curl postgresql-client
+
+COPY package*.json ./
+
+RUN npm install --legacy-peer-deps
+
+COPY . .
+
+EXPOSE 3000
+
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+ENV NODE_ENV=development
+
+# Executa o servidor de desenvolvimento com hot-reload
+CMD ["npm", "run", "dev"]

@@ -3,22 +3,29 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Instala compatibilidade para sharp e módulos nativos
+RUN apk add --no-cache libc6-compat
+
 # Copia arquivos de dependências
 COPY package*.json ./
 
-# Instala TODAS as dependências (incluindo devDependencies para o build)
-RUN npm ci
+# Instala dependências
+RUN npm install --legacy-peer-deps
 
 # Copia o código fonte
 COPY . .
 
-# Build da aplicação Next.js
+# Build de produção do Next.js + Payload
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
 RUN npm run build
 
 # Stage 2: Runtime
 FROM node:20-alpine AS runner
 
 WORKDIR /app
+
+RUN apk add --no-cache curl libc6-compat
 
 # Cria usuário não-root
 RUN addgroup --system --gid 1001 nodejs
@@ -35,5 +42,6 @@ EXPOSE 3000
 
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
+ENV NODE_ENV=production
 
 CMD ["node", "server.js"]
