@@ -1,92 +1,103 @@
-# III Semana de Tecnologia - Frontend
+# Plataforma Multi-Edição — Semana de Ciência, Tecnologia e Inovação (UNITINS)
 
-Este repositório contém o frontend oficial da III Semana de Ciência, Tecnologia e Inovação da UNITINS.
-O projeto tem como objetivo oferecer uma interface moderna e intuitiva para que os usuários possam obter informações, acompanhar a programação e interagir com o evento de forma simples e acessível.
-## Stack Utilizada
+Repositório oficial da plataforma web multi-edição da Semana de Ciência, Tecnologia e Inovação da Universidade Estadual do Tocantins (UNITINS). Conta com Painel Administrativo (Payload CMS 3.x), roteamento dinâmico por edição (`/{ano}`), banco PostgreSQL e revalidação instantânea de cache (*On-Demand Tag Revalidation*).
 
-<span>
-  <img src="https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB" alt="React">
-  <img src="https://img.shields.io/badge/Next.js-black?style=for-the-badge&logo=next.js&logoColor=white" alt="Nextjs">
-  <img src="https://img.shields.io/badge/shadcn%2Fui-000?style=for-the-badge&logo=shadcnui&logoColor=fff" alt="Shadcn">
-  <img src="https://img.shields.io/badge/Tailwind%20CSS-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
-</span>
+---
 
-## Rodando Localmente 🖥️
+## 🛠️ Stack Tecnológica
 
-Para executar o projeto em seu ambiente local, siga os passos abaixo.
+- **Framework Frontend:** Next.js 15 (App Router, Turbopack, React 19, TypeScript)
+- **CMS & Backend:** Payload CMS 3.x (Self-hosted, Local API, REST & GraphQL)
+- **Estilização & UI:** Tailwind CSS v4, Radix UI, Motion, Embla Carousel
+- **Banco de Dados:** PostgreSQL 16
+- **Armazenamento de Mídia:** Backblaze B2 via `@payloadcms/storage-s3` (com fallback local em dev)
+- **Infraestrutura:** Docker, Nginx (Reverse Proxy), Certbot (SSL Let's Encrypt), Automated Postgres Backup
 
-### Pré-requisitos
+---
 
-  - Node.js (versão 20 ou superior)
-  - Um gerenciador de pacotes (`npm`, `yarn`, `pnpm` ou `bun`)
+## 🐳 Execução via Docker (Recomendado)
 
-### Passos
+Você pode rodar toda a stack (Next.js + Postgres) diretamente pelo Docker em dois modos:
 
-1.  **Clone o repositório:**
+### 1. Modo Desenvolvimento (com Hot-Reloading)
 
-    ```sh
-    git clone https://github.com/matheus-nardi/iii-semana-tecnologia.git
-    ```
+Neste modo, o código local é sincronizado em tempo real com o container (`npm run dev` com Turbopack):
 
-2.  **Entre no diretório do repositório:**
+```bash
+# Inicia o Postgres e o Next.js em modo desenvolvimento
+npm run docker:dev
+# ou: docker compose up
+```
 
-    ```sh
-    cd iii-semana-tecnologia
-    ```
+Acesse:
+- **Site:** [http://localhost:3000](http://localhost:3000) (redireciona para a edição ativa `/2025`)
+- **Histórico de Edições:** [http://localhost:3000/edicoes](http://localhost:3000/edicoes)
+- **Painel Administrativo:** [http://localhost:3000/admin](http://localhost:3000/admin)
 
-3.  **Instale as dependências:**
+#### Popular os Dados Iniciais (Seed via Docker):
+Com os containers de desenvolvimento rodando, execute:
+```bash
+npm run docker:seed
+```
+*Isso cria o usuário administrador inicial (`admin@unitins.br` / `Unitins@2025`), cadastra a edição 2025 e importa toda a grade do `schedule.json`.*
 
-    ```sh
-    npm install
-    ```
+Para parar os containers de dev:
+```bash
+npm run docker:dev:down
+```
 
-    *ou utilize seu gerenciador de pacotes preferido (yarn, pnpm, bun).*
+---
 
-4.  **Inicie o servidor de desenvolvimento:**
+### 2. Modo Produção (Standalone + Nginx + Backup)
 
-    ```sh
-    npm run dev
-    ```
+Para rodar a compilação standalone de alta performance com Nginx como proxy reverso e backup automático diário:
 
-    Isso iniciará o servidor com o Turbopack para um desenvolvimento mais rápido.
+```bash
+# Constrói a imagem standalone e inicia todos os serviços em background
+npm run docker:prod:build
+# ou: docker compose -f docker-compose.prod.yml up -d --build
+```
 
-5.  A aplicação estará disponível em `http://localhost:3000`.
+Acesse:
+- **Site via Nginx:** [http://localhost](http://localhost) ou [https://unitinscti.com.br](https://unitinscti.com.br)
 
-## Rodando com Docker 🐳
+Para visualizar os logs ou parar:
+```bash
+npm run docker:prod:logs
+npm run docker:prod:down
+```
 
-O projeto também está configurado para ser executado com Docker e Docker Compose, facilitando a criação de um ambiente padronizado.
+---
 
-### Passos
+## 💻 Execução Local Híbrida (Sem Docker para o Next.js)
 
-1.  **Construa as imagens Docker:**
+Se preferir rodar o Next.js diretamente na sua máquina host:
 
-    ```sh
-    npm run docker:build
-    ```
+1. **Suba apenas o banco Postgres:**
+   ```bash
+   docker compose up -d db
+   ```
+2. **Execute o seed inicial:**
+   ```bash
+   npm run seed
+   ```
+3. **Inicie o servidor de desenvolvimento:**
+   ```bash
+   npm run dev
+   ```
 
-2.  **Inicie os contêineres em modo detached:**
+---
 
-    ```sh
-    npm run docker:up
-    ```
+## 🔐 Painel Administrativo (/admin)
 
-3.  A aplicação estará disponível em `http://localhost:80` (via Nginx reverse proxy).
+- **URL:** `http://localhost:3000/admin`
+- **Usuário Padrão:** `admin@unitins.br`
+- **Senha Padrão:** `Unitins@2025` *(configure `ADMIN_INITIAL_PASSWORD` no `.env` para alterar)*
 
-### Outros Comandos Docker
+---
 
-  - **Parar e remover os contêineres:**
-    ```sh
-    npm run docker:down
-    ```
-  - **Visualizar os logs:**
-    ```sh
-    npm run docker:logs
-    ```
-  - **Reiniciar os contêineres:**
-    ```sh
-    npm run docker:restart
-    ```
-# Colaboradores
+## 👥 Colaboradores
+
 <table>
   <tr>
     <td align="center">
@@ -98,11 +109,12 @@ O projeto também está configurado para ser executado com Docker e Docker Compo
       </a>
     </td>
     <td align="center">
-       <a href="https://github.com/italobeckman" target=_blank>
+      <a href="https://github.com/italobeckman" target=_blank>
         <img src="https://avatars.githubusercontent.com/u/142343482?v=4" width="100px;" alt="Italo Picture"/><br>
         <sub>
           <b>Italo Beckman</b>
         </sub>
       </a>
+    </td>
   </tr>
 </table>

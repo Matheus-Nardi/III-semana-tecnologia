@@ -1,0 +1,42 @@
+{
+  "mcpServers": {
+    "ingenium": {
+      "command": "C:\\Users\\Italo\\scoop\\shims\\uv.exe",
+      "args": [
+        "run",
+        "--no-sync",
+        "--project",
+        "C:\\Users\\Italo\\Documents\\Projetos\\mcps\\ingenium-mcp",
+        "ingenium-mcp",
+        "--path",
+        "C:\\Users\\Italo\\Documents\\Projetos\\III-semana-tecnologia"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONUNBUFFERED": "1"
+      }
+    },
+    "serena": {
+      "command": "C:\\Users\\Italo\\scoop\\shims\\uv.exe",
+      "args": [
+        "run",
+        "--project",
+        "C:\\Users\\Italo\\Documents\\Projetos\\mcps\\serena-mcp",
+        "serena",
+        "start-mcp-server",
+        "--context",
+        "claude-code",
+        "--open-web-dashboard",
+        "false",
+        "--project",
+        "C:\\Users\\Italo\\Documents\\Projetos\\III-semana-tecnologia"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8",
+        "PYTHONUTF8": "1",
+        "PYTHONUNBUFFERED": "1"
+      }
+    }
+  }
+}
