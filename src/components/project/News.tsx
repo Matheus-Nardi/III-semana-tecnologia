@@ -144,6 +144,7 @@ export default function News() {
               {/* Imagem */}
               <div className="relative h-48 bg-primary overflow-hidden">
                 {item.imageUrl ? (
+                  // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={item.imageUrl}
                     alt={item.title}

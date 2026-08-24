@@ -1,13 +1,15 @@
 'use client';
 
 import { useEffect, useState } from "react"
+import type { Edition } from "@/lib/content"
 
-
-export default function Countdown(){
-    const eventDate = new Date("2025-10-20T00:00:00")
-    const [timeLeft, setTimeLeft] = useState({days:0, hours:0, minutes:0, seconds:0})
+export default function Countdown({ targetDate, edition }: { targetDate?: string; edition?: Edition }) {
+    const defaultDateStr = edition?.year ? `${edition.year}-10-20T00:00:00` : "2025-10-20T00:00:00";
+    const dateToUse = targetDate || defaultDateStr;
+    const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
 
     useEffect(() => {
+    const eventDate = new Date(dateToUse);
     const updateCountdown = () => {
       const now = new Date().getTime();
       const diff = eventDate.getTime() - now;
@@ -29,7 +31,7 @@ export default function Countdown(){
     const interval = setInterval(updateCountdown, 1000); 
 
     return () => clearInterval(interval);
-  }, []);
+  }, [dateToUse]);
 
   return (
     <div className="text-center text-xl sm:text-2xl font-bold mt-4 sm:mt-6 font-montserrat" role="timer" aria-live="polite">

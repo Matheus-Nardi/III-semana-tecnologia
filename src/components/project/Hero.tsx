@@ -14,10 +14,11 @@ import { ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import Image from "next/image";
+import type { Edition } from "@/lib/content";
 
 type Slide =
-  | { type: "image"; src: string; alt: string }
-  | { type: "video"; src: string; alt: string; poster?: string };
+  | { type: "image"; src: string; alt?: string }
+  | { type: "video"; src: string; alt?: string; poster?: string };
 
 function VideoBackground({
     src,
@@ -28,19 +29,18 @@ function VideoBackground({
 }: {
     src: string;
     poster?: string;
-    alt: string;
+    alt?: string;
     onPlay?: () => void;
     onEnded?: () => void;
 }) {
     return (
         <video
             className="w-full h-full object-cover"
-            aria-label={alt}
+            aria-label={alt || "Vídeo de introdução ao evento"}
             autoPlay
             muted
             playsInline
             preload="metadata"
-            // não fazer loop para o vídeo permanecer até o fim
             loop={false}
             onPlay={onPlay}
             onEnded={onEnded}
@@ -50,7 +50,7 @@ function VideoBackground({
     );
 }
 
-export default function Hero() {
+export default function Hero({ edition }: { edition?: Edition }) {
     const plugin = useRef(
         Autoplay({ delay: 5000, stopOnInteraction: true })
     );
@@ -63,24 +63,29 @@ export default function Hero() {
         return () => window.removeEventListener('resize', update);
     }, []);
 
-    const mobileSlides: Slide[] = [
-        // Vídeo apenas para mobile 
+    const defaultMobileSlides: Slide[] = [
         { type: 'image', src: 'https://images.pexels.com/photos/997134/pexels-photo-997134.jpeg', alt: 'Drone (mobile)' },
         { type: 'video', src: 'https://www.pexels.com/pt-br/download/video/17953524/', alt: 'Vídeo drone (mobile)', poster: 'https://images.pexels.com/photos/997134/pexels-photo-997134.jpeg' },
-        { type: 'image', src: 'https://images.unsplash.com/photo-1560260240-c6ef90a163a4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1331', alt: 'Oceano' },
+        { type: 'image', src: 'https://images.unsplash.com/photo-1560260240-c6ef90a163a4?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1331', alt: 'Oceano' },
         { type: 'image', src: 'https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg', alt: 'Imagem sobre o evento' },
     ];
 
-    const desktopSlides: Slide[] = [
-        // Vídeo drone plantação para desktop
+    const defaultDesktopSlides: Slide[] = [
         { type: 'image', src: 'https://images.pexels.com/photos/847393/pexels-photo-847393.jpeg', alt: 'Imagem sobre o evento' },
         { type: 'video', src: 'https://www.pexels.com/pt-br/download/video/5608087/', alt: 'Vídeo drone plantação', poster: '' },
-        { type: 'image', src: 'https://plus.unsplash.com/premium_photo-1664475382326-3dc5510e4ff9?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1169', alt: 'Drone sobre plantação' },
-        { type: 'image', src: 'https://images.unsplash.com/photo-1560260240-c6ef90a163a4?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1331', alt: 'Oceano' },
+        { type: 'image', src: 'https://plus.unsplash.com/premium_photo-1664475382326-3dc5510e4ff9?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1169', alt: 'Drone sobre plantação' },
+        { type: 'image', src: 'https://images.unsplash.com/photo-1560260240-c6ef90a163a4?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1331', alt: 'Oceano' },
         { type: 'image', src: 'https://images.pexels.com/photos/1072824/pexels-photo-1072824.jpeg', alt: 'Programação' },
     ];
 
-    const slides = isMobile ? mobileSlides : desktopSlides;
+    const customSlides: Slide[] | undefined = edition?.heroSlides && edition.heroSlides.length > 0
+        ? edition.heroSlides
+        : undefined;
+
+    const slides = customSlides || (isMobile ? defaultMobileSlides : defaultDesktopSlides);
+
+    const titlePrefix = edition?.shortTitle ? `${edition.shortTitle.split(' ')[0]} ${edition.shortTitle.split(' ')[1] || 'Semana'} de` : 'III Semana de';
+    const registrationUrl = edition?.registrationUrl || "https://www.unitins.br/Eventos/E007Evento/Abertos";
 
     return (
         <section
@@ -102,14 +107,16 @@ export default function Hero() {
                 aria-label="Imagens do evento"
             >
                 <CarouselContent className="ml-0">
-                    {slides.map((item, index) => (
-                        <CarouselItem className="pl-0" key={`${item.type}-${item.src}-${index}`} aria-roledescription="slide" aria-label={`Slide ${index + 1} de ${slides.length}`}>
+                    {slides.map((item, index) => {
+                        const itemSrc = (item as { image?: { url?: string }; src?: string }).image?.url || item.src;
+                        return (
+                        <CarouselItem className="pl-0" key={`${item.type}-${itemSrc}-${index}`} aria-roledescription="slide" aria-label={`Slide ${index + 1} de ${slides.length}`}>
                             <div className="relative w-full h-screen min-h-[600px] sm:min-h-[700px]">
                                 <div className="absolute inset-0">
                                     {item.type === 'image' ? (
                                         <Image
-                                            src={item.src}
-                                            alt={item.alt}
+                                            src={itemSrc}
+                                            alt={item.alt || "Banner do evento"}
                                             fill
                                             sizes="100vw"
                                             className="object-cover"
@@ -118,7 +125,7 @@ export default function Hero() {
                                         />
                                     ) : (
                                         <VideoBackground
-                                            src={item.src}
+                                            src={itemSrc}
                                             poster={item.type === 'video' ? item.poster : undefined}
                                             alt={item.alt}
                                             onPlay={() => plugin.current.stop()}
@@ -130,10 +137,11 @@ export default function Hero() {
                                 </div>
                             </div>
                         </CarouselItem>
-                    ))}
+                      )
+                    })}
                 </CarouselContent>
 
-                {/* Elegant minimal navigation - Hidden on mobile, visible on desktop */}
+                {/* Navigation Controls */}
                 <CarouselPrevious
                     className="hidden md:flex absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 bg-white/10 hover:bg-white/20 focus-visible:bg-white/30 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent text-white border-white/20 backdrop-blur-md h-12 w-12 sm:h-14 sm:w-14 transition-all duration-300 hover:scale-110 z-20 group"
                     aria-label="Slide anterior"
@@ -144,26 +152,25 @@ export default function Hero() {
                 />
             </Carousel>
 
-            {/* Fixed elegant content overlay */}
+            {/* Content Overlay */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10 px-4">
                 <div className="container mx-auto px-2 sm:px-4 md:px-6">
                     <div className="max-w-5xl mx-auto">
-                        {/* Main Title with elegant animation */}
                         <div className="text-center space-y-6 mb-12">
-                            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold leading-tight animate-fade-in-up animation-delay-200 
-                   flex flex-col gap-y-2">
-                                <span className="block text-white drop-shadow-2xl" style={{ color: '#e2187f' }}>
-                                    III Semana de
+                            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold leading-tight animate-fade-in-up animation-delay-200 flex flex-col gap-y-2">
+                                <span className="block text-white drop-shadow-2xl" style={{ color: 'var(--color-accent, #e2187f)' }}>
+                                    {titlePrefix}
                                 </span>
                                 <span className="block text-3xl md:text-5xl lg:text-7xl font-light tracking-wide text-white">
                                     Ciência, Tecnologia e Inovação
                                 </span>
-                                <span className="block text-3xl md:text-5xl lg:text-7xl" style={{ color: '#e2187f' }}>
-                                    UNITINS
+                                <span className="block text-3xl md:text-5xl lg:text-7xl" style={{ color: 'var(--color-accent, #e2187f)' }}>
+                                    UNITINS {edition?.year || ''}
                                 </span>
                             </h1>
                         </div>
-                        {/* CTA Buttons - sophisticated design */}
+
+                        {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row gap-3 justify-center pointer-events-auto">
                             <Button
                                 size="xs"
@@ -171,8 +178,8 @@ export default function Hero() {
                                 className="!h-12 !px-8 !text-base !min-w-[200px]"
                                 aria-label="Inscrever-se no evento"
                             >
-                                <Link href={"https://www.unitins.br/Eventos/E007Evento/Abertos"} target='_blank' rel='noopener noreferrer'>
-                                    Inscreva-se Agora
+                                <Link href={registrationUrl} target='_blank' rel='noopener noreferrer'>
+                                    {edition?.subscription?.ctaLabel || "Inscreva-se Agora"}
                                     <ChevronRight className="w-4 h-4" aria-hidden="true" />
                                 </Link>
                             </Button>

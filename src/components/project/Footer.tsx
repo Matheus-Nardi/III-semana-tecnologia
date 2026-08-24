@@ -1,19 +1,24 @@
 import React from 'react';
-import { Linkedin, Instagram, Mail, MapPin, Phone, ExternalLink, Building2, Github } from 'lucide-react';
+import { Linkedin, Instagram, Github } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-export default function Footer() {
+import type { Edition } from '@/lib/content';
+
+export default function Footer({ edition }: { edition?: Edition }) {
+  const shortTitle = edition?.shortTitle || 'III Semana de Tecnologia';
+  const registrationUrl = edition?.registrationUrl || 'https://www.unitins.br/Eventos/E007Evento/Abertos';
 
   const navLinks = [
     { text: 'Início', href: '#' },
     { text: 'Sobre', href: '#sobre' },
     { text: 'Programação', href: '#programacao' },
     { text: 'Parceiros', href: '#parceiros' },
-    { text: 'Notícias', href:'#noticias'},
-    { text: 'Inscrições', href: 'https://www.unitins.br/Eventos/E007Evento/Abertos' },
+    { text: 'Notícias', href: '#noticias' },
+    { text: 'Edições', href: '/edicoes' },
+    { text: 'Inscrições', href: registrationUrl },
   ];
 
-  const currentYear = new Date().getFullYear();
+  const currentYear = edition?.year || new Date().getFullYear();
   const developers = [
     {
       name: "Italo Beckman",
@@ -26,6 +31,7 @@ export default function Footer() {
       bio: "Full Stack Developer",
     },
   ]
+
   return (
     <footer className="bg-gradient-soft-primary text-primary">
       {/* Seção Principal */}
@@ -34,17 +40,17 @@ export default function Footer() {
 
           {/* Sobre o Evento */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold font-montserrat" style={{ color: '#e2187f' }}>
-              III Semana de Tecnologia
+            <h3 className="text-xl font-bold font-montserrat" style={{ color: 'var(--color-accent, #e2187f)' }}>
+              {shortTitle}
             </h3>
             <p className="text-primary text-sm leading-relaxed font-poppins">
               Um evento dedicado a explorar as últimas tendências em tecnologia,
               inovação e desenvolvimento profissional.
             </p>
-            <div className="flex justify-center">
+            <div className="flex justify-center gap-4">
               <a
                 href="https://www.linkedin.com/school/unitins/"
-                className="flex items-center justify-center text-primary hover:text-[#e2187f] transition-colors duration-300 transform hover:scale-110"
+                className="flex items-center justify-center text-primary hover:text-[var(--color-accent,#e2187f)] transition-colors duration-300 transform hover:scale-110"
                 aria-label="LinkedIn"
                 target='_blank'
                 rel="noopener noreferrer"
@@ -53,7 +59,7 @@ export default function Footer() {
               </a>
               <a
                 href="https://www.instagram.com/unitins_oficial/"
-                className="flex items-center justify-center text-primary hover:text-[#e2187f] transition-colors duration-300 transform hover:scale-110"
+                className="flex items-center justify-center text-primary hover:text-[var(--color-accent,#e2187f)] transition-colors duration-300 transform hover:scale-110"
                 aria-label="Instagram"
                 target='_blank'
                 rel="noopener noreferrer"
@@ -64,8 +70,8 @@ export default function Footer() {
           </div>
 
           {/* Links Rápidos */}
-          <div className="space-y-4 ">
-            <h3 className="text-lg font-semibold font-montserrat" style={{ color: '#e2187f' }}>
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold font-montserrat" style={{ color: 'var(--color-accent, #e2187f)' }}>
               Links Rápidos
             </h3>
             <ul className="space-y-2 grid grid-cols-2 gap-0">
@@ -75,7 +81,7 @@ export default function Footer() {
                     href={link.href}
                     target={link.href.startsWith('http') ? '_blank' : '_self'}
                     rel={link.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                    className="group inline-flex items-start gap-2 text-primary hover:text-[#e2187f] transition-colors duration-300 text-sm"
+                    className="group inline-flex items-start gap-2 text-primary hover:text-[var(--color-accent,#e2187f)] transition-colors duration-300 text-sm"
                   >
                     <span className="inline-block">{link.text}</span>
                   </a>
@@ -86,7 +92,7 @@ export default function Footer() {
 
           {/* UNITINS - Sede Administrativa */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold  gap-2 font-montserrat" style={{ color: '#e2187f' }}>
+            <h3 className="text-lg font-semibold gap-2 font-montserrat" style={{ color: 'var(--color-accent, #e2187f)' }}>
               UNITINS - Sede
             </h3>
             <ul className="space-y-3">
@@ -105,7 +111,7 @@ export default function Footer() {
                   href="https://www.unitins.br/concursos/publico"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#e2187f] transition-colors underline"
+                  className="hover:text-[var(--color-accent,#e2187f)] transition-colors underline"
                 >
                   Editais e Concursos
                 </a>
@@ -131,27 +137,27 @@ export default function Footer() {
 
       {/* Linha Divisória com Gradiente */}
       <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+      
       {/* Seção de Copyright */}
-      <div className="max-w-7xl mx-auto px-4 py-2">
+      <div className="max-w-7xl mx-auto px-4 py-4">
         <div className="flex flex-col items-center space-y-3">
-          {/* Copyright */}
           <div className="text-center">
             <p className="text-primary text-sm font-poppins">
               © {currentYear} Universidade Estadual do Tocantins - UNITINS. Todos os direitos reservados.
             </p>
-            <div className="mt-0">
+            <div className="mt-1">
               <a
                 href="https://www.unitins.br"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary hover:text-[#e2187f] transition-colors duration-300 text-sm"
+                className="text-primary hover:text-[var(--color-accent,#e2187f)] transition-colors duration-300 text-sm"
               >
                 www.unitins.br
               </a>
             </div>
           </div>
 
-          {/* Desenvolvedores  */}
+          {/* Desenvolvedores */}
           <div className="text-center">
             <p className="text-xs text-primary/60 font-poppins">
               Desenvolvido por{' '}
@@ -161,7 +167,7 @@ export default function Footer() {
                     href={dev.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-primary/70 hover:text-[#e2187f] transition-colors duration-300"
+                    className="inline-flex items-center gap-1 text-primary/70 hover:text-[var(--color-accent,#e2187f)] transition-colors duration-300"
                     aria-label={`GitHub de ${dev.name}`}
                   >
                     {dev.name}

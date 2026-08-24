@@ -13,6 +13,7 @@ import {
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
 import scheduleData from "@/data/schedule.json" assert { type: "json" };
+import type { Edition } from "@/lib/content";
 
 interface ScheduleActivity {
   titulo: string;
@@ -159,7 +160,7 @@ const dateMapping: Record<string, { date: string; dayOfWeek: string }> = {
   "2025-10-24": { date: "24/10", dayOfWeek: "Sexta-feira" },
 };
 
-export default function Schedule() {
+export default function Schedule({ edition }: { edition?: Edition }) {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
   const formatLastUpdate = (dateString: string) => {
@@ -174,8 +175,65 @@ export default function Schedule() {
   };
 
   const schedule: DaySchedule[] = useMemo(() => {
-    const transformedSchedule: DaySchedule[] = [];
+    if (edition?.schedule && edition.schedule.length > 0) {
+      let eventIdCounter = 1;
 
+      const getPriority = (eventName: string): number => {
+        if (eventName === "III Circuito de Inovação") return 0; // Sempre primeiro
+        return 1; // Outros eventos
+      };
+
+      return edition.schedule.map((dayEntry) => {
+        if (dayEntry.events && dayEntry.events.length > 0) {
+          const sortedEvents = [...dayEntry.events].sort((a, b) => {
+            const priorityA = getPriority(a.name);
+            const priorityB = getPriority(b.name);
+            if (priorityA !== priorityB) {
+              return priorityA - priorityB;
+            }
+            return a.name.localeCompare(b.name);
+          });
+
+          return {
+            date: dayEntry.date,
+            dayOfWeek: dayEntry.dayOfWeek,
+            events: sortedEvents.map((ev) => ({
+              id: `event-${dayEntry.date}-${eventIdCounter++}`,
+              name: ev.name,
+              talks: (ev.talks || []).map((t) => ({
+                titulo: t.titulo,
+                horario: t.horario,
+                local: t.local,
+                palestrante: t.palestrante,
+                vagas: t.vagas || '',
+                meetLink: t.meetLink || undefined,
+              })),
+            })),
+          };
+        }
+
+        return {
+          date: dayEntry.date,
+          dayOfWeek: dayEntry.dayOfWeek,
+          events: [
+            {
+              id: `event-${dayEntry.date}-${eventIdCounter++}`,
+              name: dayEntry.eventName || 'Programação Geral',
+              talks: (dayEntry.talks || []).map((t) => ({
+                titulo: t.titulo,
+                horario: t.horario,
+                local: t.local,
+                palestrante: t.palestrante,
+                vagas: t.vagas || '',
+                meetLink: t.meetLink || undefined,
+              })),
+            },
+          ],
+        };
+      });
+    }
+
+    const transformedSchedule: DaySchedule[] = [];
 
     const allDaysEvents: Record<string, ScheduleActivity[]> = {};
     if (scheduleData["Todos os dias"]) {
@@ -241,7 +299,7 @@ export default function Schedule() {
     });
 
     return transformedSchedule;
-  }, []);
+  }, [edition]);
 
   // Estado para o dia selecionado (primeiro dia por padrão)
   const [selectedDay, setSelectedDay] = useState<string | null>(schedule[0]?.date || null);

@@ -1,59 +1,35 @@
 'use client'
 import Image from "next/image"
 import Link from "next/link"
-import { Award } from "lucide-react"
 import { motion, useInView } from "motion/react"
 import { useRef } from "react"
+import type { Edition } from "@/lib/content"
 
-export default function Partners() {
+const defaultPartners = [
+  { src: "/logos/logo-gov-to.png", alt: "Governo do Estado do Tocantins", href: "https://www.to.gov.br/" },
+  { src: "/logos/logo-mcti.png", alt: "MCTI - Ministério da Ciência, Tecnologia e Inovação", href: "https://www.gov.br/mcti/pt-br" },
+  { src: "/logos/logo-snct.png", alt: "SNCT - Semana Nacional de Ciência e Tecnologia", href: "https://semanact.mcti.gov.br/" },
+  { src: "/logos/logo-fndct.png", alt: "FNDCT - Fundo Nacional de Desenvolvimento Científico e Tecnológico", href: "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/fndct" },
+  { src: "/logos/logo-capes.png", alt: "CAPES - Coordenação de Aperfeiçoamento de Pessoal de Nível Superior", href: "https://www.gov.br/capes/pt-br" },
+  { src: "/logos/logo-cnpq.png", alt: "CNPq - Conselho Nacional de Desenvolvimento Científico e Tecnológico", href: "https://www.gov.br/cnpq/pt-br" },
+  { src: "/logos/logo-fapt.png", alt: "FAPT - Fundação de Amparo à Pesquisa do Tocantins", href: "https://www.to.gov.br/fapt" },
+  { src: "/logos/logo-pop.png", alt: "POP Ciência - Popularização da Ciência", href: "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/popciencia" },
+  { src: "/logos/logo-uab.png", alt: "UAB - Universidade Aberta do Brasil", href: "https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/educacao-a-distancia/universidade-aberta-do-brasil" },
+  { src: "/logos/logo-embrapa.png", alt: "Embrapa - Empresa Brasileira de Pesquisa Agropecuária", href: "https://www.embrapa.br/" },
+  { src: "/logos/logo-sebrae.png", alt: "Sebrae Tocantins - Serviço Brasileiro de Apoio às Micro e Pequenas Empresas", href: "https://sebrae.com.br/sites/PortalSebrae/ufs/to?codUf=24" },
+]
+
+export default function Partners({ edition }: { edition?: Edition }) {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
 
-  const partnersItems = [
-    { src: "/logos/logo-gov-to.png", alt: "Governo do Estado do Tocantins", href: "https://www.to.gov.br/" },
-    {
-      src: "/logos/logo-mcti.png",
-      alt: "MCTI - Ministério da Ciência, Tecnologia e Inovação",
-      href: "https://www.gov.br/mcti/pt-br",
-    },
-    {
-      src: "/logos/logo-snct.png",
-      alt: "SNCT - Semana Nacional de Ciência e Tecnologia",
-      href: "https://semanact.mcti.gov.br/",
-    },
-    {
-      src: "/logos/logo-fndct.png",
-      alt: "FNDCT - Fundo Nacional de Desenvolvimento Científico e Tecnológico",
-      href: "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/fndct",
-    },
-    {
-      src: "/logos/logo-capes.png",
-      alt: "CAPES - Coordenação de Aperfeiçoamento de Pessoal de Nível Superior",
-      href: "https://www.gov.br/capes/pt-br"
-    },
-    { src: "/logos/logo-cnpq.png", alt: "CNPq - Conselho Nacional de Desenvolvimento Científico e Tecnológico", href: "https://www.gov.br/cnpq/pt-br" },
-    {
-      src: "/logos/logo-fapt.png",
-      alt: "FAPT - Fundação de Amparo à Pesquisa do Tocantins",
-      href: "https://www.to.gov.br/fapt",
-    },
-    {
-      src: "/logos/logo-pop.png",
-      alt: "POP Ciência - Popularização da Ciência",
-      href: "https://www.gov.br/mcti/pt-br/acompanhe-o-mcti/popciencia"
-    },
-    {
-      src: "/logos/logo-uab.png",
-      alt: "UAB - Universidade Aberta do Brasil",
-      href: "https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/educacao-a-distancia/universidade-aberta-do-brasil"
-    },
-    { src: "/logos/logo-embrapa.png", alt: "Embrapa - Empresa Brasileira de Pesquisa Agropecuária", href: "https://www.embrapa.br/" },
-    {
-      src: "/logos/logo-sebrae.png",
-      alt: "Sebrae Tocantins - Serviço Brasileiro de Apoio às Micro e Pequenas Empresas",
-      href: "https://sebrae.com.br/sites/PortalSebrae/ufs/to?codUf=24",
-    },
-  ]
+  const partnersItems = edition?.partners && edition.partners.length > 0
+    ? edition.partners.map((p) => ({
+        src: p.logo?.url || p.logoUrl || p.src || "/placeholder.svg",
+        alt: p.alt || p.name,
+        href: p.href || "#",
+      }))
+    : defaultPartners;
 
   return (
     <section id="parceiros" className="w-full py-16 sm:py-20 md:py-32 relative overflow-hidden bg-gradient-soft-primary">
@@ -61,7 +37,6 @@ export default function Partners() {
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
           {/* Coluna Esquerda - Cabeçalho */}
           <div className="lg:col-span-8 space-y-8 sm:space-y-12">
-            {/* Section Header */}
             <div ref={headerRef} className="text-center lg:text-left space-y-4">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-balance font-montserrat text-primary">
                 Parceiros
@@ -93,7 +68,6 @@ export default function Partners() {
                   className="group relative w-full h-20 sm:h-24 md:h-28 flex items-center justify-center transition-all duration-500 hover:scale-105 focus-visible:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 rounded-xl"
                   aria-label={`Visite o site de ${partner.alt} (abre em nova aba)`}
                 >
-                  {/* Partner logo */}
                   <div className="relative w-full h-full bg-white rounded-xl p-3 sm:p-4 border border-primary/10 group-hover:border-primary/30 group-focus-visible:border-primary/30 transition-all duration-300 shadow-sm group-hover:shadow-md group-focus-visible:shadow-md">
                     <div className="relative w-full h-full">
                       <Image

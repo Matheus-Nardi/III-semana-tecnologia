@@ -1,51 +1,40 @@
 'use client'
 
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
-import { HelpCircle } from "lucide-react"
 import { motion, useInView } from "motion/react"
 import { useRef } from "react"
-import Image from "next/image"
+import type { Edition } from "@/lib/content"
 
-interface Faq {
-    id: number
-    question: string
-    awnser: string
-}
+const defaultFaqs = [
+    {
+        question: "Como faço para me inscrever no evento?",
+        answer: "Você pode se inscrever através do Sistema de eventos da UNITINS.",
+    },
+    {
+        question: "Quem pode participar do evento?",
+        answer: "O evento é aberto a pesquisadores, professores, estudantes de pós-graduação e graduação, profissionais da indústria, empreendedores, gestores de inovação e comunidade geral.",
+    },
+    {
+        question: "O evento será presencial ou online?",
+        answer: "O evento conta com programações presenciais nos auditórios e salas do Câmpus da UNITINS em Palmas e também com transmissões remotas.",
+    },
+    {
+        question: "Haverá emissão de certificados?",
+        answer: "Sim, todas as atividades programadas contam com emissão de certificados digitais de participação.",
+    },
+    {
+        question: "Haverá alimentação no evento presencial?",
+        answer: "Sim, o evento presencial contará com a presença de praça de alimentação e food trucks.",
+    },
+]
 
-export default function Faq() {
+export default function Faq({ edition }: { edition?: Edition }) {
     const headerRef = useRef(null);
     const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
-    const faqItens: Faq[] = [
 
-        {
-            id: 1,
-            question: "Como faço para me inscrever no evento?",
-            awnser: "Você pode se inscrever através do Sistema de eventos da UNITINS",
-        },
-        {
-            id: 2,
-            question: "Quem pode participar do evento ?",
-            awnser:
-                "O evento é aberto a pesquisadores, professores, estudantes de pós-graduação, profissionais da indústria, empreendedores, gestores de inovação, representantes de órgãos públicos, formuladores de políticas públicas e demais interessados em inovação, ciência e tecnologia",
-        },
-        {
-            id: 3,
-            question: "O evento será presencial ou online ?",
-            awnser:
-                "O evento conta com programações presencias no campus da UNTINS - PALMAS e também com programções remotas",
-        },
-        {
-            id: 4,
-            question: "Haverá emissão de certificados ?",
-            awnser: "Sim, todos as atividades programadas contam com emissão de certifcados",
-        },
-
-        {
-            id: 5,
-            question: "Haverá alimentação no evento presencial?",
-            awnser: "Sim, o evento presencial contará com a presença de food trucks.",
-        },
-    ]
+    const faqItems = edition?.faqs && edition.faqs.length > 0
+        ? edition.faqs
+        : defaultFaqs;
 
     return (
         <section id="faq" className="w-full py-16 sm:py-20 md:py-32 relative overflow-hidden bg-gradient-soft-primary">
@@ -73,10 +62,10 @@ export default function Faq() {
                     </div>
 
                     <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
-                        {faqItens.map((item) => (
+                        {faqItems.map((item, index) => (
                             <AccordionItem
-                                key={item.id}
-                                value={`item-${item.id}`}
+                                key={index}
+                                value={`item-${index + 1}`}
                                 className="bg-white border-2 border-primary/10 hover:border-primary/30 focus-within:border-primary/30 rounded-xl px-4 sm:px-6 shadow-sm hover:shadow-md focus-within:shadow-md transition-all duration-300"
                             >
                                 <AccordionTrigger 
@@ -88,14 +77,14 @@ export default function Faq() {
                                             className="flex-shrink-0 w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-primary flex items-center justify-center text-white text-xs sm:text-sm font-bold mt-0.5"
                                             aria-hidden="true"
                                         >
-                                            {item.id}
+                                            {index + 1}
                                         </span>
                                         <span className="flex-1 leading-snug">{item.question}</span>
                                     </span>
                                 </AccordionTrigger>
                                 <AccordionContent className="text-muted-foreground text-sm sm:text-base leading-relaxed pb-4 sm:pb-6 pt-2 pl-7 sm:pl-9">
-                                    <div className="border-l-2 border-primary/20 pl-3 sm:pl-4 py-2">
-                                        {item.awnser}
+                                    <div className="border-l-2 border-primary/20 pl-3 sm:pl-4 py-2 whitespace-pre-line">
+                                        {item.answer}
                                     </div>
                                 </AccordionContent>
                             </AccordionItem>

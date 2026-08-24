@@ -2,14 +2,19 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import type { Edition } from "@/lib/content";
 
-export default function Subscription() {
+export default function Subscription({ edition }: { edition?: Edition }) {
   const leftRef = useRef(null);
   const rightRef = useRef(null);
 
   const isLeftInView = useInView(leftRef, { once: false, margin: "-100px" });
   const isRightInView = useInView(rightRef, { once: false, margin: "-100px" });
+
+  const registrationUrl = edition?.registrationUrl || "https://www.unitins.br/Eventos/E007Evento/Abertos";
+  const ctaLabel = edition?.subscription?.ctaLabel || "Inscreva-se Agora";
 
   return (
     <section className="w-full py-16 sm:py-20 md:py-32 bg-gradient-5 relative overflow-hidden">
@@ -43,28 +48,31 @@ export default function Subscription() {
           <div className="flex flex-col items-center gap-3 sm:gap-4">
             <Button
               size="lg"
+              asChild
               className="relative min-h-[56px] sm:min-h-[64px] bg-primary hover:bg-primary/90 focus-visible:bg-primary/90 text-white font-montserrat text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 shadow-md hover:shadow-lg focus-visible:shadow-lg transition-all duration-300 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-              aria-label="Inscrever-se no evento da III Semana de Ciência, Tecnologia e Inovação"
+              aria-label={`Inscrever-se no evento da ${edition?.shortTitle || "Semana de Tecnologia"}`}
             >
-              <span className="relative z-10 flex items-center gap-2">
-                Inscreva-se Agora
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className="group-hover:translate-x-1 transition-transform duration-300"
-                  aria-hidden="true"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
-              </span>
+              <Link href={registrationUrl} target="_blank" rel="noopener noreferrer">
+                <span className="relative z-10 flex items-center gap-2">
+                  {ctaLabel}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="group-hover:translate-x-1 transition-transform duration-300"
+                    aria-hidden="true"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </span>
+              </Link>
             </Button>
             <p className="text-xs sm:text-sm text-muted-foreground font-poppins text-center max-w-xs">
               Vagas limitadas! Garanta sua participação
