@@ -31,6 +31,7 @@ const allowedDomains = [
   process.env.NEXT_PUBLIC_SERVER_URL,
   'https://unitinscti.com.br',
   'https://www.unitinscti.com.br',
+  'https://admin.unitinscti.com.br',
   'http://168.138.247.203',
   'https://168.138.247.203',
   'http://localhost:3000',
