@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
-export default function NotFound() {
+export default function SiteNotFound() {
   return (
     <section className="container mx-auto px-4 pt-16 lg:pt-20 pb-24 min-h-[calc(100vh-4rem)] lg:min-h-[calc(100vh-5rem)] flex items-center">
       <div className="mx-auto max-w-2xl text-center">
