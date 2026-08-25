@@ -107,7 +107,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_EMAIL:-suporte@unitins.br} --agree-tos --no-eff-email -d unitinscti.com.br -d www.unitinscti.com.br
+    command: certonly --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_EMAIL:-suporte@unitins.br} --agree-tos --no-eff-email -d unitinscti.com.br -d www.unitinscti.com.br -d admin.unitinscti.com.br
 
 volumes:
   db-data-prod: {}
