@@ -5,6 +5,8 @@ import { s3Storage } from '@payloadcms/storage-s3'
 import sharp from 'sharp'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { pt } from '@payloadcms/translations/languages/pt'
+import { en } from '@payloadcms/translations/languages/en'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -47,6 +49,10 @@ export default buildConfig({
     importMap: {
       baseDir: path.resolve(dirname),
     },
+  },
+  i18n: {
+    supportedLanguages: { pt, en },
+    fallbackLanguage: 'pt',
   },
   collections: [Users, Media, Speakers, Partners, Editions],
   editor: lexicalEditor(),
