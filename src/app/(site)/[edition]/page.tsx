@@ -18,12 +18,8 @@ interface PageProps {
   }>
 }
 
-export async function generateStaticParams() {
-  const editions = await getAllEditions()
-  return editions.map((e) => ({
-    edition: e.slug,
-  }))
-}
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { edition: slug } = await params

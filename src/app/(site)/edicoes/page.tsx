@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   description: 'Navegue pelo histórico de edições da Semana de Ciência, Tecnologia e Inovação da UNITINS.',
 }
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function EditionsHistoryPage() {
   const [editions, defaultEdition] = await Promise.all([
     getAllEditions(),
