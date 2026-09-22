@@ -106,9 +106,10 @@ async function runTests() {
     const adminRes = await page.goto('http://localhost:3000/admin', { waitUntil: 'domcontentloaded', timeout: 25000 });
     record('Carregamento da Rota /admin', adminRes !== null && (adminRes.status() === 200 || adminRes.status() === 307 || adminRes.status() === 308), `Status: ${adminRes?.status()}`);
 
-  } catch (err: any) {
+  } catch (err: unknown) {
     console.error('Erro durante os testes Playwright:', err);
-    record('Execução Geral da Suite Playwright', false, err.message);
+    const msg = err instanceof Error ? err.message : String(err);
+    record('Execução Geral da Suite Playwright', false, msg);
   } finally {
     await browser.close();
   }
