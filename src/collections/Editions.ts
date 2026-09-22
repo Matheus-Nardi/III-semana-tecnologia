@@ -174,20 +174,60 @@ export const Editions: CollectionConfig = {
                       name: 'primaryColor',
                       type: 'text',
                       defaultValue: '#083D77',
-                      label: 'Cor Primária (Hexadecimal)',
+                      label: '🎨 Cor Primária',
+                      validate: (val?: string | null) => {
+                        if (!val) return true
+                        if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val)) {
+                          return 'Insira uma cor hexadecimal válida (ex: #083D77)'
+                        }
+                        return true
+                      },
                       admin: {
-                        width: '50%',
-                        description: 'Cor dos fundos institucionais, cabeçalhos de tabela e botões principais (padrão: #083D77)',
+                        width: '33.33%',
+                        description: 'Títulos, cabeçalhos, barra de navegação e botões principais (padrão: #083D77)',
+                        components: {
+                          Field: '@/components/payload/ColorPickerField#ColorPickerField',
+                        },
                       },
                     },
                     {
                       name: 'accentColor',
                       type: 'text',
                       defaultValue: '#e2187f',
-                      label: 'Cor de Destaque / Acento (Hexadecimal)',
+                      label: '✨ Cor de Destaque (Acento)',
+                      validate: (val?: string | null) => {
+                        if (!val) return true
+                        if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val)) {
+                          return 'Insira uma cor hexadecimal válida (ex: #e2187f)'
+                        }
+                        return true
+                      },
                       admin: {
-                        width: '50%',
-                        description: 'Cor dos badges, palavras em destaque e botões de chamada (padrão: #e2187f)',
+                        width: '33.33%',
+                        description: 'Badges, frases do Hero em destaque e detalhes luminosos (padrão: #e2187f)',
+                        components: {
+                          Field: '@/components/payload/ColorPickerField#ColorPickerField',
+                        },
+                      },
+                    },
+                    {
+                      name: 'secondaryColor',
+                      type: 'text',
+                      defaultValue: '#E3F5FF',
+                      label: '🌊 Cor Secundária / Fundo Suave',
+                      validate: (val?: string | null) => {
+                        if (!val) return true
+                        if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val)) {
+                          return 'Insira uma cor hexadecimal válida (ex: #E3F5FF)'
+                        }
+                        return true
+                      },
+                      admin: {
+                        width: '33.33%',
+                        description: 'Fundo suave de seções (Sobre, Rodapé, Inscrição) e cards (padrão: #E3F5FF)',
+                        components: {
+                          Field: '@/components/payload/ColorPickerField#ColorPickerField',
+                        },
                       },
                     },
                   ],

@@ -312,13 +312,17 @@ export interface Edition {
   registrationUrl?: string | null;
   theme?: {
     /**
-     * Cor dos fundos institucionais, cabeçalhos de tabela e botões principais (padrão: #083D77)
+     * Títulos, cabeçalhos, barra de navegação e botões principais (padrão: #083D77)
      */
     primaryColor?: string | null;
     /**
-     * Cor dos badges, palavras em destaque e botões de chamada (padrão: #e2187f)
+     * Badges, frases do Hero em destaque e detalhes luminosos (padrão: #e2187f)
      */
     accentColor?: string | null;
+    /**
+     * Fundo suave de seções (Sobre, Rodapé, Inscrição) e cards (padrão: #E3F5FF)
+     */
+    secondaryColor?: string | null;
     /**
      * Substitui a logo padrão exibida no cabeçalho e rodapé (formato recomendado: PNG ou SVG transparente)
      */
@@ -653,6 +657,7 @@ export interface EditionsSelect<T extends boolean = true> {
     | {
         primaryColor?: T;
         accentColor?: T;
+        secondaryColor?: T;
         logo?: T;
         heroBanner?: T;
         heroBackground?: T;

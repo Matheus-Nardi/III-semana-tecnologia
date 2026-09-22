@@ -43,7 +43,7 @@ const allowedDomains = [
 export default buildConfig({
   serverURL: '',
   cors: ['*'],
-  csrf: [],
+  csrf: allowedDomains,
   admin: {
     user: Users.slug,
     importMap: {

@@ -62,6 +62,7 @@ export interface FaqItem {
 export interface ThemeConfig {
   primaryColor?: string
   accentColor?: string
+  secondaryColor?: string
   logo?: MediaRef | null
   heroBanner?: MediaRef | null
   heroBackground?: MediaRef | null
@@ -111,6 +112,7 @@ export const FALLBACK_2025_EDITION: Edition = {
   theme: {
     primaryColor: '#083D77',
     accentColor: '#e2187f',
+    secondaryColor: '#E3F5FF',
   },
   heroSlides: [
     {
