@@ -389,15 +389,15 @@
 }
 
 .bg-gradient-5 {
-  background: linear-gradient(135deg, rgba(79, 209, 255, 0.2) 0%, #F0F9FF 100%);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--accent, #38B6FF) 12%, transparent) 0%, color-mix(in srgb, var(--secondary, #E3F5FF) 45%, white) 100%);
 }
 
 .bg-gradient-soft-primary {
-  background: linear-gradient(135deg, rgba(8, 61, 119, 0.05) 0%, rgba(227, 245, 255, 0.8) 100%);
+  background: linear-gradient(135deg, color-mix(in srgb, var(--primary, #083D77) 6%, transparent) 0%, color-mix(in srgb, var(--secondary, #E3F5FF) 60%, white) 100%);
 }
 
 .bg-gradient-soft-secondary {
-  background: linear-gradient(135deg, #ffffff 0%, rgba(227, 245, 255, 0.4) 50%, #F0F9FF 100%);
+  background: linear-gradient(135deg, #ffffff 0%, color-mix(in srgb, var(--secondary, #E3F5FF) 35%, transparent) 50%, color-mix(in srgb, var(--primary, #083D77) 4%, white) 100%);
 }
 
 /* Novos gradientes oceânicos */

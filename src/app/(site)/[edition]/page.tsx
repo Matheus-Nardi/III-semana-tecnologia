@@ -71,13 +71,20 @@ export default async function EditionPage({ params }: PageProps) {
 
   const primaryColor = edition.theme?.primaryColor || '#083D77'
   const accentColor = edition.theme?.accentColor || '#e2187f'
+  const secondaryColor = edition.theme?.secondaryColor || '#E3F5FF'
 
   return (
     <div
       data-edition={edition.slug}
       style={{
+        // Variáveis base usadas pelas classes Tailwind (ex: text-primary → var(--primary))
+        '--primary': primaryColor,
+        '--accent': accentColor,
+        '--secondary': secondaryColor,
+        // Variáveis semânticas usadas em style inline nos componentes (ex: var(--color-accent))
         '--color-primary': primaryColor,
         '--color-accent': accentColor,
+        '--color-secondary': secondaryColor,
       } as React.CSSProperties}
       className="min-h-screen bg-background text-foreground flex flex-col justify-between"
     >

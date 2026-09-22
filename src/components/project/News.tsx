@@ -75,7 +75,7 @@ export default function News() {
             <p className="text-red-600 mb-4">{error}</p>
             <button
               onClick={fetchNews}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 sm:px-6 py-2 rounded-lg transition-colors text-sm sm:text-base"
+              className="bg-primary hover:bg-primary/90 text-white px-4 sm:px-6 py-2 rounded-lg transition-colors text-sm sm:text-base cursor-pointer"
             >
               Tentar Novamente
             </button>
@@ -165,7 +165,7 @@ export default function News() {
 
               {/* Conteúdo */}
               <div className="p-4 sm:p-6">
-                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-3 sm:mb-4 line-clamp-3 leading-snug group-hover:text-blue-600 transition-colors font-montserrat">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-3 sm:mb-4 line-clamp-3 leading-snug group-hover:text-primary transition-colors font-montserrat">
                   {item.title}
                 </h3>
 

@@ -31,7 +31,8 @@ export default function Subscription({ edition }: { edition?: Edition }) {
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <path
                   d="M100,20 C120,25 140,35 155,55 C170,75 180,95 175,115 C170,135 155,150 135,160 C115,170 90,175 70,170 C50,165 35,150 25,130 C15,110 10,85 20,65 C30,45 50,30 70,25 C80,22 90,20 100,20 Z"
-                  fill="rgba(34, 15, 139, 0.1)"
+                  fill="var(--primary, #083D77)"
+                  fillOpacity="0.08"
                 />
               </svg>
             </div>

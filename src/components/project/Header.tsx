@@ -80,8 +80,8 @@ function DesktopEditionSwitcher({
                                     onClick={() => setIsOpen(false)}
                                     className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-xs transition-colors ${
                                         isSelected
-                                            ? 'bg-[#083D77] text-white font-bold shadow-xs'
-                                            : 'text-slate-700 hover:bg-slate-50 hover:text-[#083D77] font-medium'
+                                            ? 'bg-primary text-white font-bold shadow-xs'
+                                            : 'text-slate-700 hover:bg-slate-50 hover:text-primary font-medium'
                                     }`}
                                 >
                                     <div className="flex flex-col">
@@ -98,7 +98,7 @@ function DesktopEditionSwitcher({
                         <Link
                             href="/edicoes"
                             onClick={() => setIsOpen(false)}
-                            className="flex items-center justify-center gap-1.5 w-full py-2 text-[11px] font-semibold text-[#083D77] hover:bg-slate-50 rounded-xl transition-colors text-center"
+                            className="flex items-center justify-center gap-1.5 w-full py-2 text-[11px] font-semibold text-primary hover:bg-slate-50 rounded-xl transition-colors text-center"
                         >
                             <span>Ver todas as edições</span>
                             <ArrowRight size={12} />
@@ -247,7 +247,7 @@ function MobileMenuPanel({
                                         {ed.year}
                                     </span>
                                     <span className={`text-[10px] line-clamp-1 mt-0.5 font-medium leading-tight ${
-                                        isSelected ? 'text-[#38B6FF]' : 'text-slate-400'
+                                        isSelected ? 'text-accent' : 'text-slate-400'
                                     }`}>
                                         {ed.shortTitle || ed.title || `Edição ${ed.year}`}
                                     </span>
@@ -262,12 +262,12 @@ function MobileMenuPanel({
                     {navigationItems.map((item) => {
                         const Icon = item.icon;
                         return (
-                            <Link key={item.text} href={item.href} onClick={onClose} className="group flex items-center gap-3.5 px-4 py-3 bg-white/5 border border-white/5 hover:border-[#38B6FF]/40 hover:bg-[#083D77]/40 rounded-xl transition-all duration-200">
-                                <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 group-hover:bg-[#38B6FF]/20 transition-all">
-                                    <Icon className="w-4 h-4 text-[#4FD1FF] group-hover:text-[#38B6FF]" />
+                            <Link key={item.text} href={item.href} onClick={onClose} className="group flex items-center gap-3.5 px-4 py-3 bg-white/5 border border-white/5 hover:border-accent/40 hover:bg-primary/40 rounded-xl transition-all duration-200">
+                                <div className="inline-flex items-center justify-center w-8 h-8 rounded-lg bg-white/5 group-hover:bg-accent/20 transition-all">
+                                    <Icon className="w-4 h-4 text-accent group-hover:text-accent" />
                                 </div>
                                 <span className="flex-1 text-sm font-semibold text-slate-200 group-hover:text-white transition-colors">{item.text}</span>
-                                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-[#38B6FF] transition-colors" />
+                                <ArrowRight className="w-4 h-4 text-slate-500 group-hover:text-accent transition-colors" />
                             </Link>
                         );
                     })}
@@ -280,7 +280,7 @@ function MobileMenuPanel({
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={onClose}
-                        className="block w-full px-6 py-4 bg-[#083D77] hover:bg-[#38B6FF] text-white font-bold text-base rounded-xl transition-all duration-200 shadow-lg hover:shadow-[#38B6FF]/20 text-center"
+                        className="block w-full px-6 py-4 bg-primary hover:bg-accent text-white font-bold text-base rounded-xl transition-all duration-200 shadow-lg hover:shadow-accent/20 text-center"
                     >
                         Inscreva-se Agora
                     </Link>
@@ -346,9 +346,9 @@ export default function Header({
                         {/* Navegação Desktop */}
                         <nav className="hidden lg:flex items-center gap-6 xl:gap-8 self-center" aria-label="Navegação principal">
                             {navigationItems.map((item) => (
-                                <Link key={item.text} href={item.href} className={`text-sm xl:text-base font-medium transition-colors duration-300 relative group py-2 px-0 self-center ${isSolid ? 'text-[#0F3057] hover:text-[#38B6FF]' : 'text-white/90 hover:text-white'}`}>
+                                <Link key={item.text} href={item.href} className={`text-sm xl:text-base font-medium transition-colors duration-300 relative group py-2 px-0 self-center ${isSolid ? 'text-foreground hover:text-accent' : 'text-white/90 hover:text-white'}`}>
                                     {item.text}
-                                    <span className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${isSolid ? 'bg-[#38B6FF]' : 'bg-white'}`} aria-hidden="true" />
+                                    <span className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${isSolid ? 'bg-accent' : 'bg-white'}`} aria-hidden="true" />
                                 </Link>
                             ))}
                             <Link
@@ -357,7 +357,7 @@ export default function Header({
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center self-center"
                             >
-                                <Button className={`group font-bold rounded-xl transition-all duration-300 overflow-hidden inline-flex items-center justify-center h-10 px-5 ${isSolid ? 'bg-[#083D77] text-white hover:bg-[#38B6FF]' : 'bg-white text-[#083D77] hover:bg-[#4FD1FF]'}`}>
+                                <Button className={`group font-bold rounded-xl transition-all duration-300 overflow-hidden inline-flex items-center justify-center h-10 px-5 ${isSolid ? 'bg-primary text-white hover:bg-accent' : 'bg-white text-primary hover:bg-accent hover:text-white'}`}>
                                     {edition?.subscription?.ctaLabel || "Participar"}
                                 </Button>
                             </Link>
