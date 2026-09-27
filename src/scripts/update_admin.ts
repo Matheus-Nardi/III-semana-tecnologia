@@ -5,7 +5,11 @@ async function updateAdmin() {
   console.log('🔄 Conectando ao Payload CMS para atualizar administrador...')
   const payload = await getPayload({ config })
   const email = process.env.ADMIN_INITIAL_EMAIL || 'italobeckman@unitins.br'
-  const password = process.env.ADMIN_INITIAL_PASSWORD || 'Unitins@2025'
+  const password = process.env.ADMIN_INITIAL_PASSWORD
+  if (process.env.NODE_ENV === 'production' && (!password || password.length < 12)) {
+    throw new Error('ADMIN_INITIAL_PASSWORD deve ser fornecida com no mínimo 12 caracteres em produção!')
+  }
+  const finalPassword = password || 'Unitins@2025'
 
   const existingUsers = await payload.find({ collection: 'users', limit: 1 })
   if (existingUsers.totalDocs > 0 && existingUsers.docs[0]) {
@@ -16,7 +20,7 @@ async function updateAdmin() {
       id: adminUser.id,
       data: {
         email,
-        password,
+        password: finalPassword,
         name: 'Italo Beckman',
       },
     })
@@ -27,7 +31,7 @@ async function updateAdmin() {
       collection: 'users',
       data: {
         email,
-        password,
+        password: finalPassword,
         name: 'Italo Beckman',
       },
     })

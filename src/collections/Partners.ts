@@ -62,6 +62,12 @@ export const Partners: CollectionConfig = {
       name: 'logoUrl',
       type: 'text',
       label: 'URL da Logo (Fallback / Link Direto)',
+      validate: (val?: string | null) => {
+        if (!val) return true
+        return (/^(https?:\/\/|\/)/i.test(val) && !/^\s*javascript:/i.test(val))
+          ? true
+          : 'Insira um caminho relativo válido (/...) ou URL completa (https://...)'
+      },
       admin: {
         description: 'Caminho estático ou link externo alternativo (ex: /logos/logo-snct.png).',
       },
@@ -73,6 +79,10 @@ export const Partners: CollectionConfig = {
           name: 'href',
           type: 'text',
           label: 'Link para o Site do Parceiro',
+          validate: (val?: string | null) => {
+            if (!val) return true
+            return /^https?:\/\//i.test(val) ? true : 'Insira uma URL válida iniciando com http:// ou https://'
+          },
           admin: {
             width: '70%',
             description: 'URL de destino ao clicar no logo (ex: https://www.to.gov.br/)',

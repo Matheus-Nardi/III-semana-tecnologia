@@ -99,11 +99,17 @@ export async function seed(existingPayload?: Payload) {
   const existingUsers = await payload.find({ collection: 'users', limit: 1 })
   if (existingUsers.totalDocs === 0) {
     const email = process.env.ADMIN_INITIAL_EMAIL || 'admin@unitins.br'
-    const password = process.env.ADMIN_INITIAL_PASSWORD || 'Unitins@2025'
+    const password = process.env.ADMIN_INITIAL_PASSWORD
+    if (process.env.NODE_ENV === 'production' && (!password || password.length < 12)) {
+      throw new Error(
+        'CONFIGURAÇÃO CRÍTICA DE SEGURANÇA: ADMIN_INITIAL_PASSWORD deve ser fornecida via variável de ambiente com no mínimo 12 caracteres em ambiente de produção!'
+      )
+    }
+    const finalPassword = password || 'Unitins@2025'
     console.log(`[Seed] Criando usuário administrador (${email})...`)
     await payload.create({
       collection: 'users',
-      data: { email, password, name: 'Administrador UNITINS' },
+      data: { email, password: finalPassword, name: 'Administrador UNITINS' },
     })
   }
 

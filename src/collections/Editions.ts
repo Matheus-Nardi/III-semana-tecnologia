@@ -149,6 +149,10 @@ export const Editions: CollectionConfig = {
                   type: 'text',
                   defaultValue: 'https://unitins.br',
                   label: 'Link Oficial de Inscrições',
+                  validate: (val?: string | null) => {
+                    if (!val) return true
+                    return /^https?:\/\//i.test(val) ? true : 'Insira uma URL válida iniciando com http:// ou https://'
+                  },
                   admin: {
                     width: '50%',
                     description: 'URL de destino ao clicar no botão "Inscreva-se" do Header e do Hero',
@@ -517,6 +521,10 @@ export const Editions: CollectionConfig = {
                               name: 'meetLink',
                               type: 'text',
                               label: 'Link da Transmissão Online (se houver)',
+                              validate: (val?: string | null) => {
+                                if (!val) return true
+                                return /^https?:\/\//i.test(val) ? true : 'Insira uma URL válida iniciando com http:// ou https://'
+                              },
                               admin: {
                                 width: '50%',
                                 description: 'Ex: https://meet.google.com/... ou YouTube',

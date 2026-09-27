@@ -49,13 +49,17 @@ const nextConfig: NextConfig = {
             key: 'X-DNS-Prefetch-Control',
             value: 'on'
           },
-          // X-Frame-Options removido para permitir Google Maps em iframe
+          // Proteção contra Clickjacking
+          {
+            key: 'X-Frame-Options',
+            value: 'SAMEORIGIN'
+          },
           // Previne MIME type sniffing
           {
             key: 'X-Content-Type-Options',
             value: 'nosniff'
           },
-          // Content Security Policy - Proteção contra XSS
+          // Content Security Policy - Proteção contra XSS e Framing
           {
             key: 'Content-Security-Policy',
             value: [
@@ -67,6 +71,7 @@ const nextConfig: NextConfig = {
               "connect-src 'self' https://maps.googleapis.com data: blob: https:",
               "worker-src 'self' blob:",
               "frame-src 'self' https://www.google.com https://maps.google.com",
+              "frame-ancestors 'self'",
               "media-src 'self' https:",
               "object-src 'none'",
               "base-uri 'self'",
@@ -88,10 +93,10 @@ const nextConfig: NextConfig = {
               'accelerometer=()'
             ].join(', ')
           },
-          // Política de referrer mais permissiva para Google Maps
+          // Política de referrer segura
           {
             key: 'Referrer-Policy',
-            value: 'no-referrer-when-downgrade'
+            value: 'strict-origin-when-cross-origin'
           },
         ],
       },

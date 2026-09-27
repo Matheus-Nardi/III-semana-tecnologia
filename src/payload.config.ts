@@ -40,9 +40,18 @@ const allowedDomains = [
   'http://127.0.0.1:3000',
 ].filter(Boolean) as string[]
 
+const payloadSecret = process.env.PAYLOAD_SECRET
+if (process.env.NODE_ENV === 'production') {
+  if (!payloadSecret || payloadSecret.includes('payload-secret-key') || payloadSecret.length < 32) {
+    throw new Error(
+      'CONFIGURAÇÃO CRÍTICA DE SEGURANÇA: PAYLOAD_SECRET deve ser uma chave forte, única e com pelo menos 32 caracteres em ambiente de produção!'
+    )
+  }
+}
+
 export default buildConfig({
   serverURL: '',
-  cors: ['*'],
+  cors: allowedDomains,
   csrf: allowedDomains,
   admin: {
     user: Users.slug,
@@ -57,7 +66,10 @@ export default buildConfig({
   collections: [Users, Media, Speakers, Partners, Editions],
   editor: lexicalEditor(),
   sharp,
-  secret: process.env.PAYLOAD_SECRET || 'unitins-semana-tecnologia-payload-secret-key-2025-2026',
+  secret: payloadSecret || 'unitins-semana-tecnologia-payload-secret-key-2025-2026',
+  graphQL: {
+    disablePlaygroundInProduction: true,
+  },
   typescript: {
     outputFile: path.resolve(dirname, 'payload-types.ts'),
   },

@@ -55,6 +55,10 @@ export const Speakers: CollectionConfig = {
           name: 'link',
           type: 'text',
           label: 'Link Profissional (LinkedIn / Lattes)',
+          validate: (val?: string | null) => {
+            if (!val) return true
+            return /^https?:\/\//i.test(val) ? true : 'Insira uma URL válida iniciando com http:// ou https://'
+          },
           admin: {
             width: '50%',
             description: 'URL para o perfil acadêmico ou rede social',
