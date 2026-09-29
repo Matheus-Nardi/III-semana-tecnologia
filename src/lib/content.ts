@@ -101,6 +101,8 @@ export interface Edition {
     title?: string
     ctaLabel?: string
   }
+  updatedAt?: string
+  createdAt?: string
 }
 
 // Fallback padrão para a edição 2025 caso o banco esteja inicializando
@@ -112,6 +114,7 @@ export const FALLBACK_2025_EDITION: Edition = {
   isDefault: true,
   dates: '20 a 24 de outubro de 2025',
   registrationUrl: 'https://unitins.br',
+  updatedAt: '2025-10-23T08:55:00',
   theme: {
     primaryColor: '#083D77',
     accentColor: '#e2187f',
@@ -193,6 +196,7 @@ export const FALLBACK_2026_EDITION: Edition = {
   isDefault: false,
   dates: '13 a 16 de outubro de 2026',
   registrationUrl: 'https://unitins.br',
+  updatedAt: '2026-09-29T12:00:00',
   theme: {
     primaryColor: '#083D77',
     accentColor: '#e2187f',

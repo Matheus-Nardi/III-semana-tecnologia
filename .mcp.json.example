@@ -1,0 +1,17 @@
+{
+  "mcpServers": {
+    "payload": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "http://localhost:3000/api/mcp",
+        "--header",
+        "Authorization: Bearer ${PAYLOAD_MCP_API_KEY}"
+      ],
+      "env": {
+        "PAYLOAD_MCP_API_KEY": "${PAYLOAD_MCP_API_KEY}"
+      }
+    }
+  }
+}

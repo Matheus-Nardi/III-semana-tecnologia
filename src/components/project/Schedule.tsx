@@ -265,15 +265,24 @@ const dateMapping: Record<string, { date: string; dayOfWeek: string }> = {
 export default function Schedule({ edition }: { edition?: Edition }) {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
-  const formatLastUpdate = (dateString: string) => {
-    const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-
-    return `${day}/${month}/${year} às ${hours}:${minutes}`;
+  const formatLastUpdate = (dateString?: string) => {
+    if (!dateString) return "";
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return dateString;
+      return new Intl.DateTimeFormat("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "America/Sao_Paulo",
+      })
+        .format(date)
+        .replace(",", " às");
+    } catch {
+      return dateString;
+    }
   };
 
   const schedule: DaySchedule[] = useMemo(() => {
@@ -457,7 +466,7 @@ export default function Schedule({ edition }: { edition?: Edition }) {
             </div>
             <p className="text-muted-foreground/70 font-poppins text-xs sm:text-sm mt-2 italic flex items-center justify-center lg:justify-start gap-1.5">
               <Clock className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
-              <span>Atualizado em: {formatLastUpdate(scheduleData.lastUpdate)}</span>
+              <span>Atualizado em: {formatLastUpdate(edition?.updatedAt || scheduleData.lastUpdate)}</span>
             </p>
             <div className="mt-4 flex items-center gap-2 justify-center lg:justify-start" role="group" aria-label="Alternar visualização da programação">
               <Button

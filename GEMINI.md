@@ -248,12 +248,13 @@ Ambos os MCPs sao executados via `uv run` diretamente de seus repositorios locai
 
 - **Ingenium MCP:** `C:\Users\Italo\Documents\Projetos\mcps\ingenium-mcp`
 - **Serena MCP:** `C:\Users\Italo\Documents\Projetos\mcps\serena-mcp`
+- **Payload CMS MCP:** Conexão remota via `mcp-remote` no endpoint `http://localhost:3000/api/mcp` com token Bearer
 
 ### Arquivos de Configuracao Ativos
 
-1. **Antigravity Workspace Plugin:** `.agents/plugins/code-intelligence/mcp_config.json` (fonte principal no Antigravity, com `--path` e `--project` vinculados ao projeto)
-2. **Claude Code / Cursor / VS Code:** `.mcp.json`
-3. **Antigravity Global:** `~/.gemini/config/mcp_config.json` (servidores globais; desativar servidores duplicados do workspace para evitar inicialização dupla)
+1. **Antigravity Workspace Plugins:** `.agents/plugins/code-intelligence/mcp_config.json` e `.agents/plugins/payload-cms/mcp_config.json`
+2. **Claude Code / Cursor / VS Code / Clientes MCP Padrão:** `.mcp.json`
+3. **Antigravity Global:** `~/.gemini/config/mcp_config.json` (servidores globais)
 
 ### Subagentes e MCPs
 Ao definir ou invocar subagentes especializados (via `define_subagent` ou `invoke_subagent`), garanta que `enable_mcp_tools: true` esteja configurado para que o subagente herde o acesso as ferramentas do Ingenium e Serena.

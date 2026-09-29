@@ -72,6 +72,92 @@ export default buildConfig({
     prodMigrations: migrations,
   }),
   plugins: [
+    mcpPlugin({
+      collections: {
+        editions: {
+          enabled: true,
+          description:
+            'Edições anuais da Semana de Ciência e Tecnologia da UNITINS, contendo a programação oficial, trilhas, atividades, palestras e configurações do evento.',
+        },
+        speakers: {
+          enabled: true,
+          description:
+            'Banco de palestrantes, oficineiros, pesquisadores e convidados com bio, vínculos institucionais e contatos.',
+        },
+        partners: {
+          enabled: true,
+          description:
+            'Parceiros, órgãos de fomento, apoiadores e patrocinadores do evento categorizados por tier.',
+        },
+        media: {
+          enabled: {
+            find: true,
+            create: true,
+            update: true,
+            delete: false,
+          },
+          description: 'Arquivos de mídia, fotos de palestrantes e logos.',
+        },
+        users: {
+          enabled: {
+            find: true,
+            create: false,
+            update: false,
+            delete: false,
+          },
+          description: 'Usuários administradores cadastrados com acesso ao painel administrativo.',
+        },
+      },
+      overrideApiKeyCollection: (collection) => {
+        collection.access = {
+          create: ({ req }) => Boolean(req.user),
+          delete: ({ req }) => Boolean(req.user),
+          read: ({ req }) => Boolean(req.user),
+          unlock: ({ req }) => Boolean(req.user),
+          update: ({ req }) => Boolean(req.user),
+        }
+        const userField = collection.fields.find(
+          (field) => 'name' in field && field.name === 'user',
+        )
+        if (userField) {
+          (userField as any).access = {
+            create: ({ req }: any) => Boolean(req.user),
+            update: ({ req }: any) => Boolean(req.user),
+          }
+        }
+        return collection
+      },
+      overrideAuth: async (req, getDefaultMcpAccessSettings) => {
+        const authorization = req.headers.get('Authorization')
+        const token = authorization?.startsWith('Bearer ')
+          ? authorization.replace('Bearer ', '').trim()
+          : null
+
+        const envApiKey = process.env.PAYLOAD_MCP_API_KEY
+        if (envApiKey && token && token === envApiKey) {
+          const firstUser = await req.payload.find({
+            collection: 'users',
+            limit: 1,
+            pagination: false,
+          })
+          const userDoc = firstUser.docs[0] || { id: 1, collection: 'users' }
+          return {
+            user: {
+              ...userDoc,
+              collection: 'users',
+              _strategy: 'mcp-api-key',
+            },
+            editions: { find: true, create: true, update: true, delete: true },
+            speakers: { find: true, create: true, update: true, delete: true },
+            partners: { find: true, create: true, update: true, delete: true },
+            media: { find: true, create: true, update: true, delete: false },
+            users: { find: true, create: false, update: false, delete: false },
+          } as any
+        }
+
+        return await getDefaultMcpAccessSettings()
+      },
+    }),
     ...(isS3Configured
       ? [
           s3Storage({
