@@ -4,6 +4,7 @@ import "../globals.css";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { HashScroller } from "@/components/ui/hash-scroller";
 import ClientErrorHandler from "../client-error-handler";
+import { Mascot } from "@/components/project/Mascot";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -90,6 +91,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         <ClientErrorHandler />
         <HashScroller />
         {children}
+        <Mascot />
         <ScrollToTop />
       </body>
     </html>

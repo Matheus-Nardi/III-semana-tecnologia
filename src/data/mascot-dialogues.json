@@ -1,0 +1,50 @@
+[
+  {
+    "id": "welcome",
+    "text": "Olá! Eu sou Marie Curie. Que alegria ter você aqui na Semana de Ciência, Tecnologia e Inovação!",
+    "pose": "waving",
+    "badge": "Boas-vindas"
+  },
+  {
+    "id": "curie-nobel",
+    "text": "Eureka! Sabia que fui a primeira pessoa no mundo a receber dois Prêmios Nobel em áreas científicas distintas (Física e Química)?",
+    "pose": "eureka",
+    "badge": "Curiosidade Histórica"
+  },
+  {
+    "id": "schedule-tip",
+    "text": "Não deixe de conferir os minicursos e palestras na aba de Programação. Tem muito conhecimento prático esperando por você!",
+    "pose": "reading",
+    "badge": "Dica do Evento"
+  },
+  {
+    "id": "women-in-stem",
+    "text": "O tema 'Ciência Delas' celebra todas nós, mulheres pioneiras na tecnologia, pesquisa e inovação. Lugar de mulher é onde ela quiser!",
+    "pose": "waving",
+    "badge": "Ciência Delas"
+  },
+  {
+    "id": "curie-quote",
+    "text": "'Nada na vida deve ser temido, apenas compreendido.' Agora é hora de compreender mais, para temer menos.",
+    "pose": "reading",
+    "badge": "Pensamento"
+  },
+  {
+    "id": "ada-mention",
+    "text": "Eureka! Você sabia que Ada Lovelace escreveu o primeiro algoritmo da história em 1843, muito antes dos computadores modernos existirem?",
+    "pose": "eureka",
+    "badge": "Você Sabia?"
+  },
+  {
+    "id": "enedina-mention",
+    "text": "Homenagem brasileira: Enedina Alves Marques superou barreiras históricas e se tornou a primeira mulher negra engenheira do Brasil em 1945!",
+    "pose": "reading",
+    "badge": "Pioneiras do Brasil"
+  },
+  {
+    "id": "certificate-tip",
+    "text": "Fique atento(a) à sua presença nas atividades para garantir seu certificado de participação ao final do evento!",
+    "pose": "eureka",
+    "badge": "Aviso Importante"
+  }
+]
