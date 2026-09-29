@@ -234,6 +234,7 @@
   /* Smooth scrolling with respect for reduced motion preference */
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
     font-size: 90%;
   }
 

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Poppins, DM_Sans } from "next/font/google";
 import "../globals.css";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
+import { HashScroller } from "@/components/ui/hash-scroller";
 import ClientErrorHandler from "../client-error-handler";
 
 const montserrat = Montserrat({
@@ -87,6 +88,7 @@ export default function SiteLayout({ children }: { children: React.ReactNode }) 
         className={`${montserrat.variable} ${poppins.variable} ${dmSans.variable} antialiased min-h-screen flex flex-col`}
       >
         <ClientErrorHandler />
+        <HashScroller />
         {children}
         <ScrollToTop />
       </body>
