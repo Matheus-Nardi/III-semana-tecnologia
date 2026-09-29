@@ -143,13 +143,32 @@ export async function importSchedule(options?: {
 
       formattedEvents.push({
         name: event.name,
+        color: (event as { color?: string }).color || '#083D77',
         talks: formattedTalks,
       })
     }
 
+    const isOnline = day.date.toLowerCase().includes('online') || day.dayOfWeek.toLowerCase().includes('ead')
+    const validDays = [
+      'Segunda-feira',
+      'Terça-feira',
+      'Quarta-feira',
+      'Quinta-feira',
+      'Sexta-feira',
+      'Sábado',
+      'Domingo',
+      'Todos os dias',
+      'A definir',
+    ] as const
+    type DayOfWeekOption = typeof validDays[number]
+    const sanitizedDayOfWeek: DayOfWeekOption = validDays.includes(day.dayOfWeek as DayOfWeekOption)
+      ? (day.dayOfWeek as DayOfWeekOption)
+      : 'Todos os dias'
+
     formattedSchedule.push({
       date: day.date,
-      dayOfWeek: day.dayOfWeek,
+      dayOfWeek: sanitizedDayOfWeek,
+      isOnline,
       events: formattedEvents,
     })
   }

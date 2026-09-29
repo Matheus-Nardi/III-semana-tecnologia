@@ -406,12 +406,24 @@ export const Editions: CollectionConfig = {
                     },
                     {
                       name: 'dayOfWeek',
-                      type: 'text',
+                      type: 'select',
                       required: true,
+                      defaultValue: 'Segunda-feira',
                       label: 'Dia da Semana',
+                      options: [
+                        { label: 'Segunda-feira', value: 'Segunda-feira' },
+                        { label: 'Terça-feira', value: 'Terça-feira' },
+                        { label: 'Quarta-feira', value: 'Quarta-feira' },
+                        { label: 'Quinta-feira', value: 'Quinta-feira' },
+                        { label: 'Sexta-feira', value: 'Sexta-feira' },
+                        { label: 'Sábado', value: 'Sábado' },
+                        { label: 'Domingo', value: 'Domingo' },
+                        { label: 'Todos os dias', value: 'Todos os dias' },
+                        { label: 'A definir', value: 'A definir' },
+                      ],
                       admin: {
                         width: '70%',
-                        description: 'Ex: Segunda-feira ou Todos os dias',
+                        description: 'Dia da semana correspondente ou rascunho',
                       },
                     },
                   ],
@@ -429,13 +441,39 @@ export const Editions: CollectionConfig = {
                   },
                   fields: [
                     {
-                      name: 'name',
-                      type: 'text',
-                      required: true,
-                      label: 'Nome do Eixo / Sub-Evento',
-                      admin: {
-                        description: 'Ex: "Encontro Estadual das Licenciaturas da Unitins", "III SCTI", "III Circuito de Inovação"',
-                      },
+                      type: 'row',
+                      fields: [
+                        {
+                          name: 'name',
+                          type: 'text',
+                          required: true,
+                          label: 'Nome do Eixo / Sub-Evento',
+                          admin: {
+                            width: '65%',
+                            description: 'Ex: "Encontro Estadual das Licenciaturas da Unitins", "III SCTI", "III Circuito de Inovação"',
+                          },
+                        },
+                        {
+                          name: 'color',
+                          type: 'text',
+                          label: 'Cor de Identidade Visual',
+                          defaultValue: '#083D77',
+                          validate: (val?: string | null) => {
+                            if (!val) return true
+                            if (!/^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(val)) {
+                              return 'Insira uma cor hexadecimal válida (ex: #083D77)'
+                            }
+                            return true
+                          },
+                          admin: {
+                            width: '35%',
+                            description: 'Cor dos accordions e badges deste eixo',
+                            components: {
+                              Field: '@/components/payload/ColorPickerField#ColorPickerField',
+                            },
+                          },
+                        },
+                      ],
                     },
                     {
                       name: 'talks',
@@ -509,17 +547,31 @@ export const Editions: CollectionConfig = {
                               type: 'text',
                               label: 'Capacidade / Vagas',
                               admin: {
-                                width: '50%',
-                                description: 'Ex: 120 ou 60',
+                                width: '30%',
+                                placeholder: 'Ex: 120',
+                              },
+                            },
+                            {
+                              name: 'isOnline',
+                              type: 'checkbox',
+                              defaultValue: false,
+                              label: 'É online?',
+                              admin: {
+                                width: '25%',
+                                description: 'Transmissão remota / EAD',
+                                components: {
+                                  Field: '@/components/payload/SwitchField#SwitchField',
+                                },
                               },
                             },
                             {
                               name: 'meetLink',
                               type: 'text',
-                              label: 'Link da Transmissão Online (se houver)',
+                              label: 'Link da Transmissão (se houver)',
                               admin: {
-                                width: '50%',
-                                description: 'Ex: https://meet.google.com/... ou YouTube',
+                                width: '45%',
+                                placeholder: 'https://meet.google.com/...',
+                                description: 'Link do Meet, YouTube ou Teams',
                               },
                             },
                           ],

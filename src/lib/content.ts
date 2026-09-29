@@ -38,17 +38,20 @@ export interface Talk {
   palestrante: string
   speakerRef?: Speaker | null
   vagas?: string
+  isOnline?: boolean
   meetLink?: string
 }
 
 export interface ScheduleEvent {
   name: string
+  color?: string
   talks: Talk[]
 }
 
 export interface ScheduleDay {
   date: string
   dayOfWeek: string
+  isOnline?: boolean
   events?: ScheduleEvent[]
   eventName?: string
   talks?: Talk[]

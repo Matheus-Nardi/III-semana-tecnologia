@@ -382,9 +382,18 @@ export interface Edition {
          */
         date: string;
         /**
-         * Ex: Segunda-feira ou Todos os dias
+         * Dia da semana correspondente ou rascunho
          */
-        dayOfWeek: string;
+        dayOfWeek:
+          | 'Segunda-feira'
+          | 'Terça-feira'
+          | 'Quarta-feira'
+          | 'Quinta-feira'
+          | 'Sexta-feira'
+          | 'Sábado'
+          | 'Domingo'
+          | 'Todos os dias'
+          | 'A definir';
         /**
          * Ex: "Encontro Estadual das Licenciaturas", "XXXII Jornada de Iniciação Científica", "III SCTI", "Embrapa", etc.
          */
@@ -394,6 +403,10 @@ export interface Edition {
                * Ex: "Encontro Estadual das Licenciaturas da Unitins", "III SCTI", "III Circuito de Inovação"
                */
               name: string;
+              /**
+               * Cor dos accordions e badges deste eixo
+               */
+              color?: string | null;
               talks?:
                 | {
                     titulo: string;
@@ -413,12 +426,13 @@ export interface Edition {
                      * Conecta ao perfil detalhado com foto e biografia
                      */
                     speakerRef?: (number | null) | Speaker;
-                    /**
-                     * Ex: 120 ou 60
-                     */
                     vagas?: string | null;
                     /**
-                     * Ex: https://meet.google.com/... ou YouTube
+                     * Transmissão remota / EAD
+                     */
+                    isOnline?: boolean | null;
+                    /**
+                     * Link do Meet, YouTube ou Teams
                      */
                     meetLink?: string | null;
                     id?: string | null;
@@ -688,6 +702,7 @@ export interface EditionsSelect<T extends boolean = true> {
           | T
           | {
               name?: T;
+              color?: T;
               talks?:
                 | T
                 | {
@@ -697,6 +712,7 @@ export interface EditionsSelect<T extends boolean = true> {
                     palestrante?: T;
                     speakerRef?: T;
                     vagas?: T;
+                    isOnline?: T;
                     meetLink?: T;
                     id?: T;
                   };

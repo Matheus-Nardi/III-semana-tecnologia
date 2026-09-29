@@ -287,6 +287,7 @@ export async function seed(existingPayload?: Payload) {
 
   type ScheduleEvent = {
     name: string
+    color?: string
     talks: ScheduleTalk[]
   }
 
@@ -295,7 +296,7 @@ export async function seed(existingPayload?: Payload) {
       if (dateKey === 'lastUpdate') return null
       const meta = dateMapping[dateKey] || {
         date: dateKey,
-        dayOfWeek: 'Programação',
+        dayOfWeek: 'Segunda-feira',
       }
 
       const dayEvents: ScheduleEvent[] = []
@@ -331,13 +332,26 @@ export async function seed(existingPayload?: Payload) {
 
         dayEvents.push({
           name: eventName,
+          color: '#083D77',
           talks,
         })
       })
 
+      const isOnline = meta.date.toLowerCase().includes('online') || meta.dayOfWeek.toLowerCase().includes('ead')
+
       return {
         date: meta.date,
-        dayOfWeek: meta.dayOfWeek,
+        dayOfWeek: meta.dayOfWeek as
+          | 'Segunda-feira'
+          | 'Terça-feira'
+          | 'Quarta-feira'
+          | 'Quinta-feira'
+          | 'Sexta-feira'
+          | 'Sábado'
+          | 'Domingo'
+          | 'Todos os dias'
+          | 'A definir',
+        isOnline,
         events: dayEvents,
       }
     })
