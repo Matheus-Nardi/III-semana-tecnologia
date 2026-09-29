@@ -7,6 +7,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { pt } from '@payloadcms/translations/languages/pt'
 import { en } from '@payloadcms/translations/languages/en'
+import { mcpPlugin } from '@payloadcms/plugin-mcp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'

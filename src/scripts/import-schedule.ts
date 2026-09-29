@@ -7,6 +7,7 @@ import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
 import { parseScheduleCsv, type ParsedDay } from './parse-csv-schedule'
+import { getDefaultEventColor } from '@/lib/event-colors'
 
 /**
  * Extrai o nome limpo e opcionalmente a instituição de strings como:
@@ -143,7 +144,7 @@ export async function importSchedule(options?: {
 
       formattedEvents.push({
         name: event.name,
-        color: (event as { color?: string }).color || '#083D77',
+        color: (event as { color?: string }).color || getDefaultEventColor(event.name),
         talks: formattedTalks,
       })
     }

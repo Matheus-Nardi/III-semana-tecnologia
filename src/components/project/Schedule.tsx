@@ -634,7 +634,7 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                               🌐 Online
                                             </span>
                                           )}
-                                          {talk.meetLink && (
+                                          {talk.isOnline && talk.meetLink && (
                                             <a
                                               href={talk.meetLink}
                                               target="_blank"
@@ -716,7 +716,7 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                       🌐 Online
                                     </span>
                                   )}
-                                  {item.talk.meetLink && (
+                                  {item.talk.isOnline && item.talk.meetLink && (
                                     <a
                                       href={item.talk.meetLink}
                                       target="_blank"

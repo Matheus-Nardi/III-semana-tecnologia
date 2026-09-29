@@ -1,12 +1,11 @@
 'use client'
-import React, { useState, useEffect, useTransition, memo } from 'react'
+import React, { useState, useEffect, memo } from 'react'
 import { useField } from '@payloadcms/ui'
 import type { CheckboxFieldClientProps } from 'payload'
 
 const SwitchFieldComponent: React.FC<CheckboxFieldClientProps> = (props) => {
   const { path, field, readOnly } = props
   const { value, setValue } = useField<boolean>({ path })
-  const [, startTransition] = useTransition()
 
   const isChecked = Boolean(value)
   const [localChecked, setLocalChecked] = useState(isChecked)
@@ -16,22 +15,16 @@ const SwitchFieldComponent: React.FC<CheckboxFieldClientProps> = (props) => {
   }, [value])
 
   const label = typeof field.label === 'string' ? field.label : 'É online?'
-  const description = typeof field.admin?.description === 'string' ? field.admin.description : undefined
 
   const handleToggle = () => {
     if (readOnly) return
     const nextVal = !localChecked
-    // Feedback visual imediato a 60 FPS na GPU (0ms de latência)
     setLocalChecked(nextVal)
-    // Despacha a gravação do formulário de forma não-bloqueante
-    startTransition(() => {
-      setValue(nextVal)
-    })
+    setValue(nextVal)
   }
 
   return (
     <div style={{ marginBottom: '1.25rem' }}>
-      {/* 1. Label no topo: alinhada no mesmo eixo horizontal que as labels dos inputs vizinhos */}
       <div style={{ marginBottom: '0.5rem', minHeight: '1.25rem', display: 'flex', alignItems: 'center' }}>
         <label
           onClick={handleToggle}
@@ -47,15 +40,7 @@ const SwitchFieldComponent: React.FC<CheckboxFieldClientProps> = (props) => {
         </label>
       </div>
 
-      {/* 2. Área do controle: altura de 40px idêntica à dos inputs de texto para nivelamento perfeito no eixo X */}
-      <div
-        style={{
-          height: '40px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.65rem',
-        }}
-      >
+      <div style={{ height: '40px', display: 'flex', alignItems: 'center' }}>
         <button
           type="button"
           role="switch"
@@ -92,27 +77,7 @@ const SwitchFieldComponent: React.FC<CheckboxFieldClientProps> = (props) => {
             }}
           />
         </button>
-
-        <span
-          onClick={handleToggle}
-          style={{
-            fontSize: '0.85rem',
-            fontWeight: 500,
-            color: localChecked ? 'var(--theme-primary-600, #083D77)' : 'var(--theme-elevation-600, #64748b)',
-            cursor: readOnly ? 'not-allowed' : 'pointer',
-            userSelect: 'none',
-          }}
-        >
-          {localChecked ? 'Sim' : 'Não'}
-        </span>
       </div>
-
-      {/* 3. Descrição inferior alinhada */}
-      {description && (
-        <p style={{ fontSize: '0.75rem', color: 'var(--theme-elevation-500, #64748b)', marginTop: '0.35rem', marginBottom: 0 }}>
-          {description}
-        </p>
-      )}
     </div>
   )
 }

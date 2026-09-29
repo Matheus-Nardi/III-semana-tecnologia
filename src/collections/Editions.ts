@@ -499,7 +499,7 @@ export const Editions: CollectionConfig = {
                               required: true,
                               label: 'Horário de Início e Término',
                               admin: {
-                                width: '50%',
+                                width: '30%',
                                 description: 'Ex: 8h30 - 11h ou 14h - 17h',
                               },
                             },
@@ -511,6 +511,15 @@ export const Editions: CollectionConfig = {
                               admin: {
                                 width: '50%',
                                 description: 'Ex: Auditório Planeta Água ou Sala 4 - Bloco B',
+                              },
+                            },
+                            {
+                              name: 'vagas',
+                              type: 'text',
+                              label: 'Capacidade / Vagas',
+                              admin: {
+                                width: '20%',
+                                placeholder: 'Ex: 120',
                               },
                             },
                           ],
@@ -543,22 +552,12 @@ export const Editions: CollectionConfig = {
                           type: 'row',
                           fields: [
                             {
-                              name: 'vagas',
-                              type: 'text',
-                              label: 'Capacidade / Vagas',
-                              admin: {
-                                width: '30%',
-                                placeholder: 'Ex: 120',
-                              },
-                            },
-                            {
                               name: 'isOnline',
                               type: 'checkbox',
                               defaultValue: false,
                               label: 'É online?',
                               admin: {
-                                width: '25%',
-                                description: 'Transmissão remota / EAD',
+                                width: '20%',
                                 components: {
                                   Field: '@/components/payload/SwitchField#SwitchField',
                                 },
@@ -567,11 +566,13 @@ export const Editions: CollectionConfig = {
                             {
                               name: 'meetLink',
                               type: 'text',
-                              label: 'Link da Transmissão (se houver)',
+                              label: 'Link da Transmissão',
                               admin: {
-                                width: '45%',
-                                placeholder: 'https://meet.google.com/...',
-                                description: 'Link do Meet, YouTube ou Teams',
+                                width: '80%',
+                                placeholder: 'https://meet.google.com/... ou https://youtube.com/live/...',
+                                components: {
+                                  Field: '@/components/payload/MeetLinkField#MeetLinkField',
+                                },
                               },
                             },
                           ],

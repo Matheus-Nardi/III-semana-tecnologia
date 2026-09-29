@@ -418,6 +418,7 @@ export interface Edition {
                      * Ex: Auditório Planeta Água ou Sala 4 - Bloco B
                      */
                     local: string;
+                    vagas?: string | null;
                     /**
                      * Ex: Arthur Igreja ou Prof.ª Dr.ª Raquel Aparecida Marra
                      */
@@ -426,14 +427,7 @@ export interface Edition {
                      * Conecta ao perfil detalhado com foto e biografia
                      */
                     speakerRef?: (number | null) | Speaker;
-                    vagas?: string | null;
-                    /**
-                     * Transmissão remota / EAD
-                     */
                     isOnline?: boolean | null;
-                    /**
-                     * Link do Meet, YouTube ou Teams
-                     */
                     meetLink?: string | null;
                     id?: string | null;
                   }[]
@@ -709,9 +703,9 @@ export interface EditionsSelect<T extends boolean = true> {
                     titulo?: T;
                     horario?: T;
                     local?: T;
+                    vagas?: T;
                     palestrante?: T;
                     speakerRef?: T;
-                    vagas?: T;
                     isOnline?: T;
                     meetLink?: T;
                     id?: T;

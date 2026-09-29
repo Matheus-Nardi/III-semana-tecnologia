@@ -2,6 +2,7 @@ import type { Payload } from 'payload'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import scheduleData from '../data/schedule.json'
+import { getDefaultEventColor } from '@/lib/event-colors'
 import fs from 'fs'
 import path from 'path'
 
@@ -332,7 +333,7 @@ export async function seed(existingPayload?: Payload) {
 
         dayEvents.push({
           name: eventName,
-          color: '#083D77',
+          color: getDefaultEventColor(eventName),
           talks,
         })
       })
