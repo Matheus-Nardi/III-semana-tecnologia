@@ -139,6 +139,61 @@ const eventColors: Record<string, { primary: string; secondary: string; accent: 
     secondary: "bg-yellow-50",
     accent: "border-yellow-500",
     text: "text-yellow-700"
+  },
+  // Edição 2026
+  "IV Circuito de Inovação": {
+    primary: "bg-purple-600",
+    secondary: "bg-purple-50",
+    accent: "border-purple-500",
+    text: "text-purple-700"
+  },
+  "XXXIII Jornada de Iniciação Científica": {
+    primary: "bg-emerald-600",
+    secondary: "bg-emerald-50",
+    accent: "border-emerald-500",
+    text: "text-emerald-700"
+  },
+  "PALESTRA MAGNA": {
+    primary: "bg-amber-600",
+    secondary: "bg-amber-50",
+    accent: "border-amber-500",
+    text: "text-amber-700"
+  },
+  "V Semana Acadêmica do Curso de Engenharia Agrônomica - TocaInovAgro Unitins": {
+    primary: "bg-lime-600",
+    secondary: "bg-lime-50",
+    accent: "border-lime-500",
+    text: "text-lime-700"
+  },
+  "Jornada Acadêmica dos Cursos de SI e TADS": {
+    primary: "bg-pink-600",
+    secondary: "bg-pink-50",
+    accent: "border-pink-500",
+    text: "text-pink-700"
+  },
+  "Fórum Interdisciplinar de Saúde Integral": {
+    primary: "bg-cyan-600",
+    secondary: "bg-cyan-50",
+    accent: "border-cyan-500",
+    text: "text-cyan-700"
+  },
+  "II Edição do Fórum de Gestão dos Grupos de Pesquisa e da Mostra de Projetos de Pesquisa da Unitins": {
+    primary: "bg-indigo-600",
+    secondary: "bg-indigo-50",
+    accent: "border-indigo-500",
+    text: "text-indigo-700"
+  },
+  "X Colóquio Interdisciplinar de Ensino, Pesquisa e Extensão": {
+    primary: "bg-sky-600",
+    secondary: "bg-sky-50",
+    accent: "border-sky-500",
+    text: "text-sky-700"
+  },
+  "III Mostra de Ciências da Vida — Anatomia, Ciência e Inovação: aproximando estudantes da educação básica às profissões da saúde": {
+    primary: "bg-orange-600",
+    secondary: "bg-orange-50",
+    accent: "border-orange-500",
+    text: "text-orange-700"
   }
 };
 

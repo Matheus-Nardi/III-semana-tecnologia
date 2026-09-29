@@ -21,7 +21,10 @@
     "docker:prod:down": "docker compose -f docker-compose.prod.yml down",
     "docker:prod:logs": "docker compose -f docker-compose.prod.yml logs -f",
     "docker:backup": "./scripts/backup.sh",
-    "docker:restore": "./scripts/restore.sh"
+    "docker:restore": "./scripts/restore.sh",
+    "parse:schedule:2026": "tsx src/scripts/parse-csv-schedule.ts",
+    "import:schedule": "tsx src/scripts/import-schedule.ts",
+    "import:schedule:2026": "tsx src/scripts/import-schedule.ts --year 2026 --file src/data/raw/2026/programacao-2026.csv"
   },
   "dependencies": {
     "@payloadcms/db-postgres": "^3.88.0",
@@ -37,6 +40,7 @@
     "cheerio": "^1.2.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "csv-parse": "^7.0.3",
     "dotenv": "^16.4.7",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-react": "^8.6.0",
