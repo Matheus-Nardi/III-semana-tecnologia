@@ -64,6 +64,7 @@ export type SupportedTimezones =
 export interface Config {
   auth: {
     users: UserAuthOperations;
+    'payload-mcp-api-keys': PayloadMcpApiKeyAuthOperations;
   };
   blocks: {};
   collections: {
@@ -72,6 +73,7 @@ export interface Config {
     speakers: Speaker;
     partners: Partner;
     editions: Edition;
+    'payload-mcp-api-keys': PayloadMcpApiKey;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -84,6 +86,7 @@ export interface Config {
     speakers: SpeakersSelect<false> | SpeakersSelect<true>;
     partners: PartnersSelect<false> | PartnersSelect<true>;
     editions: EditionsSelect<false> | EditionsSelect<true>;
+    'payload-mcp-api-keys': PayloadMcpApiKeysSelect<false> | PayloadMcpApiKeysSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -99,13 +102,31 @@ export interface Config {
   widgets: {
     collections: CollectionsWidget;
   };
-  user: User;
+  user: User | PayloadMcpApiKey;
   jobs: {
     tasks: unknown;
     workflows: unknown;
   };
 }
 export interface UserAuthOperations {
+  forgotPassword: {
+    email: string;
+    password: string;
+  };
+  login: {
+    email: string;
+    password: string;
+  };
+  registerFirstUser: {
+    email: string;
+    password: string;
+  };
+  unlock: {
+    email: string;
+    password: string;
+  };
+}
+export interface PayloadMcpApiKeyAuthOperations {
   forgotPassword: {
     email: string;
     password: string;
@@ -382,9 +403,18 @@ export interface Edition {
          */
         date: string;
         /**
-         * Ex: Segunda-feira ou Todos os dias
+         * Dia da semana correspondente ou rascunho
          */
-        dayOfWeek: string;
+        dayOfWeek:
+          | 'Segunda-feira'
+          | 'Terça-feira'
+          | 'Quarta-feira'
+          | 'Quinta-feira'
+          | 'Sexta-feira'
+          | 'Sábado'
+          | 'Domingo'
+          | 'Todos os dias'
+          | 'A definir';
         /**
          * Ex: "Encontro Estadual das Licenciaturas", "XXXII Jornada de Iniciação Científica", "III SCTI", "Embrapa", etc.
          */
@@ -394,6 +424,10 @@ export interface Edition {
                * Ex: "Encontro Estadual das Licenciaturas da Unitins", "III SCTI", "III Circuito de Inovação"
                */
               name: string;
+              /**
+               * Cor dos accordions e badges deste eixo
+               */
+              color?: string | null;
               talks?:
                 | {
                     titulo: string;
@@ -405,6 +439,7 @@ export interface Edition {
                      * Ex: Auditório Planeta Água ou Sala 4 - Bloco B
                      */
                     local: string;
+                    vagas?: string | null;
                     /**
                      * Ex: Arthur Igreja ou Prof.ª Dr.ª Raquel Aparecida Marra
                      */
@@ -413,13 +448,7 @@ export interface Edition {
                      * Conecta ao perfil detalhado com foto e biografia
                      */
                     speakerRef?: (number | null) | Speaker;
-                    /**
-                     * Ex: 120 ou 60
-                     */
-                    vagas?: string | null;
-                    /**
-                     * Ex: https://meet.google.com/... ou YouTube
-                     */
+                    isOnline?: boolean | null;
                     meetLink?: string | null;
                     id?: string | null;
                   }[]
@@ -450,6 +479,107 @@ export interface Edition {
   };
   updatedAt: string;
   createdAt: string;
+}
+/**
+ * API keys control which collections, resources, tools, and prompts MCP clients can access
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-mcp-api-keys".
+ */
+export interface PayloadMcpApiKey {
+  id: number;
+  /**
+   * The user that the API key is associated with.
+   */
+  user: number | User;
+  /**
+   * A useful label for the API key.
+   */
+  label?: string | null;
+  /**
+   * The purpose of the API key.
+   */
+  description?: string | null;
+  editions?: {
+    /**
+     * Allow clients to find editions.
+     */
+    find?: boolean | null;
+    /**
+     * Allow clients to create editions.
+     */
+    create?: boolean | null;
+    /**
+     * Allow clients to update editions.
+     */
+    update?: boolean | null;
+    /**
+     * Allow clients to delete editions.
+     */
+    delete?: boolean | null;
+  };
+  speakers?: {
+    /**
+     * Allow clients to find speakers.
+     */
+    find?: boolean | null;
+    /**
+     * Allow clients to create speakers.
+     */
+    create?: boolean | null;
+    /**
+     * Allow clients to update speakers.
+     */
+    update?: boolean | null;
+    /**
+     * Allow clients to delete speakers.
+     */
+    delete?: boolean | null;
+  };
+  partners?: {
+    /**
+     * Allow clients to find partners.
+     */
+    find?: boolean | null;
+    /**
+     * Allow clients to create partners.
+     */
+    create?: boolean | null;
+    /**
+     * Allow clients to update partners.
+     */
+    update?: boolean | null;
+    /**
+     * Allow clients to delete partners.
+     */
+    delete?: boolean | null;
+  };
+  media?: {
+    /**
+     * Allow clients to find media.
+     */
+    find?: boolean | null;
+    /**
+     * Allow clients to create media.
+     */
+    create?: boolean | null;
+    /**
+     * Allow clients to update media.
+     */
+    update?: boolean | null;
+  };
+  users?: {
+    /**
+     * Allow clients to find users.
+     */
+    find?: boolean | null;
+  };
+  updatedAt: string;
+  createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
+  collection: 'payload-mcp-api-keys';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -494,12 +624,21 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'editions';
         value: number | Edition;
+      } | null)
+    | ({
+        relationTo: 'payload-mcp-api-keys';
+        value: number | PayloadMcpApiKey;
       } | null);
   globalSlug?: string | null;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: number | User;
+      }
+    | {
+        relationTo: 'payload-mcp-api-keys';
+        value: number | PayloadMcpApiKey;
+      };
   updatedAt: string;
   createdAt: string;
 }
@@ -509,10 +648,15 @@ export interface PayloadLockedDocument {
  */
 export interface PayloadPreference {
   id: number;
-  user: {
-    relationTo: 'users';
-    value: number | User;
-  };
+  user:
+    | {
+        relationTo: 'users';
+        value: number | User;
+      }
+    | {
+        relationTo: 'payload-mcp-api-keys';
+        value: number | PayloadMcpApiKey;
+      };
   key?: string | null;
   value?:
     | {
@@ -688,15 +832,17 @@ export interface EditionsSelect<T extends boolean = true> {
           | T
           | {
               name?: T;
+              color?: T;
               talks?:
                 | T
                 | {
                     titulo?: T;
                     horario?: T;
                     local?: T;
+                    vagas?: T;
                     palestrante?: T;
                     speakerRef?: T;
-                    vagas?: T;
+                    isOnline?: T;
                     meetLink?: T;
                     id?: T;
                   };
@@ -720,6 +866,56 @@ export interface EditionsSelect<T extends boolean = true> {
       };
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "payload-mcp-api-keys_select".
+ */
+export interface PayloadMcpApiKeysSelect<T extends boolean = true> {
+  user?: T;
+  label?: T;
+  description?: T;
+  editions?:
+    | T
+    | {
+        find?: T;
+        create?: T;
+        update?: T;
+        delete?: T;
+      };
+  speakers?:
+    | T
+    | {
+        find?: T;
+        create?: T;
+        update?: T;
+        delete?: T;
+      };
+  partners?:
+    | T
+    | {
+        find?: T;
+        create?: T;
+        update?: T;
+        delete?: T;
+      };
+  media?:
+    | T
+    | {
+        find?: T;
+        create?: T;
+        update?: T;
+      };
+  users?:
+    | T
+    | {
+        find?: T;
+      };
+  updatedAt?: T;
+  createdAt?: T;
+  enableAPIKey?: T;
+  apiKey?: T;
+  apiKeyIndex?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -1,19 +1,25 @@
+'use client';
+
 import React from 'react';
 import { Linkedin, Instagram, Github } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import type { Edition } from '@/lib/content';
 
 export default function Footer({ edition }: { edition?: Edition }) {
+  const pathname = usePathname();
   const shortTitle = edition?.shortTitle || 'III Semana de Tecnologia';
   const registrationUrl = edition?.registrationUrl || 'https://www.unitins.br/Eventos/E007Evento/Abertos';
+  const editionSlug = edition?.slug || '2025';
+  const isCurrentEditionPage = pathname === `/${editionSlug}` || (pathname === '/' && (edition?.isDefault ?? true));
 
   const navLinks = [
-    { text: 'Início', href: '#' },
-    { text: 'Sobre', href: '#sobre' },
-    { text: 'Programação', href: '#programacao' },
-    { text: 'Parceiros', href: '#parceiros' },
-    { text: 'Notícias', href: '#noticias' },
+    { text: 'Início', href: isCurrentEditionPage ? '#' : `/${editionSlug}` },
+    { text: 'Sobre', href: isCurrentEditionPage ? '#sobre' : `/${editionSlug}#sobre` },
+    { text: 'Programação', href: isCurrentEditionPage ? '#programacao' : `/${editionSlug}#programacao` },
+    { text: 'Parceiros', href: isCurrentEditionPage ? '#parceiros' : `/${editionSlug}#parceiros` },
+    { text: 'Notícias', href: isCurrentEditionPage ? '#noticias' : `/${editionSlug}#noticias` },
     { text: 'Edições', href: '/edicoes' },
     { text: 'Inscrições', href: registrationUrl },
   ];
@@ -75,18 +81,30 @@ export default function Footer({ edition }: { edition?: Edition }) {
               Links Rápidos
             </h3>
             <ul className="space-y-2 grid grid-cols-2 gap-0">
-              {navLinks.map((link) => (
-                <li key={link.text} className="flex justify-center">
-                  <a
-                    href={link.href}
-                    target={link.href.startsWith('http') ? '_blank' : '_self'}
-                    rel={link.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                    className="group inline-flex items-start gap-2 text-primary hover:text-[var(--color-accent,#e2187f)] transition-colors duration-300 text-sm"
-                  >
-                    <span className="inline-block">{link.text}</span>
-                  </a>
-                </li>
-              ))}
+              {navLinks.map((link) => {
+                const isExternal = link.href.startsWith('http');
+                return (
+                  <li key={link.text} className="flex justify-center">
+                    {isExternal ? (
+                      <a
+                        href={link.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="group inline-flex items-start gap-2 text-primary hover:text-[var(--color-accent,#e2187f)] transition-colors duration-300 text-sm"
+                      >
+                        <span className="inline-block">{link.text}</span>
+                      </a>
+                    ) : (
+                      <Link
+                        href={link.href}
+                        className="group inline-flex items-start gap-2 text-primary hover:text-[var(--color-accent,#e2187f)] transition-colors duration-300 text-sm"
+                      >
+                        <span className="inline-block">{link.text}</span>
+                      </Link>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

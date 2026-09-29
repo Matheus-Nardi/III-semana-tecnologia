@@ -55,7 +55,7 @@ export default function News() {
 
   if (loading) {
     return (
-      <section className="py-12 sm:py-16 bg-white">
+      <section id="noticias" className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Loader2 className="animate-spin mx-auto text-blue-600 mb-4" size={48} />
@@ -68,7 +68,7 @@ export default function News() {
 
   if (error) {
     return (
-      <section className="py-12 sm:py-16 bg-white">
+      <section id="noticias" className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <AlertCircle className="mx-auto text-red-500 mb-4" size={48} />
@@ -90,7 +90,7 @@ export default function News() {
   }
 
   return (
-    <section id='noticias' className="py-16 bg-white">
+    <section id="noticias" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start mb-12">
           {/* Cabeçalho */}

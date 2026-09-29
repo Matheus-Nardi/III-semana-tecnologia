@@ -1,0 +1,270 @@
+/* =====================================================
+   UNITINS — Identidade Visual do Painel Administrativo
+   Payload CMS 3 — Suporte aos temas Claro e Escuro
+   Paleta: #18428F | #0511F2 | #FDB813 | #000000
+   ===================================================== */
+
+/* ---------------------------------------------------
+   TEMA CLARO (Default / [data-theme='light'])
+   --------------------------------------------------- */
+:root,
+[data-theme='light'] {
+  --theme-success-500: #18428F;
+  --theme-elevation-900: #18428F;
+}
+
+/* Botão de ação primária (Salvar / Criar / Publicar) */
+.btn--style-primary {
+  background-color: #18428F !important;
+  color: #ffffff !important;
+  transition: filter 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn--style-primary:hover:not(:disabled) {
+  filter: brightness(1.12);
+  box-shadow: 0 4px 12px rgba(5, 17, 242, 0.25);
+}
+
+/* Links do menu e estados ativos */
+.nav__link {
+  font-size: 0.9375rem !important;
+}
+
+.nav__link--active,
+.nav__link:hover {
+  color: #FDB813 !important;
+}
+
+/* Accent dourado em pills e badges */
+.pill--style-success,
+.chip--style-success {
+  background-color: #FDB813 !important;
+  color: #000000 !important;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------
+   BRAND / LOGO (Tela de Login e Barra Lateral)
+   --------------------------------------------------- */
+.admin-brand {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+  text-decoration: none;
+}
+
+.admin-brand__logo {
+  width: 146px;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.admin-brand__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #18428F;
+  margin: 0;
+  line-height: 1.25;
+}
+
+/* Na barra lateral (.nav), alinhar à esquerda com ajuste proporcional */
+.nav .admin-brand {
+  align-items: flex-start;
+  gap: 0.375rem;
+}
+
+.nav .admin-brand__logo {
+  width: 130px;
+}
+
+.nav .admin-brand__title {
+  font-size: 0.8125rem;
+  color: #18428F;
+}
+
+[data-theme='dark'] .nav .admin-brand__title,
+[data-theme='dark'] .admin-brand__title {
+  color: #93C5FD;
+}
+
+/* Borda lateral com detalhe sutil em dourado */
+.nav {
+  border-right: 2px solid rgba(253, 184, 19, 0.25) !important;
+}
+
+/* ---------------------------------------------------
+   TEMA ESCURO ([data-theme='dark']) — ALTO CONTRASTE
+   --------------------------------------------------- */
+[data-theme='dark'] {
+  --theme-text: #f8fafc;
+  --theme-elevation-50: #0e1628;
+  --theme-elevation-100: #141f38;
+  --theme-elevation-150: #1a2845;
+  --theme-success-500: #1d4ed8;
+}
+
+[data-theme='dark'] .nav__link {
+  color: #cbd5e1 !important;
+}
+
+[data-theme='dark'] .nav__link--active,
+[data-theme='dark'] .nav__link:hover {
+  color: #FDB813 !important;
+}
+
+[data-theme='dark'] .btn--style-primary {
+  background-color: #1d4ed8 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+[data-theme='dark'] .btn--style-primary:hover:not(:disabled) {
+  filter: brightness(1.15);
+  box-shadow: 0 4px 14px rgba(29, 78, 216, 0.45);
+}
+
+[data-theme='dark'] .nav {
+  border-right: 2px solid rgba(253, 184, 19, 0.22) !important;
+}
+
+/* Campos de formulário com raio uniforme */
+.form-field__wrap,
+.field-type.text .field-type__wrap {
+  border-radius: 8px;
+}
+
+/* ---------------------------------------------------
+   BANNER INSTITUCIONAL DO DASHBOARD (Acessibilidade & Escala)
+   --------------------------------------------------- */
+.admin-brief-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.75rem;
+  padding: 1.5rem 1.75rem;
+  margin-bottom: 2.25rem;
+  background-color: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-left: 4px solid #18428F;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.admin-brief-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.admin-brief-banner__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #18428F;
+}
+
+.admin-brief-banner__title {
+  font-size: 1.35rem; /* ~21.6px - título destacado e nítido */
+  font-weight: 700;
+  line-height: 1.35;
+  color: #0f172a; /* Slate 900 */
+  margin: 0;
+}
+
+.admin-brief-banner__text {
+  font-size: 0.975rem; /* ~15.6px - leitura confortável */
+  line-height: 1.55;
+  color: #334155; /* Slate 700 */
+  margin: 0;
+}
+
+.admin-brief-banner__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.65rem 1.125rem;
+  font-size: 0.9375rem; /* 15px */
+  font-weight: 600;
+  color: #0f172a;
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+}
+
+.admin-brief-banner__action:hover {
+  background-color: #f1f5f9;
+  border-color: #94a3b8;
+  color: #000000;
+}
+
+.admin-brief-banner__action svg {
+  width: 16px;
+  height: 16px;
+  color: #475569;
+  transition: transform 0.15s ease, color 0.15s ease;
+}
+
+.admin-brief-banner__action:hover svg {
+  transform: translate(1px, -1px);
+  color: #000000;
+}
+
+/* TEMA ESCURO DO BANNER — ALTO CONTRASTE */
+[data-theme='dark'] .admin-brief-banner {
+  background-color: #111a2e;
+  border: 1px solid #2d3f66;
+  border-left: 4px solid #FDB813;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+[data-theme='dark'] .admin-brief-banner__tag {
+  color: #FDB813;
+}
+
+[data-theme='dark'] .admin-brief-banner__title {
+  color: #FFFFFF;
+}
+
+[data-theme='dark'] .admin-brief-banner__text {
+  color: #E2E8F0;
+}
+
+[data-theme='dark'] .admin-brief-banner__action {
+  color: #FFFFFF;
+  background-color: #1b2845;
+  border: 1px solid #3b4e78;
+}
+
+[data-theme='dark'] .admin-brief-banner__action:hover {
+  background-color: #24355a;
+  border-color: #60a5fa;
+  color: #FFFFFF;
+}
+
+[data-theme='dark'] .admin-brief-banner__action svg {
+  color: #94a3b8;
+}
+
+[data-theme='dark'] .admin-brief-banner__action:hover svg {
+  color: #FFFFFF;
+}
+
+@media (max-width: 640px) {
+  .admin-brief-banner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
+    padding: 1.25rem;
+  }
+}

@@ -21,12 +21,14 @@ interface ScheduleActivity {
   local: string;
   palestrante: string;
   vagas: string;
+  isOnline?: boolean;
   meetLink?: string;
 }
 
 interface Event {
   id: string;
   name: string;
+  color?: string;
   talks: ScheduleActivity[];
 }
 
@@ -139,15 +141,115 @@ const eventColors: Record<string, { primary: string; secondary: string; accent: 
     secondary: "bg-yellow-50",
     accent: "border-yellow-500",
     text: "text-yellow-700"
+  },
+  // Edição 2026
+  "IV Circuito de Inovação": {
+    primary: "bg-purple-600",
+    secondary: "bg-purple-50",
+    accent: "border-purple-500",
+    text: "text-purple-700"
+  },
+  "XXXIII Jornada de Iniciação Científica": {
+    primary: "bg-emerald-600",
+    secondary: "bg-emerald-50",
+    accent: "border-emerald-500",
+    text: "text-emerald-700"
+  },
+  "PALESTRA MAGNA": {
+    primary: "bg-amber-600",
+    secondary: "bg-amber-50",
+    accent: "border-amber-500",
+    text: "text-amber-700"
+  },
+  "V Semana Acadêmica do Curso de Engenharia Agrônomica - TocaInovAgro Unitins": {
+    primary: "bg-lime-600",
+    secondary: "bg-lime-50",
+    accent: "border-lime-500",
+    text: "text-lime-700"
+  },
+  "Jornada Acadêmica dos Cursos de SI e TADS": {
+    primary: "bg-pink-600",
+    secondary: "bg-pink-50",
+    accent: "border-pink-500",
+    text: "text-pink-700"
+  },
+  "Fórum Interdisciplinar de Saúde Integral": {
+    primary: "bg-cyan-600",
+    secondary: "bg-cyan-50",
+    accent: "border-cyan-500",
+    text: "text-cyan-700"
+  },
+  "II Edição do Fórum de Gestão dos Grupos de Pesquisa e da Mostra de Projetos de Pesquisa da Unitins": {
+    primary: "bg-indigo-600",
+    secondary: "bg-indigo-50",
+    accent: "border-indigo-500",
+    text: "text-indigo-700"
+  },
+  "X Colóquio Interdisciplinar de Ensino, Pesquisa e Extensão": {
+    primary: "bg-sky-600",
+    secondary: "bg-sky-50",
+    accent: "border-sky-500",
+    text: "text-sky-700"
+  },
+  "III Mostra de Ciências da Vida — Anatomia, Ciência e Inovação: aproximando estudantes da educação básica às profissões da saúde": {
+    primary: "bg-orange-600",
+    secondary: "bg-orange-50",
+    accent: "border-orange-500",
+    text: "text-orange-700"
   }
 };
 
-const getEventColors = (eventName: string) => {
-  return eventColors[eventName] || {
+const getEventTheme = (eventName: string, customColor?: string) => {
+  const fallback = eventColors[eventName];
+  const isValidHex = customColor && /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(customColor);
+
+  if (isValidHex) {
+    const hex = customColor;
+    return {
+      isCustom: true,
+      classes: {
+        primary: "",
+        secondary: "",
+        accent: "",
+        text: "",
+      },
+      styles: {
+        accordionItem: { backgroundColor: `${hex}0d` } as React.CSSProperties,
+        cardBorder: { borderLeftColor: hex } as React.CSSProperties,
+        title: { color: hex } as React.CSSProperties,
+        badge: { backgroundColor: hex, color: "#ffffff" } as React.CSSProperties,
+        chevron: { color: hex } as React.CSSProperties,
+        talkBorder: { borderColor: `${hex}33` } as React.CSSProperties,
+        talkIcon: { color: hex } as React.CSSProperties,
+        timePill: {
+          color: hex,
+          backgroundColor: `${hex}14`,
+          borderColor: `${hex}40`,
+        } as React.CSSProperties,
+      },
+    };
+  }
+
+  const defaultClasses = fallback || {
     primary: "bg-primary",
     secondary: "bg-primary/5",
     accent: "border-primary",
-    text: "text-primary"
+    text: "text-primary",
+  };
+
+  return {
+    isCustom: false,
+    classes: defaultClasses,
+    styles: {
+      accordionItem: {} as React.CSSProperties,
+      cardBorder: {} as React.CSSProperties,
+      title: {} as React.CSSProperties,
+      badge: {} as React.CSSProperties,
+      chevron: {} as React.CSSProperties,
+      talkBorder: {} as React.CSSProperties,
+      talkIcon: {} as React.CSSProperties,
+      timePill: {} as React.CSSProperties,
+    },
   };
 };
 
@@ -163,15 +265,24 @@ const dateMapping: Record<string, { date: string; dayOfWeek: string }> = {
 export default function Schedule({ edition }: { edition?: Edition }) {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
-  const formatLastUpdate = (dateString: string) => {
-    const date = new Date(dateString);
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = (date.getMonth() + 1).toString().padStart(2, '0');
-    const year = date.getFullYear();
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-
-    return `${day}/${month}/${year} às ${hours}:${minutes}`;
+  const formatLastUpdate = (dateString?: string) => {
+    if (!dateString) return "";
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) return dateString;
+      return new Intl.DateTimeFormat("pt-BR", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        timeZone: "America/Sao_Paulo",
+      })
+        .format(date)
+        .replace(",", " às");
+    } catch {
+      return dateString;
+    }
   };
 
   const schedule: DaySchedule[] = useMemo(() => {
@@ -197,15 +308,18 @@ export default function Schedule({ edition }: { edition?: Edition }) {
           return {
             date: dayEntry.date,
             dayOfWeek: dayEntry.dayOfWeek,
+            isOnline: dayEntry.isOnline ?? false,
             events: sortedEvents.map((ev) => ({
               id: `event-${dayEntry.date}-${eventIdCounter++}`,
               name: ev.name,
+              color: ev.color,
               talks: (ev.talks || []).map((t) => ({
                 titulo: t.titulo,
                 horario: t.horario,
                 local: t.local,
                 palestrante: t.palestrante,
                 vagas: t.vagas || '',
+                isOnline: (t as { isOnline?: boolean }).isOnline ?? Boolean(t.meetLink),
                 meetLink: t.meetLink || undefined,
               })),
             })),
@@ -225,6 +339,7 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                 local: t.local,
                 palestrante: t.palestrante,
                 vagas: t.vagas || '',
+                isOnline: (t as { isOnline?: boolean }).isOnline ?? Boolean(t.meetLink),
                 meetLink: t.meetLink || undefined,
               })),
             },
@@ -351,7 +466,7 @@ export default function Schedule({ edition }: { edition?: Edition }) {
             </div>
             <p className="text-muted-foreground/70 font-poppins text-xs sm:text-sm mt-2 italic flex items-center justify-center lg:justify-start gap-1.5">
               <Clock className="w-3 h-3 sm:w-4 sm:h-4" aria-hidden="true" />
-              <span>Atualizado em: {formatLastUpdate(scheduleData.lastUpdate)}</span>
+              <span>Atualizado em: {formatLastUpdate(edition?.updatedAt || scheduleData.lastUpdate)}</span>
             </p>
             <div className="mt-4 flex items-center gap-2 justify-center lg:justify-start" role="group" aria-label="Alternar visualização da programação">
               <Button
@@ -460,25 +575,36 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                 {viewMode === "grouped" ? (
                   <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
                     {day.events.map((event) => {
-                      const colors = getEventColors(event.name);
+                      const eventTheme = getEventTheme(event.name, event.color);
                       return (
                         <AccordionItem
                           key={event.id}
                           value={event.id}
-                          className={`border-none rounded-xl overflow-hidden ${colors.secondary}`}
+                          className={`border-none rounded-xl overflow-hidden ${!eventTheme.isCustom ? eventTheme.classes.secondary : ''}`}
+                          style={eventTheme.styles.accordionItem}
                         >
-                          <Card className={`border-l-4 ${colors.accent} hover:shadow-lg transition-all duration-300 bg-transparent`}>
+                          <Card
+                            className={`border-l-4 ${!eventTheme.isCustom ? eventTheme.classes.accent : ''} hover:shadow-lg transition-all duration-300 bg-transparent`}
+                            style={eventTheme.styles.cardBorder}
+                          >
                             <AccordionTrigger className="hover:no-underline p-0 [&[data-state=open]_.chevron]:rotate-180 [&>svg]:hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-inset">
                               <CardHeader className={`py-4 sm:py-5 px-4 sm:px-6 w-full flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 sm:space-y-0`}>
-                                <CardTitle className={`text-base sm:text-lg font-semibold ${colors.text} text-left pr-2 sm:pr-4 font-montserrat leading-snug`}>
+                                <CardTitle
+                                  className={`text-base sm:text-lg font-semibold ${!eventTheme.isCustom ? eventTheme.classes.text : ''} text-left pr-2 sm:pr-4 font-montserrat leading-snug`}
+                                  style={eventTheme.styles.title}
+                                >
                                   {event.name}
                                 </CardTitle>
                                 <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0 w-full sm:w-auto justify-end">
-                                  <span className={`text-xs text-white ${colors.primary} px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-medium shadow-sm min-w-[90px] sm:min-w-[110px] text-center`}>
+                                  <span
+                                    className={`text-xs ${!eventTheme.isCustom ? `text-white ${eventTheme.classes.primary}` : ''} px-2 sm:px-3 py-1 sm:py-1.5 rounded-full font-medium shadow-sm min-w-[90px] sm:min-w-[110px] text-center`}
+                                    style={eventTheme.styles.badge}
+                                  >
                                     {event.talks.length} {event.talks.length === 1 ? "atividade" : "atividades"}
                                   </span>
                                   <svg
-                                    className={`chevron w-5 h-5 ${colors.text} transition-transform duration-200 flex-shrink-0`}
+                                    className={`chevron w-5 h-5 ${!eventTheme.isCustom ? eventTheme.classes.text : ''} transition-transform duration-200 flex-shrink-0`}
+                                    style={eventTheme.styles.chevron}
                                     fill="none"
                                     stroke="currentColor"
                                     viewBox="0 0 24 24"
@@ -495,7 +621,8 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                 {event.talks.map((talk, index) => (
                                   <div
                                     key={`${event.id}-talk-${index}`}
-                                    className={`flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border ${colors.accent} hover:shadow-md transition-all duration-300`}
+                                    className={`flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border ${!eventTheme.isCustom ? eventTheme.classes.accent : ''} hover:shadow-md transition-all duration-300`}
+                                    style={eventTheme.styles.talkBorder}
                                   >
                                     {/* Conteúdo Principal */}
                                     <div className="flex-1 min-w-0 w-full space-y-2">
@@ -508,10 +635,15 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                         </p>
                                       )}
                                       <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-xs sm:text-sm text-muted-foreground flex-wrap">
-                                        <div className="flex items-center gap-2">
-                                          <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${colors.text} flex-shrink-0`} aria-hidden="true" />
+                                        <div className="flex items-center gap-2 flex-wrap">
+                                          <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${!eventTheme.isCustom ? eventTheme.classes.text : ''} flex-shrink-0`} style={eventTheme.styles.talkIcon} aria-hidden="true" />
                                           <span>{talk.local}</span>
-                                          {talk.meetLink && (
+                                          {talk.isOnline && (
+                                            <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                                              🌐 Online
+                                            </span>
+                                          )}
+                                          {talk.isOnline && talk.meetLink && (
                                             <a
                                               href={talk.meetLink}
                                               target="_blank"
@@ -519,13 +651,13 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                               className="text-primary hover:underline inline-flex items-center gap-1 text-xs sm:text-sm font-medium"
                                             >
                                               <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
-                                              Acessar Meet
+                                              Acessar Transmissão
                                             </a>
                                           )}
                                         </div>
                                         {talk.vagas !== "Ilimitado" && talk.vagas !== "Não especificado" && talk.vagas !== "" && (
                                           <div className="flex items-center gap-2">
-                                            <Users className={`w-3 h-3 sm:w-4 sm:h-4 ${colors.text} flex-shrink-0`} aria-hidden="true" />
+                                            <Users className={`w-3 h-3 sm:w-4 sm:h-4 ${!eventTheme.isCustom ? eventTheme.classes.text : ''} flex-shrink-0`} style={eventTheme.styles.talkIcon} aria-hidden="true" />
                                             <span>{talk.vagas} vagas</span>
                                           </div>
                                         )}
@@ -534,7 +666,10 @@ export default function Schedule({ edition }: { edition?: Edition }) {
 
                                     {/* Horário */}
                                     <div className="flex-shrink-0 w-full sm:w-auto">
-                                      <div className={`flex items-center gap-1.5 ${colors.text} font-medium ${colors.secondary} px-3 py-2 rounded-lg border ${colors.accent} justify-center sm:justify-end`}>
+                                      <div
+                                        className={`flex items-center gap-1.5 ${!eventTheme.isCustom ? `${eventTheme.classes.text} ${eventTheme.classes.secondary} border ${eventTheme.classes.accent}` : ''} font-medium px-3 py-2 rounded-lg border justify-center sm:justify-end`}
+                                        style={eventTheme.styles.timePill}
+                                      >
                                         <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
                                         <span className="text-xs sm:text-sm whitespace-nowrap">{talk.horario}</span>
                                       </div>
@@ -555,6 +690,7 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                         event.talks.map((talk, idx) => ({
                           talk,
                           eventName: event.name,
+                          eventColor: event.color,
                           eventId: event.id,
                           order: idx,
                           start: parseStartMinutes(talk.horario),
@@ -562,11 +698,12 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                       )
                       .sort((a, b) => (a.start !== b.start ? a.start - b.start : a.order - b.order))
                       .map((item, i) => {
-                        const colors = getEventColors(item.eventName);
+                        const eventTheme = getEventTheme(item.eventName, item.eventColor);
                         return (
                           <div
                             key={`${item.eventId}-daily-${i}`}
-                            className={`flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border ${colors.accent} hover:shadow-md transition-all duration-300`}
+                            className={`flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4 p-3 sm:p-4 bg-white rounded-lg border ${!eventTheme.isCustom ? eventTheme.classes.accent : ''} hover:shadow-md transition-all duration-300`}
+                            style={eventTheme.styles.talkBorder}
                           >
                             <div className="flex-1 min-w-0 w-full space-y-2">
                               <div className="flex items-center justify-start gap-2">
@@ -580,10 +717,15 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                 </p>
                               )}
                               <div className="flex flex-col sm:flex-row sm:items-center gap-2 text-xs sm:text-sm text-muted-foreground flex-wrap">
-                                <div className="flex items-center gap-2">
-                                  <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${colors.text} flex-shrink-0`} aria-hidden="true" />
+                                <div className="flex items-center gap-2 flex-wrap">
+                                  <MapPin className={`w-3 h-3 sm:w-4 sm:h-4 ${!eventTheme.isCustom ? eventTheme.classes.text : ''} flex-shrink-0`} style={eventTheme.styles.talkIcon} aria-hidden="true" />
                                   <span>{item.talk.local}</span>
-                                  {item.talk.meetLink && (
+                                  {item.talk.isOnline && (
+                                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200">
+                                      🌐 Online
+                                    </span>
+                                  )}
+                                  {item.talk.isOnline && item.talk.meetLink && (
                                     <a
                                       href={item.talk.meetLink}
                                       target="_blank"
@@ -591,13 +733,13 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                       className="text-primary hover:underline inline-flex items-center gap-1 text-xs sm:text-sm font-medium"
                                     >
                                       <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
-                                      Acessar Meet
+                                      Acessar Transmissão
                                     </a>
                                   )}
                                 </div>
                                 {item.talk.vagas !== "Ilimitado" && item.talk.vagas !== "Não especificado" && item.talk.vagas !== "" && (
                                   <div className="flex items-center gap-2">
-                                    <Users className={`w-3 h-3 sm:w-4 sm:h-4 ${colors.text} flex-shrink-0`} aria-hidden="true" />
+                                    <Users className={`w-3 h-3 sm:w-4 sm:h-4 ${!eventTheme.isCustom ? eventTheme.classes.text : ''} flex-shrink-0`} style={eventTheme.styles.talkIcon} aria-hidden="true" />
                                     <span>{item.talk.vagas} vagas</span>
                                   </div>
                                 )}
@@ -605,7 +747,10 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                             </div>
 
                             <div className="flex-shrink-0 w-full sm:w-auto">
-                              <div className={`flex items-center gap-1.5 ${colors.text} font-medium ${colors.secondary} px-3 py-2 rounded-lg border ${colors.accent} justify-center sm:justify-end`}>
+                              <div
+                                className={`flex items-center gap-1.5 ${!eventTheme.isCustom ? `${eventTheme.classes.text} ${eventTheme.classes.secondary} border ${eventTheme.classes.accent}` : ''} font-medium px-3 py-2 rounded-lg border justify-center sm:justify-end`}
+                                style={eventTheme.styles.timePill}
+                              >
                                 <Clock className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" aria-hidden="true" />
                                 <span className="text-xs sm:text-sm whitespace-nowrap">{item.talk.horario}</span>
                               </div>

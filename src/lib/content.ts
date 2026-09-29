@@ -38,17 +38,20 @@ export interface Talk {
   palestrante: string
   speakerRef?: Speaker | null
   vagas?: string
+  isOnline?: boolean
   meetLink?: string
 }
 
 export interface ScheduleEvent {
   name: string
+  color?: string
   talks: Talk[]
 }
 
 export interface ScheduleDay {
   date: string
   dayOfWeek: string
+  isOnline?: boolean
   events?: ScheduleEvent[]
   eventName?: string
   talks?: Talk[]
@@ -98,6 +101,8 @@ export interface Edition {
     title?: string
     ctaLabel?: string
   }
+  updatedAt?: string
+  createdAt?: string
 }
 
 // Fallback padrão para a edição 2025 caso o banco esteja inicializando
@@ -109,6 +114,7 @@ export const FALLBACK_2025_EDITION: Edition = {
   isDefault: true,
   dates: '20 a 24 de outubro de 2025',
   registrationUrl: 'https://unitins.br',
+  updatedAt: '2025-10-23T08:55:00',
   theme: {
     primaryColor: '#083D77',
     accentColor: '#e2187f',
@@ -179,6 +185,38 @@ export const FALLBACK_2025_EDITION: Edition = {
   },
 }
 
+import schedule2026Data from '@/data/schedule-2026.json' assert { type: 'json' }
+
+// Fallback para a edição 2026 garantindo funcionamento estático imediato
+export const FALLBACK_2026_EDITION: Edition = {
+  slug: '2026',
+  year: 2026,
+  title: 'IV Semana de Ciência, Tecnologia e Inovação',
+  shortTitle: 'IV Semana de Tecnologia',
+  isDefault: false,
+  dates: '13 a 16 de outubro de 2026',
+  registrationUrl: 'https://unitins.br',
+  updatedAt: '2026-09-29T12:00:00',
+  theme: {
+    primaryColor: '#083D77',
+    accentColor: '#e2187f',
+    secondaryColor: '#E3F5FF',
+  },
+  heroSlides: FALLBACK_2025_EDITION.heroSlides,
+  about: {
+    title: 'IV Semana de Ciência, Tecnologia e Inovação da UNITINS',
+    themeTitle: 'Ciência, Tecnologia e Inovação para o Desenvolvimento Regional',
+    body: 'A Universidade Estadual do Tocantins (Unitins) realizará, de 13 a 16 de outubro de 2026, a IV Semana de Ciência, Tecnologia e Inovação - SCTI. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas.',
+  },
+  schedule: schedule2026Data as unknown as ScheduleDay[],
+  partners: FALLBACK_2025_EDITION.partners,
+  faqs: FALLBACK_2025_EDITION.faqs,
+  subscription: {
+    title: 'Garanta sua participação na IV Semana de Tecnologia (2026)',
+    ctaLabel: 'Inscreva-se Agora',
+  },
+}
+
 /**
  * Busca uma edição específica por slug com tag caching do Next.js
  */
@@ -205,6 +243,9 @@ export async function getEdition(slug: string): Promise<Edition | null> {
 
   if (slug === '2025') {
     return FALLBACK_2025_EDITION
+  }
+  if (slug === '2026') {
+    return FALLBACK_2026_EDITION
   }
   return null
 }
@@ -270,5 +311,5 @@ export async function getAllEditions(): Promise<Edition[]> {
     console.warn('[Content Layer] Erro ao listar edições no Payload:', error)
   }
 
-  return [FALLBACK_2025_EDITION]
+  return [FALLBACK_2026_EDITION, FALLBACK_2025_EDITION]
 }

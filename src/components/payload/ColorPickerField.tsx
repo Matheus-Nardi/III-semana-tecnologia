@@ -1,26 +1,67 @@
 'use client'
-import React from 'react'
+import React, { useState, useEffect, useRef, useTransition, memo } from 'react'
 import { useField } from '@payloadcms/ui'
 import type { TextFieldClientProps } from 'payload'
 
-export const ColorPickerField: React.FC<TextFieldClientProps> = (props) => {
+const ColorPickerFieldComponent: React.FC<TextFieldClientProps> = (props) => {
   const { path, field, readOnly } = props
   const { value, setValue, errorMessage, showError } = useField<string>({ path })
+  const [, startTransition] = useTransition()
 
-  const rawValue = typeof value === 'string' ? value : ''
   const defaultValue = 'defaultValue' in field && typeof (field as Record<string, unknown>).defaultValue === 'string'
     ? ((field as Record<string, unknown>).defaultValue as string)
     : '#083D77'
-  const displayColor = rawValue.startsWith('#') && (rawValue.length === 7 || rawValue.length === 4)
-    ? rawValue
-    : defaultValue
+
+  const rawValue = typeof value === 'string' ? value : ''
+  const [localColor, setLocalColor] = useState(rawValue || defaultValue)
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null)
+
+  useEffect(() => {
+    if (typeof value === 'string' && value !== localColor) {
+      setLocalColor(value)
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [value])
+
+  // Despacha a gravação no formulário do Payload com debounce para não travar a CPU
+  const commitValue = (colorToSave: string) => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current)
+    }
+    debounceTimerRef.current = setTimeout(() => {
+      startTransition(() => {
+        setValue(colorToSave)
+      })
+    }, 120)
+  }
+
+  // Seletor nativo: resposta visual instantânea na tela, gravação desacoplada
+  const handleColorPickerChange = (newColor: string) => {
+    setLocalColor(newColor)
+    commitValue(newColor)
+  }
+
+  // Campo de texto: digitação imediata e fluida
+  const handleTextInputChange = (newText: string) => {
+    setLocalColor(newText)
+    commitValue(newText)
+  }
+
+  // Ao sair do campo (blur), garante que o valor digitado foi salvo imediatamente
+  const handleTextInputBlur = () => {
+    if (debounceTimerRef.current) {
+      clearTimeout(debounceTimerRef.current)
+    }
+    startTransition(() => {
+      setValue(localColor)
+    })
+  }
 
   const label = typeof field.label === 'string' ? field.label : 'Cor'
   const description = typeof field.admin?.description === 'string' ? field.admin.description : undefined
 
-  const handleChange = (newVal: string) => {
-    setValue(newVal)
-  }
+  const isValidHex = localColor.startsWith('#') && (localColor.length === 7 || localColor.length === 4)
+  const swatchColor = isValidHex ? localColor : defaultValue
 
   return (
     <div style={{ marginBottom: '1.25rem' }}>
@@ -45,16 +86,18 @@ export const ColorPickerField: React.FC<TextFieldClientProps> = (props) => {
             overflow: 'hidden',
             boxShadow: '0 1px 3px rgba(0,0,0,0.1)',
             cursor: readOnly ? 'not-allowed' : 'pointer',
-            backgroundColor: displayColor,
+            backgroundColor: swatchColor,
             flexShrink: 0,
-            transition: 'transform 0.15s ease',
+            transform: 'translateZ(0)',
+            willChange: 'background-color',
+            transition: 'border-color 0.15s ease',
           }}
         >
           <input
             type="color"
-            value={displayColor}
+            value={isValidHex && localColor.length === 7 ? localColor : '#083D77'}
             disabled={readOnly}
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={(e) => handleColorPickerChange(e.target.value)}
             style={{
               position: 'absolute',
               top: '-10px',
@@ -71,10 +114,11 @@ export const ColorPickerField: React.FC<TextFieldClientProps> = (props) => {
         {/* Hex Text Input */}
         <input
           type="text"
-          value={rawValue}
+          value={localColor}
           placeholder={defaultValue}
           disabled={readOnly}
-          onChange={(e) => handleChange(e.target.value)}
+          onChange={(e) => handleTextInputChange(e.target.value)}
+          onBlur={handleTextInputBlur}
           maxLength={7}
           style={{
             fontFamily: 'monospace',
@@ -97,7 +141,7 @@ export const ColorPickerField: React.FC<TextFieldClientProps> = (props) => {
         {/* Preview badge with contrast */}
         <div
           style={{
-            backgroundColor: displayColor,
+            backgroundColor: swatchColor,
             color: '#ffffff',
             padding: '0.35rem 0.9rem',
             borderRadius: '6px',
@@ -110,6 +154,8 @@ export const ColorPickerField: React.FC<TextFieldClientProps> = (props) => {
             display: 'flex',
             alignItems: 'center',
             gap: '6px',
+            willChange: 'background-color',
+            transform: 'translateZ(0)',
           }}
         >
           <span style={{ display: 'inline-block', width: '6px', height: '6px', borderRadius: '50%', backgroundColor: '#ffffff' }} />
@@ -133,3 +179,5 @@ export const ColorPickerField: React.FC<TextFieldClientProps> = (props) => {
     </div>
   )
 }
+
+export const ColorPickerField = memo(ColorPickerFieldComponent)

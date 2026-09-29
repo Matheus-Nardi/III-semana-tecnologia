@@ -50,3 +50,4 @@ Se as ferramentas MCP não estiverem injetadas na sessão atual (modo fallback),
 
 - **Ingenium MCP:** Executado via `uv run --project C:\Users\Italo\Documents\Projetos\mcps\ingenium-mcp ingenium-mcp`
 - **Serena MCP:** Executado via `uv run --project C:\Users\Italo\Documents\Projetos\mcps\serena-mcp serena start-mcp-server --context claude-code --open-web-dashboard false`
+- **Payload CMS MCP:** Servidor MCP integrado via `@payloadcms/plugin-mcp`, expondo ferramentas de consulta e edição das coleções do CMS (`editions`, `speakers`, `partners`, `media`, `users`) através do endpoint `/api/mcp` com autenticação Bearer API Key.

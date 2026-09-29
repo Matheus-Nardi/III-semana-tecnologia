@@ -82,6 +82,10 @@ yarn-error.log*
 # ==============================================================================
 .serena/
 .gemini/
+brag-output/
+.mcp.json
+.agents/plugins/**/mcp_config.json
+!.mcp.json.example
 
 # ==============================================================================
 # SISTEMA OPERACIONAL & MISC

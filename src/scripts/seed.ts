@@ -2,6 +2,7 @@ import type { Payload } from 'payload'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import scheduleData from '../data/schedule.json'
+import { getDefaultEventColor } from '@/lib/event-colors'
 import fs from 'fs'
 import path from 'path'
 
@@ -293,6 +294,7 @@ export async function seed(existingPayload?: Payload) {
 
   type ScheduleEvent = {
     name: string
+    color?: string
     talks: ScheduleTalk[]
   }
 
@@ -301,7 +303,7 @@ export async function seed(existingPayload?: Payload) {
       if (dateKey === 'lastUpdate') return null
       const meta = dateMapping[dateKey] || {
         date: dateKey,
-        dayOfWeek: 'Programação',
+        dayOfWeek: 'Segunda-feira',
       }
 
       const dayEvents: ScheduleEvent[] = []
@@ -337,13 +339,26 @@ export async function seed(existingPayload?: Payload) {
 
         dayEvents.push({
           name: eventName,
+          color: getDefaultEventColor(eventName),
           talks,
         })
       })
 
+      const isOnline = meta.date.toLowerCase().includes('online') || meta.dayOfWeek.toLowerCase().includes('ead')
+
       return {
         date: meta.date,
-        dayOfWeek: meta.dayOfWeek,
+        dayOfWeek: meta.dayOfWeek as
+          | 'Segunda-feira'
+          | 'Terça-feira'
+          | 'Quarta-feira'
+          | 'Quinta-feira'
+          | 'Sexta-feira'
+          | 'Sábado'
+          | 'Domingo'
+          | 'Todos os dias'
+          | 'A definir',
+        isOnline,
         events: dayEvents,
       }
     })

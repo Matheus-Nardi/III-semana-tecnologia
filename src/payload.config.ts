@@ -7,6 +7,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { pt } from '@payloadcms/translations/languages/pt'
 import { en } from '@payloadcms/translations/languages/en'
+import { mcpPlugin } from '@payloadcms/plugin-mcp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -55,6 +56,17 @@ export default buildConfig({
   csrf: allowedDomains,
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: ' | Painel UNITINS CTI',
+      icons: [{ rel: 'icon', url: '/favicon_io/favicon.ico' }],
+    },
+    components: {
+      graphics: {
+        Logo: '@/components/payload/admin/Logo#Logo',
+        Icon: '@/components/payload/admin/Icon#Icon',
+      },
+      beforeDashboard: ['@/components/payload/admin/AdminWelcomeBanner#AdminWelcomeBanner'],
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -83,6 +95,100 @@ export default buildConfig({
     prodMigrations: migrations,
   }),
   plugins: [
+    mcpPlugin({
+      collections: {
+        editions: {
+          enabled: true,
+          description:
+            'Edições anuais da Semana de Ciência e Tecnologia da UNITINS, contendo a programação oficial, trilhas, atividades, palestras e configurações do evento.',
+        },
+        speakers: {
+          enabled: true,
+          description:
+            'Banco de palestrantes, oficineiros, pesquisadores e convidados com bio, vínculos institucionais e contatos.',
+        },
+        partners: {
+          enabled: true,
+          description:
+            'Parceiros, órgãos de fomento, apoiadores e patrocinadores do evento categorizados por tier.',
+        },
+        media: {
+          enabled: {
+            find: true,
+            create: true,
+            update: true,
+            delete: false,
+          },
+          description: 'Arquivos de mídia, fotos de palestrantes e logos.',
+        },
+        users: {
+          enabled: {
+            find: true,
+            create: false,
+            update: false,
+            delete: false,
+          },
+          description: 'Usuários administradores cadastrados com acesso ao painel administrativo.',
+        },
+      },
+      overrideApiKeyCollection: (collection) => {
+        collection.admin = {
+          ...collection.admin,
+          hidden: true,
+        }
+        collection.access = {
+          create: ({ req }) => Boolean(req.user),
+          delete: ({ req }) => Boolean(req.user),
+          read: ({ req }) => Boolean(req.user),
+          unlock: ({ req }) => Boolean(req.user),
+          update: ({ req }) => Boolean(req.user),
+        }
+        const userField = collection.fields.find(
+          (field) => 'name' in field && field.name === 'user',
+        )
+        if (userField) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          (userField as any).access = {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            create: ({ req }: any) => Boolean(req.user),
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            update: ({ req }: any) => Boolean(req.user),
+          }
+        }
+        return collection
+      },
+      overrideAuth: async (req, getDefaultMcpAccessSettings) => {
+        const authorization = req.headers.get('Authorization')
+        const token = authorization?.startsWith('Bearer ')
+          ? authorization.replace('Bearer ', '').trim()
+          : null
+
+        const envApiKey = process.env.PAYLOAD_MCP_API_KEY
+        if (envApiKey && token && token === envApiKey) {
+          const firstUser = await req.payload.find({
+            collection: 'users',
+            limit: 1,
+            pagination: false,
+          })
+          const userDoc = firstUser.docs[0] || { id: 1, collection: 'users' }
+          return {
+            user: {
+              ...userDoc,
+              collection: 'users',
+              _strategy: 'mcp-api-key',
+            },
+            editions: { find: true, create: true, update: true, delete: true },
+            speakers: { find: true, create: true, update: true, delete: true },
+            partners: { find: true, create: true, update: true, delete: true },
+            media: { find: true, create: true, update: true, delete: false },
+            users: { find: true, create: false, update: false, delete: false },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any
+        }
+
+        return await getDefaultMcpAccessSettings()
+      },
+    }),
     ...(isS3Configured
       ? [
           s3Storage({

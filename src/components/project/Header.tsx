@@ -9,7 +9,7 @@ import { usePathname } from 'next/navigation';
 import { Button } from '../ui/button';
 import type { Edition } from '@/lib/content';
 
-const navigationItems = [
+const baseNavigationItems = [
     { href: "#sobre", text: "Sobre", icon: Info },
     { href: "#programacao", text: "Programação", icon: Calendar },
     { href: "#parceiros", text: "Parceiros", icon: Handshake },
@@ -116,12 +116,14 @@ function MobileMenuPanel({
     registrationUrl,
     currentEdition,
     allEditions,
+    navItems,
 }: { 
     isOpen: boolean; 
     onClose: () => void; 
     registrationUrl: string;
     currentEdition?: Edition;
     allEditions?: Edition[];
+    navItems: typeof baseNavigationItems;
 }) {
     const mobileMenuRef = useRef<HTMLDivElement>(null);
     const [isMounted, setIsMounted] = useState(false);
@@ -259,7 +261,7 @@ function MobileMenuPanel({
 
                 {/* Navegação Mobile */}
                 <nav className="flex-grow space-y-1.5">
-                    {navigationItems.map((item) => {
+                    {navItems.map((item) => {
                         const Icon = item.icon;
                         return (
                             <Link key={item.text} href={item.href} onClick={onClose} className="group flex items-center gap-3.5 px-4 py-3 bg-white/5 border border-white/5 hover:border-accent/40 hover:bg-primary/40 rounded-xl transition-all duration-200">
@@ -303,6 +305,19 @@ export default function Header({
     const pathname = usePathname();
     const isSolid = isScrolled || (pathname !== '/' && !pathname.match(/^\/\d{4}$/));
 
+    const targetSlug = edition?.slug || '2025';
+    const isCurrentEditionPage = pathname === `/${targetSlug}` || (pathname === '/' && (edition?.isDefault ?? true));
+
+    const navItems = baseNavigationItems.map((item) => {
+        if (item.href.startsWith('#')) {
+            return {
+                ...item,
+                href: isCurrentEditionPage ? item.href : `/${targetSlug}${item.href}`,
+            };
+        }
+        return item;
+    });
+
     useEffect(() => {
         const handleScroll = () => { setIsScrolled(window.scrollY > 20); };
         window.addEventListener('scroll', handleScroll);
@@ -345,7 +360,7 @@ export default function Header({
 
                         {/* Navegação Desktop */}
                         <nav className="hidden lg:flex items-center gap-6 xl:gap-8 self-center" aria-label="Navegação principal">
-                            {navigationItems.map((item) => (
+                            {navItems.map((item) => (
                                 <Link key={item.text} href={item.href} className={`text-sm xl:text-base font-medium transition-colors duration-300 relative group py-2 px-0 self-center ${isSolid ? 'text-foreground hover:text-accent' : 'text-white/90 hover:text-white'}`}>
                                     {item.text}
                                     <span className={`absolute bottom-0 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300 ${isSolid ? 'bg-accent' : 'bg-white'}`} aria-hidden="true" />
@@ -384,6 +399,7 @@ export default function Header({
                 registrationUrl={registrationUrl}
                 currentEdition={edition}
                 allEditions={allEditions}
+                navItems={navItems}
             />
         </>
     );
