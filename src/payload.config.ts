@@ -47,6 +47,17 @@ export default buildConfig({
   csrf: allowedDomains,
   admin: {
     user: Users.slug,
+    meta: {
+      titleSuffix: ' | Painel UNITINS CTI',
+      icons: [{ rel: 'icon', url: '/favicon_io/favicon.ico' }],
+    },
+    components: {
+      graphics: {
+        Logo: '@/components/payload/admin/Logo#Logo',
+        Icon: '@/components/payload/admin/Icon#Icon',
+      },
+      beforeDashboard: ['@/components/payload/admin/AdminWelcomeBanner#AdminWelcomeBanner'],
+    },
     importMap: {
       baseDir: path.resolve(dirname),
     },
@@ -124,8 +135,11 @@ export default buildConfig({
           (field) => 'name' in field && field.name === 'user',
         )
         if (userField) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (userField as any).access = {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             create: ({ req }: any) => Boolean(req.user),
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             update: ({ req }: any) => Boolean(req.user),
           }
         }
@@ -156,6 +170,7 @@ export default buildConfig({
             partners: { find: true, create: true, update: true, delete: true },
             media: { find: true, create: true, update: true, delete: false },
             users: { find: true, create: false, update: false, delete: false },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
           } as any
         }
 

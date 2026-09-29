@@ -20,6 +20,7 @@ const ColorPickerFieldComponent: React.FC<TextFieldClientProps> = (props) => {
     if (typeof value === 'string' && value !== localColor) {
       setLocalColor(value)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value])
 
   // Despacha a gravação no formulário do Payload com debounce para não travar a CPU
