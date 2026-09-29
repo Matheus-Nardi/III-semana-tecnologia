@@ -109,6 +109,10 @@ export default buildConfig({
         },
       },
       overrideApiKeyCollection: (collection) => {
+        collection.admin = {
+          ...collection.admin,
+          hidden: true,
+        }
         collection.access = {
           create: ({ req }) => Boolean(req.user),
           delete: ({ req }) => Boolean(req.user),
