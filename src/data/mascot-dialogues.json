@@ -61,6 +61,11 @@
         "pose": "waving",
         "badge": "Dica"
       },
+      "parceiros": {
+        "text": "O apoio dos nossos parceiros e patrocinadores é fundamental! São eles que investem na educação e tornam essa semana científica possível.",
+        "pose": "waving",
+        "badge": "Apoio & Parcerias"
+      },
       "noticias": {
         "text": "Adoro ver a pesquisa científica da universidade gerando impacto real para o Tocantins.",
         "pose": "reading",
@@ -129,6 +134,11 @@
         "pose": "waving",
         "badge": "Inscrição"
       },
+      "parceiros": {
+        "text": "Grandes inovações só acontecem quando unimos forças. Agradecemos a todos os parceiros que impulsionam o futuro da tecnologia conosco!",
+        "pose": "eureka",
+        "badge": "Inovação Conjunta"
+      },
       "noticias": {
         "text": "Inovações tecnológicas e pesquisas nascendo no Tocantins. Adoro acompanhar novos projetos!",
         "pose": "reading",
@@ -196,6 +206,11 @@
         "text": "Não vacile: as vagas para as oficinas práticas de laboratório costumam esgotar rápido. Inscreva-se!",
         "pose": "waving",
         "badge": "Inscrição"
+      },
+      "parceiros": {
+        "text": "Fazer ciência e democratizar o conhecimento exige investimento sério. Nosso muito obrigada aos parceiros que fazem tudo isso acontecer!",
+        "pose": "waving",
+        "badge": "Agradecimento"
       },
       "noticias": {
         "text": "A pesquisa acadêmica é o motor do desenvolvimento regional. Fique por dentro de todas as novidades!",
