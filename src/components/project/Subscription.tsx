@@ -17,7 +17,7 @@ export default function Subscription({ edition }: { edition?: Edition }) {
   const ctaLabel = edition?.subscription?.ctaLabel || "Inscreva-se Agora";
 
   return (
-    <section className="w-full py-16 sm:py-20 md:py-32 bg-gradient-5 relative overflow-hidden">
+    <section id="inscricao" className="w-full py-16 sm:py-20 md:py-32 bg-gradient-5 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12 lg:gap-16">
           <motion.div

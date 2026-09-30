@@ -1,21 +1,19 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useCallback, useRef } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 import Image from 'next/image'
-import { X, Sparkles, Lightbulb, ChevronRight, MessageSquareQuote } from 'lucide-react'
+import { X, Sparkles, Lightbulb, MessageSquareQuote, RefreshCw } from 'lucide-react'
 import dialoguesData from '@/data/mascot-dialogues.json'
 
 type Pose = 'waving' | 'reading' | 'eureka'
 
-interface DialogueItem {
-  id: string
+interface SpeechMessage {
   text: string
-  pose: string
+  pose: Pose
   badge: string
+  isEphemeral?: boolean
 }
-
-const dialogues: DialogueItem[] = dialoguesData
 
 const POSE_IMAGES: Record<Pose, string> = {
   waving: '/images/mascot/curie-waving.png',
@@ -29,18 +27,28 @@ const POSE_ALTS: Record<Pose, string> = {
   eureka: 'Marie Curie tendo uma ideia com uma lâmpada e frasco brilhante',
 }
 
+const OBSERVED_SECTIONS = ['programacao', 'localizacao', 'inscricao', 'noticias', 'faq']
+
 export function Mascot() {
   const [mounted, setMounted] = useState(false)
   const [isVisible, setIsVisible] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
   const [isBubbleOpen, setIsBubbleOpen] = useState(false)
-  const [currentDialogueIndex, setCurrentDialogueIndex] = useState(0)
+  const [currentMessage, setCurrentMessage] = useState<SpeechMessage>({
+    text: dialoguesData.welcome.text,
+    pose: dialoguesData.welcome.pose as Pose,
+    badge: dialoguesData.welcome.badge,
+  })
   const [pose, setPose] = useState<Pose>('waving')
   const [isJumping, setIsJumping] = useState(false)
 
-  const activeDialogue = dialogues[currentDialogueIndex] || dialogues[0]
+  const triviaIndexRef = useRef(0)
+  const visitedSectionsRef = useRef<Set<string>>(new Set())
+  const debounceTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const autoCloseTimerRef = useRef<NodeJS.Timeout | null>(null)
+  const isUserInteractingRef = useRef(false)
 
-  // Verifica estado de minimizado no sessionStorage e agenda aparição
+  // Aparição inicial tardia e inteligente
   useEffect(() => {
     setMounted(true)
     const storedMinimized = sessionStorage.getItem('marie_curie_mascot_minimized')
@@ -50,67 +58,137 @@ export function Mascot() {
       return
     }
 
-    // Aparição apenas após o visitante já estar explorando o site (12 segundos)
-    // ou se rolar um pouco a página (gatilho inteligente)
     let triggered = false
     const triggerEntrance = () => {
       if (triggered) return
       triggered = true
       setIsVisible(true)
       setPose('waving')
+      setCurrentMessage({
+        text: dialoguesData.welcome.text,
+        pose: dialoguesData.welcome.pose as Pose,
+        badge: dialoguesData.welcome.badge,
+      })
       setIsBubbleOpen(true)
 
-      // Balão fecha após 8s e ela fica descansando (lendo)
-      setTimeout(() => {
+      autoCloseTimerRef.current = setTimeout(() => {
         setPose('reading')
         setIsBubbleOpen(false)
-      }, 8000)
+      }, 7000)
     }
 
-    // Timer de 12 segundos
     const entranceTimer = setTimeout(triggerEntrance, 12000)
 
-    // Gatilho alternativo por scroll: se o usuário já desceu 400px antes dos 12s
-    const handleScroll = () => {
+    const handleInitialScroll = () => {
       if (window.scrollY > 400) {
         triggerEntrance()
-        window.removeEventListener('scroll', handleScroll)
+        window.removeEventListener('scroll', handleInitialScroll)
       }
     }
-    window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('scroll', handleInitialScroll, { passive: true })
 
     return () => {
       clearTimeout(entranceTimer)
-      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('scroll', handleInitialScroll)
+      if (autoCloseTimerRef.current) clearTimeout(autoCloseTimerRef.current)
     }
   }, [])
 
-  const handleNextDialogue = useCallback(() => {
+  // Reação por contexto: pensamentos em voz alta (efêmeros e espontâneos)
+  useEffect(() => {
+    if (!mounted) return
+
+    const handleIntersect: IntersectionObserverCallback = (entries) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue
+
+        const sectionId = entry.target.id
+        if (!sectionId || visitedSectionsRef.current.has(sectionId)) continue
+
+        if (debounceTimerRef.current) {
+          clearTimeout(debounceTimerRef.current)
+        }
+
+        // Aguarda 1.8 segundos parado na seção
+        debounceTimerRef.current = setTimeout(() => {
+          visitedSectionsRef.current.add(sectionId)
+
+          // Se o usuário estiver interagindo ativamente lendo curiosidades, não interrompe
+          if (isUserInteractingRef.current) return
+
+          const reaction = (dialoguesData.sectionReactions as Record<string, { text: string; pose: string; badge: string }>)[sectionId]
+          if (reaction) {
+            setCurrentMessage({
+              text: reaction.text,
+              pose: reaction.pose as Pose,
+              badge: reaction.badge,
+              isEphemeral: true,
+            })
+            setPose(reaction.pose as Pose)
+            setIsVisible(true)
+            setIsBubbleOpen(true)
+            setIsJumping(true)
+            setTimeout(() => setIsJumping(false), 500)
+
+            // Auto-fecha após 6s como um pensamento espontâneo
+            if (autoCloseTimerRef.current) clearTimeout(autoCloseTimerRef.current)
+            autoCloseTimerRef.current = setTimeout(() => {
+              setIsBubbleOpen(false)
+              setPose('reading')
+            }, 6000)
+          }
+        }, 1800)
+      }
+    }
+
+    const observer = new IntersectionObserver(handleIntersect, {
+      threshold: 0.25,
+      rootMargin: '0px 0px -100px 0px',
+    })
+
+    OBSERVED_SECTIONS.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => {
+      observer.disconnect()
+      if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current)
+    }
+  }, [mounted])
+
+  // Próxima curiosidade científica (atemporal e fluida)
+  const handleNextTrivia = useCallback(() => {
+    isUserInteractingRef.current = true
+    if (autoCloseTimerRef.current) clearTimeout(autoCloseTimerRef.current)
+
     setIsJumping(true)
     setTimeout(() => setIsJumping(false), 500)
 
-    setCurrentDialogueIndex((prev) => {
-      const nextIndex = (prev + 1) % dialogues.length
-      const nextItem = dialogues[nextIndex]
-      if (nextItem?.pose && (nextItem.pose === 'waving' || nextItem.pose === 'reading' || nextItem.pose === 'eureka')) {
-        setPose(nextItem.pose as Pose)
-      } else {
-        setPose('eureka')
-      }
-      return nextIndex
+    const triviaList = dialoguesData.trivia
+    triviaIndexRef.current = (triviaIndexRef.current + 1) % triviaList.length
+    const item = triviaList[triviaIndexRef.current]
+
+    const nextPose = (item?.pose || 'eureka') as Pose
+    setPose(nextPose)
+    setCurrentMessage({
+      text: item.text,
+      pose: nextPose,
+      badge: item.badge,
+      isEphemeral: false,
     })
     setIsBubbleOpen(true)
+
+    // Fica aberto por 14s para leitura confortável
+    autoCloseTimerRef.current = setTimeout(() => {
+      setIsBubbleOpen(false)
+      setPose('reading')
+      isUserInteractingRef.current = false
+    }, 14000)
   }, [])
 
   const handleMascotClick = () => {
-    if (!isBubbleOpen) {
-      setIsBubbleOpen(true)
-      setPose('eureka')
-      setIsJumping(true)
-      setTimeout(() => setIsJumping(false), 500)
-    } else {
-      handleNextDialogue()
-    }
+    handleNextTrivia()
   }
 
   const handleMinimize = (e: React.MouseEvent) => {
@@ -122,9 +200,8 @@ export function Mascot() {
 
   const handleRestore = () => {
     setIsMinimized(false)
-    setIsBubbleOpen(true)
-    setPose('waving')
     sessionStorage.removeItem('marie_curie_mascot_minimized')
+    handleNextTrivia()
   }
 
   if (!mounted || !isVisible) return null
@@ -145,8 +222,8 @@ export function Mascot() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={handleRestore}
-            className="pointer-events-auto flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-white/95 backdrop-blur-md shadow-lg border border-primary/20 text-xs font-medium text-primary hover:bg-primary/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40"
-            title="Abrir dicas da Marie Curie"
+            className="pointer-events-auto flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-white/95 backdrop-blur-md shadow-lg border border-primary/20 text-xs font-medium text-primary hover:bg-primary/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40 cursor-pointer"
+            title="Abrir curiosidades com Marie Curie"
           >
             <div className="relative w-6 h-6 overflow-hidden rounded-full border border-primary/30 bg-primary/10">
               <Image
@@ -159,7 +236,7 @@ export function Mascot() {
             </div>
             <span className="flex items-center gap-1 font-semibold">
               <Sparkles className="w-3.5 h-3.5 text-accent animate-pulse" />
-              Dicas da Marie
+              Conversar com Marie
             </span>
           </motion.button>
         )}
@@ -173,7 +250,7 @@ export function Mascot() {
             <AnimatePresence mode="wait">
               {isBubbleOpen && (
                 <motion.div
-                  key={`bubble-${activeDialogue.id}`}
+                  key={`bubble-${currentMessage.text.slice(0, 15)}`}
                   initial={{ opacity: 0, y: 12, scale: 0.92 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.9 }}
@@ -181,19 +258,19 @@ export function Mascot() {
                   className="mb-3 max-w-[280px] sm:max-w-xs rounded-2xl bg-white/95 backdrop-blur-md p-3.5 shadow-2xl border border-slate-200/80 text-slate-800 relative group"
                 >
                   {/* Cabeçalho do Balão */}
-                  <div className="flex items-center justify-between gap-2 mb-1.5 pb-1 border-b border-slate-100">
+                  <div className="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-slate-100">
                     <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-primary">
-                      {activeDialogue.badge === 'Eureka!' || activeDialogue.pose === 'eureka' ? (
-                        <Lightbulb className="w-3 h-3 text-amber-500 fill-amber-400" />
+                      {currentMessage.badge === 'Eureka!' || currentMessage.pose === 'eureka' ? (
+                        <Lightbulb className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
                       ) : (
-                        <MessageSquareQuote className="w-3 h-3 text-primary" />
+                        <MessageSquareQuote className="w-3.5 h-3.5 text-primary" />
                       )}
-                      {activeDialogue.badge}
+                      {currentMessage.badge}
                     </span>
 
                     <button
                       onClick={handleMinimize}
-                      className="text-slate-400 hover:text-slate-600 rounded-full p-0.5 hover:bg-slate-100 transition-colors"
+                      className="text-slate-400 hover:text-slate-600 rounded-full p-0.5 hover:bg-slate-100 transition-colors cursor-pointer"
                       title="Minimizar mascote"
                       aria-label="Minimizar mascote"
                     >
@@ -203,17 +280,17 @@ export function Mascot() {
 
                   {/* Texto da fala */}
                   <p className="text-xs sm:text-[13px] leading-relaxed text-slate-700 font-sans">
-                    {activeDialogue.text}
+                    {currentMessage.text}
                   </p>
 
-                  {/* Ação: Próxima curiosidade */}
-                  <div className="mt-2.5 flex justify-end">
+                  {/* Ação orgânica: Me conta outra! */}
+                  <div className="mt-2.5 pt-2 border-t border-slate-100/80 flex items-center justify-end">
                     <button
-                      onClick={handleNextDialogue}
-                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-primary hover:text-primary/80 transition-colors py-0.5 px-1.5 rounded hover:bg-primary/5"
+                      onClick={handleNextTrivia}
+                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 hover:bg-primary/15 text-primary text-[11px] font-semibold transition-all hover:scale-102 active:scale-98 cursor-pointer"
                     >
-                      <span>Mais uma dica</span>
-                      <ChevronRight className="w-3 h-3" />
+                      <RefreshCw className="w-3 h-3 text-primary animate-spin-hover" />
+                      <span>{currentMessage.isEphemeral ? 'Saber uma curiosidade' : 'Me conta outra! ✨'}</span>
                     </button>
                   </div>
 
@@ -229,7 +306,7 @@ export function Mascot() {
               <button
                 onClick={handleMinimize}
                 aria-label="Minimizar Marie Curie"
-                className="absolute -top-1 -right-1 z-10 w-6 h-6 rounded-full bg-white shadow-md border border-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity"
+                className="absolute -top-1 -right-1 z-10 w-6 h-6 rounded-full bg-white shadow-md border border-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
                 title="Minimizar"
               >
                 <X className="w-3.5 h-3.5" />
