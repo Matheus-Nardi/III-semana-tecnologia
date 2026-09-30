@@ -27,6 +27,7 @@
     "import:schedule:2026": "tsx src/scripts/import-schedule.ts --year 2026 --file src/data/raw/2026/programacao-2026.csv"
   },
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "@payloadcms/db-postgres": "^3.88.0",
     "@payloadcms/next": "^3.88.0",
     "@payloadcms/plugin-mcp": "^3.88.0",
