@@ -6,6 +6,7 @@ import Image from 'next/image'
 import { X, Sparkles, Lightbulb, MessageSquareQuote, RefreshCw } from 'lucide-react'
 import dialoguesData from '@/data/mascot-dialogues.json'
 
+type CharacterId = 'curie' | 'ada' | 'jaqueline'
 type Pose = 'waving' | 'reading' | 'eureka'
 
 interface SpeechMessage {
@@ -15,32 +16,26 @@ interface SpeechMessage {
   isEphemeral?: boolean
 }
 
-const POSE_IMAGES: Record<Pose, string> = {
-  waving: '/images/mascot/curie-waving.png',
-  reading: '/images/mascot/curie-reading.png',
-  eureka: '/images/mascot/curie-eureka.png',
-}
-
-const POSE_ALTS: Record<Pose, string> = {
-  waving: 'Marie Curie acenando em boas-vindas',
-  reading: 'Marie Curie lendo seu livro de anotações científicas',
-  eureka: 'Marie Curie tendo uma ideia com uma lâmpada e frasco brilhante',
-}
+const CHARACTERS: CharacterId[] = ['curie', 'ada', 'jaqueline']
 
 const OBSERVED_SECTIONS = ['programacao', 'localizacao', 'inscricao', 'noticias', 'faq']
 
 export function Mascot() {
   const [mounted, setMounted] = useState(false)
+  const [characterId, setCharacterId] = useState<CharacterId>('curie')
   const [isVisible, setIsVisible] = useState(false)
   const [isMinimized, setIsMinimized] = useState(false)
   const [isBubbleOpen, setIsBubbleOpen] = useState(false)
-  const [currentMessage, setCurrentMessage] = useState<SpeechMessage>({
-    text: dialoguesData.welcome.text,
-    pose: dialoguesData.welcome.pose as Pose,
-    badge: dialoguesData.welcome.badge,
-  })
   const [pose, setPose] = useState<Pose>('waving')
   const [isJumping, setIsJumping] = useState(false)
+
+  const activeCharData = dialoguesData[characterId] || dialoguesData.curie
+
+  const [currentMessage, setCurrentMessage] = useState<SpeechMessage>({
+    text: activeCharData.welcome.text,
+    pose: activeCharData.welcome.pose as Pose,
+    badge: activeCharData.welcome.badge,
+  })
 
   const triviaIndexRef = useRef(0)
   const visitedSectionsRef = useRef<Set<string>>(new Set())
@@ -48,10 +43,24 @@ export function Mascot() {
   const autoCloseTimerRef = useRef<NodeJS.Timeout | null>(null)
   const isUserInteractingRef = useRef(false)
 
-  // Aparição inicial tardia e inteligente
+  // Sorteio aleatório da cientista no primeiro acesso da sessão
   useEffect(() => {
     setMounted(true)
-    const storedMinimized = sessionStorage.getItem('marie_curie_mascot_minimized')
+
+    // Sorteia aleatoriamente uma das 3 cientistas a cada carregamento/F5 da página
+    const chosenChar = CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)]
+    sessionStorage.removeItem('unitins_mascot_character')
+
+    setCharacterId(chosenChar)
+    const charData = dialoguesData[chosenChar]
+
+    setCurrentMessage({
+      text: charData.welcome.text,
+      pose: charData.welcome.pose as Pose,
+      badge: charData.welcome.badge,
+    })
+
+    const storedMinimized = sessionStorage.getItem('unitins_mascot_minimized')
     if (storedMinimized === 'true') {
       setIsMinimized(true)
       setIsVisible(true)
@@ -64,11 +73,6 @@ export function Mascot() {
       triggered = true
       setIsVisible(true)
       setPose('waving')
-      setCurrentMessage({
-        text: dialoguesData.welcome.text,
-        pose: dialoguesData.welcome.pose as Pose,
-        badge: dialoguesData.welcome.badge,
-      })
       setIsBubbleOpen(true)
 
       autoCloseTimerRef.current = setTimeout(() => {
@@ -77,6 +81,7 @@ export function Mascot() {
       }, 7000)
     }
 
+    // Timer de entrada tardia: 12 segundos
     const entranceTimer = setTimeout(triggerEntrance, 12000)
 
     const handleInitialScroll = () => {
@@ -94,7 +99,7 @@ export function Mascot() {
     }
   }, [])
 
-  // Reação por contexto: pensamentos em voz alta (efêmeros e espontâneos)
+  // Reação por contexto com a voz e personalidade da cientista ativa
   useEffect(() => {
     if (!mounted) return
 
@@ -109,14 +114,14 @@ export function Mascot() {
           clearTimeout(debounceTimerRef.current)
         }
 
-        // Aguarda 1.8 segundos parado na seção
         debounceTimerRef.current = setTimeout(() => {
           visitedSectionsRef.current.add(sectionId)
 
-          // Se o usuário estiver interagindo ativamente lendo curiosidades, não interrompe
           if (isUserInteractingRef.current) return
 
-          const reaction = (dialoguesData.sectionReactions as Record<string, { text: string; pose: string; badge: string }>)[sectionId]
+          const charData = dialoguesData[characterId]
+          const reaction = (charData.sectionReactions as Record<string, { text: string; pose: string; badge: string }>)[sectionId]
+
           if (reaction) {
             setCurrentMessage({
               text: reaction.text,
@@ -130,7 +135,6 @@ export function Mascot() {
             setIsJumping(true)
             setTimeout(() => setIsJumping(false), 500)
 
-            // Auto-fecha após 6s como um pensamento espontâneo
             if (autoCloseTimerRef.current) clearTimeout(autoCloseTimerRef.current)
             autoCloseTimerRef.current = setTimeout(() => {
               setIsBubbleOpen(false)
@@ -155,9 +159,9 @@ export function Mascot() {
       observer.disconnect()
       if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current)
     }
-  }, [mounted])
+  }, [mounted, characterId])
 
-  // Próxima curiosidade científica (atemporal e fluida)
+  // Próxima curiosidade da cientista ativa
   const handleNextTrivia = useCallback(() => {
     isUserInteractingRef.current = true
     if (autoCloseTimerRef.current) clearTimeout(autoCloseTimerRef.current)
@@ -165,7 +169,7 @@ export function Mascot() {
     setIsJumping(true)
     setTimeout(() => setIsJumping(false), 500)
 
-    const triviaList = dialoguesData.trivia
+    const triviaList = dialoguesData[characterId].trivia
     triviaIndexRef.current = (triviaIndexRef.current + 1) % triviaList.length
     const item = triviaList[triviaIndexRef.current]
 
@@ -179,13 +183,12 @@ export function Mascot() {
     })
     setIsBubbleOpen(true)
 
-    // Fica aberto por 14s para leitura confortável
     autoCloseTimerRef.current = setTimeout(() => {
       setIsBubbleOpen(false)
       setPose('reading')
       isUserInteractingRef.current = false
     }, 14000)
-  }, [])
+  }, [characterId])
 
   const handleMascotClick = () => {
     handleNextTrivia()
@@ -195,23 +198,26 @@ export function Mascot() {
     e.stopPropagation()
     setIsMinimized(true)
     setIsBubbleOpen(false)
-    sessionStorage.setItem('marie_curie_mascot_minimized', 'true')
+    sessionStorage.setItem('unitins_mascot_minimized', 'true')
   }
 
   const handleRestore = () => {
     setIsMinimized(false)
-    sessionStorage.removeItem('marie_curie_mascot_minimized')
+    sessionStorage.removeItem('unitins_mascot_minimized')
     handleNextTrivia()
   }
 
   if (!mounted || !isVisible) return null
 
+  const imageSrc = `/images/mascot/${characterId}-${pose}.png`
+  const avatarSrc = `/images/mascot/${characterId}-waving.png`
+
   return (
     <aside
-      aria-label="Mascote interativa Marie Curie"
+      aria-label={`Mascote interativa ${activeCharData.name}`}
       className="fixed bottom-6 left-6 z-40 select-none flex flex-col items-start pointer-events-none"
     >
-      {/* Botão Minimizado (Pílula sutil no canto) */}
+      {/* Botão Minimizado (Pílula sutil no canto com a foto da cientista sorteada) */}
       <AnimatePresence>
         {isMinimized && (
           <motion.button
@@ -223,12 +229,12 @@ export function Mascot() {
             whileTap={{ scale: 0.95 }}
             onClick={handleRestore}
             className="pointer-events-auto flex items-center gap-2.5 px-3.5 py-2 rounded-full bg-white/95 backdrop-blur-md shadow-lg border border-primary/20 text-xs font-medium text-primary hover:bg-primary/5 transition-colors focus:outline-none focus:ring-2 focus:ring-primary/40 cursor-pointer"
-            title="Abrir curiosidades com Marie Curie"
+            title={`Conversar com ${activeCharData.name}`}
           >
             <div className="relative w-6 h-6 overflow-hidden rounded-full border border-primary/30 bg-primary/10">
               <Image
-                src="/images/mascot/curie-waving.png"
-                alt="Marie Curie avatar"
+                src={avatarSrc}
+                alt={`${activeCharData.name} avatar`}
                 fill
                 sizes="24px"
                 className="object-cover object-top"
@@ -236,7 +242,7 @@ export function Mascot() {
             </div>
             <span className="flex items-center gap-1 font-semibold">
               <Sparkles className="w-3.5 h-3.5 text-accent animate-pulse" />
-              Conversar com Marie
+              Conversar com {activeCharData.shortName}
             </span>
           </motion.button>
         )}
@@ -250,7 +256,7 @@ export function Mascot() {
             <AnimatePresence mode="wait">
               {isBubbleOpen && (
                 <motion.div
-                  key={`bubble-${currentMessage.text.slice(0, 15)}`}
+                  key={`bubble-${characterId}-${currentMessage.text.slice(0, 15)}`}
                   initial={{ opacity: 0, y: 12, scale: 0.92 }}
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 8, scale: 0.9 }}
@@ -259,18 +265,21 @@ export function Mascot() {
                 >
                   {/* Cabeçalho do Balão */}
                   <div className="flex items-center justify-between gap-2 mb-2 pb-1.5 border-b border-slate-100">
-                    <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-primary">
-                      {currentMessage.badge === 'Eureka!' || currentMessage.pose === 'eureka' ? (
-                        <Lightbulb className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
-                      ) : (
-                        <MessageSquareQuote className="w-3.5 h-3.5 text-primary" />
-                      )}
-                      {currentMessage.badge}
-                    </span>
+                    <div className="flex items-center gap-1.5">
+                      <span className="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-primary">
+                        {currentMessage.badge === 'Eureka!' || currentMessage.pose === 'eureka' ? (
+                          <Lightbulb className="w-3.5 h-3.5 text-amber-500 fill-amber-400" />
+                        ) : (
+                          <MessageSquareQuote className="w-3.5 h-3.5 text-primary" />
+                        )}
+                        {currentMessage.badge}
+                      </span>
+                      <span className="text-[10px] text-slate-400">• {activeCharData.shortName}</span>
+                    </div>
 
                     <button
                       onClick={handleMinimize}
-                      className="text-slate-400 hover:text-slate-600 rounded-full p-0.5 hover:bg-slate-100 transition-colors cursor-pointer"
+                      className="text-slate-400 hover:text-slate-600 rounded-full p-1 hover:bg-slate-100 transition-colors cursor-pointer"
                       title="Minimizar mascote"
                       aria-label="Minimizar mascote"
                     >
@@ -300,19 +309,19 @@ export function Mascot() {
               )}
             </AnimatePresence>
 
-            {/* Personagem Marie Curie */}
+            {/* Personagem da Cientista Ativa */}
             <div className="relative group cursor-pointer" onClick={handleMascotClick}>
               {/* Botão de minimizar discreto no hover da personagem */}
               <button
                 onClick={handleMinimize}
-                aria-label="Minimizar Marie Curie"
+                aria-label={`Minimizar ${activeCharData.name}`}
                 className="absolute -top-1 -right-1 z-10 w-6 h-6 rounded-full bg-white shadow-md border border-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
                 title="Minimizar"
               >
                 <X className="w-3.5 h-3.5" />
               </button>
 
-              {/* Corpo da mascote (firme na base, sem flutuação contínua) */}
+              {/* Corpo da mascote com imagem dinâmica */}
               <motion.div
                 initial={{ y: 90, opacity: 0 }}
                 animate={{
@@ -330,8 +339,9 @@ export function Mascot() {
                 className="relative w-24 h-40 sm:w-28 sm:h-48 drop-shadow-xl"
               >
                 <Image
-                  src={POSE_IMAGES[pose]}
-                  alt={POSE_ALTS[pose]}
+                  key={`${characterId}-${pose}`}
+                  src={imageSrc}
+                  alt={`${activeCharData.name} - ${pose}`}
                   fill
                   sizes="(max-width: 640px) 96px, 112px"
                   className="object-contain object-bottom pointer-events-none drop-shadow-md transition-opacity duration-300"

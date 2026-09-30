@@ -1,78 +1,212 @@
 {
-  "welcome": {
-    "text": "Olá! Eu sou Marie Curie. Que alegria ter você aqui na Semana de Ciência, Tecnologia e Inovação!",
-    "pose": "waving",
-    "badge": "Boas-vindas"
-  },
-  "trivia": [
-    {
-      "id": "nobel",
-      "text": "Eureka! Sabia que fui a primeira pessoa no mundo a receber dois Prêmios Nobel em áreas científicas distintas (Física e Química)?",
-      "pose": "eureka",
-      "badge": "Curiosidade"
-    },
-    {
-      "id": "ada",
-      "text": "Você sabia que Ada Lovelace escreveu o primeiro algoritmo da história em 1843, muito antes dos computadores modernos existirem?",
-      "pose": "eureka",
-      "badge": "Você Sabia?"
-    },
-    {
-      "id": "quote",
-      "text": "'Nada na vida deve ser temido, apenas compreendido.' Agora é hora de compreender mais, para temer menos.",
-      "pose": "reading",
-      "badge": "Inspiração"
-    },
-    {
-      "id": "stem",
-      "text": "O tema 'Ciência Delas' celebra todas nós, mulheres na pesquisa e na tecnologia. Lugar de mulher é na ciência e onde mais ela quiser!",
+  "curie": {
+    "name": "Marie Curie",
+    "shortName": "Marie",
+    "welcome": {
+      "text": "Olá! Eu sou Marie Curie. Que alegria ter você aqui na Semana de Ciência, Tecnologia e Inovação!",
       "pose": "waving",
-      "badge": "Ciência Delas"
+      "badge": "Boas-vindas"
     },
-    {
-      "id": "enedina",
-      "text": "Orgulho brasileiro: Enedina Alves Marques superou barreiras históricas e se tornou a primeira mulher negra engenheira do Brasil em 1945!",
-      "pose": "reading",
-      "badge": "Pioneira Brasileira"
-    },
-    {
-      "id": "polonio",
-      "text": "Batizei o elemento químico Polônio em homenagem à minha terra natal, a Polônia. A ciência também carrega nossas raízes!",
-      "pose": "eureka",
-      "badge": "Curiosidade"
-    },
-    {
-      "id": "laboratorio",
-      "text": "Meu primeiro laboratório com Pierre era um galpão de madeira com goteiras. A paixão pela descoberta supera qualquer dificuldade!",
-      "pose": "reading",
-      "badge": "História"
+    "trivia": [
+      {
+        "id": "nobel",
+        "text": "Eureka! Sabia que fui a primeira pessoa no mundo a receber dois Prêmios Nobel em áreas científicas distintas (Física e Química)?",
+        "pose": "eureka",
+        "badge": "Curiosidade"
+      },
+      {
+        "id": "polonio",
+        "text": "Batizei o elemento químico Polônio em homenagem à minha terra natal, a Polônia. A ciência também carrega nossas raízes!",
+        "pose": "eureka",
+        "badge": "Curiosidade"
+      },
+      {
+        "id": "quote",
+        "text": "'Nada na vida deve ser temido, apenas compreendido.' Agora é hora de compreender mais, para temer menos.",
+        "pose": "reading",
+        "badge": "Inspiração"
+      },
+      {
+        "id": "stem",
+        "text": "O tema 'Ciência Delas' celebra todas nós, mulheres na pesquisa e na tecnologia. Lugar de mulher é na ciência e onde mais ela quiser!",
+        "pose": "waving",
+        "badge": "Ciência Delas"
+      },
+      {
+        "id": "laboratorio",
+        "text": "Meu primeiro laboratório com Pierre era um galpão de madeira com goteiras. A paixão pela pesquisa supera qualquer obstáculo!",
+        "pose": "reading",
+        "badge": "História"
+      },
+      {
+        "id": "petites-curies",
+        "text": "Durante a Primeira Guerra, criei ambulâncias radiológicas móveis apelidadas de 'Petites Curies' para atender soldados feridos.",
+        "pose": "eureka",
+        "badge": "Você Sabia?"
+      }
+    ],
+    "sectionReactions": {
+      "programacao": {
+        "text": "Tanta oficina e palestra interessante nessa programação... dá vontade de participar de todas!",
+        "pose": "eureka",
+        "badge": "Programação"
+      },
+      "localizacao": {
+        "text": "Palmas é linda! Nos vemos no Câmpus da UNITINS para trocar muitas ideias.",
+        "pose": "waving",
+        "badge": "Câmpus UNITINS"
+      },
+      "inscricao": {
+        "text": "Dica amiga: não deixe para se inscrever de última hora para garantir vaga nas oficinas!",
+        "pose": "waving",
+        "badge": "Dica"
+      },
+      "noticias": {
+        "text": "Adoro ver a pesquisa científica da universidade gerando impacto real para o Tocantins.",
+        "pose": "reading",
+        "badge": "Notícias"
+      },
+      "faq": {
+        "text": "Fazer perguntas é a essência da ciência! Sempre que tiver dúvida, procure entender a fundo.",
+        "pose": "reading",
+        "badge": "Dúvidas"
+      }
     }
-  ],
-  "sectionReactions": {
-    "programacao": {
-      "text": "Tanta oficina e palestra interessante nessa programação... dá vontade de participar de todas!",
-      "pose": "eureka",
-      "badge": "Programação"
-    },
-    "localizacao": {
-      "text": "Palmas é linda! Nos vemos no Câmpus da UNITINS para trocar muitas ideias.",
+  },
+  "ada": {
+    "name": "Ada Lovelace",
+    "shortName": "Ada",
+    "welcome": {
+      "text": "Olá! Eu sou Ada Lovelace. Preparado(a) para explorar o universo da tecnologia, lógica e inovação?",
       "pose": "waving",
-      "badge": "Câmpus UNITINS"
+      "badge": "Boas-vindas"
     },
-    "inscricao": {
-      "text": "Dica amiga: não deixe para se inscrever de última hora para garantir vaga nas oficinas!",
+    "trivia": [
+      {
+        "id": "primeiro-algoritmo",
+        "text": "Eureka! Em 1843, escrevi o primeiro algoritmo da história para a Máquina Analítica de Babbage, muito antes dos computadores modernos!",
+        "pose": "eureka",
+        "badge": "Pioneira Tech"
+      },
+      {
+        "id": "ciencia-poetica",
+        "text": "Eu chamava meu método de 'Ciência Poética'. Acreditava que a imaginação e a lógica matemática precisam andar de mãos dadas.",
+        "pose": "reading",
+        "badge": "Inspiração"
+      },
+      {
+        "id": "musica-computador",
+        "text": "Eu já previa no século XIX que computadores não fariam só contas, mas também poderiam compor músicas e manipular qualquer símbolo!",
+        "pose": "eureka",
+        "badge": "Visão de Futuro"
+      },
+      {
+        "id": "linguagem-ada",
+        "text": "Você sabia? Em 1980, o Departamento de Defesa dos EUA criou uma linguagem de programação oficial chamada 'Ada' em minha homenagem!",
+        "pose": "waving",
+        "badge": "Curiosidade"
+      },
+      {
+        "id": "incentivo",
+        "text": "Minha mãe me incentivou a estudar matemática avançada desde pequena. Toda garota merece estímulo para brilhar na tecnologia!",
+        "pose": "reading",
+        "badge": "Ciência Delas"
+      }
+    ],
+    "sectionReactions": {
+      "programacao": {
+        "text": "Quantas palestras e minicursos incríveis sobre sistemas e dados! Qual atividade você vai escolher?",
+        "pose": "eureka",
+        "badge": "Programação"
+      },
+      "localizacao": {
+        "text": "O Câmpus da UNITINS será o ponto de encontro de grandes mentes inovadoras. Nos vemos em Palmas!",
+        "pose": "waving",
+        "badge": "Câmpus UNITINS"
+      },
+      "inscricao": {
+        "text": "Processar sua inscrição agora é o algoritmo mais eficiente do seu dia. Garanta seu certificado!",
+        "pose": "waving",
+        "badge": "Inscrição"
+      },
+      "noticias": {
+        "text": "Inovações tecnológicas e pesquisas nascendo no Tocantins. Adoro acompanhar novos projetos!",
+        "pose": "reading",
+        "badge": "Notícias"
+      },
+      "faq": {
+        "text": "Tem alguma dúvida sobre o evento? Depure suas perguntas aqui no FAQ antes de começar!",
+        "pose": "reading",
+        "badge": "FAQ"
+      }
+    }
+  },
+  "jaqueline": {
+    "name": "Dra. Jaqueline Góes",
+    "shortName": "Jaqueline",
+    "welcome": {
+      "text": "Olá! Sou a Dra. Jaqueline Góes. Que alegria imensa ver você celebrando a ciência brasileira conosco!",
       "pose": "waving",
-      "badge": "Dica"
+      "badge": "Boas-vindas"
     },
-    "noticias": {
-      "text": "Adoro ver a pesquisa científica da universidade gerando impacto real para o Tocantins.",
-      "pose": "reading",
-      "badge": "Notícias"
-    },
-    "faq": {
-      "text": "Fazer perguntas é a essência da ciência! Sempre que tiver dúvida, procure entender a fundo.",
-      "pose": "reading",
-      "badge": "Curiosidade"
+    "trivia": [
+      {
+        "id": "genoma-recorde",
+        "text": "Eureka! Em 2020, liderei a equipe brasileira que sequenciou o genoma do coronavírus em apenas 48 horas — o mundo levava 15 dias!",
+        "pose": "eureka",
+        "badge": "Orgulho Nacional"
+      },
+      {
+        "id": "barbie-cientista",
+        "text": "Fui homenageada pela Mattel com uma boneca Barbie oficial de cientista negra para inspirar milhares de meninas a sonharem com a pesquisa!",
+        "pose": "waving",
+        "badge": "Representatividade"
+      },
+      {
+        "id": "dna-letras",
+        "text": "A genética é fascinante: pequenas combinações de quatro bases (A, T, C, G) escrevem o código de toda a vida no planeta!",
+        "pose": "eureka",
+        "badge": "Genômica"
+      },
+      {
+        "id": "bahia-brasil",
+        "text": "Sou baiana, biomédica e defensora convicta de que a ciência pública brasileira é de excelência mundial.",
+        "pose": "reading",
+        "badge": "Ciência Brasileira"
+      },
+      {
+        "id": "mulheres-negras",
+        "text": "Como mulher negra na ciência, meu compromisso diário é abrir caminhos para que as próximas gerações cheguem ainda mais longe!",
+        "pose": "reading",
+        "badge": "Ciência Delas"
+      }
+    ],
+    "sectionReactions": {
+      "programacao": {
+        "text": "A programação está recheada de oficinas práticas e mesas-redondas! A pesquisa se faz na troca de experiências.",
+        "pose": "eureka",
+        "badge": "Programação"
+      },
+      "localizacao": {
+        "text": "Nada substitui a energia do encontro presencial no Câmpus da UNITINS. Estou animada para o evento!",
+        "pose": "waving",
+        "badge": "Câmpus UNITINS"
+      },
+      "inscricao": {
+        "text": "Não vacile: as vagas para as oficinas práticas de laboratório costumam esgotar rápido. Inscreva-se!",
+        "pose": "waving",
+        "badge": "Inscrição"
+      },
+      "noticias": {
+        "text": "A pesquisa acadêmica é o motor do desenvolvimento regional. Fique por dentro de todas as novidades!",
+        "pose": "reading",
+        "badge": "Notícias"
+      },
+      "faq": {
+        "text": "Ciência é questionamento constante! Se tiver qualquer dúvida sobre o evento, tire aqui no FAQ.",
+        "pose": "reading",
+        "badge": "Dúvidas"
+      }
     }
   }
 }

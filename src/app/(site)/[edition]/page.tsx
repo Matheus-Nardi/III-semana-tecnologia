@@ -11,6 +11,7 @@ import Faq from '@/components/project/Faq'
 import Location from '@/components/project/Location'
 import Subscription from '@/components/project/Subscription'
 import Footer from '@/components/project/Footer'
+import { Mascot } from '@/components/project/Mascot'
 
 interface PageProps {
   params: Promise<{
@@ -100,6 +101,7 @@ export default async function EditionPage({ params }: PageProps) {
         <Subscription edition={edition} />
       </main>
       <Footer edition={edition} />
+      {(edition.year === 2026 || edition.slug === '2026') && <Mascot />}
     </div>
   )
 }
