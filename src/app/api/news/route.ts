@@ -11,10 +11,11 @@ interface NewsItem {
 
 export async function GET() {
   try {
-    const response = await fetch('https://www.unitins.br/nPortal/', {
+    const response = await fetch('https://www.unitins.br/nPortal/noticias/ajaxlistar?site=portal', {
       headers: {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept': 'text/html, */*; q=0.01',
+        'X-Requested-With': 'XMLHttpRequest',
         'Accept-Language': 'pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7',
       },
       // Revalida automaticamente após 30 minutos quando houver nova requisição
@@ -31,17 +32,17 @@ export async function GET() {
 
     const noticias: NewsItem[] = [];
 
-    // Procura os cards de notícia na seção #noticias
-    $('#noticias .card').each((index, element) => {
+    // Procura os cards de notícia retornados pelo endpoint AJAX
+    $('.card').each((index, element) => {
       if (index >= 6) return; // Limita a 6 notícias
 
       const card = $(element);
       
-      // Extrai as informações
-      const title = card.find('.card-title').text().trim();
+      // Extrai as informações e sanitiza espaços
+      const title = card.find('.card-title').text().replace(/\s+/g, ' ').trim();
       let imageUrl = card.find('img').attr('src') || '';
-      const category = card.find('.badge').text().trim();
-      let url = card.find('a.stretched-link').attr('href') || '';
+      const category = card.find('.badge').text().replace(/\s+/g, ' ').trim();
+      let url = card.find('a.stretched-link').attr('href') || card.find('a').attr('href') || '';
 
       // Corrige URLs relativas para absolutas
       if (imageUrl && !imageUrl.startsWith('http')) {

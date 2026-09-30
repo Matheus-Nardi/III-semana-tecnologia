@@ -165,6 +165,11 @@ export default function News() {
 
               {/* Conteúdo */}
               <div className="p-4 sm:p-6">
+                {item.category && (
+                  <span className="inline-block bg-primary/10 text-primary text-xs font-semibold px-2.5 py-1 rounded-md mb-2">
+                    {item.category}
+                  </span>
+                )}
                 <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-3 sm:mb-4 line-clamp-3 leading-snug group-hover:text-primary transition-colors font-montserrat">
                   {item.title}
                 </h3>
