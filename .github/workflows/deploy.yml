@@ -74,14 +74,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           target: ${{ secrets.DEPLOY_PATH }}
           overwrite: true
-          source: |
-            docker-compose.prod.yml
-            nginx
-            scripts
-          exclude: |
-            certbot/**
-            backups/**
-            *.log
+          source: "docker-compose.prod.yml,nginx,scripts"
 
       - name: Pull image and restart stack remotely
         uses: appleboy/ssh-action@v1.0.0
