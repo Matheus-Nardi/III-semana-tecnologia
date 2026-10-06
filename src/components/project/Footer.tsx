@@ -25,6 +25,16 @@ export default function Footer({ edition }: { edition?: Edition }) {
   ];
 
   const currentYear = edition?.year || new Date().getFullYear();
+  const footerLogoSrc =
+    (typeof edition?.theme?.logo === 'object' && edition?.theme?.logo?.url)
+      ? edition.theme.logo.url
+      : (typeof edition?.theme?.logo === 'string' && edition?.theme?.logo)
+        ? edition.theme.logo
+        : '/logos/logo-snct.png';
+  const footerLogoAlt =
+    (typeof edition?.theme?.logo === 'object' && edition?.theme?.logo?.alt)
+      ? edition.theme.logo.alt
+      : `Logo SNCT e SCTI UNITINS - ${shortTitle}`;
   const developers = [
     {
       name: "Italo Beckman",
@@ -142,14 +152,14 @@ export default function Footer({ edition }: { edition?: Edition }) {
       {/* Linha Divisória com Gradiente */}
       <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
 
-      {/* Logo SNCT */}
-      <div className="flex justify-center py-6">
+      {/* Logo da Edição / SNCT */}
+      <div className="flex justify-center py-6 px-4">
         <Image
-          src="/logos/logo-snct.png"
-          alt="Logo SNCT e SCTI UNITINS"
+          src={footerLogoSrc}
+          alt={footerLogoAlt}
           width={500}
           height={50}
-          className="w-full max-w-4xl h-auto"
+          className="w-full max-w-4xl h-auto object-contain"
         />
       </div>
 

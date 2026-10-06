@@ -240,9 +240,10 @@ export const Editions: CollectionConfig = {
                   name: 'logo',
                   type: 'upload',
                   relationTo: 'media',
-                  label: '🖼️ Logo Oficial desta Edição',
+                  label: '🖼️ Logo Oficial / Imagem do Rodapé',
                   admin: {
-                    description: 'Substitui a logo padrão exibida no cabeçalho e rodapé (formato recomendado: PNG ou SVG transparente)',
+                    description:
+                      'Atenção: a imagem carregada aqui é refletida diretamente no rodapé (footer) do site público desta edição, bem como na identidade oficial do evento. Caso não seja enviada, o sistema usará a régua padrão da SNCT. Formato recomendado: PNG ou SVG com fundo transparente.',
                   },
                 },
                 {

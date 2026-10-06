@@ -345,7 +345,7 @@ export interface Edition {
      */
     secondaryColor?: string | null;
     /**
-     * Substitui a logo padrão exibida no cabeçalho e rodapé (formato recomendado: PNG ou SVG transparente)
+     * Atenção: a imagem carregada aqui é refletida diretamente no rodapé (footer) do site público desta edição, bem como na identidade oficial do evento. Caso não seja enviada, o sistema usará a régua padrão da SNCT. Formato recomendado: PNG ou SVG com fundo transparente.
      */
     logo?: (number | null) | Media;
     /**

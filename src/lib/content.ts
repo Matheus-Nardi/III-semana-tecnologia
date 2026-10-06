@@ -119,6 +119,10 @@ export const FALLBACK_2025_EDITION: Edition = {
     primaryColor: '#083D77',
     accentColor: '#e2187f',
     secondaryColor: '#E3F5FF',
+    logo: {
+      url: '/logos/logo-snct.png',
+      alt: 'Logo SNCT e SCTI UNITINS',
+    },
   },
   heroSlides: [
     {
@@ -201,6 +205,10 @@ export const FALLBACK_2026_EDITION: Edition = {
     primaryColor: '#083D77',
     accentColor: '#e2187f',
     secondaryColor: '#E3F5FF',
+    logo: {
+      url: '/logos/logo-snct.png',
+      alt: 'Logo SNCT e SCTI UNITINS',
+    },
   },
   heroSlides: FALLBACK_2025_EDITION.heroSlides,
   about: {
