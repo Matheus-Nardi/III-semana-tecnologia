@@ -111,17 +111,21 @@ jobs:
             chmod +x scripts/restart.sh
             ./scripts/restart.sh
 
-            echo "--- Status ---"
-            docker compose -f docker-compose.prod.yml ps
             echo "--- Health ---"
-            for i in 1 2 3 4 5; do
-              if docker exec semana-tecnologia-app-prod curl -fsS http://localhost:3000 >/dev/null 2>&1; then
-                echo "nextjs OK"
-                exit 0
+            SUCCESS=false
+            for i in $(seq 1 12); do
+              HTTP_CODE=$(docker exec semana-tecnologia-app-prod curl -s -o /dev/null -w "%{http_code}" --max-time 4 --connect-timeout 2 http://127.0.0.1:3000/api/health || true)
+              if [ "$HTTP_CODE" = "200" ]; then
+                echo "✅ Next.js saudável (HTTP 200 na tentativa $i)"
+                SUCCESS=true
+                break
               fi
-              echo "aguardando nextjs... ($i/5)"
-              sleep 8
+              echo "Aguardando Next.js inicializar... (tentativa $i/12 - status: ${HTTP_CODE:-sem conexão})"
+              sleep 5
             done
-            echo "nextjs FAILED"
-            docker compose -f docker-compose.prod.yml logs --tail=80 nextjs
-            exit 1
+
+            if [ "$SUCCESS" = false ]; then
+              echo "❌ Next.js não respondeu com HTTP 200 no tempo limite."
+              docker compose -f docker-compose.prod.yml logs --tail=100 nextjs
+              exit 1
+            fi
