@@ -333,7 +333,7 @@ export function Mascot() {
 
                     <button
                       onClick={handleMinimize}
-                      className="text-slate-400 hover:text-slate-600 rounded-full p-1 hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
+                      className="w-6 h-6 min-w-0 min-h-0 flex items-center justify-center rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-100 transition-colors cursor-pointer shrink-0"
                       title="Minimizar"
                       aria-label="Minimizar"
                     >
@@ -350,7 +350,7 @@ export function Mascot() {
                   <div className="mt-2 pt-1.5 border-t border-slate-100 flex items-center justify-end">
                     <button
                       onClick={handleNextTrivia}
-                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 hover:bg-primary/15 text-primary text-[10px] font-semibold transition-colors cursor-pointer"
+                      className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-primary/10 hover:bg-primary/15 text-primary text-[10px] font-semibold transition-colors cursor-pointer min-h-0 min-w-0"
                     >
                       <RefreshCw className="w-2.5 h-2.5 text-primary" />
                       <span>{currentMessage.isEphemeral ? 'Ver curiosidade' : 'Outra curiosidade'}</span>
@@ -373,7 +373,7 @@ export function Mascot() {
               <button
                 onClick={handleMinimize}
                 aria-label={`Minimizar ${activeCharData.name}`}
-                className="absolute -top-1 -right-1 z-20 w-5 h-5 rounded-full bg-white shadow-md border border-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
+                className="absolute -top-1 -right-1 z-20 w-5 h-5 min-w-0 min-h-0 rounded-full bg-white shadow-md border border-slate-200 text-slate-400 hover:text-slate-700 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
                 title="Minimizar"
               >
                 <X className="w-3 h-3" />
