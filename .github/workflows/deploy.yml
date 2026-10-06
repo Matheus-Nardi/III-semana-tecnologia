@@ -66,6 +66,16 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare remote directory
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            mkdir -p "${{ secrets.DEPLOY_PATH }}"
+            chmod 755 "${{ secrets.DEPLOY_PATH }}" || true
+
       - name: Upload deploy config to server (SCP)
         uses: appleboy/scp-action@v0.1.7
         with:
