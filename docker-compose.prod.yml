@@ -20,7 +20,7 @@ services:
 
   # Aplicação Next.js Standalone (Produção)
   nextjs:
-    image: semana-tecnologia-prod:latest
+    image: ${APP_IMAGE:-semana-tecnologia-prod:latest}
     build:
       context: .
       dockerfile: Dockerfile
@@ -48,7 +48,9 @@ services:
     networks:
       - app-network-prod
     volumes:
-      - ./public:/app/public
+      # Apenas os uploads do Payload ficam persistidos em volume Docker.
+      # O restante de /app/public vem da imagem (assets gerados no build).
+      - media-data-prod:/app/public/media
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000"]
       interval: 30s
@@ -112,6 +114,7 @@ services:
 
 volumes:
   db-data-prod: {}
+  media-data-prod: {}
 
 networks:
   app-network-prod:

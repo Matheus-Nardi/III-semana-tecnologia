@@ -2,16 +2,26 @@
 
 set -e
 
-# Script de restart rápido: derruba containers e volumes e sobe novamente.
-# Uso: ./scripts/restart.sh [--no-cache] [--prune] [--file docker-compose.prod.yml]
+# Script de restart/deploy: sobe a stack de produção de forma segura.
+# Por padrão faz pull da imagem (APP_IMAGE) e recria apenas o que mudou.
+# Uso: ./scripts/restart.sh [--build] [--no-cache] [--prune] [--file docker-compose.prod.yml]
+#
+# ATENÇÃO: este script NUNCA remove volumes (não usa "down -v"), para não
+# apagar o banco PostgreSQL (db-data-prod) nem os certificados.
 
 COMPOSE_FILE="docker-compose.prod.yml"
+BUILD=false
 NO_CACHE=false
 PRUNE_IMAGES=false
 
 while [[ $# -gt 0 ]]; do
   case $1 in
+    --build)
+      BUILD=true
+      shift
+      ;;
     --no-cache)
+      BUILD=true
       NO_CACHE=true
       shift
       ;;
@@ -24,15 +34,19 @@ while [[ $# -gt 0 ]]; do
       shift 2
       ;;
     *)
-      echo "Uso: $0 [--no-cache] [--prune] [--file docker-compose.prod.yml]"
+      echo "Uso: $0 [--build] [--no-cache] [--prune] [--file docker-compose.prod.yml]"
       exit 1
       ;;
   esac
 done
 
-# Verifica Docker
-if ! command -v docker &> /dev/null; then
-  echo "❌ Docker não está instalado."
+# Detecta Docker Compose v2 (plugin) com fallback para o binário legado
+if docker compose version > /dev/null 2>&1; then
+  DC="docker compose"
+elif command -v docker-compose > /dev/null 2>&1; then
+  DC="docker-compose"
+else
+  echo "❌ Docker Compose não encontrado (instale o plugin v2)."
   exit 1
 fi
 
@@ -41,30 +55,32 @@ if ! docker info > /dev/null 2>&1; then
   exit 1
 fi
 
-echo "🛑 Parando containers e removendo volumes..."
-docker-compose -f "$COMPOSE_FILE" down -v || true
-
 if [ "$PRUNE_IMAGES" = true ]; then
-  echo "🧹 Limpando imagens antigas..."
+  echo "🧹 Limpando imagens não utilizadas..."
   docker image prune -f || true
 fi
 
-echo "🚀 Subindo containers (com build)..."
-if [ "$NO_CACHE" = true ]; then
-  echo "🏗️  Construindo imagens sem cache..."
-  docker-compose -f "$COMPOSE_FILE" build --no-cache
+if [ "$BUILD" = true ]; then
+  if [ "$NO_CACHE" = true ]; then
+    echo "🏗️  Construindo imagens sem cache..."
+    $DC -f "$COMPOSE_FILE" build --no-cache
+  else
+    echo "🏗️  Construindo imagens..."
+    $DC -f "$COMPOSE_FILE" build
+  fi
 else
-  echo "🏗️  Construindo imagens..."
-  docker-compose -f "$COMPOSE_FILE" build
+  echo "⬇️  Baixando imagem da aplicação (${APP_IMAGE:-semana-tecnologia-prod:latest})..."
+  $DC -f "$COMPOSE_FILE" pull nextjs
+  $DC -f "$COMPOSE_FILE" pull db nginx certbot backup || true
 fi
 
 echo "🚀 Subindo containers..."
-docker-compose -f "$COMPOSE_FILE" up -d
+$DC -f "$COMPOSE_FILE" up -d --remove-orphans
 
 echo "⏳ Aguardando inicialização..."
 sleep 20
 
 echo "📊 Status dos containers:"
-docker-compose -f "$COMPOSE_FILE" ps
+$DC -f "$COMPOSE_FILE" ps
 
 echo "✅ Restart concluído."

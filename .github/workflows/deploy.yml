@@ -1,51 +1,125 @@
-# name: Deploy to Oracle VM
+name: Deploy to Oracle VM
 
-# on:
-#   push:
-#     branches:
-#       - deploy-auto
-#       - main
-#   workflow_dispatch:
+on:
+  push:
+    branches:
+      - main
+      - unstable
+  workflow_dispatch:
 
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     environment: production
-#     steps:
-#       - name: Checkout repository
-#         uses: actions/checkout@v4
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
 
-#       - name: Prepare remote directory
-#         uses: appleboy/ssh-action@v1.0.0
-#         with:
-#           host: ${{ secrets.SSH_HOST }}
-#           username: ${{ secrets.SSH_USER }}
-#           key: ${{ secrets.SSH_PRIVATE_KEY }}
-#           script: |
-#             mkdir -p "${{ secrets.DEPLOY_PATH }}"
+env:
+  REGISTRY: ghcr.io
 
-#       - name: Upload project to server (SCP)
-#         uses: appleboy/scp-action@v0.1.7
-#         with:
-#           host: ${{ secrets.SSH_HOST }}
-#           username: ${{ secrets.SSH_USER }}
-#           key: ${{ secrets.SSH_PRIVATE_KEY }}
-#           source: "."
-#           target: ${{ secrets.DEPLOY_PATH }}
-#           overwrite: true
-#           exclude: |
-#             .git/**
-#             node_modules/**
-#             certbot/conf/**
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    outputs:
+      image: ${{ steps.vars.outputs.image }}
+      image_sha: ${{ steps.vars.outputs.image_sha }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-#       - name: Run restart script remotely
-#         uses: appleboy/ssh-action@v1.0.0
-#         with:
-#           host: ${{ secrets.SSH_HOST }}
-#           username: ${{ secrets.SSH_USER }}
-#           key: ${{ secrets.SSH_PRIVATE_KEY }}
-#           script: |
-#             set -e
-#             cd "${{ secrets.DEPLOY_PATH }}"
-#             chmod +x scripts/restart.sh || true
-#             ./scripts/restart.sh --no-cache
+      - name: Compute lowercase image names
+        id: vars
+        run: |
+          REPO=$(echo "${{ github.repository }}" | tr '[:upper:]' '[:lower:]')
+          BRANCH=$(echo "${GITHUB_REF_NAME}" | tr '[:upper:]' '[:lower:]' | tr '/' '-')
+          echo "image=${REGISTRY}/${REPO}:${BRANCH}" >> "$GITHUB_OUTPUT"
+          echo "image_sha=${REGISTRY}/${REPO}:sha-${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push (linux/arm64)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/arm64
+          push: true
+          tags: |
+            ${{ steps.vars.outputs.image }}
+            ${{ steps.vars.outputs.image_sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload deploy config to server (SCP)
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          target: ${{ secrets.DEPLOY_PATH }}
+          overwrite: true
+          source: |
+            docker-compose.prod.yml
+            nginx
+            scripts
+          exclude: |
+            certbot/**
+            backups/**
+            *.log
+
+      - name: Pull image and restart stack remotely
+        uses: appleboy/ssh-action@v1.0.0
+        env:
+          GHCR_USER: ${{ secrets.GHCR_USERNAME }}
+          GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
+          APP_IMAGE: ${{ needs.build-and-push.outputs.image }}
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: GHCR_USER,GHCR_TOKEN,APP_IMAGE
+          script: |
+            set -e
+            cd "${{ secrets.DEPLOY_PATH }}"
+            mkdir -p certbot/conf certbot/www backups
+
+            if [ -n "$GHCR_TOKEN" ]; then
+              echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
+            fi
+
+            chmod +x scripts/restart.sh
+            ./scripts/restart.sh
+
+            echo "--- Status ---"
+            docker compose -f docker-compose.prod.yml ps
+            echo "--- Health ---"
+            for i in 1 2 3 4 5; do
+              if docker exec semana-tecnologia-app-prod curl -fsS http://localhost:3000 >/dev/null 2>&1; then
+                echo "nextjs OK"
+                exit 0
+              fi
+              echo "aguardando nextjs... ($i/5)"
+              sleep 8
+            done
+            echo "nextjs FAILED"
+            docker compose -f docker-compose.prod.yml logs --tail=80 nextjs
+            exit 1

@@ -28,11 +28,10 @@ PGDB="${POSTGRES_DB:-semana_tecnologia}"
 echo "[2/3] 💾 Restaurando banco de dados PostgreSQL..."
 docker exec -e PGPASSWORD="$PGPASSWORD" semana-tecnologia-backup-prod sh -c "psql -h db -U $PGUSER -d $PGDB -c 'DROP SCHEMA public CASCADE; CREATE SCHEMA public;' && gunzip -c /backups/last/semana_tecnologia-latest.sql.gz | psql -h db -U $PGUSER -d $PGDB"
 
-echo "[3/3] 🖼️ Extraindo mídias para a pasta local (./public/media)..."
+echo "[3/3] 🖼️ Restaurando mídias no container (volume media-data-prod)..."
 if [ -f "$BACKUP_MEDIA" ]; then
-  mkdir -p public
-  tar -xzf "$BACKUP_MEDIA" -C public
-  echo "✅ Mídias locais extraídas com sucesso em ./public/media"
+  gunzip -c "$BACKUP_MEDIA" | docker cp - semana-tecnologia-app-prod:/app/public/
+  echo "✅ Mídias restauradas em /app/public/media"
 fi
 
 echo "=========================================================="

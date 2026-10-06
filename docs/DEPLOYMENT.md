@@ -165,16 +165,76 @@ Verifique nos logs se o Next.js inicializou com sucesso e se o auto-seed da edi�
 
 ---
 
-### 4.2. Deploy de Atualização (Deploy Contínuo)
+## 4.2. Deploy Automático (GitHub Actions + GHCR) — padrão
 
-Para implantar novas versões ou correções de segurança em um servidor já em operação:
+O deploy contínuo é feito pelo workflow [`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml):
+o GitHub Actions builda a imagem Docker para **linux/arm64**, publica no **GitHub Container Registry (GHCR)**
+e a VM apenas baixa a imagem e recria o container — ou seja, **a VM não compila mais o projeto**.
+
+```
+ push na main ──▶ GitHub Actions (build linux/arm64) ──▶ ghcr.io/<owner>/<repo>:main
+                                                                   │
+                                                                   ▼
+                         SSH na VM ──▶ ./scripts/restart.sh (pull + up -d)
+```
+
+### 4.2.1. Pré-requisitos na VM
+
+- Docker Engine 24+ **com o plugin `docker compose` v2** (`docker compose version` deve funcionar).
+- Arquivo `.env` já criado na raiz do projeto (ver seção 3) — ele **não** é enviado pelo CI.
+- Certificados SSL já emitidos uma vez (ver seção 4.1, Passo 2) — o CI não faz o bootstrap do Certbot.
+- Acesso de leitura ao GHCR (token ou pacote público), conforme 4.3.3.
+
+### 4.2.2. Secrets necessários no repositório
+
+Configure em **Settings → Secrets and variables → Actions → New repository secret**:
+
+| Secret | Descrição |
+|:-------|:----------|
+| `SSH_HOST` | IP ou host da VM (ex.: `168.138.247.203`) |
+| `SSH_USER` | Usuário SSH (ex.: `ubuntu` ou `opc`) |
+| `SSH_PRIVATE_KEY` | Chave privada SSH (conteúdo do `.pem`/`.key`) usada para autenticar |
+| `DEPLOY_PATH` | Diretório na VM onde ficam o `.env`, `docker-compose.prod.yml`, `nginx/` e `scripts/` |
+| `GHCR_USERNAME` | Usuário do GitHub com permissão de leitura no pacote GHCR |
+| `GHCR_TOKEN` | Personal Access Token (classic) com escopo `read:packages` |
+
+> O `GITHUB_TOKEN` do Actions é usado apenas para **publicar** a imagem (permissão `packages: write`).
+> Para **baixar** na VM é necessário `GHCR_USERNAME`/`GHCR_TOKEN`.
+>
+> **Alternativa mais simples:** torne o pacote público em
+> `github.com/<owner>?tab=packages` → pacote da imagem → *Package settings* → *Change visibility* → **Public**.
+> Nesse caso basta remover o passo de `docker login` do workflow e os secrets `GHCR_*`.
+
+### 4.2.3. Disparo e comportamento
+
+- Dispara automaticamente em **push para `main` e `unstable`** e manualmente via **workflow_dispatch**.
+- Tag publicada: `ghcr.io/<owner>/<repo>:<branch>` (ex.: `:main`, `:unstable`) e `:sha-<hash>` para rollback.
+- O script `scripts/restart.sh` faz `docker compose pull nextjs` + `up -d` — **sem `down -v`**,
+  preservando o banco (`db-data-prod`), os uploads (`media-data-prod`) e os certificados.
+- As **migrações do Payload** (`prodMigrations` em `src/payload.config.ts`) rodam automaticamente
+  no start do container em produção — não há passo manual de migração no CI.
+- Ao final, o workflow valida a saúde do container (`curl` interno) e imprime os logs em caso de falha.
+
+### 4.2.4. Rollback pelo CI
+
+```bash
+# Na VM, fixe a tag do build anterior (sha curto)
+cd <DEPLOY_PATH>
+APP_IMAGE=ghcr.io/<owner>/<repo>:sha-<hash-anterior> docker compose -f docker-compose.prod.yml up -d nextjs
+```
+
+---
+
+## 4.3. Deploy Manual (alternativa)
+
+Para implantar manualmente em um servidor (útil para testes ou sem acesso ao GHCR):
 
 ```bash
 # 1. Puxar alterações do repositório
 git pull origin main
 
-# 2. Reconstruir a imagem e atualizar os containers sem downtime do banco
-docker compose -f docker-compose.prod.yml up -d --build nextjs nginx
+# 2. Build local + subir (sem apagar o banco, sem SSL bootstrap)
+./scripts/restart.sh --build
 
 # 3. Verificar o status dos containers
 docker compose -f docker-compose.prod.yml ps
