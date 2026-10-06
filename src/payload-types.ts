@@ -394,6 +394,10 @@ export interface Edition {
     illustration?: (number | null) | Media;
   };
   /**
+   * Grafismo decorativo exibido na lateral superior da seção de programação (desktop). Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.
+   */
+  scheduleIllustration?: (number | null) | Media;
+  /**
    * Organize os dias do evento. Dentro de cada dia, cadastre os eixos temáticos (sub-eventos) e suas respectivas palestras e atividades.
    */
   schedule?:
@@ -460,9 +464,17 @@ export interface Edition {
       }[]
     | null;
   /**
+   * Grafismo decorativo exibido na coluna lateral dos parceiros. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.
+   */
+  partnersIllustration?: (number | null) | Media;
+  /**
    * Escolha os parceiros cadastrados na coleção global de Parceiros para exibi-los nesta edição.
    */
   partners?: (number | Partner)[] | null;
+  /**
+   * Grafismo decorativo exibido ao lado do título da seção de notícias. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.
+   */
+  newsIllustration?: (number | null) | Media;
   faqs?:
     | {
         /**
@@ -476,6 +488,14 @@ export interface Edition {
   subscription?: {
     title?: string | null;
     ctaLabel?: string | null;
+    /**
+     * Grafismo flutuante exibido à esquerda do botão de inscrição. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.
+     */
+    leftIllustration?: (number | null) | Media;
+    /**
+     * Grafismo flutuante exibido à direita do botão de inscrição. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.
+     */
+    rightIllustration?: (number | null) | Media;
   };
   updatedAt: string;
   createdAt: string;
@@ -823,6 +843,7 @@ export interface EditionsSelect<T extends boolean = true> {
         body?: T;
         illustration?: T;
       };
+  scheduleIllustration?: T;
   schedule?:
     | T
     | {
@@ -850,7 +871,9 @@ export interface EditionsSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  partnersIllustration?: T;
   partners?: T;
+  newsIllustration?: T;
   faqs?:
     | T
     | {
@@ -863,6 +886,8 @@ export interface EditionsSelect<T extends boolean = true> {
     | {
         title?: T;
         ctaLabel?: T;
+        leftIllustration?: T;
+        rightIllustration?: T;
       };
   updatedAt?: T;
   createdAt?: T;

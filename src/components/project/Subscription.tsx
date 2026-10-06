@@ -16,6 +16,30 @@ export default function Subscription({ edition }: { edition?: Edition }) {
   const registrationUrl = edition?.registrationUrl || "https://www.unitins.br/Eventos/E007Evento/Abertos";
   const ctaLabel = edition?.subscription?.ctaLabel || "Inscreva-se Agora";
 
+  const leftIllustrationSrc =
+    (typeof edition?.subscription?.leftIllustration === 'object' && edition?.subscription?.leftIllustration?.url)
+      ? edition.subscription.leftIllustration.url
+      : (typeof edition?.subscription?.leftIllustration === 'string' && edition?.subscription?.leftIllustration)
+        ? edition.subscription.leftIllustration
+        : '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-10.png';
+
+  const leftIllustrationAlt =
+    (typeof edition?.subscription?.leftIllustration === 'object' && edition?.subscription?.leftIllustration?.alt)
+      ? edition.subscription.leftIllustration.alt
+      : 'Elemento decorativo da identidade visual';
+
+  const rightIllustrationSrc =
+    (typeof edition?.subscription?.rightIllustration === 'object' && edition?.subscription?.rightIllustration?.url)
+      ? edition.subscription.rightIllustration.url
+      : (typeof edition?.subscription?.rightIllustration === 'string' && edition?.subscription?.rightIllustration)
+        ? edition.subscription.rightIllustration
+        : '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-12.png';
+
+  const rightIllustrationAlt =
+    (typeof edition?.subscription?.rightIllustration === 'object' && edition?.subscription?.rightIllustration?.alt)
+      ? edition.subscription.rightIllustration.alt
+      : 'Elemento decorativo da identidade visual';
+
   return (
     <section id="inscricao" className="w-full py-16 sm:py-20 md:py-32 bg-gradient-5 relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-6">
@@ -37,8 +61,8 @@ export default function Subscription({ edition }: { edition?: Edition }) {
               </svg>
             </div>
             <Image 
-              src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-10.png" 
-              alt="Elemento decorativo da identidade visual" 
+              src={leftIllustrationSrc} 
+              alt={leftIllustrationAlt} 
               fill 
               sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
               className="object-contain drop-shadow-xl" 
@@ -96,8 +120,8 @@ export default function Subscription({ edition }: { edition?: Edition }) {
               </svg>
             </div>
             <Image 
-              src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-12.png" 
-              alt="Elemento decorativo da identidade visual" 
+              src={rightIllustrationSrc} 
+              alt={rightIllustrationAlt} 
               fill 
               sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, (max-width: 1024px) 192px, 224px"
               className="object-contain drop-shadow-xl" 

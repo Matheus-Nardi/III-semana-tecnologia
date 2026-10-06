@@ -95,7 +95,7 @@ export default async function EditionPage({ params }: PageProps) {
         <AboutEvent edition={edition} />
         <Schedule edition={edition} />
         <Partners edition={edition} />
-        <News />
+        <News edition={edition} />
         <Faq edition={edition} />
         <Location />
         <Subscription edition={edition} />

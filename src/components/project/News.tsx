@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Newspaper, ExternalLink, Loader2, AlertCircle } from 'lucide-react';
 import { motion, useInView } from "motion/react";
 import Image from "next/image";
+import type { Edition } from "@/lib/content";
 
 interface NewsItem {
   id: string;
@@ -13,13 +14,25 @@ interface NewsItem {
   url: string;
 }
 
-export default function News() {
+export default function News({ edition }: { edition?: Edition } = {}) {
   const [news, setNews] = useState<NewsItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-50px" });
+
+  const newsIllustrationSrc =
+    (typeof edition?.newsIllustration === 'object' && edition?.newsIllustration?.url)
+      ? edition.newsIllustration.url
+      : (typeof edition?.newsIllustration === 'string' && edition?.newsIllustration)
+        ? edition.newsIllustration
+        : '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-6.png';
+
+  const newsIllustrationAlt =
+    (typeof edition?.newsIllustration === 'object' && edition?.newsIllustration?.alt)
+      ? edition.newsIllustration.alt
+      : 'Elemento decorativo da identidade visual';
 
   const fetchNews = async () => {
     try {
@@ -125,8 +138,8 @@ export default function News() {
               className="relative w-full max-w-xs aspect-square"
             >
               <Image
-                src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-6.png"
-                alt="Elemento decorativo da identidade visual"
+                src={newsIllustrationSrc}
+                alt={newsIllustrationAlt}
                 fill
                 className="object-contain drop-shadow-2xl animate-float"
               />

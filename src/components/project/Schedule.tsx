@@ -265,6 +265,18 @@ const dateMapping: Record<string, { date: string; dayOfWeek: string }> = {
 export default function Schedule({ edition }: { edition?: Edition }) {
   const headerRef = useRef(null);
   const isHeaderInView = useInView(headerRef, { once: false, margin: "-100px" });
+
+  const scheduleIllustrationSrc =
+    (typeof edition?.scheduleIllustration === 'object' && edition?.scheduleIllustration?.url)
+      ? edition.scheduleIllustration.url
+      : (typeof edition?.scheduleIllustration === 'string' && edition?.scheduleIllustration)
+        ? edition.scheduleIllustration
+        : '/ilustracoes/2_ilustracao.png';
+
+  const scheduleIllustrationAlt =
+    (typeof edition?.scheduleIllustration === 'object' && edition?.scheduleIllustration?.alt)
+      ? edition.scheduleIllustration.alt
+      : 'Elemento decorativo da identidade visual';
   const formatLastUpdate = (dateString?: string) => {
     if (!dateString) return "";
     try {
@@ -509,8 +521,8 @@ export default function Schedule({ edition }: { edition?: Edition }) {
           {/* Elemento Visual */}
           <div className="hidden lg:flex items-center justify-end relative w-full max-w-xs aspect-square">
             <Image
-              src="/ilustracoes/2_ilustracao.png"
-              alt="Elemento decorativo da identidade visual"
+              src={scheduleIllustrationSrc}
+              alt={scheduleIllustrationAlt}
               fill
               sizes="(max-width: 1024px) 0px, 320px"
               className="object-contain drop-shadow-2xl animate-float-delayed"

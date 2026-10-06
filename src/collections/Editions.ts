@@ -385,6 +385,15 @@ export const Editions: CollectionConfig = {
           description: 'Estruturação completa dos dias, eixos temáticos/sub-eventos e palestras',
           fields: [
             {
+              name: 'scheduleIllustration',
+              type: 'upload',
+              relationTo: 'media',
+              label: '🖼️ Ilustração Decorativa da Programação',
+              admin: {
+                description: 'Grafismo decorativo exibido na lateral superior da seção de programação (desktop). Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.',
+              },
+            },
+            {
               name: 'schedule',
               type: 'array',
               label: 'Dias da Programação',
@@ -595,6 +604,15 @@ export const Editions: CollectionConfig = {
           description: 'Vincule as instituições e empresas apoiadoras desta edição',
           fields: [
             {
+              name: 'partnersIllustration',
+              type: 'upload',
+              relationTo: 'media',
+              label: '🖼️ Ilustração Decorativa dos Parceiros',
+              admin: {
+                description: 'Grafismo decorativo exibido na coluna lateral dos parceiros. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.',
+              },
+            },
+            {
               name: 'partners',
               type: 'relationship',
               relationTo: 'partners',
@@ -602,6 +620,21 @@ export const Editions: CollectionConfig = {
               label: 'Selecione os Parceiros Desta Edição',
               admin: {
                 description: 'Escolha os parceiros cadastrados na coleção global de Parceiros para exibi-los nesta edição.',
+              },
+            },
+          ],
+        },
+        {
+          label: '📰 Seção de Notícias',
+          description: 'Personalize a ilustração decorativa da seção de notícias da universidade',
+          fields: [
+            {
+              name: 'newsIllustration',
+              type: 'upload',
+              relationTo: 'media',
+              label: '🖼️ Ilustração Decorativa de Notícias',
+              admin: {
+                description: 'Grafismo decorativo exibido ao lado do título da seção de notícias. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.',
               },
             },
           ],
@@ -661,6 +694,24 @@ export const Editions: CollectionConfig = {
                   type: 'text',
                   defaultValue: 'Inscreva-se Agora',
                   label: 'Texto do Botão de Inscrição',
+                },
+                {
+                  name: 'leftIllustration',
+                  type: 'upload',
+                  relationTo: 'media',
+                  label: '🖼️ Ilustração Flutuante (Esquerda)',
+                  admin: {
+                    description: 'Grafismo flutuante exibido à esquerda do botão de inscrição. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.',
+                  },
+                },
+                {
+                  name: 'rightIllustration',
+                  type: 'upload',
+                  relationTo: 'media',
+                  label: '🖼️ Ilustração Flutuante (Direita)',
+                  admin: {
+                    description: 'Grafismo flutuante exibido à direita do botão de inscrição. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.',
+                  },
                 },
               ],
             },

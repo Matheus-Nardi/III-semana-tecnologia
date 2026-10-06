@@ -31,6 +31,18 @@ export default function Partners({ edition }: { edition?: Edition }) {
       }))
     : defaultPartners;
 
+  const partnersIllustrationSrc =
+    (typeof edition?.partnersIllustration === 'object' && edition?.partnersIllustration?.url)
+      ? edition.partnersIllustration.url
+      : (typeof edition?.partnersIllustration === 'string' && edition?.partnersIllustration)
+        ? edition.partnersIllustration
+        : '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-4.png';
+
+  const partnersIllustrationAlt =
+    (typeof edition?.partnersIllustration === 'object' && edition?.partnersIllustration?.alt)
+      ? edition.partnersIllustration.alt
+      : 'Elemento decorativo da identidade visual';
+
   return (
     <section id="parceiros" className="w-full py-16 sm:py-20 md:py-32 relative overflow-hidden bg-gradient-soft-primary">
       <div className="container mx-auto px-4 md:px-6 relative z-10">
@@ -94,8 +106,8 @@ export default function Partners({ edition }: { edition?: Edition }) {
               className="relative w-full max-w-sm aspect-square"
             >
               <Image
-                src="/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-4.png"
-                alt="Elemento decorativo da identidade visual"
+                src={partnersIllustrationSrc}
+                alt={partnersIllustrationAlt}
                 fill
                 sizes="(max-width: 1024px) 0px, 384px"
                 className="object-contain drop-shadow-2xl animate-float"
