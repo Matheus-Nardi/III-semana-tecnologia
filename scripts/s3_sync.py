@@ -31,7 +31,7 @@ def load_env(env_path=None):
                     config[k.strip()] = v.strip().strip('"').strip("'")
     
     # Sobrescreve com variáveis de ambiente do sistema se existirem
-    for k in ['S3_ENDPOINT', 'S3_BUCKET', 'S3_ACCESS_KEY_ID', 'S3_SECRET_ACCESS_KEY', 'S3_REGION']:
+    for k in ['S3_ENDPOINT', 'S3_BUCKET', 'S3_BACKUP_BUCKET', 'S3_ACCESS_KEY_ID', 'S3_SECRET_ACCESS_KEY', 'S3_REGION']:
         if k in os.environ:
             config[k] = os.environ[k]
             
@@ -50,7 +50,7 @@ def get_signature_key(key, date_stamp, region_name, service_name):
 def request_s3(method, config, s3_key, file_data=None):
     """Executa requisição autenticada via AWS SigV4 para o Backblaze B2"""
     endpoint = config.get('S3_ENDPOINT', 'https://s3.us-east-005.backblazeb2.com')
-    bucket = config.get('S3_BUCKET', 'semana-tec-backups')
+    bucket = config.get('S3_BACKUP_BUCKET') or config.get('S3_BUCKET', 'semana-tec-backups')
     access_key = config.get('S3_ACCESS_KEY_ID', '')
     secret_key = config.get('S3_SECRET_ACCESS_KEY', '')
     region = config.get('S3_REGION', 'us-east-005')
@@ -114,7 +114,7 @@ def upload(local_file, s3_key=None):
     if not s3_key:
         s3_key = f"backups/{local_path.name}"
 
-    print(f"☁️ [Backblaze B2] Enviando '{local_path.name}' ({local_path.stat().st_size} bytes) para 's3://{config.get('S3_BUCKET')}/{s3_key}'...")
+    print(f"☁️ [Backblaze B2] Enviando '{local_path.name}' ({local_path.stat().st_size} bytes) para 's3://{config.get('S3_BACKUP_BUCKET') or config.get('S3_BUCKET')}/{s3_key}'...")
     
     with open(local_path, 'rb') as f:
         data = f.read()
@@ -137,7 +137,7 @@ def download(s3_key, local_file=None):
     local_path = Path(local_file)
     local_path.parent.mkdir(parents=True, exist_ok=True)
 
-    print(f"📥 [Backblaze B2] Baixando 's3://{config.get('S3_BUCKET')}/{s3_key}' para '{local_path}'...")
+    print(f"📥 [Backblaze B2] Baixando 's3://{config.get('S3_BACKUP_BUCKET') or config.get('S3_BUCKET')}/{s3_key}' para '{local_path}'...")
 
     try:
         with request_s3('GET', config, s3_key) as resp:

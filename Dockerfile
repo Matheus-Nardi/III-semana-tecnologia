@@ -16,6 +16,8 @@ RUN npm install --legacy-peer-deps
 COPY . .
 
 # Build de produção do Next.js + Payload
+ARG NEXT_PUBLIC_SERVER_URL=https://unitinscti.com.br
+ENV NEXT_PUBLIC_SERVER_URL=$NEXT_PUBLIC_SERVER_URL
 ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 RUN npm run build

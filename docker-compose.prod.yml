@@ -17,6 +17,11 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   # Aplicação Next.js Standalone (Produção)
   nextjs:
@@ -57,6 +62,11 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   # Backup diário do Postgres
   backup:
@@ -101,6 +111,11 @@ services:
       interval: 30s
       timeout: 10s
       retries: 3
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   # Certbot para renovação automática de SSL
   certbot:
