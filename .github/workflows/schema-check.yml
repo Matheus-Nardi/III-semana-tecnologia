@@ -1,0 +1,61 @@
+name: Schema Drift Check
+
+on:
+  push:
+    branches:
+      - unstable
+      - main
+  pull_request:
+    branches:
+      - unstable
+      - main
+
+jobs:
+  drift-check:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: app
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: payload
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U app"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URI: postgresql://app:postgres@localhost:5432/payload
+      PAYLOAD_SECRET: schema_drift_check_build_phase_secret_key_32chars
+      NODE_ENV: development
+      S3_ENABLED: "false"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Apply existing migrations on a clean database
+        run: npm run migrate
+
+      - name: Detect schema drift
+        run: |
+          npm run migrate:create
+          if [ -n "$(git status --porcelain src/migrations)" ]; then
+            echo "::error::Schema drift detectado! As collections divergem das migrations."
+            echo "Rode o workflow 'Generate Migration' (Actions) e commite a migration gerada."
+            git --no-pager diff --stat src/migrations
+            exit 1
+          fi
+          echo "Schema em dia com as migrations."

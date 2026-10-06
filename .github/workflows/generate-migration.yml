@@ -1,0 +1,63 @@
+name: Generate Migration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: app
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: payload
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U app"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URI: postgresql://app:postgres@localhost:5432/payload
+      PAYLOAD_SECRET: migration_generation_build_phase_secret_key_32chars
+      NODE_ENV: development
+      S3_ENABLED: "false"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Apply existing migrations on a clean database
+        run: npm run migrate
+
+      - name: Generate migration from config drift
+        run: npm run migrate:create
+
+      - name: Commit generated migration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          if [ -z "$(git status --porcelain src/migrations)" ]; then
+            echo "Nenhuma migration gerada — schema já está em dia com as migrations."
+            exit 0
+          fi
+          git add src/migrations
+          git commit -m "feat(db): gera migration de sincronizacao do schema"
+          git push origin HEAD:${{ github.ref_name }}

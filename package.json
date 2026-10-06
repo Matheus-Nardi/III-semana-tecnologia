@@ -10,6 +10,7 @@
     "lint": "eslint",
     "test:e2e": "tsx tests/e2e-suite.ts",
     "seed": "tsx src/scripts/seed.ts",
+    "migrate": "tsx node_modules/payload/dist/bin/index.js migrate",
     "migrate:create": "tsx node_modules/payload/dist/bin/index.js migrate:create",
     "generate:importmap": "tsx node_modules/payload/dist/bin/index.js generate:importmap",
     "docker:dev": "docker compose up",

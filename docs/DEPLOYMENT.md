@@ -225,7 +225,26 @@ APP_IMAGE=ghcr.io/<owner>/<repo>:sha-<hash-anterior> docker compose -f docker-co
 
 ---
 
-## 4.3. Deploy Manual (alternativa)
+## 4.3. Migrations do Payload (evitar schema drift)
+
+Em produção o schema **só** é alterado por migrations (`prodMigrations`). Em desenvolvimento o Payload faz `push` automático, então é fácil adicionar um campo numa collection e esquecer de gerar a migration — foi o que causou os erros `column ... does not exist`.
+
+**Regra:** sempre que alterar collections/fields/plugins, gere a migration:
+
+1. Actions → **Generate Migration** → *Run workflow* (na branch desejada). Ele sobe um Postgres limpo, aplica as migrations existentes, roda `payload migrate:create` e **commita** a migration gerada (+ `src/migrations/index.ts`).
+2. O commit dispara o deploy; o container aplica a migration no startup.
+
+O workflow **Schema Drift Check** roda em push/PR e **falha** se houver divergência entre as collections e as migrations — servindo de trava para o problema não voltar.
+
+Alternativa local (com um Postgres de dev):
+```bash
+npm run migrate        # aplica as migrations existentes
+npm run migrate:create # gera a migration a partir do drift
+```
+
+---
+
+## 4.4. Deploy Manual (alternativa)
 
 Para implantar manualmente em um servidor (útil para testes ou sem acesso ao GHCR):
 
