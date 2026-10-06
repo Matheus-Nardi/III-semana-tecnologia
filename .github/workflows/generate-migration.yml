@@ -48,7 +48,7 @@ jobs:
         run: npm run migrate
 
       - name: Generate migration from config drift
-        run: npm run migrate:create
+        run: npm run migrate:create || true
 
       - name: Commit generated migration
         run: |

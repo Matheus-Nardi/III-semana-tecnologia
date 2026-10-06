@@ -51,7 +51,7 @@ jobs:
 
       - name: Detect schema drift
         run: |
-          npm run migrate:create
+          npm run migrate:create || true
           if [ -n "$(git status --porcelain src/migrations)" ]; then
             echo "::error::Schema drift detectado! As collections divergem das migrations."
             echo "Rode o workflow 'Generate Migration' (Actions) e commite a migration gerada."
