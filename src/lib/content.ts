@@ -223,14 +223,15 @@ export const FALLBACK_2026_EDITION: Edition = {
   heroSlides: FALLBACK_2025_EDITION.heroSlides,
   about: {
     title: 'IV Semana de Ciência, Tecnologia e Inovação da UNITINS',
-    themeTitle: 'Ciência, Tecnologia e Inovação para o Desenvolvimento Regional',
-    body: 'A Universidade Estadual do Tocantins (Unitins) realizará, de 13 a 16 de outubro de 2026, a IV Semana de Ciência, Tecnologia e Inovação - SCTI. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas.',
+    themeTitle: 'Ciência Delas',
+    body: 'A Universidade Estadual do Tocantins (Unitins) realizará, de 13 a 16 de outubro de 2026, a IV Semana de Ciência, Tecnologia e Inovação - SCTI, com o tema "Ciência Delas". Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas, promovendo o diálogo entre ensino, pesquisa e extensão.\n\nA iniciativa reforça o compromisso da Unitins com o desenvolvimento sustentável e a disseminação do conhecimento, incentivando soluções inovadoras e o engajamento social em prol de um futuro mais equilibrado para o Tocantins e para o Brasil!',
+    illustration: { url: '/illustrations/meninas-ciencia.png', alt: 'Ilustração temática Ciência Delas' },
   },
   schedule: schedule2026Data as unknown as ScheduleDay[],
   partners: FALLBACK_2025_EDITION.partners,
   faqs: FALLBACK_2025_EDITION.faqs,
   scheduleIllustration: { url: '/ilustracoes/2_ilustracao.png', alt: 'Ilustração decorativa da programação' },
-  partnersIllustration: { url: '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-4.png', alt: 'Ilustração decorativa dos parceiros' },
+  partnersIllustration: { url: '/illustrations/dna-helix.svg', alt: 'Estrutura helicoidal de DNA da identidade visual' },
   newsIllustration: { url: '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-6.png', alt: 'Ilustração decorativa de notícias' },
   subscription: {
     title: 'Garanta sua participação na IV Semana de Tecnologia (2026)',

@@ -1,11 +1,11 @@
 'use client';
-import { motion, useInView } from "motion/react";
+import { motion, useInView, useMotionValue, useSpring, useTransform } from "motion/react";
 import Image from "next/image"
 import { useRef } from "react";
 import type { Edition } from "@/lib/content";
 
 export default function AboutEvent({ edition }: { edition?: Edition }) {
-  const rightRef = useRef(null);
+  const rightRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef(null);
 
   const isTitleInView = useInView(titleRef, { once: false, margin: "-100px" });
@@ -13,6 +13,29 @@ export default function AboutEvent({ edition }: { edition?: Edition }) {
   const themeTitle = edition?.about?.themeTitle || "Planeta Água: a cultura oceânica para enfrentar as mudanças climáticas no meu território";
   const dates = edition?.dates || "20 a 24 de outubro de 2025";
   const illustrationSrc = edition?.about?.illustration?.url || "/ilustracoes/globo.png";
+  const illustrationAlt = edition?.about?.illustration?.alt || "Ilustração temática da Semana de Ciência e Tecnologia";
+
+  // Efeito interativo de Tilt 3D suave com aceleração de mola (Spring)
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x, { stiffness: 120, damping: 15 });
+  const mouseYSpring = useSpring(y, { stiffness: 120, damping: 15 });
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["8deg", "-8deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-8deg", "8deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!rightRef.current) return;
+    const rect = rightRef.current.getBoundingClientRect();
+    const mouseX = (e.clientX - rect.left) / rect.width - 0.5;
+    const mouseY = (e.clientY - rect.top) / rect.height - 0.5;
+    x.set(mouseX);
+    y.set(mouseY);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
 
   return (
     <section id="sobre" className="w-full py-16 sm:py-20 md:py-32 bg-gradient-soft-primary">
@@ -57,19 +80,36 @@ export default function AboutEvent({ edition }: { edition?: Edition }) {
             </div>
           </div>
 
-          {/* Imagem à direita */}
-          <div className="flex justify-center lg:justify-end mt-8 lg:mt-0" ref={rightRef}>
-            <div className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl">
-              <Image
-                src={illustrationSrc}
-                alt="Ilustração representando tecnologia e inovação"
-                width={600}
-                height={500}
-                className="animate-float w-full h-auto"
-                priority={false}
-                loading="lazy"
+          {/* Imagem à direita com Aura Luminosa e Tilt 3D */}
+          <div
+            ref={rightRef}
+            className="flex justify-center lg:justify-end mt-8 lg:mt-0 [perspective:1000px]"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            <motion.div
+              style={{ rotateX, rotateY }}
+              className="relative w-full max-w-md sm:max-w-lg lg:max-w-xl flex items-center justify-center"
+            >
+              {/* Aura luminosa difusa atrás da ilustração (Backlight Glow) */}
+              <div
+                className="absolute inset-4 -z-10 rounded-full bg-gradient-to-tr from-accent/25 via-primary/20 to-accent/15 blur-3xl opacity-75 animate-pulse"
+                aria-hidden="true"
               />
-            </div>
+
+              {/* Elemento com flutuação fluida e proporção preservada */}
+              <div className="relative w-full aspect-[4/3] sm:aspect-[14/11]">
+                <Image
+                  src={illustrationSrc}
+                  alt={illustrationAlt}
+                  fill
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  className="animate-float object-contain drop-shadow-2xl"
+                  priority={false}
+                  loading="lazy"
+                />
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>

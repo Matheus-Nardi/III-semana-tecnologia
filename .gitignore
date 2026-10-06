@@ -101,3 +101,5 @@ Thumbs.db
 .vercel
 security-reports/*.md
 !security-reports/README.md
+temp/
+

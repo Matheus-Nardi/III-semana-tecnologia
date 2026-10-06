@@ -4,6 +4,7 @@ import Link from "next/link"
 import { motion, useInView } from "motion/react"
 import { useRef } from "react"
 import type { Edition } from "@/lib/content"
+import { DynamicIllustration } from "@/components/ui/dynamic-illustration"
 
 const defaultPartners = [
   { src: "/logos/logo-gov-to.png", alt: "Governo do Estado do Tocantins", href: "https://www.to.gov.br/" },
@@ -105,12 +106,10 @@ export default function Partners({ edition }: { edition?: Edition }) {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="relative w-full max-w-sm aspect-square"
             >
-              <Image
+              <DynamicIllustration
                 src={partnersIllustrationSrc}
                 alt={partnersIllustrationAlt}
-                fill
-                sizes="(max-width: 1024px) 0px, 384px"
-                className="object-contain drop-shadow-2xl animate-float"
+                className="w-full h-full"
               />
             </motion.div>
           </div>
