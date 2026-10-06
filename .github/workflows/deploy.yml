@@ -3,6 +3,7 @@ name: Deploy to Oracle VM
 on:
   push:
     branches:
+      - main
       - unstable
   workflow_dispatch:
 
