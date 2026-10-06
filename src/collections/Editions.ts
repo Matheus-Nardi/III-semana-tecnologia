@@ -364,7 +364,7 @@ export const Editions: CollectionConfig = {
                   label: 'Texto Descritivo Institucional',
                   admin: {
                     rows: 5,
-                    description: 'Resumo com os objetivos, público-alvo e relevância da edição',
+                    description: 'Resumo com os objetivos, público-alvo e relevância da edição. Dica: use **texto** para destacar palavras ou frases com a cor principal do evento.',
                   },
                 },
                 {

@@ -159,7 +159,7 @@ export const FALLBACK_2025_EDITION: Edition = {
   about: {
     title: 'III Semana de Ciência, Tecnologia e Inovação da UNITINS',
     themeTitle: 'Planeta Água: a cultura oceânica para enfrentar as mudanças climáticas no meu território',
-    body: 'A Universidade Estadual do Tocantins (Unitins) realizará, de 20 a 24 de outubro de 2025, a III Semana de Ciência, Tecnologia e Inovação - SCTI. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas.',
+    body: 'A Universidade Estadual do Tocantins (Unitins) realizará, de 20 a 24 de outubro de 2025, a III Semana de Ciência, Tecnologia e Inovação - SCTI, com o tema **“Planeta Água: a cultura oceânica para enfrentar as mudanças climáticas no meu território”**. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas.\n\nA iniciativa reforça o compromisso da Unitins com o desenvolvimento sustentável e a disseminação do conhecimento, incentivando soluções inovadoras e o engajamento social em prol de um futuro mais equilibrado para o Tocantins e para o Brasil!',
   },
   partners: [
     { name: 'Governo do Estado do Tocantins', src: '/logos/logo-gov-to.png', alt: 'Governo do Estado do Tocantins', href: 'https://www.to.gov.br/' },
@@ -224,7 +224,7 @@ export const FALLBACK_2026_EDITION: Edition = {
   about: {
     title: 'IV Semana de Ciência, Tecnologia e Inovação da UNITINS',
     themeTitle: 'Ciência Delas',
-    body: 'A Universidade Estadual do Tocantins (Unitins) realizará, de 13 a 16 de outubro de 2026, a IV Semana de Ciência, Tecnologia e Inovação - SCTI, com o tema "Ciência Delas". Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas, promovendo o diálogo entre ensino, pesquisa e extensão.\n\nA iniciativa reforça o compromisso da Unitins com o desenvolvimento sustentável e a disseminação do conhecimento, incentivando soluções inovadoras e o engajamento social em prol de um futuro mais equilibrado para o Tocantins e para o Brasil!',
+    body: 'A Universidade Estadual do Tocantins (Unitins) realizará, de 13 a 16 de outubro de 2026, a IV Semana de Ciência, Tecnologia e Inovação - SCTI, com o tema **"Ciência Delas"**. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas, promovendo o diálogo entre ensino, pesquisa e extensão.\n\nA iniciativa reforça o compromisso da Unitins com o desenvolvimento sustentável e a disseminação do conhecimento, incentivando soluções inovadoras e o engajamento social em prol de um futuro mais equilibrado para o Tocantins e para o Brasil!',
     illustration: { url: '/illustrations/meninas-ciencia.png', alt: 'Ilustração temática Ciência Delas' },
   },
   schedule: schedule2026Data as unknown as ScheduleDay[],

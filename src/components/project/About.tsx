@@ -4,12 +4,30 @@ import Image from "next/image"
 import { useRef } from "react";
 import type { Edition } from "@/lib/content";
 
+function renderHighlightedText(text: string) {
+  if (!text) return null;
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, index) => {
+    if (part.startsWith('**') && part.endsWith('**') && part.length >= 4) {
+      return (
+        <strong key={index} className="text-primary font-semibold">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part;
+  });
+}
+
 export default function AboutEvent({ edition }: { edition?: Edition }) {
   const rightRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef(null);
 
   const isTitleInView = useInView(titleRef, { once: false, margin: "-100px" });
 
+  const titlePrefix = edition?.shortTitle
+    ? `${edition.shortTitle.split(' ')[0]} ${edition.shortTitle.split(' ')[1] || 'Semana'} de`
+    : 'III Semana de';
   const themeTitle = edition?.about?.themeTitle || "Planeta Água: a cultura oceânica para enfrentar as mudanças climáticas no meu território";
   const dates = edition?.dates || "20 a 24 de outubro de 2025";
   const illustrationSrc = edition?.about?.illustration?.url || "/ilustracoes/globo.png";
@@ -45,7 +63,7 @@ export default function AboutEvent({ edition }: { edition?: Edition }) {
           <div className="space-y-6 sm:space-y-8">
             <div ref={titleRef} className="space-y-4">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat leading-tight">
-                {edition?.shortTitle || "III Semana de"} <span className="text-primary">Ciência, Tecnologia e Inovação </span> da UNITINS
+                {titlePrefix} <span className="text-primary">Ciência, Tecnologia e Inovação </span> da UNITINS
               </h2>
 
               <motion.div
@@ -64,13 +82,18 @@ export default function AboutEvent({ edition }: { edition?: Edition }) {
 
             <div className="space-y-4 sm:space-y-6 text-muted-foreground leading-relaxed">
               {edition?.about?.body ? (
-                <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2 whitespace-pre-line">
-                  {edition.about.body}
-                </p>
+                edition.about.body
+                  .split(/\r?\n\r?\n/)
+                  .filter(Boolean)
+                  .map((paragraph, idx) => (
+                    <p key={idx} className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2 whitespace-pre-line">
+                      {renderHighlightedText(paragraph)}
+                    </p>
+                  ))
               ) : (
                 <>
                   <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2">
-                    A Universidade Estadual do Tocantins (Unitins) realizará, de {dates}, a {edition?.title || "III Semana de Ciência, Tecnologia e Inovação - SCTI"}, com o tema <strong className="text-primary">“{themeTitle}”</strong>. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas, promovendo o diálogo entre ensino, pesquisa e extensão.
+                    A Universidade Estadual do Tocantins (Unitins) realizará, de {dates}, a {edition?.title || "III Semana de Ciência, Tecnologia e Inovação - SCTI"}, com o tema <strong className="text-primary font-semibold">“{themeTitle}”</strong>. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas, promovendo o diálogo entre ensino, pesquisa e extensão.
                   </p>
                   <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2">
                     A iniciativa reforça o compromisso da Unitins com o desenvolvimento sustentável e a disseminação do conhecimento, incentivando soluções inovadoras e o engajamento social em prol de um futuro mais equilibrado para o Tocantins e para o Brasil!

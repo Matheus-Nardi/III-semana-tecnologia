@@ -385,7 +385,7 @@ export interface Edition {
      */
     themeTitle?: string | null;
     /**
-     * Resumo com os objetivos, público-alvo e relevância da edição
+     * Resumo com os objetivos, público-alvo e relevância da edição. Dica: use **texto** para destacar palavras ou frases com a cor principal do evento.
      */
     body?: string | null;
     /**
