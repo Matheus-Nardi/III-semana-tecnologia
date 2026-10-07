@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useMemo } from "react";
-import { Clock, MapPin, Users, ExternalLink } from "lucide-react";
+import { Clock, MapPin, Users, ExternalLink, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -35,6 +35,7 @@ interface Event {
 interface DaySchedule {
   date: string;
   dayOfWeek: string;
+  isOnline?: boolean;
   events: Event[];
 }
 
@@ -530,63 +531,131 @@ export default function Schedule({ edition }: { edition?: Edition }) {
           </div>
         </div>
 
-        {/* Filtro de Dias */}
-        <div
-          className="flex justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 flex-wrap"
-          role="group"
-          aria-label="Filtrar programação por dia"
-        >
-          {schedule.map((day) => {
-            const isActive = selectedDay === day.date;
-            return (
-              <Button
-                key={day.date}
-                variant={isActive ? "default" : "outline"}
-                size="lg"
-                onClick={() => setSelectedDay(day.date)}
-                className={`
-                  w-[120px] sm:w-[140px] h-[80px] sm:h-[90px] py-3 sm:py-4 px-4 sm:px-6 
-                  flex flex-col items-center justify-center gap-1 
-                  transition-all duration-300 rounded-xl text-center
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
-                  ${isActive
-                    ? 'shadow-md'
-                    : 'hover:border-primary hover:bg-primary/10 hover:shadow-sm hover:text-primary'
-                  }
-                `}
-                aria-pressed={isActive}
-                aria-label={`Selecionar ${day.dayOfWeek}, ${day.date}`}
-              >
-                <span className={`text-[10px] sm:text-xs font-medium uppercase tracking-wider transition-opacity ${isActive ? 'opacity-90' : 'opacity-70'}`}>
-                  {day.dayOfWeek}
-                </span>
-                <span className="text-xl sm:text-2xl font-bold">
-                  {day.date}
-                </span>
-              </Button>
-            );
-          })}
+        {/* Filtro de Dias Responsivo */}
+        <div className="relative mb-8 sm:mb-12">
+          <div
+            className="flex items-center gap-2 sm:gap-3 overflow-x-auto pb-3 sm:pb-0 justify-start sm:justify-center scrollbar-none snap-x snap-mandatory px-1"
+            role="group"
+            aria-label="Filtrar programação por dia"
+          >
+            {schedule.map((day) => {
+              const isActive = selectedDay === day.date;
+              const isOnlineDay = day.date.toLowerCase() === 'online' || Boolean(day.isOnline);
+              return (
+                <Button
+                  key={day.date}
+                  variant={isActive ? "default" : "outline"}
+                  size="lg"
+                  onClick={() => setSelectedDay(day.date)}
+                  className={`
+                    flex-shrink-0 snap-center
+                    w-[115px] sm:w-[135px] h-[78px] sm:h-[88px] py-2 sm:py-3 px-3 sm:px-4 
+                    flex flex-col items-center justify-center gap-0.5 sm:gap-1 
+                    transition-all duration-300 rounded-xl text-center
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2
+                    ${isActive
+                      ? 'shadow-md scale-[1.02]'
+                      : 'hover:border-primary hover:bg-primary/10 hover:shadow-sm hover:text-primary'
+                    }
+                  `}
+                  aria-pressed={isActive}
+                  aria-label={`Selecionar ${isOnlineDay ? 'Programação Online' : day.dayOfWeek}, ${day.date}`}
+                >
+                  <div className="flex items-center gap-1">
+                    {isOnlineDay && (
+                      <Globe className="w-3 h-3 flex-shrink-0 opacity-85" aria-hidden="true" />
+                    )}
+                    <span className={`text-[10px] sm:text-xs font-semibold uppercase tracking-wider transition-opacity ${isActive ? 'opacity-95' : 'opacity-70'}`}>
+                      {isOnlineDay ? 'Virtual / EAD' : day.dayOfWeek}
+                    </span>
+                  </div>
+                  <span className="text-xl sm:text-2xl font-bold tracking-tight">
+                    {day.date}
+                  </span>
+                </Button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Lista de Eventos */}
         {filteredSchedule.length > 0 ? (
           <div className="space-y-6 sm:space-y-8">
-            {filteredSchedule.map((day) => (
-              <div key={day.date}>
-                {/* Título do Dia */}
-                <div className="mb-4 sm:mb-6">
-                  <h3 className="text-xl sm:text-2xl font-bold text-primary inline-block font-montserrat">
-                    {day.date}
-                  </h3>
-                  <span className="text-muted-foreground ml-2 sm:ml-3 text-sm sm:text-base">
-                    {day.dayOfWeek}
-                  </span>
-                </div>
+            {filteredSchedule.map((day) => {
+              const isOnlineDay = day.date.toLowerCase() === 'online' || Boolean(day.isOnline);
+              const visibleEvents = isOnlineDay
+                ? day.events
+                : day.events.filter((e) => !e.name.toLowerCase().includes('museu josé hidasi'));
 
-                {/* Cards de Eventos / Visualização */}
-                {viewMode === "grouped" ? (
-                  <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
-                    {day.events.map((event) => {
+              return (
+                <div key={day.date}>
+                  {/* Título do Dia */}
+                  <div className="mb-4 sm:mb-6">
+                    <h3 className="text-xl sm:text-2xl font-bold text-primary inline-block font-montserrat">
+                      {isOnlineDay ? 'Programação Online' : day.date}
+                    </h3>
+                    <span className="text-muted-foreground ml-2 sm:ml-3 text-sm sm:text-base">
+                      {isOnlineDay ? 'Transmissões ao vivo (TO Graduado)' : day.dayOfWeek}
+                    </span>
+                  </div>
+
+                  {/* Informativo para Dia Online */}
+                  {isOnlineDay && (
+                    <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-white rounded-lg border border-border border-l-4 border-l-primary flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
+                      <div className="flex-1 min-w-0 w-full space-y-1.5">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-[11px] font-semibold text-primary uppercase tracking-wide">
+                            Sessões Remotas • TO Graduado
+                          </span>
+                        </div>
+                        <h4 className="font-semibold text-foreground text-sm sm:text-base font-montserrat leading-tight">
+                          Transmissões ao vivo via Google Meet
+                        </h4>
+                        <p className="text-xs sm:text-sm text-muted-foreground font-poppins">
+                          Apresentações científicas e de extensão abertas aos acadêmicos de todos os polos e comunidade.
+                        </p>
+                      </div>
+
+                      <div className="flex-shrink-0 w-full sm:w-auto">
+                        <div className="flex items-center gap-1.5 text-primary bg-primary/5 border border-primary/20 font-medium px-3 py-2 rounded-lg text-xs sm:text-sm justify-center sm:justify-end">
+                          <Clock className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+                          <span className="whitespace-nowrap">20 e 22 de Outubro</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Atividade Permanente nos dias presenciais */}
+                  {!isOnlineDay && (
+                    <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-white rounded-lg border border-border border-l-4 border-l-primary flex flex-col sm:flex-row items-start justify-between gap-3 sm:gap-4">
+                      <div className="flex-1 min-w-0 w-full space-y-1.5">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="text-[11px] font-semibold uppercase tracking-wider text-primary">
+                            Atividade Permanente • 13 a 16/10
+                          </span>
+                        </div>
+                        <h4 className="font-semibold text-foreground text-sm sm:text-base font-montserrat leading-tight">
+                          Exposição do Museu José Hidasi
+                        </h4>
+                        <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground font-poppins">
+                          <MapPin className="w-3.5 h-3.5 text-primary flex-shrink-0" aria-hidden="true" />
+                          <span>Sala de estudos - Bloco B</span>
+                        </div>
+                      </div>
+
+                      <div className="flex-shrink-0 w-full sm:w-auto">
+                        <div className="flex items-center gap-1.5 text-primary bg-primary/5 border border-primary/20 font-medium px-3 py-2 rounded-lg text-xs sm:text-sm justify-center sm:justify-end">
+                          <Clock className="w-3.5 h-3.5 flex-shrink-0" aria-hidden="true" />
+                          <span className="whitespace-nowrap">08h30 às 18h00</span>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Cards de Eventos / Visualização */}
+                  {viewMode === "grouped" ? (
+                    <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
+                      {visibleEvents.map((event) => {
                       const eventTheme = getEventTheme(event.name, event.color);
                       return (
                         <AccordionItem
@@ -641,7 +710,7 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                       <h5 className="font-semibold text-foreground text-sm sm:text-base font-montserrat leading-tight">
                                         {talk.titulo}
                                       </h5>
-                                      {talk.palestrante !== "" && (
+                                      {Boolean(talk.palestrante && talk.palestrante.trim()) && (
                                         <p className="text-xs sm:text-sm text-muted-foreground font-poppins">
                                           <strong>Palestrante:</strong> {talk.palestrante}
                                         </p>
@@ -667,7 +736,12 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                             </a>
                                           )}
                                         </div>
-                                        {talk.vagas !== "Ilimitado" && talk.vagas !== "Não especificado" && talk.vagas !== "" && (
+                                        {Boolean(
+                                          talk.vagas &&
+                                            talk.vagas.trim() &&
+                                            talk.vagas !== "Ilimitado" &&
+                                            talk.vagas !== "Não especificado"
+                                        ) && (
                                           <div className="flex items-center gap-2">
                                             <Users className={`w-3 h-3 sm:w-4 sm:h-4 ${!eventTheme.isCustom ? eventTheme.classes.text : ''} flex-shrink-0`} style={eventTheme.styles.talkIcon} aria-hidden="true" />
                                             <span>{talk.vagas} vagas</span>
@@ -697,7 +771,7 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                   </Accordion>
                 ) : (
                   <div className="space-y-3 sm:space-y-4">
-                    {day.events
+                    {visibleEvents
                       .flatMap((event) =>
                         event.talks.map((talk, idx) => ({
                           talk,
@@ -723,7 +797,7 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                   {item.talk.titulo}
                                 </h5>
                               </div>
-                              {item.talk.palestrante !== "" && (
+                              {Boolean(item.talk.palestrante && item.talk.palestrante.trim()) && (
                                 <p className="text-xs sm:text-sm text-muted-foreground font-poppins">
                                   <strong>Palestrante:</strong> {item.talk.palestrante}
                                 </p>
@@ -749,7 +823,12 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                                     </a>
                                   )}
                                 </div>
-                                {item.talk.vagas !== "Ilimitado" && item.talk.vagas !== "Não especificado" && item.talk.vagas !== "" && (
+                                {Boolean(
+                                  item.talk.vagas &&
+                                    item.talk.vagas.trim() &&
+                                    item.talk.vagas !== "Ilimitado" &&
+                                    item.talk.vagas !== "Não especificado"
+                                ) && (
                                   <div className="flex items-center gap-2">
                                     <Users className={`w-3 h-3 sm:w-4 sm:h-4 ${!eventTheme.isCustom ? eventTheme.classes.text : ''} flex-shrink-0`} style={eventTheme.styles.talkIcon} aria-hidden="true" />
                                     <span>{item.talk.vagas} vagas</span>
@@ -773,7 +852,8 @@ export default function Schedule({ edition }: { edition?: Edition }) {
                   </div>
                 )}
               </div>
-            ))}
+            );
+          })}
           </div>
         ) : (
           <>

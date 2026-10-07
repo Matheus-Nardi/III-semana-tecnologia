@@ -8,40 +8,48 @@
         "name": "IV Circuito de Inovação",
         "talks": [
           {
-            "titulo": "Palestra: Arquitetura do Empreendedorismo Moderno: Tipologias, Modelos de Inovação e Desenho de Modelos de Negócios para o Século XXI",
-            "horario": "10h30 - 12h00",
+            "titulo": "Arquitetura do Empreendedorismo Moderno: Tipologias, Modelos de Inovação e Desenho de Modelos de Negócios para o Século XXI",
+            "horario": "10h - 11h30",
             "local": "Sala 05 - Bloco B",
+            "palestrante": "Jeferson Morais",
             "modalidade": "Palestra",
             "formato": "Presencial",
             "coordenador": "Jeferson Morais da Costa",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Exposição de Realidade Virtual: Meninas e Mulheres Inovadoras e Natureza em Foco",
+            "titulo": "Realidade Virtual: Meninas e Mulheres Inovadoras e Natureza em Foco",
             "horario": "Integral",
             "local": "Sala 06 - Bloco B",
+            "palestrante": "Equipe NIT e acadêmicos",
             "modalidade": "Exposição",
             "formato": "Presencial",
             "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "INOVACINE: Edição Meninas e Mulheres Inovadoras",
-            "horario": "Integral",
+            "titulo": "INOVACINE apresenta: Mostra Inovadora de Cinema Científico e Ambiental (MICCA) - Duas sessões de cinema (Filme \"Estrelas Além do Tempo\" e Documentário \"Amanhã\")",
+            "horario": "Manhã e Tarde",
             "local": "Sala 04 - Bloco B",
-            "modalidade": "Oficina",
+            "palestrante": "Equipe NIT e acadêmicos",
+            "modalidade": "Cinema",
             "formato": "Presencial",
             "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Picths de negócios com projetos do Centelha da FAPT e do Inova Amazônia do SEBRAE",
-            "horario": "08h00 - 10h00",
-            "local": "Arena Hackathon",
-            "modalidade": "Seminário",
+            "titulo": "Realidade Virtual: Planetário 360º",
+            "horario": "Integral",
+            "local": "Sala 07 - Bloco B",
+            "palestrante": "Acadêmico de Sistemas de Informação",
+            "modalidade": "Exposição",
             "formato": "Presencial",
-            "coordenador": "Jeferson Morais da Costa",
-            "vagas": ""
+            "coordenador": "Mylena Costa Jacundá",
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           }
         ]
       },
@@ -49,10 +57,23 @@
         "name": "PALESTRA MAGNA",
         "talks": [
           {
-            "titulo": "ODS 5",
+            "titulo": "SEBRAE",
             "horario": "19h00 - 21h00",
             "local": "Auditório Central",
             "formato": "Híbrido",
+            "vagas": ""
+          }
+        ]
+      },
+      {
+        "name": "Exposição do Museu José Hidasi",
+        "talks": [
+          {
+            "titulo": "Exposição do Museu José Hidasi",
+            "horario": "08h30 - 18h00 (Semana toda)",
+            "local": "Sala de estudos - Bloco B",
+            "modalidade": "Exposição Permanente",
+            "formato": "Presencial",
             "vagas": ""
           }
         ]
@@ -71,10 +92,10 @@
             "vagas": ""
           },
           {
-            "titulo": "Mulheres nas Ciências da Saúde: corpos, vozes e subjetividades em diálogo com a Saúde Coletiva",
+            "titulo": "Mulheres nas Ciências da Saúde: Corpos, Vozes e Subjetividades em diálogo com a Saúde Coletiva",
             "horario": "16h00 - 18h00",
             "local": "Auditório Central",
-            "palestrante": "Profa. Dra. Dolores Cristina Gomes Galindo/Mediadora: Profa. Ma. Juliana Santos Simões",
+            "palestrante": "Profa. Marta Maria Malheiros Alves/Mediadora: Profa. Ma. Juliana Santos Simões",
             "modalidade": "Conferência",
             "formato": "Presencial",
             "coordenador": "Luciana Rodrigues Martins",
@@ -87,7 +108,7 @@
         "talks": [
           {
             "titulo": "O curso de Pedagogia em cinco anos de práticas de ensino, pesquisa e extensão",
-            "horario": "8h00 - 12h00",
+            "horario": "08h00 - 12h00",
             "local": "Auditório Câmpus",
             "palestrante": "Prof. Dr. Rubens Martins da Silva; Prof.ª Dr.ª Mariany Almeida Montino; Prof.ª Ma. Ângela Roberta Felipe Campos; Prof. Dr. Jackson Carlos da Silva",
             "modalidade": "Palestra",
@@ -102,7 +123,7 @@
         "talks": [
           {
             "titulo": "Tecnologias de Remoção de Carbono na Agricultura: Palestra 1: ABC+TO - Avanços e perpectivas para uma agricultura sustentável",
-            "horario": "8h00 - 12h00",
+            "horario": "08h00 - 12h00",
             "local": "Auditório Central",
             "palestrante": "Marla Guedes (Seagro - CGE ABC+TO)",
             "modalidade": "Workshop",
@@ -112,7 +133,7 @@
           },
           {
             "titulo": "Tecnologias de Remoção de Carbono na Agricultura: Palestra 2: Agropecuária regenerativa - estratégias, certificação e mercado de carbono",
-            "horario": "8h00 - 12h00",
+            "horario": "08h00 - 12h00",
             "local": "Auditório Central",
             "palestrante": "Beatriz Menengotti (MyCarbon)",
             "modalidade": "Workshop",
@@ -122,7 +143,7 @@
           },
           {
             "titulo": "Tecnologias de Remoção de Carbono na Agricultura: Palestra 3: Remineralização de solos e remoção de carbono (Projeto Belds de Agrominerais - Unitins/CNPq)",
-            "horario": "8h00 - 12h00",
+            "horario": "08h00 - 12h00",
             "local": "Auditório Central",
             "palestrante": "Fred Newton (Unitins/NUDAM)",
             "modalidade": "Workshop",
@@ -131,10 +152,10 @@
             "vagas": ""
           },
           {
-            "titulo": "Sistema de irrigação para hortaliças em pequenas propriedades rurais",
-            "horario": "8h00 - 12h00",
+            "titulo": "Recomendação de calagem e adubação para grãos, frutas e pastagens",
+            "horario": "08h00 - 12h00",
             "local": "Sala 09 - Bloco A",
-            "palestrante": "Prof. Benjamim",
+            "palestrante": "Thayane Nascimento Coelho Lopes (SENAR/TO)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -142,8 +163,9 @@
           },
           {
             "titulo": "Elaboração de projetos rurais e captação de crédito",
-            "horario": "8h00 - 12h00",
+            "horario": "08h00 - 12h00",
             "local": "Sala 10 - Bloco A",
+            "palestrante": "Lucas Carneiro Maciel (Ulbra)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -212,49 +234,80 @@
         "name": "IV Circuito de Inovação",
         "talks": [
           {
-            "titulo": "Hackathon InovaUni - HackaDelas Tocantins",
+            "titulo": "5 ª Edição Hackathon InovaUni - Ciência Delas",
             "horario": "Integral",
-            "local": "Arena Hackathon",
+            "local": "Labin I - Bloco B",
             "modalidade": "Hackathon",
             "formato": "Presencial",
             "coordenador": "Jeferson Morais da Costa",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Palestra: O Hibridismo na Gestão de Projetos de Alta Complexidade: Integrando o Guia PMBOK com Abordagens Ágeis para o Desenvolvimento Regional",
-            "horario": "10h30 - 12h00",
+            "titulo": "Mulheres Criativas: Inovação, Saberes Locais e o Futuro do Trabalho na Economia Criativa",
+            "horario": "10h00 - 11h30",
+            "local": "Sala 04 - Bloco B",
+            "palestrante": "Convidadas externas confirmadas",
+            "modalidade": "Painel",
+            "formato": "Presencial",
+            "coordenador": "Mylena Costa Jacundá",
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
+          },
+          {
+            "titulo": "O Hibridismo na Gestão de Projetos de Alta Complexidade: Integrando o Guia PMBOK com Abordagens Ágeis para o Desenvolvimento Regional",
+            "horario": "10h - 11h30",
             "local": "Sala 05 - Bloco B",
+            "palestrante": "Fredson Costa",
             "modalidade": "Palestra",
             "formato": "Presencial",
             "coordenador": "Jeferson Morais da Costa",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Oficina de formação inicial em STEM para meninas, com foco em trabalho decente/empreendedorismo",
-            "horario": "08h00 - 10h00",
+            "titulo": "Formação Inicial em STEM para Mulheres: Conectando Pesquisa, Empreendedorismo e Novas Tecnologias utilizando RStudio",
+            "horario": "14h - 15h",
             "local": "Sala 04 - Bloco B",
+            "palestrante": "Helga Midori Iwamoto",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Oficina de formação inicial em STEM para meninas, com foco em trabalho decente/empreendedorismo",
-            "horario": "10h30 - 12h00",
+            "titulo": "Formação Inicial em STEM para Mulheres: Conectando Pesquisa, Empreendedorismo e Novas Tecnologias utilizando RStudio",
+            "horario": "15h30 - 17h",
             "local": "Sala 04 - Bloco B",
+            "palestrante": "Helga Midori Iwamoto",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Exposição de Realidade Virtual: Meninas e Mulheres Inovadoras e Natureza em Foco",
+            "titulo": "Realidade Virtual: Meninas e Mulheres Inovadoras e Natureza em Foco",
             "horario": "Integral",
             "local": "Sala 06 - Bloco B",
+            "palestrante": "Equipe NIT e acadêmicos",
             "modalidade": "Exposição",
             "formato": "Presencial",
             "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
+          },
+          {
+            "titulo": "Realidade Virtual: Planetário 360º",
+            "horario": "Integral",
+            "local": "Sala 07 - Bloco B",
+            "palestrante": "Acadêmico de Sistemas de Informação",
+            "modalidade": "Exposição",
+            "formato": "Presencial",
+            "coordenador": "Mylena Costa Jacundá",
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           }
         ]
       },
@@ -262,11 +315,24 @@
         "name": "PALESTRA MAGNA",
         "talks": [
           {
-            "titulo": "Da ciência global à vida real: trajetória academica, maternidade e liderança de uma cientista no top 2% mundial",
+            "titulo": "Extensão Dialógica e Territórios Tradicionais: A Valorização dos Saberes na Cocriação de Soluções",
             "horario": "19h00 - 21h00",
             "local": "Auditório Central",
-            "palestrante": "Professora Clélia Akiko Hiruma Lima",
+            "palestrante": "Marielen Aline Costa da Silva - UFNT",
             "formato": "Híbrido",
+            "vagas": ""
+          }
+        ]
+      },
+      {
+        "name": "Exposição do Museu José Hidasi",
+        "talks": [
+          {
+            "titulo": "Exposição do Museu José Hidasi",
+            "horario": "08h30 - 18h00 (Semana toda)",
+            "local": "Sala de estudos - Bloco B",
+            "modalidade": "Exposição Permanente",
+            "formato": "Presencial",
             "vagas": ""
           }
         ]
@@ -275,37 +341,10 @@
         "name": "II Edição do Fórum de Gestão dos Grupos de Pesquisa e da Mostra de Projetos de Pesquisa da Unitins",
         "talks": [
           {
-            "titulo": "Palestra Magna",
+            "titulo": "Palestra",
             "horario": "10h30 - 12h00",
             "local": "Auditório Câmpus",
-            "modalidade": "Mostra Científica",
-            "formato": "Presencial",
-            "coordenador": "Mayra Fonseca",
-            "vagas": ""
-          },
-          {
-            "titulo": "Apresentação oral de Trabalhos/Projetos",
-            "horario": "14h00 - 18h00",
-            "local": "Sala 05 - Bloco A",
-            "modalidade": "Mostra Científica",
-            "formato": "Presencial",
-            "coordenador": "Mayra Fonseca",
-            "vagas": ""
-          },
-          {
-            "titulo": "Apresentação oral de Trabalhos/Projetos",
-            "horario": "14h00 - 18h00",
-            "local": "Sala 06 - Bloco A",
-            "modalidade": "Mostra Científica",
-            "formato": "Presencial",
-            "coordenador": "Mayra Fonseca",
-            "vagas": ""
-          },
-          {
-            "titulo": "Apresentação oral de Trabalhos/Projetos",
-            "horario": "14h00 - 18h00",
-            "local": "Sala 07 - Bloco A",
-            "modalidade": "Mostra Científica",
+            "modalidade": "Palestra",
             "formato": "Presencial",
             "coordenador": "Mayra Fonseca",
             "vagas": ""
@@ -318,7 +357,7 @@
           {
             "titulo": "Ciências da Vida: conhecendo o corpo humano e as profissões da saúde",
             "horario": "08h00 - 10h00",
-            "local": "Auditório Central",
+            "local": "Auditório Câmpus",
             "palestrante": "Magda Jhessica dos Santos Reis",
             "modalidade": "Palestra",
             "formato": "Presencial",
@@ -401,8 +440,8 @@
             "vagas": ""
           },
           {
-            "titulo": "Homelab",
-            "horario": "8h30 - 9h45",
+            "titulo": "Homelab na Prática: Introdução à Infraestrutura e Serviços Self-Hosted",
+            "horario": "08h30 - 09h55",
             "local": "Labin 06",
             "palestrante": "Ítalo Emannuel Beckman de Brito Vieira",
             "modalidade": "Oficina",
@@ -412,10 +451,20 @@
           },
           {
             "titulo": "Infraestrutura de Redes: conectando tecnologias, sistemas e negócios",
-            "horario": "8h30 - 10h00",
-            "local": "Sala 07 - Bloco B",
+            "horario": "08h30 - 09h55",
+            "local": "Auditório Central",
             "palestrante": "Wesley Nunes Souza",
             "modalidade": "Palestra",
+            "formato": "Presencial",
+            "coordenador": "Stéphany Moraes Martins e Leandra Cristina Cavina Piovesan Soares",
+            "vagas": ""
+          },
+          {
+            "titulo": "Conectando Ideias, Criando Soluções: Mostra de Projetos em SI",
+            "horario": "08h30 - 11h30",
+            "local": "Labin 04",
+            "palestrante": "Acadêmicos e Engressos",
+            "modalidade": "Mostra",
             "formato": "Presencial",
             "coordenador": "Stéphany Moraes Martins e Leandra Cristina Cavina Piovesan Soares",
             "vagas": ""
@@ -440,6 +489,7 @@
             "titulo": "Plataformas de ia: novas ferramentas para o agrônomo",
             "horario": "08h00 - 12h00",
             "local": "Sala 06 - Bloco A",
+            "palestrante": "Gabrielly Lorrayne Soares Amorim (Ulbra)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -449,24 +499,27 @@
             "titulo": "Preenchimento de anotação de responsabilidade tecnica – art",
             "horario": "08h00 - 12h00",
             "local": "Sala 07 - Bloco A",
+            "palestrante": "Mirelle Ribeiro Palmeira (CREA/TO)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
             "vagas": ""
           },
           {
-            "titulo": "Técnicas de interpretação da analise de solo",
+            "titulo": "Técnicas de interpretação da análise de solo",
             "horario": "08h00 - 12h00",
             "local": "Sala 09 - Bloco A",
+            "palestrante": "Gustavo Marquardt (Consultor - Atenttus)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
             "vagas": ""
           },
           {
-            "titulo": "Recomendação de calagem e adubação para grãos, frutas e pastagens",
+            "titulo": "Sistema de irrigação de baixo custo para empreendimentos rurais",
             "horario": "08h00 - 12h00",
             "local": "Sala 10 - Bloco A",
+            "palestrante": "Prof. Benjamim Carvalho Lima Junior (Ulbra/Unitins)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -476,6 +529,7 @@
             "titulo": "Tecnologia de aplicação de defensivos via Drone",
             "horario": "08h00 - 12h00",
             "local": "Sala 11 - Bloco A",
+            "palestrante": "Santiago Santos Silva (PulverizaBR)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -604,58 +658,58 @@
         "name": "IV Circuito de Inovação",
         "talks": [
           {
-            "titulo": "Hackathon InovaUni - HackaDelas Tocantins",
+            "titulo": "5 ª Edição Hackathon InovaUni - Ciência Delas",
             "horario": "Integral",
-            "local": "Arena Hackathon",
+            "local": "Labin I - Bloco B",
             "modalidade": "Hackathon",
             "formato": "Presencial",
             "coordenador": "Jeferson Morais da Costa",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Palestra: O Futuro da Ciência Delas: Equidade de Gênero e Macroestratégias de Fomento na Agenda Nacional de CT&I",
-            "horario": "08h00 - 10h00",
+            "titulo": "Governança Inteligente e Sandbox Regulatório: O Papel da Academia na Modernização do Estado Regional",
+            "horario": "10h - 11h30",
             "local": "Sala 05 - Bloco B",
+            "palestrante": "José Fernando Miranda e Fernando José Ludwig",
             "modalidade": "Palestra",
             "formato": "Presencial",
             "coordenador": "Jeferson Morais da Costa",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Palestra: Governança Inteligente e Sandbox Regulatório: O Papel da Academia na Modernização do Estado Regional",
-            "horario": "10h30 - 12h00",
-            "local": "Sala 05 - Bloco B",
-            "modalidade": "Palestra",
-            "formato": "Presencial",
-            "coordenador": "Jeferson Morais da Costa",
-            "vagas": ""
-          },
-          {
-            "titulo": "Exposição de Realidade Virtual: Meninas e Mulheres Inovadoras e Natureza em Foco",
+            "titulo": "Realidade Virtual: Meninas e Mulheres Inovadoras e Natureza em Foco",
             "horario": "Integral",
             "local": "Sala 06 - Bloco B",
+            "palestrante": "Equipe NIT e acadêmicos",
             "modalidade": "Exposição",
             "formato": "Presencial",
             "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Roda de Conversa Meninas e Mulheres Inovadoras",
-            "horario": "08h00 - 10h00",
+            "titulo": "Realidade Virtual: Planetário 360º",
+            "horario": "Integral",
+            "local": "Sala 07 - Bloco B",
+            "palestrante": "Acadêmico de Sistemas de Informação",
+            "modalidade": "Exposição",
+            "formato": "Presencial",
+            "coordenador": "Mylena Costa Jacundá",
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
+          },
+          {
+            "titulo": "Meninas e Mulheres Inovadoras: diálogos sobre a participação feminina em Ciência, Tecnologia e Inovação (CT&I)",
+            "horario": "10h - 11h30",
             "local": "Sala 04 - Bloco B",
+            "palestrante": "Mylena Jacundá, Gabriela Dorneles, Diana Lopes, Brenda Victória, Elani Oliveira, Stelamar do Amordivino e Thaysi Andrade",
             "modalidade": "Roda de Conversa",
             "formato": "Presencial",
             "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
-          },
-          {
-            "titulo": "Roda de Conversa Meninas e Mulheres Inovadoras",
-            "horario": "10h30 - 12h00",
-            "local": "Sala 04 - Bloco B",
-            "modalidade": "Roda de Conversa",
-            "formato": "Presencial",
-            "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           }
         ]
       },
@@ -663,9 +717,10 @@
         "name": "PALESTRA MAGNA",
         "talks": [
           {
-            "titulo": "Atividade",
+            "titulo": "E se ela tiver a oportunidade? Desenvolvimento sustentável é para todas",
             "horario": "19h00 - 21h00",
             "local": "Auditório Central",
+            "palestrante": "Patrícia Carvalho e Lavito Bacarissa",
             "formato": "Híbrido",
             "vagas": ""
           }
@@ -680,7 +735,7 @@
             "local": "Sala 09 - Bloco B",
             "palestrante": "Mariana Marinho Machado (Juíza - TJ-PI)",
             "modalidade": "Palestra",
-            "formato": "Presencial",
+            "formato": "Híbrido",
             "coordenador": "Najla Lopes Cintra",
             "vagas": ""
           },
@@ -692,6 +747,19 @@
             "modalidade": "Palestra",
             "formato": "Presencial",
             "coordenador": "Najla Lopes Cintra",
+            "vagas": ""
+          }
+        ]
+      },
+      {
+        "name": "Exposição do Museu José Hidasi",
+        "talks": [
+          {
+            "titulo": "Exposição do Museu José Hidasi",
+            "horario": "08h30 - 18h00 (Semana toda)",
+            "local": "Sala de estudos - Bloco B",
+            "modalidade": "Exposição Permanente",
+            "formato": "Presencial",
             "vagas": ""
           }
         ]
@@ -852,10 +920,19 @@
         "name": "Seminário: Direitos Humanos em Todo Lugar: o Protagonismo das Mulheres na Transformação Social",
         "talks": [
           {
-            "titulo": "Mesa — Direitos Humanos na Educação: da Educação Básica ao Ensino Superior",
+            "titulo": "Painel: Direitos Sexuais, Transversalidade e Práticas Pedagógicas na Educação Básica e Superior",
             "horario": "14h00 - 16h00",
             "local": "Auditório Câmpus",
-            "modalidade": "Seminário",
+            "modalidade": "Painel",
+            "formato": "Presencial",
+            "coordenador": "Marcela Barreto",
+            "vagas": ""
+          },
+          {
+            "titulo": "Fortalecimento da atuação em rede dos Comitês de Educação em Direitos Humanos (EDH) para a promoção da cidadania e garantia dos direitos sexuais",
+            "horario": "16h30 - 17h30",
+            "local": "Sala 12 - Bloco A",
+            "modalidade": "Mesa-redonda",
             "formato": "Presencial",
             "coordenador": "Marcela Barreto",
             "vagas": ""
@@ -869,6 +946,7 @@
             "titulo": "V Encontro de Egressos do Curso de Engenharia Agronômica",
             "horario": "08h00 - 09h30",
             "local": "Auditório Câmpus",
+            "palestrante": "Luciano Cesar Ramalho de Oliveira / Agronomy Specialist - Corteva Leticia Marquardt – Docente UNITOP / Agrônoma da ADAPEC / Doutoranda rede BIONORTE. Alice Carvalho de Oliveira Pires - Coordenadora de transferência de tecnologia e negócios tecnológicos / UNITINS",
             "modalidade": "Roda de Conversa",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -898,7 +976,7 @@
             "titulo": "Onde e como captar recursos financeiros para o agronegócio",
             "horario": "10h45 - 11h00",
             "local": "Auditório Câmpus",
-            "palestrante": "Eduardo Yoshimoto",
+            "palestrante": "Eduardo Yoshimoto (Agrozoocred)",
             "modalidade": "Apresentação",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -918,6 +996,7 @@
             "titulo": "Propagação vegetativa para frutiferas e florestas",
             "horario": "08h30 - 11h15",
             "local": "Sala 09 - Bloco A",
+            "palestrante": "Nélio Nolêto Ribeiro (SENAR/TO)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -927,6 +1006,7 @@
             "titulo": "Passo a passo do preparo de calda: da teoria à prática de campo",
             "horario": "08h30 - 11h15",
             "local": "Sala 10 - Bloco A",
+            "palestrante": "Danilo Ribeiro Barbacena (SENAR/TO)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -936,6 +1016,7 @@
             "titulo": "Prática de amostragem e classificação oficial de grãos",
             "horario": "08h30 - 11h15",
             "local": "Sala 11 - Bloco A",
+            "palestrante": "Vanessa Silveira Jorge (Cargill)",
             "modalidade": "Oficina",
             "formato": "Presencial",
             "coordenador": "Thiago Magalhães de Lazari",
@@ -988,7 +1069,7 @@
         "name": "XXXIII Jornada de Iniciação Científica",
         "talks": [
           {
-            "titulo": "Escrita Científica",
+            "titulo": "Estratégias para a Escrita Acadêmica em Língua Inglesa",
             "horario": "08h00 - 12h00",
             "local": "Sala 08 - Bloco A",
             "modalidade": "Oficina",
@@ -1054,49 +1135,36 @@
         "name": "IV Circuito de Inovação",
         "talks": [
           {
-            "titulo": "Hackathon InovaUni - HackaDelas Tocantins",
+            "titulo": "5 ª Edição Hackathon InovaUni - Ciência Delas (+ premiação no período da noite)",
             "horario": "Integral",
-            "local": "Arena Hackathon",
+            "local": "Labin I - Bloco B",
             "modalidade": "Hackathon",
             "formato": "Presencial",
             "coordenador": "Jeferson Morais da Costa",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Palestra: Fronteiras da Criação: Inteligência Artificial, Propriedade Intelectual e os Desafios Regulatórios na Pesquisa Acadêmica",
-            "horario": "08h00 - 10h00",
-            "local": "Sala 05 - Bloco B",
-            "modalidade": "Palestra",
-            "formato": "Presencial",
-            "coordenador": "Jeferson Morais da Costa",
-            "vagas": ""
-          },
-          {
-            "titulo": "Exposição de Realidade Virtual: Meninas e Mulheres Inovadoras e Natureza em Foco",
+            "titulo": "Realidade Virtual: Meninas e Mulheres Inovadoras e Natureza em Foco",
             "horario": "Integral",
             "local": "Sala 06 - Bloco B",
+            "palestrante": "Equipe NIT e acadêmicos",
             "modalidade": "Exposição",
             "formato": "Presencial",
             "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           },
           {
-            "titulo": "Painel “Tocantinenses Criativas e Inovadoras”",
-            "horario": "08h00 - 10h00",
-            "local": "Sala 04 - Bloco B",
-            "modalidade": "Painel",
+            "titulo": "Realidade Virtual: Planetário 360º",
+            "horario": "Integral",
+            "local": "Sala 07 - Bloco B",
+            "palestrante": "Acadêmico de Sistemas de Informação",
+            "modalidade": "Exposição",
             "formato": "Presencial",
             "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
-          },
-          {
-            "titulo": "Painel “Tocantinenses Criativas e Inovadoras”",
-            "horario": "10h30 - 12h00",
-            "local": "Sala 04 - Bloco B",
-            "modalidade": "Painel",
-            "formato": "Presencial",
-            "coordenador": "Mylena Costa Jacundá",
-            "vagas": ""
+            "vagas": "",
+            "meetLink": "https://meet.google.com"
           }
         ]
       },
@@ -1129,6 +1197,21 @@
             "local": "Sala 09 - Bloco A",
             "palestrante": "Acadêmicos do Curso de Direito/ NEDIH",
             "modalidade": "Oficina",
+            "formato": "Presencial",
+            "coordenador": "Najla Lopes Cintra",
+            "vagas": ""
+          }
+        ]
+      },
+      {
+        "name": "Exposição do Museu José Hidasi",
+        "talks": [
+          {
+            "titulo": "Exposição do Museu José Hidasi",
+            "horario": "08h30 - 18h00 (Semana toda)",
+            "local": "Sala de estudos - Bloco B",
+            "modalidade": "Exposição Permanente",
+            "formato": "Presencial",
             "vagas": ""
           }
         ]
@@ -1167,20 +1250,6 @@
             "modalidade": "Mesa-redonda",
             "formato": "Presencial",
             "coordenador": "Jackson Carlos da Silva",
-            "vagas": ""
-          }
-        ]
-      },
-      {
-        "name": "II Festival Culinário da Unitins — Chefs do Sabor",
-        "talks": [
-          {
-            "titulo": "Mostra Gastronômica: exposição, comercialização e avaliação dos pratos",
-            "horario": "18h00 - 19h30",
-            "local": "Hall - Bloco C",
-            "modalidade": "Feira",
-            "formato": "Presencial",
-            "coordenador": "Daisy Parente Dourado",
             "vagas": ""
           }
         ]
@@ -1251,6 +1320,17 @@
         ]
       },
       {
+        "name": "PREMIAÇÃO E LANCAMENTOS: PÓS-GRADUAÇÃO, AGRIES e EDITAL AGROTINS",
+        "talks": [
+          {
+            "titulo": "PREMIAÇÃO E LANCAMENTOS: PÓS-GRADUAÇÃO, AGRIES e EDITAL AGROTINS",
+            "horario": "19h00 - 22h00",
+            "local": "Auditório Central",
+            "vagas": ""
+          }
+        ]
+      },
+      {
         "name": "Seminário: Direitos Humanos em Todo Lugar: o Protagonismo das Mulheres na Transformação Social",
         "talks": [
           {
@@ -1272,8 +1352,8 @@
             "vagas": ""
           },
           {
-            "titulo": "Mesa — Justiça Reprodutiva e Protagonismo das Mulheres",
-            "horario": "14h00 - 16h00",
+            "titulo": "Justiça Reprodutiva, Masculinidades e Enfrentamento às Violências",
+            "horario": "14h30 - 17h30",
             "local": "Auditório Câmpus",
             "modalidade": "Seminário",
             "formato": "Presencial",
@@ -1286,15 +1366,15 @@
   },
   {
     "date": "Online",
-    "dayOfWeek": "Atividades EAD / A definir",
-    "isoDate": "2026-10-17",
+    "dayOfWeek": "A definir",
+    "isoDate": "2026-10-20",
     "events": [
       {
         "name": "III Colóquio de Extensão TO Graduado: Caminhos para transformação social",
         "talks": [
           {
             "titulo": "Apresentação de trabalhos de extensão",
-            "horario": "19h00 - 22h00",
+            "horario": "22/10 (Quinta) • 19h00 - 22h00",
             "local": "Google Meet",
             "modalidade": "Apresentação de Trabalhos",
             "formato": "Online",
@@ -1309,7 +1389,7 @@
         "talks": [
           {
             "titulo": "III JIC TO Graduado",
-            "horario": "19h00 - 22h00",
+            "horario": "20/10 (Terça) • 19h00 - 22h00",
             "local": "Google Meet",
             "modalidade": "Apresentação de Trabalhos",
             "formato": "Online",

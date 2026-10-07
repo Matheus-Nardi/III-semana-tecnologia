@@ -49,9 +49,9 @@ export default function Subscription({ edition }: { edition?: Edition }) {
             initial={{ opacity: 0, y: 50 }}
             animate={isLeftInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
-            className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 animate-float"
+            className="relative isolate w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 animate-float"
           >
-            <div className="absolute inset-0 -z-10 scale-150" aria-hidden="true">
+            <div className="absolute inset-0 -z-10 scale-150 pointer-events-none" aria-hidden="true">
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <path
                   d="M100,20 C120,25 140,35 155,55 C170,75 180,95 175,115 C170,135 155,150 135,160 C115,170 90,175 70,170 C50,165 35,150 25,130 C15,110 10,85 20,65 C30,45 50,30 70,25 C80,22 90,20 100,20 Z"
@@ -109,13 +109,14 @@ export default function Subscription({ edition }: { edition?: Edition }) {
             initial={{ opacity: 0, y: 50 }}
             animate={isRightInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 1 }}
-            className="relative w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 animate-float-delayed"
+            className="relative isolate w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 animate-float-delayed"
           >
-            <div className="absolute inset-0 -z-10 scale-150" aria-hidden="true">
+            <div className="absolute inset-0 -z-10 scale-150 pointer-events-none" aria-hidden="true">
               <svg viewBox="0 0 200 200" className="w-full h-full">
                 <path
                   d="M95,15 C115,18 135,28 150,45 C165,62 175,85 172,108 C169,131 152,148 130,158 C108,168 82,170 60,162 C38,154 20,138 12,115 C4,92 8,65 22,45 C36,25 58,15 78,13 C85,12 90,14 95,15 Z"
-                  fill="rgba(233, 30, 99, 0.1)"
+                  fill="var(--accent, #e2187f)"
+                  fillOpacity="0.1"
                 />
               </svg>
             </div>

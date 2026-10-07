@@ -330,6 +330,10 @@
     animation: float 6s ease-in-out infinite;
   }
 
+  .animate-float-delayed {
+    animation: float 6s ease-in-out -3s infinite;
+  }
+
   .animate-fade-in-up {
     animation: fadeInUp 1s ease-out forwards;
     opacity: 0;

@@ -82,9 +82,19 @@ export async function importSchedule(options?: {
 
   // 1. Carrega os dados da programação
   let scheduleDays: ParsedDay[] = []
+  const defaultCsv01 = path.resolve(process.cwd(), 'src/data/raw/2026/programacao-2026_01.csv')
+  const defaultCsvOld = path.resolve(process.cwd(), 'src/data/raw/2026/programacao-2026.csv')
+  const defaultFilePath = fs.existsSync(defaultCsv01) ? defaultCsv01 : defaultCsvOld
+
   const customFilePath = options?.filePath
     ? path.resolve(process.cwd(), options.filePath)
-    : path.resolve(process.cwd(), 'src/data/raw/2026/programacao-2026.csv')
+    : defaultFilePath
+
+  const nitFilePath = path.resolve(
+    process.cwd(),
+    'src/data/raw/2026/Programação_IV Circuito de Inovação_2026_NIT (1).csv'
+  )
+  const nitCsvRaw = fs.existsSync(nitFilePath) ? fs.readFileSync(nitFilePath, 'utf-8') : undefined
 
   if (fs.existsSync(customFilePath)) {
     if (customFilePath.endsWith('.json')) {
@@ -92,8 +102,11 @@ export async function importSchedule(options?: {
       scheduleDays = JSON.parse(fs.readFileSync(customFilePath, 'utf-8'))
     } else {
       console.log(`📖 [Import Schedule] Lendo e fazendo parse do CSV: ${customFilePath}`)
+      if (nitCsvRaw) {
+        console.log(`📋 [Import Schedule] Mesclando arquivo oficial do NIT: ${nitFilePath}`)
+      }
       const csvRaw = fs.readFileSync(customFilePath, 'utf-8')
-      scheduleDays = parseScheduleCsv(csvRaw)
+      scheduleDays = parseScheduleCsv(csvRaw, nitCsvRaw)
     }
   } else {
     // Fallback para src/data/schedule-2026.json se existir

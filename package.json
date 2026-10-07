@@ -25,7 +25,7 @@
     "docker:restore": "./scripts/restore.sh",
     "parse:schedule:2026": "tsx src/scripts/parse-csv-schedule.ts",
     "import:schedule": "tsx src/scripts/import-schedule.ts",
-    "import:schedule:2026": "tsx src/scripts/import-schedule.ts --year 2026 --file src/data/raw/2026/programacao-2026.csv"
+    "import:schedule:2026": "tsx src/scripts/import-schedule.ts --year 2026 --file src/data/raw/2026/programacao-2026_01.csv"
   },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.26.0",

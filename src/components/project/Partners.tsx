@@ -32,17 +32,27 @@ export default function Partners({ edition }: { edition?: Edition }) {
       }))
     : defaultPartners;
 
-  const partnersIllustrationSrc =
+  const rawIllustrationSrc =
     (typeof edition?.partnersIllustration === 'object' && edition?.partnersIllustration?.url)
       ? edition.partnersIllustration.url
       : (typeof edition?.partnersIllustration === 'string' && edition?.partnersIllustration)
         ? edition.partnersIllustration
-        : '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-4.png';
+        : (edition?.year === 2026 || edition?.slug === '2026')
+          ? '/illustrations/dna-helix.svg'
+          : '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-4.png';
+
+  // Se a ilustração for o genoma / DNA, prioriza o asset otimizado /illustrations/dna-helix.svg
+  const partnersIllustrationSrc =
+    rawIllustrationSrc.includes('flat-2d-icon-of-a-stylized-dna-double-helix') ||
+    rawIllustrationSrc.includes('dna') ||
+    rawIllustrationSrc.includes('helix')
+      ? '/illustrations/dna-helix.svg'
+      : rawIllustrationSrc;
 
   const partnersIllustrationAlt =
     (typeof edition?.partnersIllustration === 'object' && edition?.partnersIllustration?.alt)
       ? edition.partnersIllustration.alt
-      : 'Elemento decorativo da identidade visual';
+      : 'Estrutura helicoidal de DNA da identidade visual';
 
   return (
     <section id="parceiros" className="w-full py-16 sm:py-20 md:py-32 relative overflow-hidden bg-gradient-soft-primary">

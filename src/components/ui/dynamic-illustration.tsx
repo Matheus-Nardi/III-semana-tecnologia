@@ -23,9 +23,14 @@ const svgCache = new Map<string, string>()
  */
 function sanitizeSvg(rawSvg: string): string {
   return rawSvg
+    .replace(/<\?xml[^>]*\?>/gi, '')
+    .replace(/<!DOCTYPE[^>]*>/gi, '')
     .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
     .replace(/\s+on\w+="[^"]*"/gi, '')
     .replace(/\s+on\w+='[^']*'/gi, '')
+    .replace(/<\s*(\/?)\s*[a-zA-Z0-9_-]+:([a-zA-Z0-9_-]+)/g, '<$1$2')
+    .replace(/\s+xmlns:[a-zA-Z0-9_-]+="[^"]*"/gi, '')
+    .trim()
 }
 
 export function DynamicIllustration({
