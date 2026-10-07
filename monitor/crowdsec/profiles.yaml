@@ -1,0 +1,11 @@
+# Perfil de remediação: gera decisões de BAN e envia alertas ao Telegram
+name: default_ip_remediation
+# filters:
+#   - Alert.Remediation == true && Alert.GetScope() == "Ip"
+decisions:
+  - type: ban
+    duration: 4h
+# simulation: true
+# Para desativar alertas no Telegram, remova o bloco "notifications" abaixo
+notifications:
+  - http_default

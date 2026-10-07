@@ -84,6 +84,9 @@ services:
     image: nginx:alpine
     container_name: semana-tecnologia-nginx-prod
     restart: unless-stopped
+    environment:
+      - STATS_USER=${STATS_USER:-stats}
+      - STATS_HASH=${STATS_HASH}
     ports:
       - "80:80"
       - "443:443"
@@ -93,6 +96,9 @@ services:
       - ./nginx/ssl:/etc/nginx/ssl:ro
       - ./certbot/conf:/etc/letsencrypt:ro
       - ./certbot/www:/var/www/certbot:ro
+      - nginx-logs:/var/log/nginx
+      - goaccess-reports:/var/reports:ro
+      - ./monitor/nginx/htpasswd.template:/etc/nginx/templates/htpasswd.template:ro
     depends_on:
       - nextjs
     networks:
@@ -118,9 +124,140 @@ services:
       - ./certbot/www:/var/www/certbot
     command: certonly --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_EMAIL:-suporte@unitins.br} --agree-tos --no-eff-email -d unitinscti.com.br -d www.unitinscti.com.br -d admin.unitinscti.com.br
 
+  # --------------------------------------------------------------------------
+  # Observabilidade e segurança (stack mínima)
+  # --------------------------------------------------------------------------
+
+  # CrowdSec: detecta ataques lendo os logs do Nginx e envia alertas ao Telegram
+  crowdsec:
+    image: crowdsecurity/crowdsec:latest
+    container_name: semana-tecnologia-crowdsec-prod
+    restart: unless-stopped
+    depends_on:
+      - nginx
+    environment:
+      - COLLECTIONS=crowdsecurity/nginx
+      - GID=${GID:-1000}
+      - TZ=America/Sao_Paulo
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - BOUNCER_KEY_firewall=${CS_BOUNCER_KEY}
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        sed -e "s|__BOT_TOKEN__|$$TELEGRAM_BOT_TOKEN|g" \
+            -e "s|__CHAT_ID__|$$TELEGRAM_CHAT_ID|g" \
+            /etc/crowdsec/notifications/_tpl/http.yaml.tpl \
+            > /etc/crowdsec/notifications/http.yaml
+        exec /bin/bash /docker-entrypoint.sh "$$@"
+      - --
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./monitor/crowdsec/acquis.yaml:/etc/crowdsec/acquis.yaml:ro
+      - ./monitor/crowdsec/profiles.yaml:/etc/crowdsec/profiles.yaml:ro
+      - ./monitor/crowdsec/notifications/http.yaml.tpl:/etc/crowdsec/notifications/_tpl/http.yaml.tpl:ro
+      - nginx-logs:/var/log/nginx:ro
+      - crowdsec-db:/var/lib/crowdsec/data/
+      - crowdsec-config:/etc/crowdsec/
+    networks:
+      - app-network-prod
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Bouncer de firewall: aplica os BANs do CrowdSec no iptables do host (somente Linux)
+  crowdsec-bouncer:
+    image: ghcr.io/shgew/cs-firewall-bouncer-docker:stable
+    container_name: semana-tecnologia-cs-bouncer-prod
+    restart: unless-stopped
+    depends_on:
+      - crowdsec
+    network_mode: host
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - API_URL=http://127.0.0.1:8080
+      - API_KEY=${CS_BOUNCER_KEY}
+    volumes:
+      - ./monitor/crowdsec/bouncer.yaml:/config/crowdsec-firewall-bouncer.yaml:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Uptime Kuma: monitora saúde do site/banco/containers e alerta no Telegram
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: semana-tecnologia-kuma-prod
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3001:3001"
+    volumes:
+      - uptime-kuma-data:/app/data
+    networks:
+      - app-network-prod
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # Dozzle: visualização dos logs de todos os containers em tempo real
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: semana-tecnologia-dozzle-prod
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8081:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+  # GoAccess: painel de métricas de acesso (regenerado a cada 5 min) em /stats
+  goaccess:
+    image: allinurl/goaccess:latest
+    container_name: semana-tecnologia-goaccess-prod
+    restart: unless-stopped
+    depends_on:
+      - nginx
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        while :; do
+          goaccess /var/log/nginx/access.log -p /cfg/goaccess.conf -o /reports/index.html || true
+          sleep 300
+        done
+    volumes:
+      - ./monitor/goaccess/goaccess.conf:/cfg/goaccess.conf:ro
+      - nginx-logs:/var/log/nginx:ro
+      - goaccess-reports:/reports
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
 volumes:
   db-data-prod: {}
   media-data-prod: {}
+  nginx-logs: {}
+  goaccess-reports: {}
+  crowdsec-db: {}
+  crowdsec-config: {}
+  uptime-kuma-data: {}
 
 networks:
   app-network-prod:
