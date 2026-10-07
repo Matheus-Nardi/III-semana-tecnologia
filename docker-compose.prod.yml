@@ -201,6 +201,12 @@ services:
     platform: linux/arm64
     container_name: semana-tecnologia-kuma-prod
     restart: unless-stopped
+    extra_hosts:
+      # Sem isso o container não alcança o IP público (hairpin NAT do Oracle).
+      # Aponta os domínios para o gateway do Docker, onde o Nginx publica 80/443.
+      - "unitinscti.com.br:host-gateway"
+      - "www.unitinscti.com.br:host-gateway"
+      - "admin.unitinscti.com.br:host-gateway"
     ports:
       - "127.0.0.1:3001:3001"
     volumes:
