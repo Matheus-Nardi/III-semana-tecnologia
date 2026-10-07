@@ -160,7 +160,6 @@ services:
       - ./monitor/crowdsec/notifications/http.yaml.tpl:/etc/crowdsec/notifications/_tpl/http.yaml.tpl:ro
       - nginx-logs:/var/log/nginx:ro
       - crowdsec-db:/var/lib/crowdsec/data/
-      - crowdsec-config:/etc/crowdsec/
     networks:
       - app-network-prod
     logging:
@@ -256,7 +255,6 @@ volumes:
   nginx-logs: {}
   goaccess-reports: {}
   crowdsec-db: {}
-  crowdsec-config: {}
   uptime-kuma-data: {}
 
 networks:
