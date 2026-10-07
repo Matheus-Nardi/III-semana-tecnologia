@@ -33,7 +33,14 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const title = `${edition.title} - UNITINS (${edition.year})`
-  const description = edition.about?.body || `Informações, programação e inscrições para a ${edition.title}.`
+  const description =
+    edition.about?.body?.replace(/\*\*/g, '') ||
+    `Informações, programação e inscrições para a ${edition.title}.`
+  const imageUrl =
+    edition.theme?.heroBanner?.url ||
+    edition.about?.illustration?.url ||
+    edition.heroSlides?.[0]?.src ||
+    '/logos/logo-snct.png'
 
   return {
     title,
@@ -49,12 +56,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       locale: 'pt_BR',
       images: [
         {
-          url: edition.theme?.heroBanner?.url || '/logos/logo-snct.png',
+          url: imageUrl,
           width: 1200,
           height: 630,
           alt: edition.title,
         },
       ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [imageUrl],
     },
   }
 }

@@ -128,6 +128,10 @@ export const FALLBACK_2025_EDITION: Edition = {
       url: '/logos/logo-snct.png',
       alt: 'Logo SNCT e SCTI UNITINS',
     },
+    heroBanner: {
+      url: '/semana-de-inovacao/marca/Marca-ilustrada-positiva-horizontal.png',
+      alt: 'III Semana de Ciência, Tecnologia e Inovação da UNITINS',
+    },
   },
   heroSlides: [
     {
@@ -218,6 +222,10 @@ export const FALLBACK_2026_EDITION: Edition = {
     logo: {
       url: '/logos/logo-snct.png',
       alt: 'Logo SNCT e SCTIE UNITINS',
+    },
+    heroBanner: {
+      url: '/illustrations/meninas-ciencia.png',
+      alt: 'IV Semana de Ciência, Tecnologia, Inovação e Extensão - Ciência Delas',
     },
   },
   heroSlides: FALLBACK_2025_EDITION.heroSlides,
