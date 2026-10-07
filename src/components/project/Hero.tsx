@@ -84,7 +84,10 @@ export default function Hero({ edition }: { edition?: Edition }) {
 
     const slides = customSlides || (isMobile ? defaultMobileSlides : defaultDesktopSlides);
 
-    const titlePrefix = edition?.shortTitle ? `${edition.shortTitle.split(' ')[0]} ${edition.shortTitle.split(' ')[1] || 'Semana'} de` : 'III Semana de';
+    // Extrai o prefixo (ex: "IV Semana de" ou "III Semana de") e a parte temática central
+    const titleMatch = edition?.title?.match(/^((?:I|II|III|IV|V|VI|VII|VIII|IX|X|\d+ª?)\s+Semana\s+de)\s+(.+)$/i);
+    const titlePrefix = titleMatch ? titleMatch[1] : (edition?.shortTitle ? `${edition.shortTitle.split(' ')[0]} ${edition.shortTitle.split(' ')[1] || 'Semana'} de` : 'IV Semana de');
+    const mainTitle = titleMatch ? titleMatch[2] : 'Ciência, Tecnologia, Inovação e Extensão';
     const registrationUrl = edition?.registrationUrl || "https://www.unitins.br/Eventos/E007Evento/Abertos";
 
     return (
@@ -161,8 +164,8 @@ export default function Hero({ edition }: { edition?: Edition }) {
                                 <span className="block text-white drop-shadow-2xl" style={{ color: 'var(--color-accent, #e2187f)' }}>
                                     {titlePrefix}
                                 </span>
-                                <span className="block text-3xl md:text-5xl lg:text-7xl font-light tracking-wide text-white">
-                                    Ciência, Tecnologia e Inovação
+                                <span className="block text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-light tracking-wide text-white">
+                                    {mainTitle}
                                 </span>
                                 <span className="block text-3xl md:text-5xl lg:text-7xl" style={{ color: 'var(--color-accent, #e2187f)' }}>
                                     UNITINS {edition?.year || ''}

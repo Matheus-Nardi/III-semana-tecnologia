@@ -8,8 +8,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Button } from '@/components/ui/button'
 
 export const metadata: Metadata = {
-  title: 'Histórico de Edições | Semana de Tecnologia - UNITINS',
-  description: 'Navegue pelo histórico de edições da Semana de Ciência, Tecnologia e Inovação da UNITINS.',
+  title: 'Histórico de Edições | Semana de Tecnologia e Extensão - UNITINS',
+  description: 'Navegue pelo histórico de edições da Semana de Ciência, Tecnologia, Inovação e Extensão da UNITINS.',
 }
 
 export const dynamic = 'force-dynamic'
@@ -36,7 +36,7 @@ export default async function EditionsHistoryPage() {
               Histórico de Edições
             </h1>
             <p className="text-muted-foreground font-poppins max-w-xl mx-auto text-sm sm:text-base">
-              Acompanhe a trajetória da Semana de Ciência, Tecnologia e Inovação da UNITINS ao longo dos anos.
+              Acompanhe a trajetória da Semana de Ciência, Tecnologia, Inovação e Extensão da UNITINS ao longo dos anos.
             </p>
           </div>
 

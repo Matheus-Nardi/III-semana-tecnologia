@@ -26,8 +26,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Semana de Ciência, Tecnologia e Inovação - UNITINS",
-  description: "Evento acadêmico promovido pela Universidade Estadual do Tocantins (UNITINS) que reúne estudantes, pesquisadores e profissionais para discutir ciência, tecnologia e inovação.",
+  title: "Semana de Ciência, Tecnologia, Inovação e Extensão - UNITINS",
+  description: "Evento acadêmico promovido pela Universidade Estadual do Tocantins (UNITINS) que reúne estudantes, pesquisadores e profissionais para discutir ciência, tecnologia, inovação e extensão.",
   icons: {
     icon: [
       { url: "/favicon_io/favicon-16x16.png", sizes: "16x16", type: "image/png" },
@@ -46,26 +46,28 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   keywords: [
     "Semana de Ciência e Tecnologia",
+    "Semana de Ciência, Tecnologia, Inovação e Extensão",
     "UNITINS",
     "Inovação",
+    "Extensão",
     "Evento",
     "Tecnologia",
     "Palmas",
     "Tocantins",
   ],
   openGraph: {
-    title: "Semana de Ciência, Tecnologia e Inovação - UNITINS",
-    description: "Evento acadêmico promovido pela Universidade Estadual do Tocantins (UNITINS)...",
+    title: "Semana de Ciência, Tecnologia, Inovação e Extensão - UNITINS",
+    description: "Evento acadêmico promovido pela Universidade Estadual do Tocantins (UNITINS) que reúne estudantes, pesquisadores e profissionais para discutir ciência, tecnologia, inovação e extensão.",
     type: "website",
     url: "https://unitinscti.com.br/",
-    siteName: "Semana de Ciência, Tecnologia e Inovação - UNITINS",
+    siteName: "Semana de Ciência, Tecnologia, Inovação e Extensão - UNITINS",
     locale: "pt_BR",
     images: [
       {
         url: "/logos/logo-snct.png",
         width: 1200,
         height: 630,
-        alt: "Logo da Semana de Ciência, Tecnologia e Inovação - UNITINS",
+        alt: "Logo da Semana de Ciência, Tecnologia, Inovação e Extensão - UNITINS",
       },
     ],
   },

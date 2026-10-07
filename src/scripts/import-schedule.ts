@@ -208,8 +208,8 @@ export async function importSchedule(options?: {
       data: {
         slug: targetSlug,
         year,
-        title: 'IV Semana de Ciência, Tecnologia e Inovação',
-        shortTitle: 'IV Semana de Tecnologia',
+        title: 'IV Semana de Ciência, Tecnologia, Inovação e Extensão',
+        shortTitle: 'IV Semana de Tecnologia e Extensão',
         isDefault,
         dates: '13 a 16 de outubro de 2026',
         registrationUrl: 'https://unitins.br',
@@ -219,9 +219,9 @@ export async function importSchedule(options?: {
           secondaryColor: '#E3F5FF',
         },
         about: {
-          title: 'IV Semana de Ciência, Tecnologia e Inovação da UNITINS',
-          themeTitle: 'Ciência, Tecnologia e Inovação para o Desenvolvimento Regional',
-          body: 'A Universidade Estadual do Tocantins (Unitins) realizará, de 13 a 16 de outubro de 2026, a IV Semana de Ciência, Tecnologia e Inovação - SCTI. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas.',
+          title: 'IV Semana de Ciência, Tecnologia, Inovação e Extensão da UNITINS',
+          themeTitle: 'Ciência Delas',
+          body: 'A Universidade Estadual do Tocantins (Unitins) realizará, de 13 a 16 de outubro de 2026, a IV Semana de Ciência, Tecnologia, Inovação e Extensão - SCTIE. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas.',
         },
         schedule: formattedSchedule,
       },

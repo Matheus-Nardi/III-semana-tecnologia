@@ -11,7 +11,7 @@ export const AdminWelcomeBanner: React.FC = () => {
           <span>Gestão do Evento</span>
         </div>
         <h2 className="admin-brief-banner__title">
-          Semana de Ciência, Tecnologia e Inovação
+          Semana de Ciência, Tecnologia, Inovação e Extensão
         </h2>
         <p className="admin-brief-banner__text">
           Gerencie a programação oficial, palestrantes, parceiros e arquivos da edição.

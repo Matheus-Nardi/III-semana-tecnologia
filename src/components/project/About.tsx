@@ -27,11 +27,12 @@ export default function AboutEvent({ edition }: { edition?: Edition }) {
 
   const titlePrefix = edition?.shortTitle
     ? `${edition.shortTitle.split(' ')[0]} ${edition.shortTitle.split(' ')[1] || 'Semana'} de`
-    : 'III Semana de';
-  const themeTitle = edition?.about?.themeTitle || "Planeta Água: a cultura oceânica para enfrentar as mudanças climáticas no meu território";
-  const dates = edition?.dates || "20 a 24 de outubro de 2025";
-  const illustrationSrc = edition?.about?.illustration?.url || "/ilustracoes/globo.png";
-  const illustrationAlt = edition?.about?.illustration?.alt || "Ilustração temática da Semana de Ciência e Tecnologia";
+    : 'IV Semana de';
+  const sectionTitle = edition?.about?.title || `${titlePrefix} Ciência, Tecnologia, Inovação e Extensão da UNITINS`;
+  const themeTitle = edition?.about?.themeTitle || "Ciência Delas";
+  const dates = edition?.dates || "13 a 16 de outubro de 2026";
+  const illustrationSrc = edition?.about?.illustration?.url || "/illustrations/meninas-ciencia.png";
+  const illustrationAlt = edition?.about?.illustration?.alt || "Ilustração temática da Semana de Ciência, Tecnologia, Inovação e Extensão";
 
   // Efeito interativo de Tilt 3D suave com aceleração de mola (Spring)
   const x = useMotionValue(0);
@@ -63,7 +64,21 @@ export default function AboutEvent({ edition }: { edition?: Edition }) {
           <div className="space-y-6 sm:space-y-8">
             <div ref={titleRef} className="space-y-4">
               <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-balance font-montserrat leading-tight">
-                {titlePrefix} <span className="text-primary">Ciência, Tecnologia e Inovação </span> da UNITINS
+                {(() => {
+                  const highlightRegex = /(Ciência,\s+Tecnologia(?:,\s+Inovação)?(?:\s+e\s+(?:Inovação|Extensão))?(?:\s+e\s+Extensão)?)/i;
+                  const match = sectionTitle.match(highlightRegex);
+                  if (match) {
+                    const parts = sectionTitle.split(match[0]);
+                    return (
+                      <>
+                        {parts[0]}
+                        <span className="text-primary">{match[0]}</span>
+                        {parts.slice(1).join(match[0])}
+                      </>
+                    );
+                  }
+                  return sectionTitle;
+                })()}
               </h2>
 
               <motion.div
@@ -93,7 +108,7 @@ export default function AboutEvent({ edition }: { edition?: Edition }) {
               ) : (
                 <>
                   <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2">
-                    A Universidade Estadual do Tocantins (Unitins) realizará, de {dates}, a {edition?.title || "III Semana de Ciência, Tecnologia e Inovação - SCTI"}, com o tema <strong className="text-primary font-semibold">“{themeTitle}”</strong>. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas, promovendo o diálogo entre ensino, pesquisa e extensão.
+                    A Universidade Estadual do Tocantins (Unitins) realizará, de {dates}, a {edition?.title || "IV Semana de Ciência, Tecnologia, Inovação e Extensão - SCTIE"}, com o tema <strong className="text-primary font-semibold">“{themeTitle}”</strong>. Integrando a Semana Nacional de Ciência e Tecnologia, o evento reunirá estudantes, professores, pesquisadores e comunidade em torno de palestras, oficinas, exposições e apresentações científicas, promovendo o diálogo entre ensino, pesquisa e extensão.
                   </p>
                   <p className="text-sm sm:text-base md:text-lg font-poppins pl-4 py-2">
                     A iniciativa reforça o compromisso da Unitins com o desenvolvimento sustentável e a disseminação do conhecimento, incentivando soluções inovadoras e o engajamento social em prol de um futuro mais equilibrado para o Tocantins e para o Brasil!

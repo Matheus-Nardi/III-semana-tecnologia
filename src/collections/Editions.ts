@@ -116,7 +116,7 @@ export const Editions: CollectionConfig = {
               name: 'title',
               type: 'text',
               required: true,
-              defaultValue: 'III Semana de Ciência, Tecnologia e Inovação',
+              defaultValue: 'IV Semana de Ciência, Tecnologia, Inovação e Extensão',
               label: 'Título Oficial Completo',
               admin: {
                 description: 'Exibido no topo da página, metadados do Google e compartilhamento em redes sociais',
@@ -125,7 +125,7 @@ export const Editions: CollectionConfig = {
             {
               name: 'shortTitle',
               type: 'text',
-              defaultValue: 'III Semana de Tecnologia',
+              defaultValue: 'IV Semana de Tecnologia e Extensão',
               label: 'Título Curto (Header / Menu / Rodapé)',
               admin: {
                 description: 'Versão concisa utilizada no cabeçalho e rodapé para economia de espaço',
@@ -346,7 +346,7 @@ export const Editions: CollectionConfig = {
                 {
                   name: 'title',
                   type: 'text',
-                  defaultValue: 'III Semana de Ciência, Tecnologia e Inovação da UNITINS',
+                  defaultValue: 'IV Semana de Ciência, Tecnologia, Inovação e Extensão da UNITINS',
                   label: 'Título Principal da Seção',
                 },
                 {
@@ -686,7 +686,7 @@ export const Editions: CollectionConfig = {
                 {
                   name: 'title',
                   type: 'text',
-                  defaultValue: 'Garanta sua participação na III Semana de Tecnologia',
+                  defaultValue: 'Garanta sua participação na IV Semana de Ciência, Tecnologia, Inovação e Extensão',
                   label: 'Título de Chamada',
                 },
                 {
