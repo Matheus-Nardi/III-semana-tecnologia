@@ -226,10 +226,15 @@ services:
     platform: linux/arm64
     container_name: semana-tecnologia-dozzle-prod
     restart: unless-stopped
+    environment:
+      # Exposto sob /logs via Nginx (proxy reverso com Basic Auth)
+      - DOZZLE_BASE=/logs
     ports:
       - "127.0.0.1:8081:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    networks:
+      - app-network-prod
     logging:
       driver: json-file
       options:
@@ -262,6 +267,40 @@ services:
         max-size: "10m"
         max-file: "3"
 
+  # Alerta de picos de tráfego no Telegram (alternativa leve ao Grafana)
+  traffic-alert:
+    image: alpine:3.20
+    platform: linux/arm64
+    container_name: semana-tecnologia-traffic-prod
+    restart: unless-stopped
+    environment:
+      - TZ=UTC
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - TELEGRAM_CHAT_ID=${TELEGRAM_CHAT_ID}
+      - WINDOW_MIN=${TRAFFIC_WINDOW_MIN:-5}
+      - THRESH_RPM=${TRAFFIC_THRESH_RPM:-200}
+      - THRESH_5XX=${TRAFFIC_THRESH_5XX:-30}
+      - THRESH_IPS=${TRAFFIC_THRESH_IPS:-300}
+      - COOLDOWN_MIN=${TRAFFIC_COOLDOWN_MIN:-30}
+    volumes:
+      - ./monitor/traffic/alert.sh:/alert.sh:ro
+      - nginx-logs:/var/log/nginx:ro
+      - traffic-state:/state
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        apk add --no-cache gawk curl >/dev/null 2>&1 || true
+        while :; do
+          sh /alert.sh || true
+          sleep 60
+        done
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
 volumes:
   db-data-prod: {}
   media-data-prod: {}
@@ -269,6 +308,7 @@ volumes:
   goaccess-reports: {}
   crowdsec-db: {}
   uptime-kuma-data: {}
+  traffic-state: {}
 
 networks:
   app-network-prod:
