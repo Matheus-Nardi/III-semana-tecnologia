@@ -89,6 +89,7 @@ __pycache__/
 .serena/
 .gemini/
 brag-output/
+.agents/skills/brag/
 .mcp.json
 .agents/plugins/**/mcp_config.json
 !.mcp.json.example
