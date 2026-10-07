@@ -2,6 +2,10 @@
 import React from 'react'
 
 export const AdminWelcomeBanner: React.FC = () => {
+  const publicSiteUrl =
+    process.env.NEXT_PUBLIC_SERVER_URL ||
+    (process.env.NODE_ENV === 'development' ? 'http://localhost:3000' : 'https://unitinscti.com.br')
+
   return (
     <aside className="admin-brief-banner" aria-label="Informações da edição">
       <div className="admin-brief-banner__content">
@@ -19,7 +23,7 @@ export const AdminWelcomeBanner: React.FC = () => {
       </div>
 
       <a
-        href="/"
+        href={publicSiteUrl}
         target="_blank"
         rel="noopener noreferrer"
         className="admin-brief-banner__action"
