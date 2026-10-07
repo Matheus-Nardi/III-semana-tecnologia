@@ -75,7 +75,9 @@ else
 fi
 
 echo "🚀 Subindo containers..."
-$DC -f "$COMPOSE_FILE" up -d --remove-orphans
+# --force-recreate: garante que binds criados a partir de stubs antigos
+# (diretório vazio no lugar de arquivo) não persistam entre deploys
+$DC -f "$COMPOSE_FILE" up -d --remove-orphans --force-recreate
 
 echo "⏳ Aguardando inicialização..."
 sleep 20

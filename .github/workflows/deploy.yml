@@ -135,21 +135,21 @@ jobs:
               exit 1
             fi
 
-            echo "--- Verificando Nginx (proxy público 80/443) ---"
-            NGX_OK=false
+            echo "--- Verificando acesso publico (internet -> nginx -> next) ---"
+            SITE_OK=false
             for i in $(seq 1 10); do
-              CODE=$(docker exec semana-tecnologia-nginx-prod wget -q -O /dev/null --no-check-certificate --header "Host: unitinscti.com.br" https://127.0.0.1/health 2>/dev/null && echo 200 || true)
+              CODE=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 5 --max-time 15 https://unitinscti.com.br/ || true)
               if [ "$CODE" = "200" ]; then
-                echo "✅ Nginx respondendo (HTTP 200)"
-                NGX_OK=true
+                echo "✅ Site respondendo HTTP 200 (tentativa $i)"
+                SITE_OK=true
                 break
               fi
-              echo "Aguardando Nginx... (tentativa $i/10)"
-              sleep 6
+              echo "Aguardando stack publica... tentativa $i/10 (code=${CODE:-sem conexao})"
+              sleep 10
             done
 
-            if [ "$NGX_OK" = false ]; then
-              echo "❌ Nginx não respondeu. Status dos containers:"
+            if [ "$SITE_OK" = false ]; then
+              echo "❌ Site não respondeu HTTP 200 pela internet."
               docker compose -f docker-compose.prod.yml ps
               docker compose -f docker-compose.prod.yml logs --tail=50 nginx
               exit 1
