@@ -3,7 +3,7 @@
 # pelo entrypoint (variáveis TELEGRAM_BOT_TOKEN e TELEGRAM_CHAT_ID do .env)
 name: http_default
 enabled: true
-kind: http
+type: http
 format: |
   {
     "chat_id": "__CHAT_ID__",
