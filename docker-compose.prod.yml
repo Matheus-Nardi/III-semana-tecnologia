@@ -242,7 +242,7 @@ services:
       - -c
       - |
         while :; do
-          goaccess /var/log/nginx/access.log -p /cfg/goaccess.conf -o /reports/index.html || true
+          goaccess /var/log/nginx/access_nginx.log -p /cfg/goaccess.conf -o /reports/index.html || true
           sleep 300
         done
     volumes:

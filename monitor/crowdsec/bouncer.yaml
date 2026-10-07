@@ -1,5 +1,5 @@
 # Configuração do firewall bouncer (crowdsec-firewall-bouncer)
-# ${API_URL} e ${API_KEY} são substituídos pelo entrypoint via envsubst
+# Os placeholders ${API_URL} e ${API_KEY} são substituídos pelo entrypoint (envsubst)
 api_url: ${API_URL}
 api_key: ${API_KEY}
 mode: iptables
@@ -8,12 +8,19 @@ daemonize: false
 log_level: info
 log_media: stdout
 pid_dir: /var/run/
+disable_ipv6: true
 
-iptables:
-  # DOCKER-USER é a chain correta para tráfego publicado pelo Docker
-  # (porta 80/443 não passa pela chain INPUT)
-  chain_hook: DOCKER-USER
-  rule_priority: 1
-  deny_action: DROP
-  deny_log: true
-  deny_log_prefix: "crowdsec: "
+deny_action: DROP
+deny_log: true
+deny_log_prefix: "crowdsec: "
+supported_decisions_types:
+  - ban
+
+blacklists_ipv4: crowdsec-blacklists
+ipset_type: nethash
+
+# DOCKER-USER é a chain correta para bloquear tráfego publicado pelo Docker
+# (portas 80/443 não passam pela chain INPUT)
+iptables_chains:
+  - DOCKER-USER
+iptables_add_rule_comments: true
