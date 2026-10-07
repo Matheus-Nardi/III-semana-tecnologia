@@ -159,6 +159,7 @@ services:
     volumes:
       - ./monitor/crowdsec/acquis.yaml:/etc/crowdsec/acquis.yaml:ro
       - ./monitor/crowdsec/profiles.yaml:/etc/crowdsec/profiles.yaml:ro
+      - ./monitor/crowdsec/whitelist-vm.yaml:/etc/crowdsec/parsers/s02-enrich/whitelist-vm.yaml:ro
       - ./monitor/crowdsec/notifications/http.yaml.tpl:/etc/crowdsec/notifications/_tpl/http.yaml.tpl:ro
       - nginx-logs:/var/log/nginx:ro
       - crowdsec-db:/var/lib/crowdsec/data/

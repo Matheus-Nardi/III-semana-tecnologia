@@ -1,0 +1,6 @@
+name: unitins/whitelist-vm-self
+description: "Whitelist do IP publico da propria VM (hairpin e verificacao de deploy)"
+whitelist:
+  reason: "ip publico da VM (hairpin/deploy interno)"
+  ip:
+    - "168.138.247.203"
