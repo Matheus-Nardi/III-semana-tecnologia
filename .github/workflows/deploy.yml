@@ -77,6 +77,11 @@ jobs:
           script: |
             mkdir -p "${{ secrets.DEPLOY_PATH }}"
             chmod 755 "${{ secrets.DEPLOY_PATH }}" || true
+            # Remove stubs de diretório criados pelo Docker quando arquivos de monitor
+            # estavam ausentes no deploy anterior (impede sobrescrever como arquivo)
+            if [ -d "${{ secrets.DEPLOY_PATH }}/monitor" ]; then
+              sudo rm -rf "${{ secrets.DEPLOY_PATH }}/monitor"
+            fi
 
       - name: Upload deploy config to server (SCP)
         uses: appleboy/scp-action@v0.1.7
@@ -86,7 +91,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           target: ${{ secrets.DEPLOY_PATH }}
           overwrite: true
-          source: "docker-compose.prod.yml,nginx,scripts"
+          source: "docker-compose.prod.yml,nginx,scripts,monitor"
 
       - name: Pull image and restart stack remotely
         uses: appleboy/ssh-action@v1.0.0
@@ -129,3 +134,26 @@ jobs:
               docker compose -f docker-compose.prod.yml logs --tail=100 nextjs
               exit 1
             fi
+
+            echo "--- Verificando Nginx (proxy público 80/443) ---"
+            NGX_OK=false
+            for i in $(seq 1 10); do
+              CODE=$(docker exec semana-tecnologia-nginx-prod wget -q -O /dev/null --no-check-certificate --header "Host: unitinscti.com.br" https://127.0.0.1/health 2>/dev/null && echo 200 || true)
+              if [ "$CODE" = "200" ]; then
+                echo "✅ Nginx respondendo (HTTP 200)"
+                NGX_OK=true
+                break
+              fi
+              echo "Aguardando Nginx... (tentativa $i/10)"
+              sleep 6
+            done
+
+            if [ "$NGX_OK" = false ]; then
+              echo "❌ Nginx não respondeu. Status dos containers:"
+              docker compose -f docker-compose.prod.yml ps
+              docker compose -f docker-compose.prod.yml logs --tail=50 nginx
+              exit 1
+            fi
+
+            echo "--- Verificando serviços de monitoramento ---"
+            docker compose -f docker-compose.prod.yml ps crowdsec crowdsec-bouncer goaccess uptime-kuma dozzle

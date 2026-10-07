@@ -150,7 +150,7 @@ services:
             -e "s|__CHAT_ID__|$$TELEGRAM_CHAT_ID|g" \
             /etc/crowdsec/notifications/_tpl/http.yaml.tpl \
             > /etc/crowdsec/notifications/http.yaml
-        exec /bin/bash /docker-entrypoint.sh "$$@"
+        exec /bin/bash /docker_start.sh "$$@"
       - --
     ports:
       - "127.0.0.1:8080:8080"
