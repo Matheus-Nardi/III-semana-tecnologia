@@ -123,7 +123,7 @@ services:
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_EMAIL:-suporte@unitins.br} --agree-tos --no-eff-email -d unitinscti.com.br -d www.unitinscti.com.br -d admin.unitinscti.com.br
+    command: certonly --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_EMAIL:-suporte@unitins.br} --agree-tos --no-eff-email --keep-until-expiring --non-interactive -d unitinscti.com.br -d www.unitinscti.com.br -d admin.unitinscti.com.br
 
   # --------------------------------------------------------------------------
   # Observabilidade e segurança (stack mínima)
@@ -132,6 +132,7 @@ services:
   # CrowdSec: detecta ataques lendo os logs do Nginx e envia alertas ao Telegram
   crowdsec:
     image: crowdsecurity/crowdsec:latest
+    platform: linux/arm64
     container_name: semana-tecnologia-crowdsec-prod
     restart: unless-stopped
     depends_on:
@@ -172,6 +173,7 @@ services:
   # Bouncer de firewall: aplica os BANs do CrowdSec no iptables do host (somente Linux)
   crowdsec-bouncer:
     image: ghcr.io/shgew/cs-firewall-bouncer-docker:stable
+    platform: linux/arm64
     container_name: semana-tecnologia-cs-bouncer-prod
     restart: unless-stopped
     depends_on:
@@ -196,6 +198,7 @@ services:
   # Uptime Kuma: monitora saúde do site/banco/containers e alerta no Telegram
   uptime-kuma:
     image: louislam/uptime-kuma:1
+    platform: linux/arm64
     container_name: semana-tecnologia-kuma-prod
     restart: unless-stopped
     ports:
@@ -213,6 +216,7 @@ services:
   # Dozzle: visualização dos logs de todos os containers em tempo real
   dozzle:
     image: amir20/dozzle:latest
+    platform: linux/arm64
     container_name: semana-tecnologia-dozzle-prod
     restart: unless-stopped
     ports:
@@ -228,6 +232,7 @@ services:
   # GoAccess: painel de métricas de acesso (regenerado a cada 5 min) em /stats
   goaccess:
     image: allinurl/goaccess:latest
+    platform: linux/arm64
     container_name: semana-tecnologia-goaccess-prod
     restart: unless-stopped
     depends_on:
