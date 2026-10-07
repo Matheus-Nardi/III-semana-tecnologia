@@ -79,15 +79,26 @@ services:
     networks:
       - app-network-prod
 
+  # Gera o htpasswd (Basic Auth de /stats e /logs) a partir do .env no deploy
+  auth-init:
+    image: alpine:3.20
+    platform: linux/arm64
+    container_name: semana-tecnologia-auth-prod
+    restart: "no"
+    environment:
+      - STATS_USER=${STATS_USER:-stats}
+      - STATS_PASSWORD=${STATS_PASSWORD:-}
+      - STATS_HASH=${STATS_HASH:-}
+    volumes:
+      - ./monitor/nginx/gen-htpasswd.sh:/gen.sh:ro
+      - nginx-auth:/auth
+    entrypoint: ["/bin/sh", "-c", "apk add --no-cache apache2-utils >/dev/null 2>&1; sh /gen.sh"]
+
   # Nginx como Reverse Proxy
   nginx:
     image: nginx:alpine
     container_name: semana-tecnologia-nginx-prod
     restart: unless-stopped
-    environment:
-      - STATS_USER=${STATS_USER:-stats}
-      - STATS_HASH=${STATS_HASH}
-      - NGINX_ENVSUBST_OUTPUT_DIR=/etc/nginx
     ports:
       - "80:80"
       - "443:443"
@@ -99,9 +110,12 @@ services:
       - ./certbot/www:/var/www/certbot:ro
       - nginx-logs:/var/log/nginx
       - goaccess-reports:/var/reports:ro
-      - ./monitor/nginx/htpasswd.template:/etc/nginx/templates/htpasswd.template:ro
+      - nginx-auth:/etc/nginx/auth:ro
     depends_on:
-      - nextjs
+      nextjs:
+        condition: service_started
+      auth-init:
+        condition: service_completed_successfully
     networks:
       - app-network-prod
     healthcheck:
@@ -305,6 +319,7 @@ volumes:
   db-data-prod: {}
   media-data-prod: {}
   nginx-logs: {}
+  nginx-auth: {}
   goaccess-reports: {}
   crowdsec-db: {}
   uptime-kuma-data: {}
