@@ -110,7 +110,7 @@ export async function seed(existingPayload?: Payload) {
     console.log(`[Seed] Criando usuário administrador (${email})...`)
     await payload.create({
       collection: 'users',
-      data: { email, password: finalPassword, name: 'Administrador UNITINS' },
+      data: { email, password: finalPassword, name: 'Administrador UNITINS', role: 'admin' },
     })
   }
 

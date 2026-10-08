@@ -15,6 +15,7 @@ import { Speakers } from './collections/Speakers'
 import { Partners } from './collections/Partners'
 import { Editions } from './collections/Editions'
 import { migrations } from './migrations'
+import { isAdmin } from './access/roles'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -149,11 +150,11 @@ export default buildConfig({
           hidden: true,
         }
         collection.access = {
-          create: ({ req }) => Boolean(req.user),
-          delete: ({ req }) => Boolean(req.user),
-          read: ({ req }) => Boolean(req.user),
-          unlock: ({ req }) => Boolean(req.user),
-          update: ({ req }) => Boolean(req.user),
+          create: isAdmin,
+          delete: isAdmin,
+          read: isAdmin,
+          unlock: isAdmin,
+          update: isAdmin,
         }
         const userField = collection.fields.find(
           (field) => 'name' in field && field.name === 'user',
@@ -161,10 +162,8 @@ export default buildConfig({
         if (userField) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
           (userField as any).access = {
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            create: ({ req }: any) => Boolean(req.user),
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            update: ({ req }: any) => Boolean(req.user),
+            create: isAdmin,
+            update: isAdmin,
           }
         }
         return collection
