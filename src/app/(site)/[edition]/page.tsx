@@ -9,7 +9,6 @@ import Partners from '@/components/project/Partners'
 import News from '@/components/project/News'
 import Faq from '@/components/project/Faq'
 import Location from '@/components/project/Location'
-import Subscription from '@/components/project/Subscription'
 import Footer from '@/components/project/Footer'
 import { Mascot } from '@/components/project/Mascot'
 
@@ -111,7 +110,6 @@ export default async function EditionPage({ params }: PageProps) {
         <News edition={edition} />
         <Faq edition={edition} />
         <Location />
-        <Subscription edition={edition} />
       </main>
       <Footer edition={edition} />
       {(edition.year === 2026 || edition.slug === '2026') && <Mascot />}

@@ -100,12 +100,6 @@ export interface Edition {
   partners?: Partner[]
   newsIllustration?: MediaRef | null
   faqs?: FaqItem[]
-  subscription?: {
-    title?: string
-    ctaLabel?: string
-    leftIllustration?: MediaRef | null
-    rightIllustration?: MediaRef | null
-  }
   updatedAt?: string
   createdAt?: string
 }
@@ -195,12 +189,6 @@ export const FALLBACK_2025_EDITION: Edition = {
   scheduleIllustration: { url: '/ilustracoes/2_ilustracao.png', alt: 'Ilustração decorativa da programação' },
   partnersIllustration: { url: '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-4.png', alt: 'Ilustração decorativa dos parceiros' },
   newsIllustration: { url: '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-6.png', alt: 'Ilustração decorativa de notícias' },
-  subscription: {
-    title: 'Garanta sua participação na III Semana de Tecnologia',
-    ctaLabel: 'Inscreva-se Agora',
-    leftIllustration: { url: '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-10.png', alt: 'Ilustração decorativa' },
-    rightIllustration: { url: '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-12.png', alt: 'Ilustração decorativa' },
-  },
 }
 
 import schedule2026Data from '@/data/schedule-2026.json' assert { type: 'json' }
@@ -241,12 +229,6 @@ export const FALLBACK_2026_EDITION: Edition = {
   scheduleIllustration: { url: '/ilustracoes/2_ilustracao.png', alt: 'Ilustração decorativa da programação' },
   partnersIllustration: { url: '/illustrations/dna-helix.svg', alt: 'Estrutura helicoidal de DNA da identidade visual' },
   newsIllustration: { url: '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-6.png', alt: 'Ilustração decorativa de notícias' },
-  subscription: {
-    title: 'Garanta sua participação na IV Semana de Ciência, Tecnologia, Inovação e Extensão (2026)',
-    ctaLabel: 'Inscreva-se Agora',
-    leftIllustration: { url: '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-10.png', alt: 'Ilustração decorativa' },
-    rightIllustration: { url: '/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-12.png', alt: 'Ilustração decorativa' },
-  },
 }
 
 /**

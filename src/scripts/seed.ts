@@ -440,10 +440,6 @@ export async function seed(existingPayload?: Payload) {
           answer: 'As atividades presenciais acontecerão no Câmpus Graciosa da UNITINS em Palmas, incluindo auditórios, salas temáticas e estandes de parceiros.',
         },
       ],
-      subscription: {
-        title: 'Garanta sua participação na III Semana de Tecnologia',
-        ctaLabel: 'Inscreva-se Agora',
-      },
     },
   })
 

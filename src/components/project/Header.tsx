@@ -373,7 +373,7 @@ export default function Header({
                                 className="inline-flex items-center self-center"
                             >
                                 <Button className={`group font-bold rounded-xl transition-all duration-300 overflow-hidden inline-flex items-center justify-center h-10 px-5 ${isSolid ? 'bg-primary text-white hover:bg-accent' : 'bg-white text-primary hover:bg-accent hover:text-white'}`}>
-                                    {edition?.subscription?.ctaLabel || "Participar"}
+                                    Participar
                                 </Button>
                             </Link>
                         </nav>

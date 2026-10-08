@@ -152,11 +152,5 @@
     }
   ],
   "speakers": [],
-  "countdownStart": "2025-10-20T00:00:00",
-  "subscription": {
-    "ctaLabel": "Inscreva-se Agora",
-    "note": "Vagas limitadas! Garanta sua participação",
-    "leftImage": "/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-10.png",
-    "rightImage": "/semana-de-inovacao/elementos-Id-visual/SNCT-elemento-12.png"
-  }
+  "countdownStart": "2025-10-20T00:00:00"
 }

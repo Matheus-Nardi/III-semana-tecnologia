@@ -82,7 +82,6 @@ src/
 |   |   +-- News.tsx            # Seção de notícias
 |   |   +-- Partners.tsx        # Parceiros e apoiadores
 |   |   +-- Schedule.tsx        # Programação interativa (trilhas, dias, horários)
-|   |   +-- Subscription.tsx    # Inscrições
 |   +-- ui/                     # Componentes base Radix UI / Shadcn
 |       +-- accordion.tsx, badge.tsx, button.tsx, card.tsx, carousel.tsx...
 +-- data/

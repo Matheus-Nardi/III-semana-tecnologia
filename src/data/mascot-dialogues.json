@@ -56,11 +56,6 @@
         "pose": "waving",
         "badge": "Câmpus UNITINS"
       },
-      "inscricao": {
-        "text": "Dica amiga: não deixe para se inscrever de última hora para garantir vaga nas oficinas!",
-        "pose": "waving",
-        "badge": "Dica"
-      },
       "parceiros": {
         "text": "O apoio dos nossos parceiros e patrocinadores é fundamental! São eles que investem na educação e tornam essa semana científica possível.",
         "pose": "waving",
@@ -129,11 +124,6 @@
         "pose": "waving",
         "badge": "Câmpus UNITINS"
       },
-      "inscricao": {
-        "text": "Processar sua inscrição agora é o algoritmo mais eficiente do seu dia. Garanta seu certificado!",
-        "pose": "waving",
-        "badge": "Inscrição"
-      },
       "parceiros": {
         "text": "Grandes inovações só acontecem quando unimos forças. Agradecemos a todos os parceiros que impulsionam o futuro da tecnologia conosco!",
         "pose": "eureka",
@@ -201,11 +191,6 @@
         "text": "Nada substitui a energia do encontro presencial no Câmpus da UNITINS. Estou animada para o evento!",
         "pose": "waving",
         "badge": "Câmpus UNITINS"
-      },
-      "inscricao": {
-        "text": "Não vacile: as vagas para as oficinas práticas de laboratório costumam esgotar rápido. Inscreva-se!",
-        "pose": "waving",
-        "badge": "Inscrição"
       },
       "parceiros": {
         "text": "Fazer ciência e democratizar o conhecimento exige investimento sério. Nosso muito obrigada aos parceiros que fazem tudo isso acontecer!",

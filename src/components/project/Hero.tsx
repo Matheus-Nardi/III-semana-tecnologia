@@ -182,7 +182,7 @@ export default function Hero({ edition }: { edition?: Edition }) {
                                 aria-label="Inscrever-se no evento"
                             >
                                 <Link href={registrationUrl} target='_blank' rel='noopener noreferrer'>
-                                    {edition?.subscription?.ctaLabel || "Inscreva-se Agora"}
+                                    Inscreva-se Agora
                                     <ChevronRight className="w-4 h-4" aria-hidden="true" />
                                 </Link>
                             </Button>

@@ -678,49 +678,6 @@ export const Editions: CollectionConfig = {
             },
           ],
         },
-        {
-          label: '🚀 Chamada Final (CTA)',
-          description: 'Configure a mensagem do banner de inscrição no rodapé da página',
-          fields: [
-            {
-              name: 'subscription',
-              type: 'group',
-              label: 'Banner de Inscrição Final',
-              fields: [
-                {
-                  name: 'title',
-                  type: 'text',
-                  defaultValue: 'Garanta sua participação na III Semana de Tecnologia',
-                  label: 'Título de Chamada',
-                },
-                {
-                  name: 'ctaLabel',
-                  type: 'text',
-                  defaultValue: 'Inscreva-se Agora',
-                  label: 'Texto do Botão de Inscrição',
-                },
-                {
-                  name: 'leftIllustration',
-                  type: 'upload',
-                  relationTo: 'media',
-                  label: '🖼️ Ilustração Flutuante (Esquerda)',
-                  admin: {
-                    description: 'Grafismo flutuante exibido à esquerda do botão de inscrição. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.',
-                  },
-                },
-                {
-                  name: 'rightIllustration',
-                  type: 'upload',
-                  relationTo: 'media',
-                  label: '🖼️ Ilustração Flutuante (Direita)',
-                  admin: {
-                    description: 'Grafismo flutuante exibido à direita do botão de inscrição. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.',
-                  },
-                },
-              ],
-            },
-          ],
-        },
       ],
     },
   ],

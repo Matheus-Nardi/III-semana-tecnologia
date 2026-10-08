@@ -20,7 +20,7 @@ const CHARACTERS: CharacterId[] = ['curie', 'ada', 'jaqueline']
 const POSES: Pose[] = ['waving', 'reading', 'eureka']
 
 // Seções com reações contextuais, incluindo 'parceiros'
-const OBSERVED_SECTIONS = ['programacao', 'localizacao', 'inscricao', 'parceiros', 'noticias', 'faq']
+const OBSERVED_SECTIONS = ['programacao', 'localizacao', 'parceiros', 'noticias', 'faq']
 
 export function Mascot() {
   const [mounted, setMounted] = useState(false)
@@ -118,7 +118,7 @@ export function Mascot() {
   // Identifica a seção da página visível na tela no momento
   const getVisibleSection = useCallback(() => {
     if (typeof window === 'undefined') return null
-    const sections = ['programacao', 'parceiros', 'inscricao', 'noticias', 'faq', 'localizacao']
+    const sections = ['programacao', 'parceiros', 'noticias', 'faq', 'localizacao']
     const viewportCenter = window.innerHeight / 2
 
     let bestSection: string | null = null

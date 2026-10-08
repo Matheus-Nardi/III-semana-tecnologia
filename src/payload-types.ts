@@ -489,18 +489,6 @@ export interface Edition {
         id?: string | null;
       }[]
     | null;
-  subscription?: {
-    title?: string | null;
-    ctaLabel?: string | null;
-    /**
-     * Grafismo flutuante exibido à esquerda do botão de inscrição. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.
-     */
-    leftIllustration?: (number | null) | Media;
-    /**
-     * Grafismo flutuante exibido à direita do botão de inscrição. Formato recomendado: PNG transparente. Se vazio, exibe o grafismo padrão.
-     */
-    rightIllustration?: (number | null) | Media;
-  };
   updatedAt: string;
   createdAt: string;
 }
@@ -885,14 +873,6 @@ export interface EditionsSelect<T extends boolean = true> {
         question?: T;
         answer?: T;
         id?: T;
-      };
-  subscription?:
-    | T
-    | {
-        title?: T;
-        ctaLabel?: T;
-        leftIllustration?: T;
-        rightIllustration?: T;
       };
   updatedAt?: T;
   createdAt?: T;
