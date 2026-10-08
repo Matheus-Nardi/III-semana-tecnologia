@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "test:e2e": "tsx tests/e2e-suite.ts",
+    "test:roles": "tsx tests/roles-access.ts",
     "seed": "tsx src/scripts/seed.ts",
     "migrate": "payload migrate",
     "migrate:create": "payload migrate:create",

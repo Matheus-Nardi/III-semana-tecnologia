@@ -145,7 +145,7 @@ export interface PayloadMcpApiKeyAuthOperations {
   };
 }
 /**
- * Gerencie os usuários com permissão de acesso e edição no painel administrativo.
+ * Gerencie os usuários e perfis de permissão no painel administrativo.
  *
  * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "users".
@@ -153,9 +153,13 @@ export interface PayloadMcpApiKeyAuthOperations {
 export interface User {
   id: number;
   /**
-   * Nome do administrador
+   * Nome completo do usuário
    */
-  name?: string | null;
+  name: string;
+  /**
+   * Administradores têm controle total; editores gerenciam apenas o conteúdo do evento.
+   */
+  role: 'admin' | 'editor';
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -707,6 +711,7 @@ export interface PayloadMigration {
  */
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
+  role?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;

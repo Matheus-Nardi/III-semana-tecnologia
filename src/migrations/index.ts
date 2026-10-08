@@ -3,6 +3,7 @@ import * as migration_20260929_142700_schedule_improvements from './20260929_142
 import * as migration_20261006_034704 from './20261006_034704';
 import * as migration_20261006_120000_theme_secondary_color from './20261006_120000_theme_secondary_color';
 import * as migration_20261006_180240 from './20261006_180240';
+import * as migration_20261007_210500_users_role from './20261007_210500_users_role';
 
 export const migrations = [
   {
@@ -29,5 +30,10 @@ export const migrations = [
     up: migration_20261006_180240.up,
     down: migration_20261006_180240.down,
     name: '20261006_180240'
+  },
+  {
+    up: migration_20261007_210500_users_role.up,
+    down: migration_20261007_210500_users_role.down,
+    name: '20261007_210500_users_role'
   },
 ];

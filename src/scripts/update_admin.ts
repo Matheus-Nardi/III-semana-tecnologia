@@ -22,6 +22,7 @@ async function updateAdmin() {
         email,
         password: finalPassword,
         name: 'Italo Beckman',
+        role: 'admin',
       },
     })
     console.log(`✅ Usuário administrador atualizado com sucesso para: ${email}`)
@@ -33,6 +34,7 @@ async function updateAdmin() {
         email,
         password: finalPassword,
         name: 'Italo Beckman',
+        role: 'admin',
       },
     })
     console.log(`✅ Usuário administrador criado com sucesso: ${email}`)

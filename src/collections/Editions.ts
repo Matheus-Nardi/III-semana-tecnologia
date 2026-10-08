@@ -1,5 +1,6 @@
 import type { CollectionConfig } from 'payload'
 import { revalidateTag } from 'next/cache'
+import { isAdminOrEditor } from '../access/roles'
 
 export const Editions: CollectionConfig = {
   slug: 'editions',
@@ -14,6 +15,9 @@ export const Editions: CollectionConfig = {
   },
   access: {
     read: () => true,
+    create: isAdminOrEditor,
+    update: isAdminOrEditor,
+    delete: isAdminOrEditor,
   },
   hooks: {
     beforeChange: [
