@@ -10,6 +10,8 @@ const nextConfig: NextConfig = {
 
   // otimização de imagens remotas usadas no Hero e CMS
   images: {
+    // 30 dias: evita rebuscar o original no B2 a cada 60s (padrão do Next)
+    minimumCacheTTL: 2592000,
     remotePatterns: [
       {
         protocol: 'https',
