@@ -22,7 +22,23 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV NODE_ENV=production
 RUN npm run build
 
-# Stage 2: Runtime
+# Stage 2: Ferramentas de manutenção (ex.: importação da programação a partir da planilha)
+# Publicada pelo CI como <imagem>-tools; executada sob demanda via serviço "tools" do compose.
+FROM node:20-alpine AS tools
+
+WORKDIR /app
+
+RUN apk add --no-cache libc6-compat
+
+COPY --from=builder /app/package*.json /app/tsconfig.json ./
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/src ./src
+
+ENV NODE_ENV=production
+
+CMD ["npm", "run", "import:schedule:2026"]
+
+# Stage 3: Runtime
 FROM node:20-alpine AS runner
 
 WORKDIR /app

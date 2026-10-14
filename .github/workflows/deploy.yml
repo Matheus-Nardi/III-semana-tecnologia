@@ -23,6 +23,7 @@ jobs:
     outputs:
       image: ${{ steps.vars.outputs.image }}
       image_sha: ${{ steps.vars.outputs.image_sha }}
+      tools_image: ${{ steps.vars.outputs.tools_image }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -34,6 +35,7 @@ jobs:
           BRANCH=$(echo "${GITHUB_REF_NAME}" | tr '[:upper:]' '[:lower:]' | tr '/' '-')
           echo "image=${REGISTRY}/${REPO}:${BRANCH}" >> "$GITHUB_OUTPUT"
           echo "image_sha=${REGISTRY}/${REPO}:sha-${GITHUB_SHA::7}" >> "$GITHUB_OUTPUT"
+          echo "tools_image=${REGISTRY}/${REPO}:${BRANCH}-tools" >> "$GITHUB_OUTPUT"
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -59,6 +61,21 @@ jobs:
             ${{ steps.vars.outputs.image_sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+
+      # Imagem de manutenção (scripts + planilhas do commit), reaproveitando o cache do build acima
+      - name: Build and push tools image (linux/arm64)
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: ./Dockerfile
+          target: tools
+          platforms: linux/arm64
+          push: true
+          build-args: |
+            NEXT_PUBLIC_SERVER_URL=https://unitinscti.com.br
+          tags: |
+            ${{ steps.vars.outputs.tools_image }}
+          cache-from: type=gha
 
   deploy:
     needs: build-and-push
@@ -99,18 +116,26 @@ jobs:
           GHCR_USER: ${{ secrets.GHCR_USERNAME }}
           GHCR_TOKEN: ${{ secrets.GHCR_TOKEN }}
           APP_IMAGE: ${{ needs.build-and-push.outputs.image }}
+          TOOLS_IMAGE: ${{ needs.build-and-push.outputs.tools_image }}
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          envs: GHCR_USER,GHCR_TOKEN,APP_IMAGE
+          envs: GHCR_USER,GHCR_TOKEN,APP_IMAGE,TOOLS_IMAGE
           script: |
             set -e
             cd "${{ secrets.DEPLOY_PATH }}"
-            mkdir -p certbot/conf certbot/www backups
+            mkdir -p certbot/conf certbot/www backups backups/schedule
 
             if [ -n "$GHCR_TOKEN" ]; then
               echo "$GHCR_TOKEN" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
+            fi
+
+            # Deixa a imagem de manutenção (serviço "tools") pronta para uso sob demanda
+            if docker pull "$TOOLS_IMAGE"; then
+              docker tag "$TOOLS_IMAGE" semana-tecnologia-tools:latest
+            else
+              echo "⚠️  Não foi possível baixar $TOOLS_IMAGE; serviço tools ficará na versão anterior."
             fi
 
             chmod +x scripts/restart.sh

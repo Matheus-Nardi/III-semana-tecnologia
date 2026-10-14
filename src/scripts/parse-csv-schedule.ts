@@ -208,7 +208,7 @@ export function parseScheduleCsv(csvContent: string, nitCsvContent?: string): Pa
     const rawLocal = normalizeText(row.Local)
 
     // Filtra linhas totalmente vazias ou residuais
-    if (!eventName && !rawTitulo && !rawLocal) {
+    if (!normalizeText(row.Evento) && !rawTitulo && !rawLocal) {
       continue
     }
 
@@ -342,7 +342,7 @@ if (isMainModule) {
   const customFileArgIndex = process.argv.indexOf('--file')
   const customNitArgIndex = process.argv.indexOf('--nit-file')
 
-  const defaultFilePath = path.resolve(process.cwd(), 'src/data/raw/2026/programacao-2026_01.csv')
+  const defaultFilePath = path.resolve(process.cwd(), 'src/data/raw/2026/programacao-2026.csv')
   const targetFilePath =
     customFileArgIndex !== -1 && process.argv[customFileArgIndex + 1]
       ? path.resolve(process.cwd(), process.argv[customFileArgIndex + 1])
