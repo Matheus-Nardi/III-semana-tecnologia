@@ -129,6 +129,8 @@ services:
       - ./certbot/conf:/etc/letsencrypt:ro
       - ./certbot/www:/var/www/certbot:ro
       - nginx-logs:/var/log/nginx
+      # Cache de mídia (B2) persistente entre deploys
+      - nginx-cache:/var/cache/nginx/media
       - goaccess-reports:/var/reports:ro
       - nginx-auth:/etc/nginx/auth:ro
     depends_on:
@@ -339,6 +341,7 @@ volumes:
   db-data-prod: {}
   media-data-prod: {}
   nginx-logs: {}
+  nginx-cache: {}
   nginx-auth: {}
   goaccess-reports: {}
   crowdsec-db: {}
