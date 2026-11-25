@@ -65,61 +65,12 @@ if [ ! -f .env.production ]; then
 fi
 
 if [ "$SETUP_SSL" = true ]; then
-    echo "🔐 Configurando SSL..."
-    
-    # Cria diretórios para certificados
-    mkdir -p ./certbot/conf
-    mkdir -p ./certbot/www
-    
-    # Inicia apenas o Nginx para o challenge do Let's Encrypt
-    echo "🔧 Iniciando Nginx temporário..."
-    docker-compose -f docker-compose.prod.yml up -d nginx
-    
-    # Aguarda inicialização
-    sleep 15
-    
-    # Testa se o Nginx está respondendo
-    if ! curl -f http://localhost/health > /dev/null 2>&1; then
-        echo "⚠️  Nginx não está respondendo, tentando novamente..."
-        sleep 10
-    fi
-    
-    # Obtém certificados SSL
-    echo "🔐 Obtendo certificados SSL..."
-    docker-compose -f docker-compose.prod.yml run --rm certbot certonly \
-        --webroot \
-        --webroot-path=/var/www/certbot \
-        --email $EMAIL \
-        --agree-tos \
-        --no-eff-email \
-        --non-interactive \
-        -d $DOMAIN \
-        -d www.$DOMAIN
-    
-    if [ $? -eq 0 ]; then
-        echo "✅ Certificados SSL obtidos com sucesso!"
-        
-        # Para o Nginx temporário
-        docker-compose -f docker-compose.prod.yml down
-        
-        # Inicia aplicação completa com SSL
-        echo "🚀 Iniciando aplicação com SSL..."
-        docker-compose -f docker-compose.prod.yml up -d
-        
-        # Configura renovação automática
-        echo "⚙️  Configurando renovação automática..."
-        (crontab -l 2>/dev/null | grep -v "certbot renew"; echo "0 12 * * * cd $(pwd) && docker-compose -f docker-compose.prod.yml run --rm certbot renew --quiet && docker-compose -f docker-compose.prod.yml restart nginx") | crontab -
-        
-    else
-        echo "❌ Erro ao obter certificados SSL"
-        echo "🔄 Iniciando sem SSL..."
-        docker-compose -f docker-compose.prod.yml down
-        docker-compose -f docker-compose.prod.yml up -d
-    fi
-else
-    echo "🚀 Iniciando aplicação sem SSL..."
-    docker-compose -f docker-compose.prod.yml up -d
+    # Emissão inicial; a renovação é feita pelo serviço certbot do compose
+    bash "$(dirname "$0")/setup-ssl.sh" "$EMAIL"
 fi
+
+echo "🚀 Iniciando aplicação..."
+docker compose -f docker-compose.prod.yml up -d
 
 # Aguarda a aplicação inicializar
 echo "⏳ Aguardando aplicação inicializar..."

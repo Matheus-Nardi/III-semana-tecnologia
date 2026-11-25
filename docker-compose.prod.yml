@@ -131,6 +131,10 @@ services:
       - nginx-logs:/var/log/nginx
       - goaccess-reports:/var/reports:ro
       - nginx-auth:/etc/nginx/auth:ro
+    # Recarrega a cada 6h para passar a usar certificados renovados (sem downtime)
+    command: >-
+      /bin/sh -c 'while :; do sleep 6h; nginx -s reload; done &
+      exec nginx -g "daemon off;"'
     depends_on:
       nextjs:
         condition: service_started
@@ -149,15 +153,25 @@ services:
         max-size: "10m"
         max-file: "3"
 
-  # Certbot para renovação automática de SSL
+  # Certbot para renovação automática de SSL (verifica a cada 12h; só renova perto do vencimento).
+  # A primeira emissão em um servidor novo é manual: ver docs/DEPLOYMENT.md (seção 4.1).
   certbot:
     image: certbot/certbot
     container_name: semana-tecnologia-certbot-prod
-    restart: "no"
+    restart: unless-stopped
     volumes:
       - ./certbot/conf:/etc/letsencrypt
       - ./certbot/www:/var/www/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email ${CERTBOT_EMAIL:-suporte@unitins.br} --agree-tos --no-eff-email --keep-until-expiring --non-interactive -d unitinscti.com.br -d www.unitinscti.com.br -d admin.unitinscti.com.br
+    entrypoint: >-
+      /bin/sh -c 'trap exit TERM; while :; do
+      certbot renew --webroot --webroot-path=/var/www/certbot;
+      sleep 12h & wait $${!};
+      done'
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   # --------------------------------------------------------------------------
   # Observabilidade e segurança (stack mínima)
