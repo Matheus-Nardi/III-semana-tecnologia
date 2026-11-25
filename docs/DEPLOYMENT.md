@@ -141,15 +141,24 @@ mkdir -p certbot/conf certbot/www backups nginx/ssl public/media
 ```
 
 #### Passo 2: Gerar Certificado SSL Inicial com Certbot
-Antes de ativar a configuração completa do Nginx com SSL, garanta que os certificados Let's Encrypt existam:
+Necessário **uma única vez por servidor**: o Nginx não sobe sem o certificado. Com o DNS já apontando para o servidor e a porta 80 livre:
 
 ```bash
-# Sobe apenas o Nginx básico para o desafio HTTP-01 ou execute o Certbot:
-docker compose -f docker-compose.prod.yml run --rm certbot certonly \
-  --webroot --webroot-path=/var/www/certbot \
-  --email suporte@unitins.br \
-  --agree-tos --no-eff-email \
-  -d unitinscti.com.br -d www.unitinscti.com.br -d admin.unitinscti.com.br
+bash scripts/setup-ssl.sh suporte@unitins.br
+```
+
+O script emite o certificado para os três domínios em modo `--standalone`.
+
+**Renovação automática** (não requer cron na VM):
+- o serviço `certbot` executa `certbot renew` a cada 12h e só renova quando o certificado está perto de vencer;
+- o `nginx` faz `reload` a cada 6h para carregar o certificado renovado.
+
+Para conferir ou testar:
+
+```bash
+docker compose -f docker-compose.prod.yml logs --tail=30 certbot
+docker compose -f docker-compose.prod.yml run --rm --entrypoint certbot certbot certificates
+docker compose -f docker-compose.prod.yml run --rm --entrypoint certbot certbot renew --dry-run
 ```
 
 #### Passo 3: Construir e Iniciar os Serviços de Produção
